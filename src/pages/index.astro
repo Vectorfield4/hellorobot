@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../app/layouts/BaseLayout.astro";
+import { getProducts } from "../shared/data/entities";
+import { astroDictRu } from "../shared/i18n/dict";
+import { createT } from "../shared/i18n/t";
+
+const t = createT(astroDictRu);
+const products = getProducts();
+---
+<BaseLayout title={t("home.title")} description={t("home.lead")}>
+  <main style="padding: 2rem;">
+    <h1>{t("home.title")}</h1>
+    <p>{t("home.lead")}</p>
+    <ul>
+      {products.map((p) => (
+        <li>{p.name} — {p.price}</li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>

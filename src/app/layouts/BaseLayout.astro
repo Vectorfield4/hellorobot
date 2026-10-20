@@ -1,0 +1,32 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = "hellorobot", description = "" } = Astro.props;
+const locale = Astro.currentLocale ?? "ru";
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={Astro.url.href} />
+    <script is:inline>
+      try {
+        const t = localStorage.getItem("theme");
+        if (t) document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+<style is:global>
+  :root { --color-bg: #ffffff; --color-fg: #111111; }
+  [data-theme="dark"] { --color-bg: #111111; --color-fg: #ffffff; }
+  body { margin: 0; background: var(--color-bg); color: var(--color-fg); font-family: system-ui, sans-serif; }
+</style>

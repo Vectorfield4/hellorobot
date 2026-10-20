@@ -1,0 +1,7 @@
+/* Base global styles */
+* {
+  box-sizing: border-box;
+}
+a {
+  color: inherit;
+}

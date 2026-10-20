@@ -1,0 +1,11 @@
+node_modules/
+.opencode/
+dist/
+*.tsbuildinfo
+.astro/
+.env
+.env.*
+*.log
+npm-debug.log*
+coverage/
+.storybook-static/
