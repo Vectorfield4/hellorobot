@@ -36,7 +36,14 @@ Robotics news candidates are collected **without API keys** by
 Candidates are deduplicated by URL. Already-published articles are tracked in
 WordPress via the `_source_url` post meta (set when creating a draft through MCP).
 
-## Adding a source
-Append an entry to the `SOURCES` array in `scripts/fetch-candidates.mjs`
-(`type: "rss" | "hn" | "reddit"`) and re-run the fetcher. Update this table's
-"Parsing set up" column accordingly.
+## Universal article extractor
+
+For HTML sources without RSS, use `scripts/extract-article.mjs`:
+
+```bash
+npm run extract:article -- https://example.com/article
+```
+
+It uses Mozilla Readability to pull title, byline, excerpt and full text from any
+article page (no API keys). Output is JSON. Combine with the fetcher: fetch
+candidate URLs → extract → summarize → create WP draft via MCP.

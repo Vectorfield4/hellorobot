@@ -14,10 +14,12 @@
     "test:watch": "vitest",
     "lint": "biome check .",
     "format": "biome format --write .",
-    "fetch:candidates": "node scripts/fetch-candidates.mjs"
+    "fetch:candidates": "node scripts/fetch-candidates.mjs",
+    "extract:article": "node scripts/extract-article.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.6",
+    "@mozilla/readability": "^0.6.0",
     "@stylexjs/stylex": "^0.19.1",
     "astro": "^7.3.3",
     "lucide-react": "^1.47.0",
