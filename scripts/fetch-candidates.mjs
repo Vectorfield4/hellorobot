@@ -7,7 +7,6 @@ export function canonicalizeUrl(raw) {
     const u = new URL(raw);
     u.protocol = "https:";
     u.hash = "";
-    // strip common tracking params
     for (const p of [...u.searchParams.keys()]) {
       if (/^utm_/i.test(p) || /^(fbclid|gclid|ref|source)$/i.test(p)) u.searchParams.delete(p);
     }
@@ -35,6 +34,20 @@ export function parseRSS(xml, source) {
   return items;
 }
 
+export function parseAtom(xml, source) {
+  const items = [];
+  const entryRe = /<entry[\s\S]*?<\/entry>/gi;
+  for (const m of xml.matchAll(entryRe)) {
+    const block = m[0];
+    const title = block.match(/<title[^>]*>(.*?)<\/title>/is)?.[1]?.trim();
+    const link = block.match(/<link[^>]*href=["'](.*?)["']/i)?.[1]?.trim();
+    const updated = block.match(/<(updated|published)>(.*?)<\/\1>/i)?.[2]?.trim();
+    if (title && link)
+      items.push({ source, title, url: canonicalizeUrl(link), date: updated || null });
+  }
+  return items;
+}
+
 export function dedup(items) {
   const seen = new Set();
   return items.filter((it) => {
@@ -47,11 +60,6 @@ export function dedup(items) {
 
 const SOURCES = [
   { name: "arXiv cs.RO", url: "http://rss.arxiv.org/rss/cs.RO", type: "rss" },
-  {
-    name: "Google News (ru)",
-    url: "https://news.google.com/rss/search?q=%D1%80%D0%BE%D0%B1%D0%BE%D1%82%D0%BE%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B0&hl=ru&gl=RU&ceid=RU:ru",
-    type: "rss",
-  },
   { name: "IEEE Spectrum (robots)", url: "https://spectrum.ieee.org/rss/robotics", type: "rss" },
   { name: "The Robot Report", url: "https://www.therobotreport.com/feed/", type: "rss" },
   {
@@ -59,6 +67,8 @@ const SOURCES = [
     url: "https://techcrunch.com/category/robotics/feed/",
     type: "rss",
   },
+  { name: "Wired (all)", url: "https://www.wired.com/feed/", type: "rss" },
+  { name: "ROS Discourse", url: "https://discourse.ros.org/latest.rss", type: "rss" },
   {
     name: "Hacker News",
     url: "https://hn.algolia.com/api/v1/search?query=robotics&tags=story&hitsPerPage=20",
@@ -85,6 +95,7 @@ async function fetchSource(s) {
   try {
     const text = await fetchText(s.url);
     if (s.type === "rss") return parseRSS(text, s.name);
+    if (s.type === "atom") return parseAtom(text, s.name);
     if (s.type === "hn") {
       const json = JSON.parse(text);
       return (json.hits || []).map((h) => ({
