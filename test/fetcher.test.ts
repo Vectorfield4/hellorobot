@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+// @ts-expect-error
 import { canonicalizeUrl, dedup, parseRSS } from "../scripts/fetch-candidates.mjs";
 
 describe("canonicalizeUrl", () => {
