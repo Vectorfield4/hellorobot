@@ -26,6 +26,7 @@
 - `npm run test` — run tests
 - `npm run lint` / `npm run format` — Biome
 
-## Structure
+## Article sources
 
-FSD + Atomic Design under `src/`. See `AGENTS.md`.
+Robotics news sources we parse (no API keys): [docs/article-sources.md](docs/article-sources.md).
+Run `npm run fetch:candidates` to collect candidates.
