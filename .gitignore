@@ -5,6 +5,7 @@ dist/
 .astro/
 .env
 .env.*
+!.env.example
 *.log
 npm-debug.log*
 coverage/
