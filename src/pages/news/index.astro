@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../../app/layouts/BaseLayout.astro";
+import { getPosts } from "../../shared/data/posts";
+
+const posts = getPosts();
+---
+<BaseLayout title="Новости">
+  <main style="padding: 2rem;">
+    <h1>Новости</h1>
+    <ul>
+      {posts.map((p) => (
+        <li><a href={`/news/${p.slug}`}>{p.title}</a> — {p.date}</li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>

@@ -1,19 +1,25 @@
 ---
 import BaseLayout from "../app/layouts/BaseLayout.astro";
-import { getProducts } from "../shared/data/entities";
+import { getPosts } from "../shared/data/posts";
 import { astroDictRu } from "../shared/i18n/dict";
 import { createT } from "../shared/i18n/t";
+import LatestPosts from "../shared/ui/LatestPosts";
 
 const t = createT(astroDictRu);
-const products = getProducts();
+const posts = getPosts();
 ---
-<BaseLayout title={t("home.title")} description={t("home.lead")}>
+<BaseLayout title={t("home.title")}>
   <main style="padding: 2rem;">
     <h1>{t("home.title")}</h1>
     <p>{t("home.lead")}</p>
+
+    <h2>Latest (live)</h2>
+    <LatestPosts client:load first={5} />
+
+    <h2>All articles</h2>
     <ul>
-      {products.map((p) => (
-        <li>{p.name} — {p.price}</li>
+      {posts.map((p) => (
+        <li><a href={`/news/${p.slug}`}>{p.title}</a> — {p.date}</li>
       ))}
     </ul>
   </main>

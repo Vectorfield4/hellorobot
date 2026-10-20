@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../../app/layouts/BaseLayout.astro";
+import { getPostBySlug, getPosts } from "../../shared/data/posts";
+
+export function getStaticPaths() {
+  return getPosts().map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const post = getPostBySlug(slug as string);
+if (!post) throw new Error("Not found");
+---
+<BaseLayout title={post.title}>
+  <main style="padding: 2rem;">
+    <h1>{post.title}</h1>
+    <small>{post.date}</small>
+    <article set:html={post.content} />
+    <p><a href="/news">← Back</a></p>
+  </main>
+</BaseLayout>
