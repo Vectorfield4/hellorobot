@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { createT } from "../src/shared/i18n/t";
 
 describe("createT", () => {
