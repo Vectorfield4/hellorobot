@@ -1,16 +1,15 @@
 ---
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
 import { getPosts } from "../../shared/data/posts";
+import ArticleCard from "../../shared/ui/ArticleCard";
 
 const posts = getPosts();
 ---
 <BaseLayout title="Новости">
-  <main style="padding: 2rem;">
+  <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
     <h1>Новости</h1>
-    <ul>
-      {posts.map((p) => (
-        <li><a href={`/news/${p.slug}`}>{p.title}</a> — {p.date}</li>
-      ))}
-    </ul>
+    {posts.map((p) => (
+      <ArticleCard title={p.title} date={p.date} slug={p.slug} excerpt={p.excerpt} tags={p.tags} />
+    ))}
   </main>
 </BaseLayout>

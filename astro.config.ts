@@ -1,5 +1,6 @@
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+import stylex from "@stylexjs/unplugin/vite";
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
@@ -12,6 +13,19 @@ export default defineConfig({
     routing: { prefixDefaultLocale: false },
   },
   vite: {
+    plugins: [
+      stylex({
+        useCSSLayers: true,
+        aliases: {
+          "@/*": ["./src/*"],
+          "@": ["./src"],
+        },
+        unstable_moduleResolution: {
+          type: "commonJS",
+          rootDir: process.cwd(),
+        },
+      }),
+    ],
     resolve: {
       alias: {
         "@": new URL("./src", import.meta.url).pathname,

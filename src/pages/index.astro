@@ -3,24 +3,23 @@ import BaseLayout from "../app/layouts/BaseLayout.astro";
 import { getPosts } from "../shared/data/posts";
 import { astroDictRu } from "../shared/i18n/dict";
 import { createT } from "../shared/i18n/t";
+import ArticleCard from "../shared/ui/ArticleCard";
 import LatestPosts from "../shared/ui/LatestPosts";
 
 const t = createT(astroDictRu);
 const posts = getPosts();
 ---
 <BaseLayout title={t("home.title")}>
-  <main style="padding: 2rem;">
+  <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
     <h1>{t("home.title")}</h1>
     <p>{t("home.lead")}</p>
 
     <h2>Новые статьи</h2>
     <LatestPosts client:load first={5} knownSlugs={posts.map((p) => p.slug)} />
 
-    <h2>All articles</h2>
-    <ul>
-      {posts.map((p) => (
-        <li><a href={`/news/${p.slug}`}>{p.title}</a> — {p.date}</li>
-      ))}
-    </ul>
+    <h2>Все статьи</h2>
+    {posts.map((p) => (
+      <ArticleCard title={p.title} date={p.date} slug={p.slug} excerpt={p.excerpt} tags={p.tags} />
+    ))}
   </main>
 </BaseLayout>

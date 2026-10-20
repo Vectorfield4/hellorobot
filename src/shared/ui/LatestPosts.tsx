@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
 import { wpQuery } from "@/shared/api/graphql";
+import ArticleCard from "@/shared/ui/ArticleCard";
 
 interface Post {
   id: string;
   slug: string;
   title: string;
   date: string;
+  excerpt?: string;
+  tags?: string[];
 }
 
 const QUERY = `
   query LatestPosts($first: Int!) {
-    posts(first: $first) { nodes { id slug title date } }
+    posts(first: $first) {
+      nodes { id slug title date excerpt tags { nodes { name } } }
+    }
   }
 `;
 
@@ -25,35 +30,55 @@ export default function LatestPosts({
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: knownSlugs compared by value
   useEffect(() => {
-    wpQuery<{ posts: { nodes: Post[] } }>(QUERY, { first })
+    wpQuery<{
+      posts: {
+        nodes: Array<{
+          id: string;
+          slug: string;
+          title: string;
+          date: string;
+          excerpt?: string;
+          tags?: { nodes: { name: string }[] };
+        }>;
+      };
+    }>(QUERY, { first })
       .then((d) => {
         const known = new Set(knownSlugs);
-        setPosts(d.posts.nodes.filter((p) => !known.has(p.slug)));
+        setPosts(
+          d.posts.nodes
+            .filter((p) => !known.has(p.slug))
+            .map((p) => ({ ...p, tags: p.tags?.nodes.map((t) => t.name) ?? [] })),
+        );
       })
       .catch(() => setPosts([]));
   }, [first, knownSlugs.join(",")]);
 
   if (posts === null) {
     return (
-      <ul aria-hidden="true">
+      <div aria-hidden="true">
         {Array.from({ length: first }).map((_, i) => (
           // biome-ignore lint/suspicious/noArrayIndexKey: static skeleton list
-          <li key={i} style={{ opacity: 0.3 }}>
+          <div key={i} style={{ opacity: 0.3, marginBottom: "1rem" }}>
             -
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     );
   }
   if (!posts.length) return null;
 
   return (
-    <ul>
+    <>
       {posts.map((p) => (
-        <li key={p.id}>
-          <a href={`/news/${p.slug}`}>{p.title}</a> <small>{p.date}</small>
-        </li>
+        <ArticleCard
+          key={p.id}
+          title={p.title}
+          date={p.date}
+          slug={p.slug}
+          excerpt={p.excerpt}
+          tags={p.tags}
+        />
       ))}
-    </ul>
+    </>
   );
 }

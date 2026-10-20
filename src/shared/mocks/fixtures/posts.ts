@@ -5,6 +5,7 @@ export interface Post {
   excerpt: string;
   content: string;
   date: string;
+  tags: string[];
 }
 
 export const postsFixture: Post[] = [
@@ -15,6 +16,7 @@ export const postsFixture: Post[] = [
     excerpt: "First post about robots.",
     content: "<p>Welcome to hellorobot.</p>",
     date: "2026-10-19",
+    tags: ["роботы", "новости"],
   },
 ];
 
