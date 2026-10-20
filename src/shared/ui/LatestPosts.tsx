@@ -14,18 +14,38 @@ const QUERY = `
   }
 `;
 
-export default function LatestPosts({ first = 5 }: { first?: number }) {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [error, setError] = useState<string | null>(null);
+export default function LatestPosts({
+  first = 5,
+  knownSlugs = [],
+}: {
+  first?: number;
+  knownSlugs?: string[];
+}) {
+  const [posts, setPosts] = useState<Post[] | null>(null);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: knownSlugs compared by value
   useEffect(() => {
     wpQuery<{ posts: { nodes: Post[] } }>(QUERY, { first })
-      .then((d) => setPosts(d.posts.nodes))
-      .catch((e) => setError(String(e)));
-  }, [first]);
+      .then((d) => {
+        const known = new Set(knownSlugs);
+        setPosts(d.posts.nodes.filter((p) => !known.has(p.slug)));
+      })
+      .catch(() => setPosts([]));
+  }, [first, knownSlugs.join(",")]);
 
-  if (error) return <p>Не удалось загрузить свежие статьи.</p>;
-  if (!posts.length) return <p>Загрузка…</p>;
+  if (posts === null) {
+    return (
+      <ul aria-hidden="true">
+        {Array.from({ length: first }).map((_, i) => (
+          // biome-ignore lint/suspicious/noArrayIndexKey: static skeleton list
+          <li key={i} style={{ opacity: 0.3 }}>
+            -
+          </li>
+        ))}
+      </ul>
+    );
+  }
+  if (!posts.length) return null;
 
   return (
     <ul>

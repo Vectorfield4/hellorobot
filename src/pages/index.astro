@@ -13,8 +13,8 @@ const posts = getPosts();
     <h1>{t("home.title")}</h1>
     <p>{t("home.lead")}</p>
 
-    <h2>Latest (live)</h2>
-    <LatestPosts client:load first={5} />
+    <h2>Новые статьи</h2>
+    <LatestPosts client:load first={5} knownSlugs={posts.map((p) => p.slug)} />
 
     <h2>All articles</h2>
     <ul>
