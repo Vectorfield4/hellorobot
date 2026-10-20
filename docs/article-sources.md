@@ -32,6 +32,16 @@ Robotics news candidates are collected **without API keys** by
 Candidates are deduplicated by URL (with tracking-param stripping). Already-published
 articles are tracked via the `_source_url` post meta when creating drafts through MCP.
 
+## Company sources (specs)
+
+Direct company blogs/pages, documented with the `source-explorer` skill:
+
+- Boston Dynamics — `docs/capabilities/sources/boston-dynamics/blog.md` (HTML)
+- Figure AI — `docs/capabilities/sources/figure-ai/news.md` (HTML)
+- Unitree — `docs/capabilities/sources/unitree/news.md` (HTML)
+
+These need HTML extraction (`scripts/extract-article.mjs`), not RSS.
+
 ## Universal article extractor
 
 For HTML sources without RSS, use `scripts/extract-article.mjs`:
