@@ -3,7 +3,7 @@ import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://hellorobot.ru",
+  site: process.env.PUBLIC_SITE_URL ?? "https://hellorobot.ru",
   trailingSlash: "never",
   integrations: [react(), sitemap()],
   i18n: {
