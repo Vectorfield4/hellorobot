@@ -1,5 +1,5 @@
-import gsap from "gsap";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { revealCards } from "@/shared/lib/reveal";
 import ArticleCard from "./ArticleCard";
 
 interface Post {
@@ -10,6 +10,9 @@ interface Post {
   excerpt?: string;
   tags?: string[];
 }
+
+// useLayoutEffect warns during SSR, so fall back to useEffect on the server.
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 export default function InfinitePosts({
   initialPosts,
@@ -23,7 +26,7 @@ export default function InfinitePosts({
   const [loading, setLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const loaderRef = useRef<HTMLDivElement>(null);
-  const animatedIds = useRef(new Set<string>());
+  const revealedIds = useRef(new Set<string>());
   const loadMoreRef = useRef<() => void>(() => {});
 
   const loadMore = useCallback(async () => {
@@ -58,29 +61,27 @@ export default function InfinitePosts({
     return () => observer.disconnect();
   }, []);
 
-  // Animate newly added cards
-  // biome-ignore lint/correctness/useExhaustiveDependencies: re-run when posts change
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const cards = containerRef.current.querySelectorAll(".article-card");
-    const newCards = Array.from(cards).filter((el) => {
-      const id = el.getAttribute("data-id") || "";
-      if (animatedIds.current.has(id)) return false;
-      animatedIds.current.add(id);
-      return true;
-    });
-    if (newCards.length === 0) return;
-    gsap.fromTo(
-      newCards,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" },
-    );
+  // Reveal every card once: the server-rendered first page on hydration and
+  // each appended page when it is fetched.
+  useIsomorphicLayoutEffect(() => {
+    const root = containerRef.current;
+    if (!root) return;
+
+    const fresh: Element[] = [];
+    for (const el of root.querySelectorAll("[data-reveal]")) {
+      const id = el.getAttribute("data-id") ?? "";
+      if (revealedIds.current.has(id)) continue;
+      revealedIds.current.add(id);
+      fresh.push(el);
+    }
+
+    revealCards(fresh);
   }, [posts]);
 
   return (
     <div ref={containerRef}>
       {posts.map((p) => (
-        <div key={p.id} data-id={p.id}>
+        <div key={p.id} data-id={p.id} data-reveal>
           <ArticleCard
             title={p.title}
             date={p.date}

@@ -32,8 +32,12 @@ const styles = stylex.create({
 });
 
 export default function ArticleCard({ title, date, slug, excerpt, tags = [] }: Props) {
+  const cardProps = stylex.props(styles.card);
   return (
-    <article className="article-card" {...stylex.props(styles.card)}>
+    <article
+      {...cardProps}
+      className={["article-card", cardProps.className].filter(Boolean).join(" ")}
+    >
       <h2 {...stylex.props(styles.title)}>
         <a href={`/news/${slug}`}>{title}</a>
       </h2>

@@ -1,7 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import logo from "../../shared/assets/images/hellorobot-logo.png";
-
 interface Props {
   title?: string;
   description?: string;
@@ -17,7 +14,16 @@ const locale = Astro.currentLocale ?? "ru";
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={Astro.url.href} />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    {import.meta.env.DEV && (
+      <>
+        <link rel="stylesheet" href="/virtual:stylex.css" />
+        <script is:inline src="/@id/virtual:stylex:css-only"></script>
+      </>
+    )}
     <script is:inline>
+      document.documentElement.classList.add("js");
       try {
         const t = localStorage.getItem("theme");
         if (t) document.documentElement.dataset.theme = t;
@@ -25,24 +31,32 @@ const locale = Astro.currentLocale ?? "ru";
     </script>
   </head>
   <body>
-    <header style="background: #1f1f1f; padding: 0.75rem 2rem;">
-      <a href="/">
-        <Image
-          src={logo}
-          alt="hellorobot"
-          widths={[320, 480, 640]}
-          sizes="(max-width: 768px) 320px, 480px"
-          width={480}
-          height={160}
-          style="height: 2.5rem; width: auto; display: block;"
-        />
-      </a>
-    </header>
     <slot />
   </body>
 </html>
 <style is:global>
   :root { --color-bg: #ffffff; --color-fg: #111111; }
   [data-theme="dark"] { --color-bg: #111111; --color-fg: #ffffff; }
-  body { margin: 0; background: var(--color-bg); color: var(--color-fg); font-family: system-ui, sans-serif; }
+  body {
+    margin: 0;
+    background: #e8eef5;
+    color: #111111;
+    padding: 1.5rem 0;
+    font-family: system-ui, sans-serif;
+  }
+  main {
+    background: #ffffff;
+    color: #111111;
+    border-radius: 0.5rem;
+  }
+  /*
+   * Islands are server-rendered, so hold the cards at their reveal start
+   * position until hydration hands them to GSAP. Without JS the class is
+   * never added and the cards render normally.
+   */
+  html.js astro-island[ssr] [data-reveal] {
+    opacity: 0;
+    transform: translateY(-10px);
+    will-change: opacity, transform;
+  }
 </style>

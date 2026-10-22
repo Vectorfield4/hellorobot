@@ -6,6 +6,7 @@ import { createT } from "../shared/i18n/t";
 import ArticleCard from "../shared/ui/ArticleCard";
 import InfinitePosts from "../shared/ui/InfinitePosts";
 import LatestPosts from "../shared/ui/LatestPosts";
+import Logo from "../shared/ui/Logo.astro";
 
 const t = createT(astroDictRu);
 const posts = await getPosts();
@@ -14,7 +15,7 @@ const totalPages = Math.ceil(posts.length / PAGE_SIZE);
 ---
 <BaseLayout title={t("home.title")}>
   <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
-    <h1>{t("home.title")}</h1>
+    <Logo alt={t("home.title")} />
     <p>{t("home.lead")}</p>
 
     <h2>Статьи</h2>

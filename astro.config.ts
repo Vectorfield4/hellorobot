@@ -7,6 +7,12 @@ export default defineConfig({
   site: process.env.PUBLIC_SITE_URL ?? "https://hellorobot.ru",
   trailingSlash: "never",
   integrations: [react(), sitemap()],
+  build: {
+    // Keep page CSS as external, render-blocking assets: StyleX appends its
+    // collected rules to the shared layout stylesheet during the build, and
+    // inlining would drop them from the first paint.
+    inlineStylesheets: "never",
+  },
   i18n: {
     defaultLocale: "ru",
     locales: ["ru"],
