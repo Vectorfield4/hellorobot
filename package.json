@@ -15,7 +15,8 @@
     "lint": "biome check .",
     "format": "biome format --write .",
     "fetch:candidates": "node scripts/fetch-candidates.mjs",
-    "extract:article": "node scripts/extract-article.mjs"
+    "extract:article": "node scripts/extract-article.mjs",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.6",
@@ -31,6 +32,7 @@
     "@stylexjs/unplugin": "^0.19.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "husky": "^9.1.7",
     "jsdom": "^26",
     "typescript": "^5",
     "vitest": "^5.0.5"
