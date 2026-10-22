@@ -33,7 +33,7 @@ const styles = stylex.create({
 
 export default function ArticleCard({ title, date, slug, excerpt, tags = [] }: Props) {
   return (
-    <article {...stylex.props(styles.card)}>
+    <article className="article-card" {...stylex.props(styles.card)}>
       <h2 {...stylex.props(styles.title)}>
         <a href={`/news/${slug}`}>{title}</a>
       </h2>
@@ -47,7 +47,10 @@ export default function ArticleCard({ title, date, slug, excerpt, tags = [] }: P
           ))}
         </div>
       )}
-      {excerpt && <p {...stylex.props(styles.excerpt)}>{excerpt}</p>}
+      {excerpt && (
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: excerpt comes from trusted WPGraphQL
+        <div {...stylex.props(styles.excerpt)} dangerouslySetInnerHTML={{ __html: excerpt }} />
+      )}
     </article>
   );
 }

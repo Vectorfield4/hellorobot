@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import logo from "../../shared/assets/images/hellorobot-logo.png";
+
 interface Props {
   title?: string;
   description?: string;
@@ -22,6 +25,19 @@ const locale = Astro.currentLocale ?? "ru";
     </script>
   </head>
   <body>
+    <header style="background: #1f1f1f; padding: 0.75rem 2rem;">
+      <a href="/">
+        <Image
+          src={logo}
+          alt="hellorobot"
+          widths={[320, 480, 640]}
+          sizes="(max-width: 768px) 320px, 480px"
+          width={480}
+          height={160}
+          style="height: 2.5rem; width: auto; display: block;"
+        />
+      </a>
+    </header>
     <slot />
   </body>
 </html>

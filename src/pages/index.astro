@@ -4,22 +4,27 @@ import { getPosts } from "../shared/data/posts";
 import { astroDictRu } from "../shared/i18n/dict";
 import { createT } from "../shared/i18n/t";
 import ArticleCard from "../shared/ui/ArticleCard";
+import InfinitePosts from "../shared/ui/InfinitePosts";
 import LatestPosts from "../shared/ui/LatestPosts";
 
 const t = createT(astroDictRu);
 const posts = await getPosts();
+const PAGE_SIZE = 3;
+const totalPages = Math.ceil(posts.length / PAGE_SIZE);
 ---
 <BaseLayout title={t("home.title")}>
   <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
     <h1>{t("home.title")}</h1>
     <p>{t("home.lead")}</p>
 
-    <h2>Новые статьи</h2>
+    <h2>Статьи</h2>
     <LatestPosts client:load first={5} knownSlugs={posts.map((p) => p.slug)} />
+    <InfinitePosts client:visible initialPosts={posts.slice(0, PAGE_SIZE)} totalPages={totalPages} />
 
-    <h2>Все статьи</h2>
-    {posts.map((p) => (
-      <ArticleCard title={p.title} date={p.date} slug={p.slug} excerpt={p.excerpt} tags={p.tags} />
-    ))}
+    <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+        <a href={`/news/page/${n}`}>{n}</a>
+      ))}
+    </nav>
   </main>
 </BaseLayout>

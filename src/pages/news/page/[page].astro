@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../../app/layouts/BaseLayout.astro";
+import { getPosts } from "../../../shared/data/posts";
+import ArticleCard from "../../../shared/ui/ArticleCard";
+
+const PAGE_SIZE = 3;
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  const totalPages = Math.ceil(posts.length / 3);
+  return Array.from({ length: totalPages }, (_, i) => ({
+    params: { page: String(i + 1) },
+  }));
+}
+
+const posts = await getPosts();
+const page = Number(Astro.params.page) || 1;
+const totalPages = Math.ceil(posts.length / PAGE_SIZE);
+const start = (page - 1) * PAGE_SIZE;
+const pagePosts = posts.slice(start, start + PAGE_SIZE);
+---
+<BaseLayout title={`Новости — страница ${page}`}>
+  <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
+    <h1>Новости</h1>
+    {pagePosts.map((p) => (
+      <ArticleCard title={p.title} date={p.date} slug={p.slug} excerpt={p.excerpt} tags={p.tags} />
+    ))}
+
+    <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+      {page > 1 && <a href={`/news/page/${page - 1}`}>← Назад</a>}
+      {page < totalPages && <a href={`/news/page/${page + 1}`}>Вперёд →</a>}
+    </nav>
+
+    <div style="margin-top: 1rem; text-align: center;">
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+        <a href={`/news/page/${n}`} style="margin: 0 0.5rem; font-weight: ${n === page ? 'bold' : 'normal'};">{n}</a>
+      ))}
+    </div>
+  </main>
+</BaseLayout>
