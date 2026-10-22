@@ -1,7 +1,17 @@
 # Article sources
 
-Robotics news candidates are collected **without API keys** by
-`scripts/fetch-candidates.mjs` (`npm run fetch:candidates`).
+Robotics news candidates are collected **without API keys** by the `news-fetcher`
+skill — the engine lives in the global skills repo, this repository owns only the
+source list.
+
+| What | Where |
+|---|---|
+| Engine | `.opencode/skills/data/news-fetcher/scripts/fetch-candidates.mjs` |
+| Sources (this repo) | `scripts/sources.json` |
+| Launcher | `scripts/fetch-candidates.mjs` (`npm run fetch:candidates`) |
+
+The launcher adds `--sources scripts/sources.json` when the flag is missing, so the
+command works from any directory.
 
 ## Sources
 
@@ -29,31 +39,30 @@ Robotics news candidates are collected **without API keys** by
 | Google Scholar alerts | RSS | (per-keyword feed) | ❌ |
 
 ## Deduplication
+
 Candidates are deduplicated by URL (with tracking-param stripping). Already-published
 articles are tracked via the `_source_url` post meta when creating drafts through MCP.
 
-## Company sources (specs)
-
-Direct company blogs/pages, documented with the `source-explorer` skill:
-
-- Boston Dynamics — `docs/capabilities/sources/boston-dynamics/blog.md` (HTML)
-- Figure AI — `docs/capabilities/sources/figure-ai/news.md` (HTML)
-- Unitree — `docs/capabilities/sources/unitree/news.md` (HTML)
-
-These need HTML extraction (`scripts/extract-article.mjs`), not RSS.
-
 ## Universal article extractor
 
-For HTML sources without RSS, use `scripts/extract-article.mjs`:
+For HTML sources without RSS, the `article-extractor` skill pulls the body from any
+article page with Mozilla Readability (no API keys):
 
 ```bash
 npm run extract:article -- https://example.com/article
 ```
 
-It uses Mozilla Readability to pull title, byline, excerpt and full text from any
-article page (no API keys). Output is JSON.
+Output is JSON: `title`, `byline`, `excerpt`, `content`, `textContent`, `siteName`,
+`url`. The launcher in `scripts/extract-article.mjs` points at the skill mounted under
+`.opencode/skills/data/article-extractor`; there is no extraction code in this repository.
 
 ## Adding a source
-Append an entry to the `SOURCES` array in `scripts/fetch-candidates.mjs`
-(`type: "rss" | "atom" | "hn"`) and re-run the fetcher. Update this table's
+
+Append an entry to `scripts/sources.json`:
+
+```json
+{ "name": "Robotics 24/7", "url": "https://www.robotics247.com/feed/", "type": "rss" }
+```
+
+`type` is `rss`, `atom` or `hn`. No code change is needed. Update this table's
 "Parsing set up" column accordingly.

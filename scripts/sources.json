@@ -1,0 +1,21 @@
+[
+  { "name": "arXiv cs.RO", "url": "http://rss.arxiv.org/rss/cs.RO", "type": "rss" },
+  {
+    "name": "IEEE Spectrum (robots)",
+    "url": "https://spectrum.ieee.org/rss/robotics",
+    "type": "rss"
+  },
+  { "name": "The Robot Report", "url": "https://www.therobotreport.com/feed/", "type": "rss" },
+  {
+    "name": "TechCrunch (Robotics)",
+    "url": "https://techcrunch.com/category/robotics/feed/",
+    "type": "rss"
+  },
+  { "name": "Wired (all)", "url": "https://www.wired.com/feed/", "type": "rss" },
+  { "name": "ROS Discourse", "url": "https://discourse.ros.org/latest.rss", "type": "rss" },
+  {
+    "name": "Hacker News",
+    "url": "https://hn.algolia.com/api/v1/search?query=robotics&tags=story&hitsPerPage=20",
+    "type": "hn"
+  }
+]

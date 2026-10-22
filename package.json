@@ -1,6 +1,6 @@
 {
   "name": "hellorobot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@astrojs/react": "^6.0.6",
-    "@mozilla/readability": "^0.6.0",
     "@stylexjs/stylex": "^0.19.1",
     "astro": "^7.3.3",
     "lucide-react": "^1.47.0",

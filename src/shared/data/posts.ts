@@ -1,1 +1,87 @@
-export { getPostBySlug, getPosts, type Post } from "@/shared/mocks/fixtures/posts";
+import { wpQuery } from "@/shared/api/graphql";
+import { type Post as FixturePost, postsFixture } from "@/shared/mocks/fixtures/posts";
+
+export type Post = FixturePost;
+
+interface WpTagNode {
+  name: string;
+}
+
+interface WpPostNode {
+  id: string;
+  slug: string;
+  title: string;
+  date: string;
+  excerpt?: string | null;
+  content?: string | null;
+  tags?: { nodes?: WpTagNode[] | null } | null;
+}
+
+function mapPost(node: WpPostNode): Post {
+  return {
+    id: node.id,
+    slug: node.slug,
+    title: node.title,
+    excerpt: node.excerpt ?? "",
+    content: node.content ?? "",
+    date: (node.date ?? "").slice(0, 10),
+    tags: node.tags?.nodes?.map((t) => t.name) ?? [],
+  };
+}
+
+const ALL_POSTS_QUERY = `
+  query AllPosts($first: Int!) {
+    posts(first: $first) {
+      nodes {
+        id
+        slug
+        title
+        date
+        excerpt
+        content
+        tags { nodes { name } }
+      }
+    }
+  }
+`;
+
+const POST_BY_SLUG_QUERY = `
+  query PostBySlug($slug: ID!) {
+    post(id: $slug, idType: SLUG) {
+      id
+      slug
+      title
+      date
+      excerpt
+      content
+      tags { nodes { name } }
+    }
+  }
+`;
+
+export async function getPosts(): Promise<Post[]> {
+  try {
+    const data = await wpQuery<{ posts: { nodes: WpPostNode[] } }>(ALL_POSTS_QUERY, { first: 100 });
+    const nodes = data?.posts?.nodes ?? [];
+    if (!nodes.length) {
+      console.warn("WPGraphQL returned no posts; falling back to fixtures.");
+      return postsFixture;
+    }
+    return nodes.map(mapPost);
+  } catch (error) {
+    console.warn("WPGraphQL unavailable, using fixture posts:", error);
+    return postsFixture;
+  }
+}
+
+export async function getPostBySlug(slug: string): Promise<Post | undefined> {
+  try {
+    const data = await wpQuery<{ post: WpPostNode | null }>(POST_BY_SLUG_QUERY, {
+      slug,
+    });
+    if (data?.post) return mapPost(data.post);
+  } catch (error) {
+    console.warn("WPGraphQL unavailable, using fixture posts:", error);
+  }
+  return postsFixture.find((p) => p.slug === slug);
+}

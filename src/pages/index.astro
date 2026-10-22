@@ -7,7 +7,7 @@ import ArticleCard from "../shared/ui/ArticleCard";
 import LatestPosts from "../shared/ui/LatestPosts";
 
 const t = createT(astroDictRu);
-const posts = getPosts();
+const posts = await getPosts();
 ---
 <BaseLayout title={t("home.title")}>
   <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
