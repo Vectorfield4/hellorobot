@@ -71,7 +71,7 @@ export default function LatestPosts({
   return (
     <div ref={containerRef}>
       {posts.map((p) => (
-        <div key={p.id} data-reveal>
+        <div key={p.id} data-reveal data-reveal-pending>
           <ArticleCard
             title={p.title}
             date={p.date}

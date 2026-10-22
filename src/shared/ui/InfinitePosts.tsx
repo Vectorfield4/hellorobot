@@ -11,18 +11,25 @@ interface Post {
   tags?: string[];
 }
 
+interface PageBlock {
+  page: number;
+  posts: Post[];
+}
+
 // useLayoutEffect warns during SSR, so fall back to useEffect on the server.
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 export default function InfinitePosts({
   initialPosts,
   totalPages,
+  initialPage = 1,
 }: {
   initialPosts: Post[];
   totalPages: number;
+  initialPage?: number;
 }) {
-  const [posts, setPosts] = useState<Post[]>(initialPosts);
-  const [page, setPage] = useState(1);
+  const [pages, setPages] = useState<PageBlock[]>([{ page: initialPage, posts: initialPosts }]);
+  const [lastLoadedPage, setLastLoadedPage] = useState(initialPage);
   const [loading, setLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const loaderRef = useRef<HTMLDivElement>(null);
@@ -30,21 +37,21 @@ export default function InfinitePosts({
   const loadMoreRef = useRef<() => void>(() => {});
 
   const loadMore = useCallback(async () => {
-    if (loading || page >= totalPages) return;
+    if (loading || lastLoadedPage >= totalPages) return;
     setLoading(true);
-    const nextPage = page + 1;
+    const nextPage = lastLoadedPage + 1;
     try {
       const res = await fetch(`/news/page/${nextPage}.json`);
       if (!res.ok) throw new Error("fetch failed");
       const newPosts: Post[] = await res.json();
-      setPosts((prev) => [...prev, ...newPosts]);
-      setPage(nextPage);
+      setPages((prev) => [...prev, { page: nextPage, posts: newPosts }]);
+      setLastLoadedPage(nextPage);
     } catch {
       // ignore
     } finally {
       setLoading(false);
     }
-  }, [loading, page, totalPages]);
+  }, [loading, lastLoadedPage, totalPages]);
 
   useEffect(() => {
     loadMoreRef.current = loadMore;
@@ -76,22 +83,36 @@ export default function InfinitePosts({
     }
 
     revealCards(fresh);
-  }, [posts]);
+  }, [pages]);
 
   return (
     <div ref={containerRef}>
-      {posts.map((p) => (
-        <div key={p.id} data-id={p.id} data-reveal>
-          <ArticleCard
-            title={p.title}
-            date={p.date}
-            slug={p.slug}
-            excerpt={p.excerpt}
-            tags={p.tags}
-          />
+      {pages.map(({ page: pageNum, posts: pagePosts }) => (
+        <div key={pageNum}>
+          {pagePosts.map((p) => (
+            <div key={p.id} data-id={p.id} data-reveal data-reveal-pending>
+              <ArticleCard
+                title={p.title}
+                date={p.date}
+                slug={p.slug}
+                excerpt={p.excerpt}
+                tags={p.tags}
+              />
+            </div>
+          ))}
+          {pageNum < totalPages && (
+            <div style={{ padding: "1rem", textAlign: "center", opacity: 0.6 }}>
+              конец {pageNum} страницы
+            </div>
+          )}
         </div>
       ))}
-      {page < totalPages && (
+      {lastLoadedPage >= totalPages && (
+        <div style={{ padding: "1rem", textAlign: "center", opacity: 0.6 }}>
+          Вы на последней странице
+        </div>
+      )}
+      {lastLoadedPage < totalPages && (
         <div ref={loaderRef} style={{ padding: "1rem", textAlign: "center" }}>
           {loading ? "Загрузка..." : "Загрузить ещё"}
         </div>

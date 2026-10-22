@@ -54,7 +54,7 @@ const locale = Astro.currentLocale ?? "ru";
    * position until hydration hands them to GSAP. Without JS the class is
    * never added and the cards render normally.
    */
-  html.js astro-island[ssr] [data-reveal] {
+  html.js [data-reveal-pending] {
     opacity: 0;
     transform: translateY(-10px);
     will-change: opacity, transform;

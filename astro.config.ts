@@ -22,6 +22,9 @@ export default defineConfig({
     plugins: [
       stylex({
         useCSSLayers: true,
+        // In dev the stylesheet link below is the source of truth (blocking, so
+        // no flash of unstyled cards); css-only serves the HMR cache-bust shim.
+        devMode: "css-only",
         aliases: {
           "@/*": ["./src/*"],
           "@": ["./src"],

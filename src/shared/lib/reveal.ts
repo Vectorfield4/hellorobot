@@ -22,6 +22,10 @@ export function prefersReducedMotion(): boolean {
 export function revealCards(elements: Element[]): void {
   if (elements.length === 0) return;
 
+  // Drop the pre-hydration hold before tweening; GSAP's inline styles take
+  // over from here.
+  for (const el of elements) el.removeAttribute("data-reveal-pending");
+
   if (prefersReducedMotion()) {
     gsap.set(elements, { opacity: 1, y: 0, clearProps: "opacity,transform" });
     return;

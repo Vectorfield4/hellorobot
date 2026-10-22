@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../../app/layouts/BaseLayout.astro";
 import { getPosts } from "../../../shared/data/posts";
-import ArticleCard from "../../../shared/ui/ArticleCard";
+import InfinitePosts from "../../../shared/ui/InfinitePosts";
 
 const PAGE_SIZE = 3;
 
@@ -22,18 +22,17 @@ const pagePosts = posts.slice(start, start + PAGE_SIZE);
 <BaseLayout title={`Новости — страница ${page}`}>
   <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
     <h1>Новости</h1>
-    {pagePosts.map((p) => (
-      <ArticleCard title={p.title} date={p.date} slug={p.slug} excerpt={p.excerpt} tags={p.tags} />
-    ))}
+    <InfinitePosts client:visible initialPosts={pagePosts} totalPages={totalPages} initialPage={page} />
 
     <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
       {page > 1 && <a href={`/news/page/${page - 1}`}>← Назад</a>}
       {page < totalPages && <a href={`/news/page/${page + 1}`}>Вперёд →</a>}
+      {page === totalPages && <span style="opacity: 0.6;">Вы на последней странице</span>}
     </nav>
 
     <div style="margin-top: 1rem; text-align: center;">
       {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
-        <a href={`/news/page/${n}`} style="margin: 0 0.5rem; font-weight: ${n === page ? 'bold' : 'normal'};">{n}</a>
+        <a href={`/news/page/${n}`} style={`margin: 0 0.5rem; font-weight: ${n === page ? "bold" : "normal"};`}>{n}</a>
       ))}
     </div>
   </main>
