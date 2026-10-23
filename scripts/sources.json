@@ -397,5 +397,32 @@
     "lang": "en",
     "country": "DK",
     "weight": 1.1
+  },
+  {
+    "name": "KUKA",
+    "url": "https://www.kuka.com/en-us/api/news/GetPublications",
+    "type": "json-list",
+    "method": "POST",
+    "body": "contextid=8EB48479F62C4292AC0D890B766155AD&offset=0&count=500",
+    "itemsPath": "items",
+    "titleField": "headline",
+    "urlField": "href",
+    "dateField": "dateISO",
+    "lang": "en",
+    "country": "DE",
+    "weight": 1.1
+  },
+  {
+    "name": "ABB (press releases)",
+    "url": "https://www.abb.com/conf/abbcommon/services/newsbank.json?requestType=getNewsList&feedId=6bbfaa23933744a7b0acaf9e73c5a167&pageNumber=0&cultureInfo=en&pageSize=20",
+    "type": "json-list",
+    "itemsPath": "news.items",
+    "titleField": "title",
+    "urlTemplate": "/global/en/news/{id}/{newsUrlTitleSlug}",
+    "baseUrl": "https://www.abb.com",
+    "dateField": "scheduledPublishDate",
+    "lang": "en",
+    "country": "CH",
+    "weight": 1.1
   }
 ]

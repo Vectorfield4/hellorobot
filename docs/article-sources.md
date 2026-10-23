@@ -30,6 +30,8 @@ global mount, and `--sources` always names the file explicitly.
 | Hacker News | JSON (Algolia) | https://hn.algolia.com/api/v1/search?query=robotics | ✅ |
 | Google News (ru) | RSS | https://news.google.com/rss/search?q=робототехника | ❌ (исключён: RU-агрегаторы не нужны) |
 | Robotics 24/7 | HTML | https://www.robotics247.com/ | ❌ (нет RSS) |
+| KUKA | JSON API (`json-list`) | https://www.kuka.com/en-us/api/news/GetPublications | ✅ |
+| ABB (press releases) | JSON API (`json-list`) | https://www.abb.com/conf/abbcommon/services/newsbank.json | ✅ |
 | NVIDIA Robotics | Atom | https://developer.nvidia.com/blog/tag/robotics/feed/ | ❌ (лента пустая) |
 | Boston Dynamics | RSS | https://bostondynamics.com/feed/ | ❌ (200, empty channel) |
 | Papers With Code (Robotics) | HTML | https://paperswithcode.com/area/robotics | ❌ |
@@ -98,7 +100,7 @@ way in, not RSS.
 | Apptronik | no feed; `/press-release` now 404, site restructured |
 | Figure, 1X | Next.js sites, no feed |
 | Unitree, UBTECH, Doosan Robotics | no feed endpoint; `/feed` 404 or redirects to homepage |
-| ABB, KUKA, FANUC, Yaskawa, Omron, Epson, Denso, Mitsubishi Electric | newsroom HTML only; every guessed RSS path 404 |
+| FANUC, Yaskawa, Omron, Epson, Denso, Mitsubishi Electric | newsroom HTML only; every guessed RSS path 404 |
 | Universal Robots | blog exists, but no discoverable feed (`/blog/rss.xml`, `/blog/feed/` 404) |
 | Stäubli, Stryker | 403 to a non-browser user-agent (WAF), browser UA gives HTML not XML |
 | Kawasaki Robotics | `kawasakirobotics.com/feed/` is a real feed but returns 403 to `opencode-skills/1.0`; works only with a browser UA |
@@ -106,6 +108,43 @@ way in, not RSS.
 | Ocado Group | no feed endpoint (`/feed/`, `/newsroom/feed/`, `/rss.xml` 404) |
 | Vecna Robotics, Business Wire | 200 with `application/rss+xml` but zero `<item>` elements |
 | GlobeNewswire "Robotics" subject | feed is valid but carries unrelated releases (health, auctions), not robotics |
+
+ABB and KUKA have no feed, but both render their newsroom from a JSON API, so they
+are in `scripts/sources.json` as `json-list` (below).
+
+## Client-rendered newsrooms (`json-list`)
+
+Both sites ship an HTML shell and hydrate the list from a JSON endpoint, so a link
+scraper sees zero links. `type: "json-list"` reads the endpoint instead.
+
+| Company | Endpoint | Shape |
+|---|---|---|
+| KUKA | `POST https://www.kuka.com/en-us/api/news/GetPublications` | form body `contextid=…&offset=0&count=500`; `items[]` with `headline`, `href`, `dateISO`; 263 items |
+| ABB | `GET https://www.abb.com/conf/abbcommon/services/newsbank.json?requestType=getNewsList&feedId=…&pageNumber=0&cultureInfo=en&pageSize=20` | `news.items[]` with `title`, `id`, `newsUrlTitleSlug`, `scheduledPublishDate`; 20 items of 727 |
+
+How each was found:
+
+- **KUKA** — the news page (`/en-us/company/press/news`) carries the filter form
+  itself: `data-url="/api/news/GetPublications"` plus hidden
+  `contextid`/`takeCaptionsFromFacetId`. The app appends `offset`/`count`. The
+  same API exists per market (`/en-us/api/...`), which is how the response's
+  `href`s come back as `/en-us/...` instead of the `nl-be` default.
+- **ABB** — the AEM `.model.json` of `/global/en/company/media` is a page model,
+  not a list; the `newsgridpromo` component in it names
+  `proxyServletPath: "/conf/abbcommon/services/newsbank"` and the feed ids
+  (`6bbfaa…` group press releases). The servlet answers
+  `.json?requestType=getNewsList&feedId=…`; item URLs are rebuilt with
+  `urlTemplate` from `id` + `newsUrlTitleSlug`.
+
+Caveats:
+
+- KUKA's `contextid` is a constant copied from the page. If the endpoint starts
+  returning `{"count":0,"items":[]}`, fetch the news page and read the hidden
+  input again.
+- ABB's `pageSize` accepts up to 100 (`pageSize=200` answers a non-list body);
+  20 keeps the window at roughly seven months.
+- ABB answered `403` twice while the endpoint was being inspected and `200` on
+  every later call — a transient WAF block, not a required header.
 
 ## Deduplication
 
@@ -132,5 +171,6 @@ Append an entry to `scripts/sources.json`:
 { "name": "Robotics 24/7", "url": "https://www.robotics247.com/feed/", "type": "rss" }
 ```
 
-`type` is `rss`, `atom` or `hn`. No code change is needed. Update this table's
-"Parsing set up" column accordingly.
+`type` is `rss`, `atom`, `hn`, `html-list` or `json-list`. No code change is needed.
+Update this table's "Parsing set up" column accordingly. A `json-list` source also
+needs its endpoint shape in [Client-rendered newsrooms](#client-rendered-newsrooms-json-list).
