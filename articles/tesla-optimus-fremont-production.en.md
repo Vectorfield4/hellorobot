@@ -4,7 +4,9 @@ slug: tesla-optimus-fremont-production
 date: 2026-10-21
 tags: ["Tesla", "Optimus", "гуманоиды", "производство", "индустрия"]
 source_url: https://techcrunch.com/2026/10/21/tesla-stars-optimus-robot-production-in-california-as-profit-falls-43
-status: draft
+status: published
+wp_id: 84
+wp_url: https://hello-robot.ru/2026/10/21/tesla-optimus-fremont-production/
 ---
 
 Tesla has started producing its Optimus humanoid at its Fremont, California factory, in a space once used to assemble electric vehicles. The company announced the move in its third-quarter shareholder letter. "The bots coming off this line are the first production-quality bots that we have manufactured," the letter says. "While we will continue to iterate on the hardware and manufacturing process, we have proven that the current manufacturing process for Optimus is suitable for a commercial product."

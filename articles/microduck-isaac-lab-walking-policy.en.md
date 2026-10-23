@@ -4,7 +4,9 @@ slug: microduck-isaac-lab-walking-policy
 date: 2026-10-21
 tags: ["NVIDIA", "Hugging Face", "обучение с подкреплением", "sim-to-real", "открытое железо"]
 source_url: https://huggingface.co/blog/nvidia/microduck-isaac-lab-sim-to-real
-status: draft
+status: published
+wp_id: 85
+wp_url: https://hello-robot.ru/2026/10/21/microduck-isaac-lab-walking-policy/
 ---
 
 NVIDIA and Hugging Face published a step-by-step walkthrough on 21 October: how to train a walking gait for the open-source biped Microduck in simulation and transfer the finished policy to hardware. Microduck costs $399, weighs about 800 grams, stands 25 centimetres tall and is driven by 15 motors. It is not a demo toy but a testbed for the whole path from parallel simulation to an ONNX file on board.

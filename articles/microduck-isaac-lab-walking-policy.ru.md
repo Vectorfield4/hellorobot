@@ -4,7 +4,9 @@ slug: microduck-isaac-lab-walking-policy
 date: 2026-10-21
 tags: ["NVIDIA", "Hugging Face", "обучение с подкреплением", "sim-to-real", "открытое железо"]
 source_url: https://huggingface.co/blog/nvidia/microduck-isaac-lab-sim-to-real
-status: draft
+status: published
+wp_id: 85
+wp_url: https://hello-robot.ru/2026/10/21/microduck-isaac-lab-walking-policy/
 ---
 
 NVIDIA и Hugging Face 21 октября опубликовали пошаговый разбор: как обучить походку для открытого двуногого робота Microduck в симуляции и перенести готовую политику на железо. Microduck стоит $399, весит около 800 г, достигает 25 см в высоту и приводится в движение 15 моторами. Это не игрушка для демонстраций, а полигон, на котором проверяют весь путь от параллельной симуляции до ONNX-файла на борту.

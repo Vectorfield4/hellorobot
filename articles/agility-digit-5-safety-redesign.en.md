@@ -4,7 +4,9 @@ slug: agility-digit-5-safety-redesign
 date: 2026-10-19
 tags: ["Agility Robotics", "Digit", "гуманоиды", "безопасность", "складская логистика"]
 source_url: https://spectrum.ieee.org/agility-robotics-digit-5-redesign
-status: draft
+status: published
+wp_id: 83
+wp_url: https://hello-robot.ru/2026/10/19/agility-digit-5-safety-redesign/
 ---
 
 Agility Robotics has launched Digit 5, a humanoid meant to be the first that works next to people without fencing while lasting a full shift. The robot weighs more than 120 kg, lifts 23-kilogram bins onto shelves 1.75 metres high and is rated for 20 hours of work a day. A 90-minute battery recharges in nine minutes, so the gap between cycles barely affects the schedule.

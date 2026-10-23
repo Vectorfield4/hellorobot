@@ -4,7 +4,9 @@ slug: tesla-optimus-fremont-production
 date: 2026-10-21
 tags: ["Tesla", "Optimus", "гуманоиды", "производство", "индустрия"]
 source_url: https://techcrunch.com/2026/10/21/tesla-stars-optimus-robot-production-in-california-as-profit-falls-43
-status: draft
+status: published
+wp_id: 84
+wp_url: https://hello-robot.ru/2026/10/21/tesla-optimus-fremont-production/
 ---
 
 Tesla начала производство гуманоида Optimus на заводе во Фримонте, штат Калифорния, в помещении, которое раньше было занято сборкой электромобилей. Об этом компания сообщила в письме акционерам по итогам третьего квартала. «Роботы, сходящие с этой линии, — первые серийные роботы, которые мы изготовили, — сказано в документе. — Мы продолжим дорабатывать железо и сам производственный процесс, но доказали, что текущий процесс пригоден для коммерческого продукта».

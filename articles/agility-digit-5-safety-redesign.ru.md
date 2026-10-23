@@ -4,7 +4,9 @@ slug: agility-digit-5-safety-redesign
 date: 2026-10-19
 tags: ["Agility Robotics", "Digit", "гуманоиды", "безопасность", "складская логистика"]
 source_url: https://spectrum.ieee.org/agility-robotics-digit-5-redesign
-status: draft
+status: published
+wp_id: 83
+wp_url: https://hello-robot.ru/2026/10/19/agility-digit-5-safety-redesign/
 ---
 
 Agility Robotics выпустила Digit 5 — гуманоида, который должен стать первым, кто работает рядом с людьми без ограждений и при этом выдерживает полную смену. Робот весит больше 120 кг, поднимает 23-килограммовые контейнеры на полки высотой 1,75 м и рассчитан на 20 часов работы в сутки. Батарея на 90 минут заряжается за 9 минут, так что простой между циклами почти не влияет на график.
