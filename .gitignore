@@ -12,3 +12,8 @@ candidates.err
 npm-debug.log*
 coverage/
 .storybook-static/
+
+docs/research/
+docs/wp-*.json
+docs/wp-result-*.json
+wp-site.json
