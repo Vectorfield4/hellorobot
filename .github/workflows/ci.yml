@@ -19,5 +19,3 @@ jobs:
       - run: npm run lint
       - run: npm run test
       - run: npm run build
-        env:
-          WP_GRAPHQL_DISABLED: "1"
