@@ -1,7 +1,21 @@
+import { writeFile } from "node:fs/promises";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import stylex from "@stylexjs/unplugin/vite";
 import { defineConfig } from "astro/config";
+
+// @astrojs/sitemap writes sitemap-index.xml + sitemap-N.xml, but nothing
+// points search engines at them: robots.txt is emitted here, after the build.
+const robotsIntegration = () => ({
+  name: "robots-txt",
+  hooks: {
+    "astro:build:done": async ({ dir, site }: { dir: URL; site?: URL }) => {
+      const baseUrl = site?.href ?? "https://hellorobot.ru/";
+      const robotsContent = `User-agent: *\nAllow: /\n\nSitemap: ${new URL("sitemap-index.xml", baseUrl).href}\n`;
+      await writeFile(new URL("robots.txt", dir), robotsContent, "utf-8");
+    },
+  },
+});
 
 export default defineConfig({
   site: process.env.PUBLIC_SITE_URL ?? "https://hellorobot.ru",
@@ -10,7 +24,7 @@ export default defineConfig({
   redirects: {
     "/news": "/",
   },
-  integrations: [react(), sitemap()],
+  integrations: [react(), sitemap(), robotsIntegration()],
   build: {
     // Keep page CSS as external, render-blocking assets: StyleX appends its
     // collected rules to the shared layout stylesheet during the build, and
