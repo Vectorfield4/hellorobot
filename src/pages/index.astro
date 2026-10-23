@@ -18,7 +18,7 @@ const totalPages = Math.ceil(posts.length / PAGE_SIZE);
     <Logo alt={t("home.title")} />
     <p>{t("home.lead")}</p>
 
-    <h2>Статьи</h2>
+    <h2>Новости</h2>
     <LatestPosts client:load first={5} knownSlugs={posts.map((p) => p.slug)} />
     <InfinitePosts client:visible initialPosts={posts.slice(0, PAGE_SIZE)} totalPages={totalPages} />
 
