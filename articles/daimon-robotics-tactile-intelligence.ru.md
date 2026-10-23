@@ -5,8 +5,8 @@ date: 2026-10-19
 tags: ["тактильность", "манипуляции", "Physical AI", "стартапы"]
 source_url: https://www.therobotreport.com/daimon-robotics-building-the-infrastructure-layer-for-tactile-intelligence
 status: published
-wp_id: 46
-wp_url: https://hello-robot.ru/2026/10/19/daimon-robotics-tactile-intelligence-2/
+wp_id: 13
+wp_url: https://hello-robot.ru/2026/10/22/daimon-robotics-tactile-intelligence/
 ---
 
 Зрение стало центральным для современной робототехники, но камеры не могут сказать роботу всё, что нужно знать о физическом контакте. При работе с гибкими объектами, вставке деталей или манипуляциях с хрупкими предметами роботам нужна информация о силах, проскальзывании и контакте, которую визуальные системы могут упустить.

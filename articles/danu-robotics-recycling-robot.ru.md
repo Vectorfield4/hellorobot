@@ -5,8 +5,8 @@ date: 2026-10-09
 tags: ["стартапы", "переработка", "Physical AI", "роботы"]
 source_url: https://techcrunch.com/2026/10/09/danu-robotics-fight-to-build-a-better-recycling-robot
 status: published
-wp_id: 47
-wp_url: https://hello-robot.ru/2026/10/09/danu-robotics-recycling-robot-2/
+wp_id: 15
+wp_url: https://hello-robot.ru/2026/10/22/danu-robotics-recycling-robot/
 ---
 
 Для основательницы Danu Robotics Эми Ма момент озарения наступил после лет работы разработчиком ПО в лондонском банке. Несмотря на все привилегии офиса, её встревожило, что контейнеры для раздельного сбора мусора опустошались в общий мусор.
