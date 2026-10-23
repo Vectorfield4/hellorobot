@@ -40,61 +40,109 @@ const locale = Astro.currentLocale ?? "ru";
         }
         if (!isPaginated()) return;
 
-        var THRESHOLD = 3;
-        var GAP = 1000;
+        // Двойной длинный скролл вверх на вершине пагинированной страницы
+        // отправляет на главную. Один длинный жест (трекпад/палец) не должен
+        // засчитываться несколько раз: события колеса коалесцируются в один жест,
+        // а короткие «нервные» дёрганья игнорируются по накопленной дельте.
+        var THRESHOLD = 2;          // сколько длинных жестов нужно для перехода
+        var MIN_LONG = 100;         // накопленный deltaY (px) = «длинный скролл»
+        var GESTURE_END = 300;      // мс тишины, после которых жест завершён
+        var ATTEMPT_GAP = 1200;     // мс между жестами: больше — сброс счётчика
+        var MIN_SWIPE = 100;        // px для тач-свайпа
+
         var count = 0;
-        var timer = null;
+        var attemptTimer = null;
         var touchStartY = null;
+        var touchStartedAtTop = false;
         var touchCounted = false;
+
+        // состояние текущего wheel-жеста
+        var gestureActive = false;
+        var gestureTimer = null;
+        var gestureDelta = 0;
+        var gestureCounted = false;
 
         function atTop() {
           return (window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0) <= 2;
         }
 
-        function resetGesture() {
-          count = 0;
-          if (timer) { clearTimeout(timer); timer = null; }
+        function resetGestureState() {
+          gestureActive = false;
+          gestureDelta = 0;
+          gestureCounted = false;
+          if (gestureTimer) { clearTimeout(gestureTimer); gestureTimer = null; }
         }
 
-        function registerAttempt() {
+        function resetAll() {
+          count = 0;
+          resetGestureState();
+          if (attemptTimer) { clearTimeout(attemptTimer); attemptTimer = null; }
+        }
+
+        function scheduleGestureEnd() {
+          if (gestureTimer) clearTimeout(gestureTimer);
+          gestureTimer = setTimeout(function () {
+            resetGestureState();
+          }, GESTURE_END);
+        }
+
+        function countGesture() {
           count++;
-          if (timer) clearTimeout(timer);
-          timer = setTimeout(function () { count = 0; }, GAP);
+          if (attemptTimer) clearTimeout(attemptTimer);
+          attemptTimer = setTimeout(function () { count = 0; }, ATTEMPT_GAP);
           if (count >= THRESHOLD) {
             window.location.href = "/";
           }
         }
 
         window.addEventListener("wheel", function (e) {
-          if (!atTop()) { resetGesture(); return; }
+          if (!atTop()) { resetAll(); return; }
           if (e.deltaY < 0) {
-            registerAttempt();
-          } else {
-            resetGesture();
+            var delta = Math.abs(e.deltaY);
+            if (e.deltaMode === 1) delta *= 16;
+            else if (e.deltaMode === 2) delta *= window.innerHeight;
+            if (!gestureActive) {
+              gestureActive = true;
+              gestureDelta = delta;
+              gestureCounted = gestureDelta >= MIN_LONG;
+              if (gestureCounted) countGesture();
+              scheduleGestureEnd();
+            } else {
+              gestureDelta += delta;
+              if (!gestureCounted && gestureDelta >= MIN_LONG) {
+                gestureCounted = true;
+                countGesture();
+              }
+              scheduleGestureEnd();
+            }
+          } else if (e.deltaY > 0) {
+            resetAll();
           }
         }, { passive: true });
 
         window.addEventListener("touchstart", function (e) {
           if (e.touches && e.touches[0]) touchStartY = e.touches[0].clientY;
+          touchStartedAtTop = atTop();
           touchCounted = false;
         }, { passive: true });
 
         window.addEventListener("touchmove", function (e) {
-          if (touchStartY === null || !atTop()) return;
+          if (touchStartY === null || !touchStartedAtTop || !atTop()) return;
           var y = (e.touches && e.touches[0]) ? e.touches[0].clientY : touchStartY;
-          if (y - touchStartY > 60 && !touchCounted) {
+          if (!touchCounted && y - touchStartY >= MIN_SWIPE) {
             touchCounted = true;
-            registerAttempt();
+            countGesture();
           }
         }, { passive: true });
 
         window.addEventListener("touchend", function () {
           touchStartY = null;
+          touchStartedAtTop = false;
           touchCounted = false;
         }, { passive: true });
 
         window.addEventListener("scroll", function () {
-          if (!atTop()) resetGesture();
+          if (!atTop()) resetAll();
         }, { passive: true });
       })();
     </script>
