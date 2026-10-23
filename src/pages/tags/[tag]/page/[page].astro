@@ -30,12 +30,12 @@ const encodedTag = encodeURIComponent(tagValue);
 ---
 <PostListLayout
   title={`Тег ${tagValue} — страница ${page}`}
-  heading={`Тег: ${tagValue}`}
   initialPosts={pagePosts}
   totalPages={totalPages}
   initialPage={page}
   apiBase={`/tags/${encodedTag}/page`}
 >
+  <h1 slot="heading">Тег: {tagValue}</h1>
   <p><a href="/news">← Все новости</a></p>
   <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
     {page > 1 && <a href={`/tags/${encodedTag}/page/${page - 1}`}>← Назад</a>}
