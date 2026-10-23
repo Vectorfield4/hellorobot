@@ -9,7 +9,8 @@ export const getStaticPaths = async () => {
   for (const tag of tags) {
     const tagPosts = posts.filter((p) => (p.tags ?? []).includes(tag));
     const totalPages = Math.max(1, Math.ceil(tagPosts.length / PAGE_SIZE));
-    for (let i = 1; i <= totalPages; i++) {
+    // Page 1 lives at /tags/<tag>, so only the following pages get a JSON endpoint.
+    for (let i = 2; i <= totalPages; i++) {
       paths.push({ params: { tag, page: String(i) } });
     }
   }

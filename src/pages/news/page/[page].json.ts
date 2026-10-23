@@ -5,8 +5,9 @@ import { getPosts } from "@/shared/data/posts";
 export const getStaticPaths = async () => {
   const posts = await getPosts();
   const totalPages = Math.ceil(posts.length / PAGE_SIZE);
-  return Array.from({ length: totalPages }, (_, i) => ({
-    params: { page: String(i + 1) },
+  // Page 1 is the home page, so only the following pages get a JSON endpoint.
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => ({
+    params: { page: String(i + 2) },
   }));
 };
 

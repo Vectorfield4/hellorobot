@@ -24,10 +24,18 @@ const encodedTag = encodeURIComponent(tagValue);
   apiBase={`/tags/${encodedTag}/page`}
 >
   <h1 slot="heading">Тег: {tagValue}</h1>
-  <p><a href="/news">← Все новости</a></p>
-  <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-    {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
-      <a href={`/tags/${encodedTag}/page/${n}`}>{n}</a>
-    ))}
-  </nav>
+  <p><a href="/">← Все новости</a></p>
+  {totalPages > 1 && (
+    <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) =>
+        n === 1 ? (
+          <span aria-current="page" style="font-weight: bold;">
+            {n}
+          </span>
+        ) : (
+          <a href={`/tags/${encodedTag}/page/${n}`}>{n}</a>
+        ),
+      )}
+    </nav>
+  )}
 </PostListLayout>

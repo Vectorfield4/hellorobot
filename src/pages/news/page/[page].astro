@@ -6,8 +6,9 @@ import { getPosts } from "../../../shared/data/posts";
 export async function getStaticPaths() {
   const posts = await getPosts();
   const totalPages = Math.ceil(posts.length / PAGE_SIZE);
-  return Array.from({ length: totalPages }, (_, i) => ({
-    params: { page: String(i + 1) },
+  // Page 1 is the home page, so the numbered route starts at 2.
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => ({
+    params: { page: String(i + 2) },
   }));
 }
 
@@ -26,13 +27,13 @@ const pagePosts = posts.slice(start, start + PAGE_SIZE);
   paginated={true}
 >
   <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-    {page > 1 && <a href={`/news/page/${page - 1}`}>← Назад</a>}
+    <a href={page > 2 ? `/news/page/${page - 1}` : "/"}>← Назад</a>
     {page < totalPages && <a href={`/news/page/${page + 1}`}>Вперёд →</a>}
     {page === totalPages && <span style="opacity: 0.6;">Вы на последней странице</span>}
   </nav>
   <div style="margin-top: 1rem; text-align: center;">
     {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
-      <a href={`/news/page/${n}`} style={`margin: 0 0.5rem; font-weight: ${n === page ? "bold" : "normal"};`}>{n}</a>
+      <a href={n === 1 ? "/" : `/news/page/${n}`} style={`margin: 0 0.5rem; font-weight: ${n === page ? "bold" : "normal"};`}>{n}</a>
     ))}
   </div>
 </PostListLayout>

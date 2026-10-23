@@ -10,7 +10,8 @@ export async function getStaticPaths() {
   for (const tag of tags) {
     const tagPosts = posts.filter((p) => (p.tags ?? []).includes(tag));
     const totalPages = Math.max(1, Math.ceil(tagPosts.length / PAGE_SIZE));
-    for (let i = 1; i <= totalPages; i++) {
+    // Page 1 lives at /tags/<tag>, so numbered pages start at 2.
+    for (let i = 2; i <= totalPages; i++) {
       paths.push({ params: { tag, page: String(i) } });
     }
   }
@@ -35,15 +36,19 @@ const encodedTag = encodeURIComponent(tagValue);
   paginated={true}
 >
   <h1 slot="heading">Тег: {tagValue}</h1>
-  <p><a href="/news">← Все новости</a></p>
-  <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-    {page > 1 && <a href={`/tags/${encodedTag}/page/${page - 1}`}>← Назад</a>}
-    {page < totalPages && <a href={`/tags/${encodedTag}/page/${page + 1}`}>Вперёд →</a>}
-    {page === totalPages && <span style="opacity: 0.6;">Вы на последней странице</span>}
-  </nav>
-  <div style="margin-top: 1rem; text-align: center;">
-    {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
-      <a href={`/tags/${encodedTag}/page/${n}`} style={`margin: 0 0.5rem; font-weight: ${n === page ? "bold" : "normal"};`}>{n}</a>
-    ))}
-  </div>
+  <p><a href="/">← Все новости</a></p>
+  {totalPages > 1 && (
+    <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+      <a href={page > 2 ? `/tags/${encodedTag}/page/${page - 1}` : `/tags/${encodedTag}`}>← Назад</a>
+      {page < totalPages && <a href={`/tags/${encodedTag}/page/${page + 1}`}>Вперёд →</a>}
+      {page === totalPages && <span style="opacity: 0.6;">Вы на последней странице</span>}
+    </nav>
+  )}
+  {totalPages > 1 && (
+    <div style="margin-top: 1rem; text-align: center;">
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+        <a href={n === 1 ? `/tags/${encodedTag}` : `/tags/${encodedTag}/page/${n}`} style={`margin: 0 0.5rem; font-weight: ${n === page ? "bold" : "normal"};`}>{n}</a>
+      ))}
+    </div>
+  )}
 </PostListLayout>

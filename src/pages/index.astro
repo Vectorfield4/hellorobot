@@ -23,10 +23,18 @@ const totalPages = Math.ceil(posts.length / PAGE_SIZE);
     <LatestPosts client:load first={5} knownSlugs={posts.map((p) => p.slug)} />
     <InfinitePosts client:visible initialPosts={posts.slice(0, PAGE_SIZE)} totalPages={totalPages} />
 
-    <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-      {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
-        <a href={`/news/page/${n}`}>{n}</a>
-      ))}
-    </nav>
+    {totalPages > 1 && (
+      <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) =>
+          n === 1 ? (
+            <span aria-current="page" style="font-weight: bold;">
+              {n}
+            </span>
+          ) : (
+            <a href={`/news/page/${n}`}>{n}</a>
+          ),
+        )}
+      </nav>
+    )}
   </main>
 </BaseLayout>
