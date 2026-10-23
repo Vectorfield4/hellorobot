@@ -6,10 +6,9 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: process.env.PUBLIC_SITE_URL ?? "https://hellorobot.ru",
   trailingSlash: "never",
-  // The home page is the news index, so the old list routes collapse into it.
+  // The home page is the news index, so the old list route collapses into it.
   redirects: {
     "/news": "/",
-    "/news/page/1": "/",
   },
   integrations: [react(), sitemap()],
   build: {
