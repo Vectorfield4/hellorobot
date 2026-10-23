@@ -318,5 +318,84 @@
     "lang": "en",
     "country": "VN",
     "weight": 0.8
+  },
+  {
+    "name": "Unitree",
+    "url": "https://www.unitree.com/news/",
+    "type": "html-list",
+    "selector": "a[href*=\"/news/\"]",
+    "baseUrl": "https://www.unitree.com/news",
+    "lang": "en",
+    "country": "CN",
+    "weight": 1.1
+  },
+  {
+    "name": "Figure",
+    "url": "https://www.figure.ai/news",
+    "type": "html-list",
+    "selector": "a[href*=\"/news/\"]",
+    "baseUrl": "https://www.figure.ai/news",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.1
+  },
+  {
+    "name": "Agility Robotics",
+    "url": "https://www.agilityrobotics.com/press-releases",
+    "type": "html-list",
+    "selector": "a[href*=\"/content/\"]",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.1
+  },
+  {
+    "name": "Boston Dynamics",
+    "url": "https://bostondynamics.com/news/",
+    "type": "html-list",
+    "selector": "a[href*=\"/news/\"]",
+    "baseUrl": "https://bostondynamics.com/news",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.1
+  },
+  {
+    "name": "FANUC America",
+    "url": "https://www.fanucamerica.com/press-releases",
+    "type": "html-list",
+    "selector": "a[href*=\"/press-releases/\"]",
+    "baseUrl": "https://www.fanucamerica.com/press-releases",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.1
+  },
+  {
+    "name": "FANUC Europe",
+    "url": "https://www.fanuc.eu/eu-en/news-media",
+    "type": "html-list",
+    "selector": "a[href*=\"/eu-en/news/\"]",
+    "baseUrl": "https://www.fanuc.eu/eu-en/news",
+    "lang": "en",
+    "country": "DE",
+    "weight": 1.1
+  },
+  {
+    "name": "Yaskawa Motoman",
+    "url": "https://www.motoman.com/en-us/about/media-center/news",
+    "type": "html-list",
+    "selector": "a[href*=\"/media-center/news/\"]",
+    "baseUrl": "https://www.motoman.com/en-us/about/media-center/news",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.1
+  },
+  {
+    "name": "Universal Robots",
+    "url": "https://www.universal-robots.com/news-and-media/news-center/",
+    "type": "html-list",
+    "selector": "a[href*=\"/news-and-media/news-center/\"]",
+    "baseUrl": "https://www.universal-robots.com/news-and-media/news-center",
+    "lang": "en",
+    "country": "DK",
+    "weight": 1.1
   }
 ]
