@@ -36,6 +36,8 @@ jobs:
         run: npm ci
 
       - name: Build static site (Astro SSG)
+        env:
+          WP_GRAPHQL_TIMEOUT_MS: "30000"
         run: npm run build
 
       - name: Create ZIP archive

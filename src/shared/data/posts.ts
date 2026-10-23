@@ -1,4 +1,5 @@
 import { wpQuery } from "@/shared/api/graphql";
+import { WP_GRAPHQL_URL } from "@/shared/config/constants";
 
 export interface Post {
   id: string;
@@ -64,37 +65,30 @@ const ALL_POSTS_QUERY = `
   }
 `;
 
-const POST_BY_SLUG_QUERY = `
-  query PostBySlug($slug: ID!) {
-    post(id: $slug, idType: SLUG) {
-      id
-      slug
-      title
-      date
-      excerpt
-      content
-      tags { nodes { name } }
-    }
-  }
-`;
-
 export async function getPosts(): Promise<Post[]> {
   if (postsPromise) return postsPromise;
   if (!wpAvailable) throw new Error("WPGraphQL unavailable");
 
   postsPromise = (async () => {
     try {
-      const data = await wpQuery<{ posts: { nodes: WpPostNode[] } }>(ALL_POSTS_QUERY, {
-        first: 100,
-      });
+      const data = await wpQuery<{ posts: { nodes: WpPostNode[] } }>(
+        ALL_POSTS_QUERY,
+        { first: 100 },
+        undefined,
+        "AllPosts",
+      );
       const nodes = data?.posts?.nodes ?? [];
       if (!nodes.length) throw new Error("WPGraphQL returned no posts");
       return nodes.map(mapPost);
     } catch (error) {
       wpAvailable = false;
       const err = error instanceof Error ? error : new Error(String(error));
-      console.error("WPGraphQL request failed:", err.message);
-      throw err;
+      console.error("WPGraphQL AllPosts failed:", {
+        endpoint: WP_GRAPHQL_URL,
+        error: err.message,
+        stack: err.stack,
+      });
+      throw new Error(`WPGraphQL request failed (AllPosts): ${err.message}`);
     }
   })();
 
@@ -102,21 +96,15 @@ export async function getPosts(): Promise<Post[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | undefined> {
+  // Reuse the cached post list instead of issuing a separate WPGraphQL request
+  // for every rendered route. This avoids request storms during static generation.
   const cached = postBySlugCache.get(slug);
   if (cached) return cached;
-  if (!wpAvailable) throw new Error("WPGraphQL unavailable");
 
   const promise = (async () => {
-    try {
-      const data = await wpQuery<{ post: WpPostNode | null }>(POST_BY_SLUG_QUERY, { slug });
-      if (data?.post) return mapPost(data.post);
-    } catch (error) {
-      wpAvailable = false;
-      const err = error instanceof Error ? error : new Error(String(error));
-      console.error("WPGraphQL request failed:", err.message);
-      throw err;
-    }
-    return undefined;
+    if (!wpAvailable) throw new Error("WPGraphQL unavailable");
+    const posts = await getPosts();
+    return posts.find((p) => p.slug === slug);
   })();
 
   postBySlugCache.set(slug, promise);
