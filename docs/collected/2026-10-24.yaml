@@ -1,0 +1,16 @@
+date: 2026-10-24
+ttl_days: 7
+expires: 2026-10-31
+items:
+  - slug: agility-digit-5-safety-redesign
+    source_url: https://spectrum.ieee.org/agility-robotics-digit-5-redesign
+    wp_id: 83
+    collected_at: 2026-10-23T22:30:38.247Z
+  - slug: tesla-optimus-fremont-production
+    source_url: https://techcrunch.com/2026/10/21/tesla-stars-optimus-robot-production-in-california-as-profit-falls-43
+    wp_id: 84
+    collected_at: 2026-10-23T22:30:38.454Z
+  - slug: microduck-isaac-lab-walking-policy
+    source_url: https://huggingface.co/blog/nvidia/microduck-isaac-lab-sim-to-real
+    wp_id: 85
+    collected_at: 2026-10-23T22:30:38.653Z

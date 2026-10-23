@@ -151,15 +151,26 @@ Caveats:
 Candidates are deduplicated by URL (with tracking-param stripping). Coverage
 against what is already on the site is a separate step: the `published-check`
 skill matches a candidate by `source_url`, slug and normalized title against
-`articles/` and, optionally, a WordPress dump, and returns `{ fresh, covered }`.
+`articles/` and, optionally, a WordPress dump.
+
+The daily log is the second source of truth. Every publication writes
+`docs/collected/<YYYY-MM-DD>.yaml` (`scripts/collected.mjs`): slug, `source_url`,
+`wp_id`, timestamp, plus a file-level `ttl_days` / `expires`. It survives a
+frontmatter that was never edited after an MCP publish, and it deletes itself:
+`prune` removes files whose `expires` has passed.
 
 ```bash
+node scripts/collected.mjs add --slug <slug> --url <source-url> --wp-id <id>
+node scripts/collected.mjs export --out docs/research/collected.json
 node "$env:USERPROFILE/.config/opencode/skills/data/published-check/scripts/check.mjs" \
-  --file docs/research/candidates-<date>.json --articles articles --wp docs/research/wp-posts.json
+  --file docs/research/candidates-<date>.json --articles articles --wp docs/research/collected.json
+node scripts/collected.mjs prune
 ```
 
-Already-published articles are also tracked via the `_source_url` post meta when
-creating drafts through MCP.
+A WordPress post dump (`ewpa/get-posts` → `[{ "slug", "link", "status" }]`) can be
+passed the same way when the archive may be behind the site. WordPress does not
+store the source URL: `wp-client.mjs` drops `meta` and the MCP ability has no meta
+field, so `_source_url` is not written anywhere.
 
 ## Universal article extractor
 

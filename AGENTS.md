@@ -53,8 +53,13 @@ Two passes: `candidates-triage` (dedupe the dump by canonical URL, filter, cap),
 ```bash
 node "$env:USERPROFILE/.config/opencode/skills/data/published-check/scripts/check.mjs" \
   --file docs/research/candidates-<date>.json --articles articles \
-  --wp docs/research/wp-posts.json --out docs/research/coverage-<date>.json
+  --wp docs/research/collected.json --out docs/research/coverage-<date>.json
 ```
+
+`--wp` takes any post-shaped dump: the exported daily log
+(`node scripts/collected.mjs export --out docs/research/collected.json`) or a
+`ewpa/get-posts` dump. `--wp` is optional; the archive alone already covers most
+cases, but the log catches posts published before the frontmatter was updated.
 
 Read `covered` before touching the story:
 
@@ -81,11 +86,24 @@ WordPress MCP (`ewpa/create-post` with `status`) when the session has it, otherw
 Then `wp-record` writes `wp_id` / `wp_url` / `status` back into both language files, and
 `wp-sync-tags` assigns the frontmatter tags.
 
+Finally record the source in the daily log — this is what survives a forgotten
+frontmatter edit:
+
+```bash
+node scripts/collected.mjs add --slug <slug> --url <source-url> --wp-id <id>
+```
+
+The file is `docs/collected/<YYYY-MM-DD>.yaml` with `ttl_days: 7` and an `expires`
+date; `node scripts/collected.mjs prune` deletes the files whose TTL is over, so the
+log stays a week-wide "already taken" window and never turns into an archive. The
+permanent record is still the article frontmatter.
+
 ### 7. Verify
 
 `npm run lint`, `npm run test`, `npm run build`. The build reads WordPress through
 WPGraphQL, not markdown: a new pair adds no page until the post is published, and the page
-count grows only after step 6. Commit with `content:` or `news:`.
+count grows only after step 6. Commit the article pair and `docs/collected/<date>.yaml`
+together, with `content:` or `news:`.
 
 ## Workflow
 - Commit after every change (small, focused commits). Husky bumps the patch version on each commit.
