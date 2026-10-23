@@ -1,7 +1,16 @@
 import { wpQuery } from "@/shared/api/graphql";
-import { type Post as FixturePost, postsFixture } from "@/shared/mocks/fixtures/posts";
 
-export type Post = FixturePost;
+export interface Post {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  date: string;
+  tags: string[];
+  sourceUrl?: string;
+  sourceName?: string;
+}
 
 let wpAvailable = true;
 let postsPromise: Promise<Post[]> | null = null;
@@ -107,7 +116,7 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
       console.error("WPGraphQL request failed:", err.message);
       throw err;
     }
-    return postsFixture.find((p) => p.slug === slug);
+    return undefined;
   })();
 
   postBySlugCache.set(slug, promise);
