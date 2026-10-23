@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../app/layouts/BaseLayout.astro";
+import { PAGE_SIZE } from "../shared/config/pagination";
 import { getPosts } from "../shared/data/posts";
 import { astroDictRu } from "../shared/i18n/dict";
 import { createT } from "../shared/i18n/t";
@@ -11,7 +12,6 @@ import NewsTitle from "../shared/ui/NewsTitle.astro";
 
 const t = createT(astroDictRu);
 const posts = await getPosts();
-const PAGE_SIZE = 3;
 const totalPages = Math.ceil(posts.length / PAGE_SIZE);
 ---
 <BaseLayout title={t("home.title")}>

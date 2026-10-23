@@ -1,7 +1,11 @@
+import { CalendarDays, Clock, Tag } from "lucide-react";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { formatDateRange } from "@/shared/lib/formatDateRange";
 import { revealCards } from "@/shared/lib/reveal";
 import ArticleCard from "./ArticleCard";
-import ArticleDivider from "./ArticleDivider";
+import ArticleDivider, { type ArticleStat } from "./ArticleDivider";
+
+const STAT_ICON_SIZE = 13;
 
 interface Post {
   id: string;
@@ -28,7 +32,7 @@ function isPaginatedProp(props: {
   return Boolean(props.paginated || props.isPaginated || props.showPageEnd);
 }
 
-function computeStats(posts: Post[]) {
+function computeStats(posts: Post[]): ArticleStat[] {
   // Top tag
   const tagCounts = new Map<string, number>();
   for (const p of posts)
@@ -49,18 +53,14 @@ function computeStats(posts: Post[]) {
   const avgMinutes = posts.length ? words / posts.length / 200 : 0;
   const reading = avgMinutes < 1 ? "<1 мин" : `${avgMinutes.toFixed(1)} мин`;
 
-  // Feed freshness: share of posts no older than 30 days
-  const now = Date.now();
-  const fresh = posts.filter((p) => {
-    const d = Date.parse(p.date);
-    return !Number.isNaN(d) && now - d <= 30 * 24 * 60 * 60 * 1000;
-  }).length;
-  const freshness = posts.length ? `${Math.round((fresh / posts.length) * 100)}%` : "0%";
-
   return [
-    { label: "топ-тег", value: topTag },
-    { label: "ср. чтение", value: reading },
-    { label: "свежесть 30д", value: freshness },
+    { label: "топ-тег", value: topTag, icon: <Tag size={STAT_ICON_SIZE} aria-hidden /> },
+    { label: "ср. чтение", value: reading, icon: <Clock size={STAT_ICON_SIZE} aria-hidden /> },
+    {
+      label: "период",
+      value: formatDateRange(posts.map((p) => p.date)),
+      icon: <CalendarDays size={STAT_ICON_SIZE} aria-hidden />,
+    },
   ];
 }
 

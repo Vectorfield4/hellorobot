@@ -1,10 +1,8 @@
 import type { APIRoute } from "astro";
+import { PAGE_SIZE } from "@/shared/config/pagination";
 import { getPosts } from "@/shared/data/posts";
 
-const PAGE_SIZE = 3;
-
 export const getStaticPaths = async () => {
-  const PAGE_SIZE = 3;
   const posts = await getPosts();
   const totalPages = Math.ceil(posts.length / PAGE_SIZE);
   return Array.from({ length: totalPages }, (_, i) => ({

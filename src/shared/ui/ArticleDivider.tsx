@@ -1,10 +1,12 @@
 import gsap from "gsap";
-import { useEffect, useRef } from "react";
+import { type ReactNode, useEffect, useRef } from "react";
 import { tokens } from "../design/tokens.stylex";
 
 export interface ArticleStat {
   label: string;
   value: string | number;
+  /** Small decorative glyph shown before the value (12–14px). */
+  icon?: ReactNode;
 }
 
 interface Props {
@@ -56,6 +58,7 @@ export default function ArticleDivider({ stats = [], label, animate = true }: Pr
         opacity: 1,
       }}
     >
+      {/* Analytics sit above the rule; the page-end caption sits below it. */}
       {stats.length > 0 && (
         <div
           className="article-divider__stats"
@@ -70,24 +73,51 @@ export default function ArticleDivider({ stats = [], label, animate = true }: Pr
           }}
         >
           {stats.map((s) => (
-            <span key={s.label} className="article-divider__stat">
-              <strong>{s.value}</strong> {s.label}
+            <span
+              key={s.label}
+              className="article-divider__stat"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.3rem",
+                lineHeight: 1.2,
+              }}
+            >
+              {s.icon && (
+                <span
+                  aria-hidden="true"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "13px",
+                    height: "13px",
+                    flexShrink: 0,
+                    opacity: 0.9,
+                  }}
+                >
+                  {s.icon}
+                </span>
+              )}
+              <span>
+                <strong>{s.value}</strong> {s.label}
+              </span>
             </span>
           ))}
-        </div>
-      )}
-      {label && (
-        <div
-          className="article-divider__label"
-          style={{ textAlign: "center", opacity: 0.6, marginBottom: "0.5rem" }}
-        >
-          {label}
         </div>
       )}
       <hr
         className="article-divider__rule"
         style={{ border: "none", borderTop: "1px solid #ddd", margin: 0 }}
       />
+      {label && (
+        <div
+          className="article-divider__label"
+          style={{ textAlign: "center", opacity: 0.6, marginTop: "0.5rem" }}
+        >
+          {label}
+        </div>
+      )}
     </div>
   );
 }

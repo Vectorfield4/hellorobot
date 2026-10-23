@@ -1,8 +1,8 @@
 ---
 import PostListLayout from "../../app/layouts/PostListLayout.astro";
+import { PAGE_SIZE } from "../../shared/config/pagination";
 import { getPosts } from "../../shared/data/posts";
 
-const PAGE_SIZE = 3;
 const posts = await getPosts();
 const totalPages = Math.ceil(posts.length / PAGE_SIZE);
 ---
