@@ -1,0 +1,99 @@
+---
+import BaseLayout from "@/app/layouts/BaseLayout.astro";
+import { STORE_API_URL } from "@/shared/config/constants";
+import { PRODUCT_PAGE_SIZE } from "@/shared/config/pagination";
+import { type Product, productCategoryPath, productTagPath } from "@/shared/data/product";
+import { getAllProductCategories, getAllProductTags, getProducts } from "@/shared/data/products";
+import ProductListing from "@/shared/ui/product/ProductListing.astro";
+import ProductSearch from "@/shared/ui/product/ProductSearch";
+
+const products = await getProducts();
+const tags = await getAllProductTags();
+const categories = await getAllProductCategories();
+
+const totalPages = Math.max(1, Math.ceil(products.length / PRODUCT_PAGE_SIZE));
+const pageProducts = products.slice(0, PRODUCT_PAGE_SIZE);
+
+// Поиск уходит в браузер, поэтому возим только то, что нужно карточке и
+// фильтру: описания и лишние снимки остаются на билде.
+const searchIndex: Product[] = products.map((product) => ({
+  ...product,
+  description: "",
+  shortDescription: "",
+  images: product.cover ? [product.cover] : [],
+}));
+
+const chipStyle =
+  "font-size:0.8rem;padding:0.2rem 0.6rem;border-radius:0.5rem;background:#0066cc;color:#fff;text-decoration:none;";
+---
+
+<BaseLayout
+  title="Каталог роботов — hellorobot"
+  description="Роботы, манипуляторы и коботы, доступные к заказу: цены, наличие и характеристики. Заказ оформляется заявкой на сайте."
+>
+  <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
+    <h1 style="margin-top: 0;">Каталог роботов</h1>
+    <p>
+      Гуманоиды, коботы, манипуляторы и четвероногие платформы с ценами и наличием из
+      магазина. Заказ оформляется заявкой на сайте: оплата не проводится, менеджер уточняет
+      сроки поставки и условия.
+    </p>
+
+    {products.length === 0 ? (
+      <section style="margin-top: 2rem;">
+        <h2 style="font-size: 1.1rem;">Каталог наполняется</h2>
+        <p>
+          Товары ещё не опубликованы. Пока можно почитать новости робототехники на
+          <a href="/"> главной странице</a>.
+        </p>
+      </section>
+    ) : (
+      <>
+        <section style="margin-top: 2rem;">
+          <ProductSearch client:load products={searchIndex} storeUrl={STORE_API_URL} />
+        </section>
+
+        {tags.length > 0 && (
+          <nav aria-label="Теги каталога" style="margin-top: 2rem;">
+            <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Теги</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+              {tags.map((tag) => (
+                <a href={productTagPath(tag.name)} style={chipStyle}>
+                  {tag.name} <span style="opacity: 0.75;">{tag.count}</span>
+                </a>
+              ))}
+            </div>
+          </nav>
+        )}
+
+        {categories.length > 0 && (
+          <nav aria-label="Категории каталога" style="margin-top: 1.25rem;">
+            <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Категории</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+              {categories.map((category) => (
+                <a
+                  href={productCategoryPath(category.name)}
+                  style="font-size:0.8rem;padding:0.2rem 0.6rem;border-radius:0.5rem;border:1px solid #0066cc;color:#0066cc;text-decoration:none;"
+                >
+                  {category.name} <span style="opacity: 0.75;">{category.count}</span>
+                </a>
+              ))}
+            </div>
+          </nav>
+        )}
+
+        <section style="margin-top: 2rem;">
+          <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">
+            Все товары <span style="opacity: 0.6;">({products.length})</span>
+          </h2>
+          <ProductListing
+            products={pageProducts}
+            totalPages={totalPages}
+            currentPage={1}
+            basePath="/products"
+          />
+        </section>
+      </>
+    )}
+  </main>
+</BaseLayout>

@@ -18,6 +18,9 @@ const totalPages = Math.ceil(posts.length / PAGE_SIZE);
   <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
     <Logo alt={t("home.title")} />
     <p>{t("home.lead")}</p>
+    <p style="margin: 0 0 1.5rem;">
+      <a href="/products">Каталог роботов →</a>
+    </p>
 
     <NewsTitle as="h2" />
     <LatestPosts client:load first={5} knownSlugs={posts.map((p) => p.slug)} />

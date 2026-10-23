@@ -1,0 +1,47 @@
+---
+import BaseLayout from "@/app/layouts/BaseLayout.astro";
+import { PRODUCT_PAGE_SIZE } from "@/shared/config/pagination";
+import { getAllProductTags, getProductsByTag } from "@/shared/data/products";
+import ProductListing from "@/shared/ui/product/ProductListing.astro";
+
+export async function getStaticPaths() {
+  const tags = await getAllProductTags();
+  const paths: { params: { tag: string; page: string } }[] = [];
+
+  for (const tag of tags) {
+    const products = await getProductsByTag(tag.name);
+    const totalPages = Math.ceil(products.length / PRODUCT_PAGE_SIZE);
+    // Первая страница живёт на /products/tag/<тег>, нумерация начинается со 2.
+    for (let page = 2; page <= totalPages; page++) {
+      paths.push({ params: { tag: tag.name, page: String(page) } });
+    }
+  }
+
+  return paths;
+}
+
+const tag = Astro.params.tag as string;
+const page = Number(Astro.params.page) || 1;
+const products = await getProductsByTag(tag);
+const totalPages = Math.max(1, Math.ceil(products.length / PRODUCT_PAGE_SIZE));
+const start = (page - 1) * PRODUCT_PAGE_SIZE;
+const pageProducts = products.slice(start, start + PRODUCT_PAGE_SIZE);
+const basePath = `/products/tag/${encodeURIComponent(tag)}`;
+---
+
+<BaseLayout
+  title={`Товары по тегу: ${tag} — страница ${page}`}
+  description={`Страница ${page} списка товаров с тегом «${tag}»: цены и наличие.`}
+>
+  <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
+    <h1 style="margin-top: 0;">Товары по тегу: {tag}</h1>
+    <p><a href="/products">← Каталог роботов</a></p>
+    <p style="opacity: 0.75;">Найдено товаров: {products.length}</p>
+    <ProductListing
+      products={pageProducts}
+      totalPages={totalPages}
+      currentPage={page}
+      basePath={basePath}
+    />
+  </main>
+</BaseLayout>

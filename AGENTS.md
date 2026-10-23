@@ -13,7 +13,8 @@ Astro 7 (SSG) + React 19 + TypeScript 5 strict + Vitest + Biome 2
 ## Tooling
 - Biome is the sole linter/formatter.
 - i18n is build-time `createT`.
-- Data is synchronous fixture reads; WordPress/WooCommerce via WPGraphQL at build time.
+- Posts via WPGraphQL at build time; products via WooCommerce Store API (`/wp-json/wc/store/v1`).
+- Demo product fixtures are dev-only; a production build without a store renders an empty catalog.
 
 ## Structure
 FSD + Atomic Design under `src/`.
@@ -79,7 +80,21 @@ contract from `articles/README.md`: `title`, `slug`, `date`, `tags`, `source_url
 `status` (`draft` | `published`), and `wp_id` / `wp_url` after publication. EN is at least
 90% of RU — no stub.
 
-### 6. Publish
+### 6. Make sure the story has something to sell
+
+Every article ends with the «Купить робота» block, and the block renders only when at least
+one post tag has a product. Check the coverage before publishing:
+
+```bash
+node scripts/products.mjs ensure --slug <slug>
+```
+
+Exit `0` means at least one tag is covered, `1` means none is, `2` means the WC REST keys are
+missing. A gap is closed by adding the product to `products/catalog.json` and importing it
+(`docs/products.md`). Matching is canonical (`src/shared/config/productTags.ts`): `humanoid`
+and `гуманоиды` are the same tag.
+
+### 7. Publish
 
 WordPress MCP (`ewpa/create-post` with `status`) when the session has it, otherwise
 `wp-publish --config <site>.json --file docs/wp-<slug>.json` after a `--dry-run`.
@@ -98,12 +113,12 @@ date; `node scripts/collected.mjs prune` deletes the files whose TTL is over, so
 log stays a week-wide "already taken" window and never turns into an archive. The
 permanent record is still the article frontmatter.
 
-### 7. Verify
+### 8. Verify
 
-`npm run lint`, `npm run test`, `npm run build`. The build reads WordPress through
-WPGraphQL, not markdown: a new pair adds no page until the post is published, and the page
-count grows only after step 6. Commit the article pair and `docs/collected/<date>.yaml`
-together, with `content:` or `news:`.
+`npm run lint`, `npm run test`, `npm run build`. The build reads posts through WPGraphQL and
+products through the Store API, not markdown: a new pair adds no page until the post is
+published, and the page count grows only after step 7. Commit the article pair and
+`docs/collected/<date>.yaml` together, with `content:` or `news:`.
 
 ## Workflow
 - Commit after every change (small, focused commits). Husky bumps the patch version on each commit.

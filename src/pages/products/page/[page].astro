@@ -1,0 +1,40 @@
+---
+import BaseLayout from "@/app/layouts/BaseLayout.astro";
+import { PRODUCT_PAGE_SIZE } from "@/shared/config/pagination";
+import { getProducts } from "@/shared/data/products";
+import ProductListing from "@/shared/ui/product/ProductListing.astro";
+
+export async function getStaticPaths() {
+  const products = await getProducts();
+  const totalPages = Math.ceil(products.length / PRODUCT_PAGE_SIZE);
+  // Первая страница живёт на /products, поэтому нумерованные начинаются с 2.
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => ({
+    params: { page: String(i + 2) },
+  }));
+}
+
+const products = await getProducts();
+const page = Number(Astro.params.page) || 1;
+const totalPages = Math.max(1, Math.ceil(products.length / PRODUCT_PAGE_SIZE));
+const start = (page - 1) * PRODUCT_PAGE_SIZE;
+const pageProducts = products.slice(start, start + PRODUCT_PAGE_SIZE);
+---
+
+<BaseLayout
+  title={`Каталог роботов — страница ${page}`}
+  description={`Страница ${page} каталога роботов: цены и наличие товаров магазина.`}
+>
+  <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
+    <h1 style="margin-top: 0;">Каталог роботов</h1>
+    <p><a href="/products">← В начало каталога</a></p>
+    <p>
+      Страница {page} из {totalPages}.
+    </p>
+    <ProductListing
+      products={pageProducts}
+      totalPages={totalPages}
+      currentPage={page}
+      basePath="/products"
+    />
+  </main>
+</BaseLayout>

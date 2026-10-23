@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
 import { getPostBySlug, getPosts } from "../../shared/data/posts";
+import { splitBuyRobotMarkers } from "../../shared/lib/buyRobotMarkers";
 import { formatDate } from "../../shared/lib/formatDate";
+import BuyRobotBlock from "../../shared/ui/BuyRobotBlock.astro";
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -11,6 +13,10 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const post = await getPostBySlug(slug as string);
 if (!post) throw new Error("Not found");
+
+// Маркеры в тексте задают место блока; без маркеров блок идёт один раз в конце.
+const segments = splitBuyRobotMarkers(post.content);
+const hasMarkers = segments.some((segment) => segment.type === "products");
 ---
 <BaseLayout title={post.title}>
   <main style="padding: 2rem;">
@@ -23,7 +29,16 @@ if (!post) throw new Error("Not found");
         ))}
       </div>
     )}
-    <article set:html={post.content} />
+    <article>
+      {segments.map((segment) =>
+        segment.type === "html" ? (
+          <Fragment set:html={segment.value} />
+        ) : (
+          <BuyRobotBlock tags={segment.tags ?? post.tags} />
+        ),
+      )}
+    </article>
+    {!hasMarkers && <BuyRobotBlock tags={post.tags} />}
     <p><a href="/">← Back</a></p>
   </main>
 </BaseLayout>

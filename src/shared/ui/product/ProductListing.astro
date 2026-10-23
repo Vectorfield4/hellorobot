@@ -1,0 +1,44 @@
+---
+import type { Product } from "@/shared/data/product";
+import ProductGrid from "@/shared/ui/product/ProductGrid";
+
+interface Props {
+  /** Товары текущей страницы, уже нарезанные по PRODUCT_PAGE_SIZE. */
+  products: Product[];
+  totalPages: number;
+  currentPage: number;
+  /** Корень списка без номера страницы: `/products`, `/products/tag/<имя>`. */
+  basePath: string;
+}
+
+const { products, totalPages, currentPage, basePath } = Astro.props;
+
+const pageHref = (page: number) => (page === 1 ? basePath : `${basePath}/page/${page}`);
+---
+
+{products.length > 0 ? (
+  <ProductGrid products={products} />
+) : (
+  <p>
+    На этой странице товаров нет. <a href={basePath}>К началу списка</a>
+  </p>
+)}
+
+{totalPages > 1 && (
+  <nav
+    aria-label="Страницы каталога"
+    style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;"
+  >
+    {currentPage > 1 && <a href={pageHref(currentPage - 1)}>← Назад</a>}
+    {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) =>
+      n === currentPage ? (
+        <span aria-current="page" style="font-weight: bold;">
+          {n}
+        </span>
+      ) : (
+        <a href={pageHref(n)}>{n}</a>
+      ),
+    )}
+    {currentPage < totalPages && <a href={pageHref(currentPage + 1)}>Вперёд →</a>}
+  </nav>
+)}

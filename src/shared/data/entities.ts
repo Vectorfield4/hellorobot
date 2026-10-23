@@ -1,1 +1,7 @@
-export { getProducts, type Product } from "@/shared/mocks/fixtures/products";
+export type { Product, ProductTag, ProductTerm } from "@/shared/data/product";
+export {
+  getAllProductTags,
+  getProducts,
+  getProductsByTag,
+  getProductsForTags,
+} from "@/shared/data/products";

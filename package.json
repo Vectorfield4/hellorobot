@@ -1,6 +1,6 @@
 {
   "name": "hellorobot",
-  "version": "1.11.10",
+  "version": "1.11.11",
   "private": true,
   "type": "module",
   "engines": {
@@ -12,6 +12,7 @@
     "preview": "astro preview",
     "test": "vitest run",
     "test:watch": "vitest",
+    "products": "node scripts/products.mjs",
     "lint": "biome check .",
     "format": "biome format --write .",
     "prepare": "husky"

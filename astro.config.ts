@@ -43,9 +43,13 @@ export default defineConfig({
         // In dev the stylesheet link below is the source of truth (blocking, so
         // no flash of unstyled cards); css-only serves the HMR cache-bust shim.
         devMode: "css-only",
+        // The babel plugin resolves theme imports (`*.stylex.ts`) itself, and it
+        // accepts only absolute paths or the `/ROOT/` marker. A plain `./src/*`
+        // alias sends it looking for `src/...` next to the importing file, so
+        // every `@/shared/design/tokens.stylex` import would fail to resolve.
         aliases: {
-          "@/*": ["./src/*"],
-          "@": ["./src"],
+          "@/*": ["/ROOT/src/*"],
+          "@": ["/ROOT/src"],
         },
         unstable_moduleResolution: {
           type: "commonJS",

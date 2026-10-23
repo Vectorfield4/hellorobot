@@ -1,28 +1,27 @@
 # hellorobot
 
-Robotics news aggregator (with a minimal robot store on the side). Tagline:
+Robotics news aggregator with a robot catalog on the side. Tagline:
 "Последние новости робототехники — разработки, исследования, индустрия".
 News are collected from robotics sources (RSS/Atom/HN) without API keys and published as
-articles; the store side is a minimal WooCommerce-backed catalog.
+articles; the catalog is a WooCommerce store on `hello-robot.ru`, read at build time.
 
 ## Architecture
 
-- **Frontend:** Astro (islands architecture — SSG to SSR)
-- **Backend:** WordPress + WooCommerce + WPGraphQL + WPGraphQL WooCommerce (WooGraphQL)
-- **Component libraries:** React/Vue/Svelte — islands freely integrated into the monolith
+- **Frontend:** Astro 7, static (SSG) with React 19 islands, deployed over FTP
+- **Backend:** WordPress + WooCommerce + WPGraphQL on `hello-robot.ru`
+- **Catalog reads:** WooCommerce Store API (`/wp-json/wc/store/v1`), no keys, at build time
+- **Search:** live Store API from the browser, falling back to the build-time index
+- **Orders:** `POST /wp-json/hellorobot/v1/order` — a WordPress mu-plugin creates a real
+  WooCommerce order (`on-hold`, no payment on the site)
 
-## Frontend
-
-- Rendering — server-side (WordPress)
-- Frontend and backend integrated into a single monolith
-- E-commerce frontend is server-rendered (WooCommerce)
-- Rendering — on WordPress
+There is no Node runtime in production: pages are static HTML, and only search and the
+order form talk to WordPress at request time.
 
 ## Stack
 
 - Astro 7 (SSG) + React 19 + TypeScript 5 (strict)
 - Biome 2 (lint/format), Vitest 3 (tests)
-- Data via WPGraphQL at build time; synchronous fixture reads for local dev
+- Posts via WPGraphQL at build time; products via Store API; demo product fixtures in dev
 
 ## Commands
 
@@ -30,6 +29,53 @@ articles; the store side is a minimal WooCommerce-backed catalog.
 - `npm run build` — type-check and build
 - `npm run test` — run tests
 - `npm run lint` / `npm run format` — Biome
+
+## Catalog
+
+| Route | What |
+|---|---|
+| `/products` | catalog grid, tag chips, live search |
+| `/products/<slug>` | product card, price, stock, order form, related products and articles |
+| `/products/tag/<tag>` | products by tag |
+| `/products/category/<name>` | products by category |
+| `/products/page/<n>` | catalog pagination |
+
+Products inherit the blog's tag vocabulary, so an article about humanoids shows humanoid
+robots under "Купить робота". Tag matching lives in `src/shared/config/productTags.ts`
+(canonical name + EN/RU aliases); the catalog data layer is `src/shared/data/products.ts`.
+
+An article can force a block at a chosen place with a marker in the WordPress post:
+
+```html
+<!-- buy-robot -->                 → products by the post's own tags
+<!-- buy-robot: гуманоиды, коботы --> → products by the listed tags
+```
+
+Without a marker the block is appended after the article body.
+
+### Catalog environment
+
+- `PUBLIC_WP_URL` — WordPress base (Store API and order endpoint are derived from it);
+  defaults to the host of `PUBLIC_WP_GRAPHQL_URL`.
+- `PUBLIC_PRODUCTS_FALLBACK=demo` — show demo products when the store is unreachable.
+  Dev server always shows them; a production build without this renders an empty catalog.
+
+### Products into WooCommerce
+
+```bash
+node scripts/products.mjs ensure --slug <article-slug>      # is the article's tag covered?
+node scripts/products.mjs import --file products/catalog.json --dry-run
+node scripts/products.mjs import --file products/catalog.json
+```
+
+`ensure` exits `0` when at least one article tag has a product, `1` when it does not, `2`
+when WC REST keys are missing. See [docs/products.md](docs/products.md).
+
+## WordPress side
+
+`wp/mu-plugins/hellorobot-commerce.php` adds the order endpoint, the `/health` probe and CORS
+for `hellorobot.ru`. Install by copying it into `wp-content/mu-plugins/`; see
+[wp/README.md](wp/README.md) for prerequisites and curl checks.
 
 ## WordPress MCP (optional)
 

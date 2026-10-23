@@ -1,0 +1,34 @@
+---
+import BaseLayout from "@/app/layouts/BaseLayout.astro";
+import { PRODUCT_PAGE_SIZE } from "@/shared/config/pagination";
+import { getAllProductCategories, getProductsByCategory } from "@/shared/data/products";
+import ProductListing from "@/shared/ui/product/ProductListing.astro";
+
+export async function getStaticPaths() {
+  const categories = await getAllProductCategories();
+  return categories.map((category) => ({ params: { category: category.name } }));
+}
+
+const category = Astro.params.category as string;
+const products = await getProductsByCategory(category);
+const totalPages = Math.max(1, Math.ceil(products.length / PRODUCT_PAGE_SIZE));
+const pageProducts = products.slice(0, PRODUCT_PAGE_SIZE);
+const basePath = `/products/category/${encodeURIComponent(category)}`;
+---
+
+<BaseLayout
+  title={`Товары в категории: ${category} — hellorobot`}
+  description={`Категория «${category}»: роботы и оборудование с ценами и наличием, заказ на сайте.`}
+>
+  <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
+    <h1 style="margin-top: 0;">Товары в категории: {category}</h1>
+    <p><a href="/products">← Каталог роботов</a></p>
+    <p style="opacity: 0.75;">Найдено товаров: {products.length}</p>
+    <ProductListing
+      products={pageProducts}
+      totalPages={totalPages}
+      currentPage={1}
+      basePath={basePath}
+    />
+  </main>
+</BaseLayout>

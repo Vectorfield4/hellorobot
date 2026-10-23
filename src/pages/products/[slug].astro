@@ -1,0 +1,194 @@
+---
+import BaseLayout from "@/app/layouts/BaseLayout.astro";
+import { canonicalTag } from "@/shared/config/productTags";
+import { getPosts, type Post } from "@/shared/data/posts";
+import {
+  type Product,
+  productCategoryPath,
+  productPriceLabel,
+  productTagPath,
+} from "@/shared/data/product";
+import { getProducts, getRelatedProducts } from "@/shared/data/products";
+import type { StorePrices } from "@/shared/lib/price";
+import OrderForm from "@/shared/ui/order/OrderForm";
+import ProductGallery from "@/shared/ui/product/ProductGallery";
+import ProductGrid from "@/shared/ui/product/ProductGrid";
+import ProductPrice from "@/shared/ui/product/ProductPrice";
+import StockBadge from "@/shared/ui/product/StockBadge";
+
+export async function getStaticPaths() {
+  const products = await getProducts();
+  return products.map((product) => ({ params: { slug: product.slug }, props: { product } }));
+}
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+
+const products = await getProducts();
+const related = getRelatedProducts(
+  products,
+  product.tags.map((tag) => tag.name),
+  { excludeId: product.id, limit: 4 },
+);
+
+// Статьи живут в WPGraphQL и могут быть недоступны: карточка товара от этого
+// падать не должна, блок просто не показывается.
+let archive: Post[] = [];
+try {
+  archive = await getPosts();
+} catch {
+  archive = [];
+}
+
+const productTagCanon = new Set(
+  product.tags.map((tag) => canonicalTag(tag.name)).filter((tag) => tag.length > 0),
+);
+const relatedPosts = productTagCanon.size
+  ? archive
+      .filter((post) => (post.tags ?? []).some((tag) => productTagCanon.has(canonicalTag(tag))))
+      .slice(0, 5)
+  : [];
+
+/** Минорные единицы Store API → десятичная строка для JSON-LD. */
+function offerPrice(prices: StorePrices | null): string {
+  if (!prices) return "";
+  const digits = prices.price.replace(/[^\d]/g, "");
+  if (!digits) return "";
+  const minorUnit = Number.isFinite(prices.currency_minor_unit)
+    ? Math.max(0, Math.floor(prices.currency_minor_unit))
+    : 0;
+  const padded = digits.padStart(minorUnit + 1, "0");
+  const whole = padded.slice(0, padded.length - minorUnit) || "0";
+  const fraction = minorUnit > 0 ? padded.slice(padded.length - minorUnit) : "";
+  return fraction ? `${whole}.${fraction}` : whole;
+}
+
+const price = offerPrice(product.prices);
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: product.name,
+  ...(product.excerpt ? { description: product.excerpt } : {}),
+  ...(product.sku ? { sku: product.sku } : {}),
+  ...(product.images.length ? { image: product.images.map((image) => image.src) } : {}),
+  ...(price
+    ? {
+        offers: {
+          "@type": "Offer",
+          price,
+          priceCurrency: product.prices?.currency_code,
+          availability: product.inStock
+            ? "https://schema.org/InStock"
+            : product.onBackorder
+              ? "https://schema.org/BackOrder"
+              : "https://schema.org/OutOfStock",
+        },
+      }
+    : {}),
+};
+
+const chipStyle =
+  "font-size:0.8rem;padding:0.2rem 0.5rem;border-radius:0.5rem;background:#0066cc;color:#fff;text-decoration:none;";
+
+// `</script>` внутри описания не должен закрыть тег раньше времени.
+const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
+---
+
+<BaseLayout title={`${product.name} — каталог роботов`} description={product.excerpt}>
+  <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
+    <nav aria-label="Хлебные крошки" style="font-size: 0.85rem; margin-bottom: 1rem;">
+      <a href="/">Главная</a>
+      {" / "}
+      <a href="/products">Каталог</a>
+      {" / "}
+      <span>{product.name}</span>
+    </nav>
+
+    <ProductGallery images={product.images} fallbackAlt={product.name} />
+
+    <h1 style="margin: 1.5rem 0 0.75rem;">{product.name}</h1>
+
+    <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+      <ProductPrice
+        priceLabel={productPriceLabel(product)}
+        regularPriceLabel={product.regularPriceLabel}
+        onSale={product.onSale}
+      />
+      <StockBadge inStock={product.inStock} onBackorder={product.onBackorder} />
+    </div>
+
+    {product.sku && <p style="font-size: 0.85rem; opacity: 0.7;">Артикул: {product.sku}</p>}
+
+    {product.shortDescription && <p>{product.shortDescription}</p>}
+
+    {product.description && <div set:html={product.description} />}
+
+    {product.tags.length > 0 && (
+      <nav aria-label="Теги товара" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0;">
+        {product.tags.map((tag) => (
+          <a href={productTagPath(tag.name)} style={chipStyle}>
+            {tag.name}
+          </a>
+        ))}
+      </nav>
+    )}
+
+    {product.categories.length > 0 && (
+      <p style="font-size: 0.9rem;">
+        Категории:{" "}
+        {product.categories.map((category, index) => (
+          <>
+            {index > 0 && ", "}
+            <a href={productCategoryPath(category.name)}>{category.name}</a>
+          </>
+        ))}
+      </p>
+    )}
+
+    <div style="margin-top: 2rem; padding: 1.25rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+      {product.purchasable ? (
+        <OrderForm
+          client:load
+          productId={product.id}
+          productName={product.name}
+          priceLabel={product.priceLabel}
+        />
+      ) : (
+        <>
+          <h2 style="font-size: 1.2rem; margin-top: 0;">Оформить заказ</h2>
+          <p style="margin-bottom: 0;">
+            Заказ по запросу: условия поставки этой модели согласуются отдельно.{" "}
+            <a href="/products">Вернуться в каталог</a>
+          </p>
+        </>
+      )}
+    </div>
+
+    {related.length > 0 && (
+      <section style="margin-top: 2rem;">
+        <h2 style="font-size: 1.2rem;">Похожие товары</h2>
+        <ProductGrid products={related} />
+      </section>
+    )}
+
+    {relatedPosts.length > 0 && (
+      <section style="margin-top: 2rem;">
+        <h2 style="font-size: 1.2rem;">Статьи по теме</h2>
+        <ul style="padding-left: 1.25rem;">
+          {relatedPosts.map((post) => (
+            <li style="margin-bottom: 0.4rem;">
+              <a href={`/news/${post.slug}`}>{post.title}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <p style="margin-top: 2rem;"><a href="/products">← Каталог роботов</a></p>
+  </main>
+
+  <script type="application/ld+json" set:html={jsonLdText} />
+</BaseLayout>

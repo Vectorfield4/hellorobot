@@ -2,6 +2,7 @@
 import PostListLayout from "../../../../app/layouts/PostListLayout.astro";
 import { PAGE_SIZE } from "../../../../shared/config/pagination";
 import { getPosts } from "../../../../shared/data/posts";
+import BuyRobotBlock from "../../../../shared/ui/BuyRobotBlock.astro";
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -51,4 +52,5 @@ const encodedTag = encodeURIComponent(tagValue);
       ))}
     </div>
   )}
+  {page === 1 && <BuyRobotBlock tags={[tagValue]} variant="tag" limit={3} />}
 </PostListLayout>
