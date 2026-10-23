@@ -1,5 +1,6 @@
 ---
 import InfinitePosts from "../../shared/ui/InfinitePosts";
+import NewsTitle from "../../shared/ui/NewsTitle.astro";
 import BaseLayout from "./BaseLayout.astro";
 
 interface Props {
@@ -20,7 +21,7 @@ interface Props {
 
 const {
   title = "Новости",
-  heading = "Новости",
+  heading,
   initialPosts,
   totalPages,
   initialPage = 1,
@@ -29,7 +30,7 @@ const {
 ---
 <BaseLayout title={title}>
   <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
-    <h1>{heading}</h1>
+    {heading ? <h1>{heading}</h1> : <NewsTitle as="h1" />}
     <InfinitePosts
       client:visible
       initialPosts={initialPosts}

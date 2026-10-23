@@ -1,0 +1,8 @@
+---
+interface Props {
+  as?: "h1" | "h2";
+}
+const { as = "h2" } = Astro.props;
+const Tag = as;
+---
+<Tag>Новости</Tag>
