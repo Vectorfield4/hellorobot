@@ -118,5 +118,205 @@
     "lang": "ko",
     "country": "KR",
     "weight": 0.9
+  },
+  {
+    "name": "Intuitive Surgical",
+    "url": "https://investor.intuitivesurgical.com/rss/news-releases.xml",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.1
+  },
+  {
+    "name": "Medtronic",
+    "url": "https://news.medtronic.com/press-releases?pagetemplate=rss",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.1
+  },
+  {
+    "name": "CMR Surgical",
+    "url": "https://cmrsurgical.com/feed/",
+    "type": "rss",
+    "lang": "en",
+    "country": "GB",
+    "weight": 1.0
+  },
+  {
+    "name": "Comau",
+    "url": "https://www.comau.com/en/feed/",
+    "type": "rss",
+    "lang": "en",
+    "country": "IT",
+    "weight": 1.1
+  },
+  {
+    "name": "AutoStore",
+    "url": "https://www.autostoresystem.com/news/rss.xml",
+    "type": "rss",
+    "lang": "en",
+    "country": "NO",
+    "weight": 1.1
+  },
+  {
+    "name": "Geek+",
+    "url": "https://www.geekplus.com/resources/news/rss.xml",
+    "type": "rss",
+    "lang": "en",
+    "country": "CN",
+    "weight": 1.1
+  },
+  {
+    "name": "GreyOrange",
+    "url": "https://www.greyorange.com/feed/",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.0
+  },
+  {
+    "name": "Symbotic",
+    "url": "https://ir.symbotic.com/rss/news-releases.xml",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.0
+  },
+  {
+    "name": "Serve Robotics",
+    "url": "https://ir.serverobotics.com/rss/news-releases.xml",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.0
+  },
+  {
+    "name": "Ambi Robotics",
+    "url": "https://www.ambirobotics.com/feed/",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.0
+  },
+  {
+    "name": "Bear Robotics",
+    "url": "https://www.bearrobotics.ai/blog?format=rss",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.0
+  },
+  {
+    "name": "Amazon Robotics",
+    "url": "https://www.aboutamazon.com/news/tag/robotics/feed",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.0
+  },
+  {
+    "name": "Clearpath Robotics",
+    "url": "https://clearpathrobotics.com/feed/",
+    "type": "rss",
+    "lang": "en",
+    "country": "CA",
+    "weight": 1.0
+  },
+  {
+    "name": "Robotiq",
+    "url": "https://blog.robotiq.com/rss.xml",
+    "type": "rss",
+    "lang": "en",
+    "country": "CA",
+    "weight": 0.9
+  },
+  {
+    "name": "Neura Robotics",
+    "url": "https://neura-robotics.com/feed/",
+    "type": "rss",
+    "lang": "en",
+    "country": "DE",
+    "weight": 1.0
+  },
+  {
+    "name": "Robotnik",
+    "url": "https://robotnik.eu/feed/",
+    "type": "rss",
+    "lang": "en",
+    "country": "ES",
+    "weight": 1.0
+  },
+  {
+    "name": "Nomagic",
+    "url": "https://nomagic.ai/feed/",
+    "type": "rss",
+    "lang": "en",
+    "country": "PL",
+    "weight": 1.0
+  },
+  {
+    "name": "Rainbow Robotics",
+    "url": "https://rainbow-robotics.com/feed/",
+    "type": "rss",
+    "lang": "en",
+    "country": "KR",
+    "weight": 1.0
+  },
+  {
+    "name": "Palladyne AI",
+    "url": "https://www.palladyneai.com/feed/",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.0
+  },
+  {
+    "name": "Teradyne",
+    "url": "https://investors.teradyne.com/news-events/press-releases/rss",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 0.9
+  },
+  {
+    "name": "MassRobotics",
+    "url": "https://massrobotics.org/news/feed",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.0
+  },
+  {
+    "name": "Viam",
+    "url": "https://www.viam.com/post/rss.xml",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 0.9
+  },
+  {
+    "name": "Quasi Robotics",
+    "url": "https://quasi.ai/feed",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 0.9
+  },
+  {
+    "name": "Hudson Robotics",
+    "url": "https://www.hudsonlabautomation.com/feed",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 0.8
+  },
+  {
+    "name": "EVS Robot",
+    "url": "https://www.evsint.com/feed",
+    "type": "rss",
+    "lang": "en",
+    "country": "VN",
+    "weight": 0.8
   }
 ]

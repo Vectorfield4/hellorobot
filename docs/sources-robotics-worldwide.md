@@ -93,10 +93,52 @@ URL взяты из результатов поиска, не выдуманы. 
 | PR Newswire (robotics) | https://www.prnewswire.com/news/ | Агрегированные пресс-релизы компаний (EN) |
 | Business Wire (robotics) | https://www.businesswire.com | Агрегированные пресс-релизы компаний (EN) |
 
+## Рабочие фиды
+
+Проверено 2026-10-23 теми же настройками, что у `news-fetcher`
+(`User-Agent: opencode-skills/1.0`, таймаут 15 с): HTTP 200, XML с `<item>`,
+свежайшая запись не старше 90 дней. Все фиды добавлены в `scripts/sources.json`
+(25 записей, 589 кандидатов за прогон). Полная таблица с количеством записей и
+датами — в `docs/article-sources.md`, раздел «Company feeds».
+
+| Компания | Страна | URL фида |
+|---|---|---|
+| Intuitive Surgical | US | https://investor.intuitivesurgical.com/rss/news-releases.xml |
+| Medtronic | US | https://news.medtronic.com/press-releases?pagetemplate=rss |
+| CMR Surgical | GB | https://cmrsurgical.com/feed/ |
+| Comau | IT | https://www.comau.com/en/feed/ |
+| AutoStore | NO | https://www.autostoresystem.com/news/rss.xml |
+| Geek+ | CN | https://www.geekplus.com/resources/news/rss.xml |
+| GreyOrange | US | https://www.greyorange.com/feed/ |
+| Symbotic | US | https://ir.symbotic.com/rss/news-releases.xml |
+| Serve Robotics | US | https://ir.serverobotics.com/rss/news-releases.xml |
+| Ambi Robotics | US | https://www.ambirobotics.com/feed/ |
+| Bear Robotics | US | https://www.bearrobotics.ai/blog?format=rss |
+| Amazon Robotics | US | https://www.aboutamazon.com/news/tag/robotics/feed |
+| Clearpath Robotics | CA | https://clearpathrobotics.com/feed/ |
+| Robotiq | CA | https://blog.robotiq.com/rss.xml |
+| Neura Robotics | DE | https://neura-robotics.com/feed/ |
+| Robotnik | ES | https://robotnik.eu/feed/ |
+| Nomagic | PL | https://nomagic.ai/feed/ |
+| Rainbow Robotics | KR | https://rainbow-robotics.com/feed/ |
+| Palladyne AI (ex-Sarcos) | US | https://www.palladyneai.com/feed/ |
+| Teradyne | US | https://investors.teradyne.com/news-events/press-releases/rss |
+| MassRobotics | US | https://massrobotics.org/news/feed |
+| Viam | US | https://www.viam.com/post/rss.xml |
+| Quasi Robotics | US | https://quasi.ai/feed |
+| Hudson Robotics | US | https://www.hudsonlabautomation.com/feed |
+| EVS Robot | VN | https://www.evsint.com/feed |
+
+Без фида остались: Boston Dynamics (канал пустой), Agility, Apptronik, Figure, 1X,
+Unitree, UBTECH, Doosan, ABB, KUKA, FANUC, Yaskawa, Omron, Epson, Universal Robots,
+Ocado, Locus (фид отключён, 410), Stäubli и Stryker (403 по user-agent),
+Kawasaki Robotics (фид есть, но 403 для `opencode-skills/1.0` — нужен браузерный UA).
+Причины по каждой — в `docs/article-sources.md`.
+
 ## Примечания
 
 - **Язык:** крупные вендоры публикуют билингвально (EN + локальный). Китайские (Unitree, UBTECH, Geek+) всё чаще публикуют на EN; небольшие китайские стартапы — только CN. Японские (FANUC, Yaskawa, Kawasaki) публикуют в основном на JP с EN-сводками.
 - **Глубина материалов:** сильнейшие по «пресс-релизы + спецификации + кейсы»: ABB, FANUC, Yaskawa, Universal Robots, AutoStore, Locus, Boston Dynamics, Agility, Apptronik, Geek+, Doosan Robotics, Medtronic, Stryker, Intuitive, Ocado. По кейсам: FANUC Europe, Yaskawa Europe, Locus, AutoStore.
 - **Сегмент гуманоидов:** самые активные издатели (2025–2026): Boston Dynamics (Atlas), Agility (Digit 5), Apptronik (Apollo), Figure, 1X (NEO), Unitree, UBTECH, Fourier, Leju, LimX, Agibot. Большинство публикуют EN-пресс-релизы на своих сайтах плюс PR Newswire/Business Wire.
 - **Проверка:** URL взяты из результатов поиска и отражают состояние на момент поиска; сайты компаний могут реорганизовывать разделы новостей. Перед цитированием проверяйте раздел «News/Press» каждого сайта. URL не выдуманы.
-- **Фиды:** надёжных RSS/Atom/JSON-фидов для компаний в этом списке не найдено (большинство — HTML-страницы). Список компаний с фидами ведётся в `scripts/sources-companies.json` (сейчас пустой массив) и заполняется по мере появления фидов. Основной фид-список `scripts/sources.json` не трогаем.
+- **Фиды:** большинство сайтов из списка — HTML без RSS. Рабочие фиды (25 штук на 2026-10-23) сведены в таблицу выше и добавлены в `scripts/sources.json`; `scripts/sources-companies.json` остаётся пустым, чтобы не держать второй список, который разъедется с первым.
