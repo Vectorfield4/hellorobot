@@ -5,6 +5,8 @@ date: 2026-07-30
 tags: ["Google DeepMind", "Physical AI", "гуманоиды", "ИИ"]
 source_url: https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots
 status: draft
+wp_id: 48
+wp_url: https://hello-robot.ru/?p=48
 ---
 
 Десятилетиями мы мечтали о роботах, которые органично впишутся в наш мир и придут на помощь. Теперь эта картина делает большой шаг вперёд.
