@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://hello-robot.ru",
+  "auth": {
+    "type": "basic",
+    "user": "admin",
+    "password": { "keyName": "HELLOROBOT_APP_PASSWORD" }
+  }
+}
