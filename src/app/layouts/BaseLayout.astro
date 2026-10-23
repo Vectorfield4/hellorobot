@@ -58,8 +58,8 @@ const locale = Astro.currentLocale ?? "ru";
 
         // Пока человек возвращается к жесту, хватка мягчает ступенями:
         // сначала укорачивается нужный путь, и только с третьего уровня —
-        // число жестов. Успешный переход снимает один уровень, а тишина
-        // снимает их сама, чтобы агрессия не копилась через дни.
+        // число жестов. Успешный уход сбрасывает накопленное, а тишина
+        // снимает уровни сама, чтобы агрессия не копилась через дни.
         var MAX_LEVEL = 3;          // потолок «агрессии»
         var LEVEL_STEP = 20;        // px, на которые путь жеста короче за уровень
         var MIN_LONG_FLOOR = 40;    // короче этого жест не считаем
@@ -131,8 +131,10 @@ const locale = Astro.currentLocale ?? "ru";
           persistLevel(decayedLevel() + 1);
         }
 
-        function relaxLevel() {
-          persistLevel(decayedLevel() - 1);
+        // Агрессия нужна только чтобы помочь дойти до главной: после перехода
+        // она не нужна, поэтому успешный уход её обнуляет.
+        function resetLevel() {
+          persistLevel(0);
         }
 
         function neededGestures() {
@@ -186,7 +188,7 @@ const locale = Astro.currentLocale ?? "ru";
           if (count >= neededGestures()) {
             // Не уходим сразу: даём полоске дорасти до максимума, чтобы
             // последний жест читался как осознанный переход.
-            relaxLevel();
+            resetLevel();
             if (redirectTimer) clearTimeout(redirectTimer);
             redirectTimer = setTimeout(function () {
               window.location.href = "/";
