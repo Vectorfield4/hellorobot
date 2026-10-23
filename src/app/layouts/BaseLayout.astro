@@ -65,4 +65,21 @@ const locale = Astro.currentLocale ?? "ru";
     transform: translateY(-10px);
     will-change: opacity, transform;
   }
+  html.js [data-logo-reveal-pending] {
+    opacity: 0;
+    transform: translate3d(4.75rem, 0, 0) scale(0.96);
+    will-change: opacity, transform;
+  }
+  @media (max-width: 48rem) {
+    html.js [data-logo-reveal-pending] {
+      transform: translate3d(2.75rem, 0, 0) scale(0.96);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html.js [data-logo-reveal-pending] {
+      opacity: 1;
+      transform: none;
+      will-change: auto;
+    }
+  }
 </style>

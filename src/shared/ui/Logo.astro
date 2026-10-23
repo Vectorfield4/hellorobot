@@ -12,9 +12,45 @@ const { alt = "hellorobot", height = "4rem" } = Astro.props;
 <Image
   src={logo}
   alt={alt}
+  class="logo-reveal"
+  data-logo-reveal-pending
   widths={[320, 480, 640]}
   sizes="(max-width: 768px) 320px, 480px"
   width={480}
   height={160}
-  style={`height: ${height}; width: auto; display: block; margin-bottom: 0.5rem;`}
+  loading="eager"
+  style={`height: ${height}; width: auto; max-width: 100%; display: block; margin-bottom: 0.5rem;`}
 />
+
+<script>
+  import gsap from "gsap";
+
+  const logos = document.querySelectorAll<HTMLElement>("[data-logo-reveal-pending]");
+
+  if (logos.length > 0) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isMobile = window.matchMedia("(max-width: 48rem)").matches;
+    const distance = isMobile ? 44 : 76;
+
+    if (reducedMotion) {
+      gsap.set(logos, { opacity: 1, x: 0, scale: 1, clearProps: "opacity,transform" });
+    } else {
+      gsap.fromTo(
+        logos,
+        { opacity: 0, x: distance, scale: 0.96 },
+        {
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          duration: 1.05,
+          delay: 0.08,
+          ease: "power3.out",
+          overwrite: "auto",
+          clearProps: "opacity,transform",
+        },
+      );
+    }
+
+    for (const logoElement of logos) logoElement.removeAttribute("data-logo-reveal-pending");
+  }
+</script>
