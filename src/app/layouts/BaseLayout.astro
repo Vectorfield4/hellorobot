@@ -53,7 +53,7 @@ const locale = Astro.currentLocale ?? "ru";
         var HINT_ARMED = "scroll-hint-armed";
         var HINT_HOT = "scroll-hint-hot";
         var HINT_CHARGED = "scroll-hint-charged";
-        var REDIRECT_DELAY = 360;   // мс на финальный рост полоски перед переходом
+        var REDIRECT_DELAY = 180;   // мс на финальный рост полоски перед переходом
 
         var count = 0;
         var attemptTimer = null;
@@ -244,11 +244,11 @@ const locale = Astro.currentLocale ?? "ru";
     transform: translate(-50%, -100%) scaleX(0.4);
     transform-origin: center;
     transition:
-      opacity 180ms ease,
-      transform 220ms ease,
-      width 240ms ease,
-      height 240ms ease,
-      box-shadow 240ms ease;
+      opacity 120ms ease,
+      transform 150ms ease,
+      width 150ms ease,
+      height 150ms ease,
+      box-shadow 150ms ease;
   }
   html.scroll-hint-armed .scroll-hint {
     opacity: 0.6;
