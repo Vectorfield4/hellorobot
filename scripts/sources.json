@@ -1,22 +1,122 @@
 [
-  { "name": "arXiv cs.RO", "url": "http://rss.arxiv.org/rss/cs.RO", "type": "rss" },
+  {
+    "name": "arXiv cs.RO",
+    "url": "http://rss.arxiv.org/rss/cs.RO",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.0
+  },
+  {
+    "name": "arXiv cs.AI",
+    "url": "http://rss.arxiv.org/rss/cs.AI",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 0.9
+  },
   {
     "name": "IEEE Spectrum (robots)",
     "url": "https://spectrum.ieee.org/rss/robotics",
-    "type": "rss"
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.1
   },
-  { "name": "The Robot Report", "url": "https://www.therobotreport.com/feed/", "type": "rss" },
+  {
+    "name": "The Robot Report",
+    "url": "https://www.therobotreport.com/feed/",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.1
+  },
   {
     "name": "TechCrunch (Robotics)",
     "url": "https://techcrunch.com/category/robotics/feed/",
-    "type": "rss"
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.0
   },
-  { "name": "Wired (all)", "url": "https://www.wired.com/feed/", "type": "rss" },
-  { "name": "ROS Discourse", "url": "https://discourse.ros.org/latest.rss", "type": "rss" },
-  { "name": "Robohub", "url": "https://robohub.org/feed/", "type": "rss" },
+  {
+    "name": "Wired (all)",
+    "url": "https://www.wired.com/feed/",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 0.8
+  },
+  {
+    "name": "ROS Discourse",
+    "url": "https://discourse.ros.org/latest.rss",
+    "type": "rss",
+    "lang": "en",
+    "country": null,
+    "weight": 0.9
+  },
+  {
+    "name": "Robohub",
+    "url": "https://robohub.org/feed/",
+    "type": "rss",
+    "lang": "en",
+    "country": null,
+    "weight": 1.0
+  },
   {
     "name": "Hacker News",
     "url": "https://hn.algolia.com/api/v1/search?query=robotics&tags=story&hitsPerPage=20",
-    "type": "hn"
+    "type": "hn",
+    "lang": "en",
+    "country": "US",
+    "weight": 1.0
+  },
+  {
+    "name": "Google News (en)",
+    "url": "https://news.google.com/rss/search?q=robotics&hl=en-US&gl=US&ceid=US:en",
+    "type": "rss",
+    "lang": "en",
+    "country": "US",
+    "weight": 0.9
+  },
+  {
+    "name": "Google News (ja)",
+    "url": "https://news.google.com/rss/search?q=robotics&hl=ja&gl=JP&ceid=JP:ja",
+    "type": "rss",
+    "lang": "ja",
+    "country": "JP",
+    "weight": 0.9
+  },
+  {
+    "name": "Google News (zh)",
+    "url": "https://news.google.com/rss/search?q=robotics&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "type": "rss",
+    "lang": "zh",
+    "country": "CN",
+    "weight": 0.9
+  },
+  {
+    "name": "Google News (de)",
+    "url": "https://news.google.com/rss/search?q=robotik&hl=de&gl=DE&ceid=DE:de",
+    "type": "rss",
+    "lang": "de",
+    "country": "DE",
+    "weight": 0.9
+  },
+  {
+    "name": "Google News (fr)",
+    "url": "https://news.google.com/rss/search?q=robotique&hl=fr&gl=FR&ceid=FR:fr",
+    "type": "rss",
+    "lang": "fr",
+    "country": "FR",
+    "weight": 0.9
+  },
+  {
+    "name": "Google News (ko)",
+    "url": "https://news.google.com/rss/search?q=robotics&hl=ko&gl=KR&ceid=KR:ko",
+    "type": "rss",
+    "lang": "ko",
+    "country": "KR",
+    "weight": 0.9
   }
 ]
