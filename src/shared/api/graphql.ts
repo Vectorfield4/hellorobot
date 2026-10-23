@@ -3,7 +3,7 @@ import { WP_GRAPHQL_URL } from "@/shared/config/constants";
 export async function wpQuery<T>(
   query: string,
   variables?: Record<string, unknown>,
-  timeoutMs = 15000,
+  timeoutMs = 8000,
 ): Promise<T> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
