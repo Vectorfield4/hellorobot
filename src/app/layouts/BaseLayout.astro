@@ -41,8 +41,9 @@ const locale = Astro.currentLocale ?? "ru";
         }
         if (!isPaginated()) return;
 
-        // Три длинных скролла вверх на вершине пагинированной страницы
-        // отправляют на главную. Один длинный жест (трекпад/палец) не должен
+        // Длинные скроллы вверх на вершине пагинированной страницы отправляют
+        // на главную: три жеста по умолчанию, два — если человек уже пробовал
+        // уйти и сорвался. Один длинный жест (трекпад/палец) не должен
         // засчитываться несколько раз: события колеса коалесцируются в один жест,
         // а короткие «нервные» дёрганья игнорируются по накопленной дельте.
         var THRESHOLD = 3;          // сколько длинных жестов нужно для перехода
@@ -54,6 +55,18 @@ const locale = Astro.currentLocale ?? "ru";
         var HINT_HOT = "scroll-hint-hot";
         var HINT_CHARGED = "scroll-hint-charged";
         var REDIRECT_DELAY = 180;   // мс на финальный рост полоски перед переходом
+
+        // Пока человек возвращается к жесту, хватка мягчает ступенями:
+        // сначала укорачивается нужный путь, и только с третьего уровня —
+        // число жестов. Успешный переход снимает один уровень, длинная
+        // пауза возвращает исходную строгость.
+        var MAX_LEVEL = 3;          // потолок «агрессии»
+        var LEVEL_STEP = 20;        // px, на которые путь жеста короче за уровень
+        var MIN_LONG_FLOOR = 40;    // короче этого жест не считаем
+        var LEVEL_TTL = 600000;     // мс тишины, после которых хватка снова мягкая
+        var LEVEL_KEY = "scroll-hint-level";
+
+        var level;
 
         var count = 0;
         var attemptTimer = null;
@@ -81,18 +94,56 @@ const locale = Astro.currentLocale ?? "ru";
           if (gestureTimer) { clearTimeout(gestureTimer); gestureTimer = null; }
         }
 
+        // Хватка переживает переходы внутри вкладки: если человек снова и снова
+        // пытается уйти с архивной страницы, его не приходится ловить заново.
+        function readLevel() {
+          try {
+            var raw = sessionStorage.getItem(LEVEL_KEY);
+            if (!raw) return 0;
+            var saved = JSON.parse(raw);
+            if (!saved || typeof saved.level !== "number") return 0;
+            if (typeof saved.at !== "number" || Date.now() - saved.at > LEVEL_TTL) return 0;
+            return Math.min(MAX_LEVEL, Math.max(0, Math.round(saved.level)));
+          } catch (e) {
+            return 0;
+          }
+        }
+
+        function saveLevel(next) {
+          level = Math.min(MAX_LEVEL, Math.max(0, next));
+          try {
+            sessionStorage.setItem(LEVEL_KEY, JSON.stringify({ level: level, at: Date.now() }));
+          } catch (e) {}
+        }
+
+        function neededGestures() {
+          return level >= 2 ? 2 : THRESHOLD;
+        }
+
+        function minLong() {
+          return Math.max(MIN_LONG_FLOOR, MIN_LONG - level * LEVEL_STEP);
+        }
+
+        function minSwipe() {
+          return Math.max(MIN_LONG_FLOOR, MIN_SWIPE - level * LEVEL_STEP);
+        }
+
+        level = readLevel();
+
         // Полоска растёт ступенями: первый жест зажигает её, второй делает
         // заметнее, третий раздувает перед самым переходом на главную.
-        function setHintLevel(level) {
+        function setHintStage(stage) {
           var root = document.documentElement;
-          root.classList.toggle(HINT_ARMED, level >= 1);
-          root.classList.toggle(HINT_HOT, level >= 2);
-          root.classList.toggle(HINT_CHARGED, level >= 3);
+          root.classList.toggle(HINT_ARMED, stage >= 1);
+          root.classList.toggle(HINT_HOT, stage >= 2);
+          root.classList.toggle(HINT_CHARGED, stage >= 3);
         }
 
         function resetCount() {
+          // Подход без перехода — повод в следующий раз слушать внимательнее.
+          if (count > 0) saveLevel(level + 1);
           count = 0;
-          setHintLevel(0);
+          setHintStage(0);
           if (attemptTimer) { clearTimeout(attemptTimer); attemptTimer = null; }
           if (redirectTimer) { clearTimeout(redirectTimer); redirectTimer = null; }
         }
@@ -111,21 +162,19 @@ const locale = Astro.currentLocale ?? "ru";
 
         function countGesture() {
           count++;
-          setHintLevel(count);
+          setHintStage(count);
           if (attemptTimer) clearTimeout(attemptTimer);
-          if (count >= THRESHOLD) {
+          if (count >= neededGestures()) {
             // Не уходим сразу: даём полоске дорасти до максимума, чтобы
-            // третий жест читался как осознанный переход.
+            // последний жест читался как осознанный переход.
+            saveLevel(level - 1);
             if (redirectTimer) clearTimeout(redirectTimer);
             redirectTimer = setTimeout(function () {
               window.location.href = "/";
             }, REDIRECT_DELAY);
             return;
           }
-          attemptTimer = setTimeout(function () {
-            count = 0;
-            setHintLevel(0);
-          }, ATTEMPT_GAP);
+          attemptTimer = setTimeout(resetCount, ATTEMPT_GAP);
         }
 
         window.addEventListener("wheel", function (e) {
@@ -143,7 +192,7 @@ const locale = Astro.currentLocale ?? "ru";
             gestureStartedAtTop = atTop();
             gestureDelta = gestureStartedAtTop ? delta : 0;
             gestureCounted = false;
-            if (gestureStartedAtTop && gestureDelta >= MIN_LONG) {
+            if (gestureStartedAtTop && gestureDelta >= minLong()) {
               gestureCounted = true;
               countGesture();
             }
@@ -162,7 +211,7 @@ const locale = Astro.currentLocale ?? "ru";
             return;
           }
           gestureDelta += delta;
-          if (!gestureCounted && gestureDelta >= MIN_LONG) {
+          if (!gestureCounted && gestureDelta >= minLong()) {
             gestureCounted = true;
             countGesture();
           }
@@ -177,7 +226,7 @@ const locale = Astro.currentLocale ?? "ru";
         window.addEventListener("touchmove", function (e) {
           if (touchStartY === null || !touchStartedAtTop || !atTop()) return;
           var y = (e.touches && e.touches[0]) ? e.touches[0].clientY : touchStartY;
-          if (!touchCounted && y - touchStartY >= MIN_SWIPE) {
+          if (!touchCounted && y - touchStartY >= minSwipe()) {
             touchCounted = true;
             countGesture();
           }
