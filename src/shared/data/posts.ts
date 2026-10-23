@@ -85,3 +85,12 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
   }
   return postsFixture.find((p) => p.slug === slug);
 }
+
+export async function getPostsByTag(tag: string): Promise<Post[]> {
+  const posts = await getPosts();
+  return posts.filter((p) => (p.tags ?? []).includes(tag));
+}
+
+export function getAllTags(posts: Post[]): string[] {
+  return [...new Set(posts.flatMap((p) => p.tags ?? []))];
+}

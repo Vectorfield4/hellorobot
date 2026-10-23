@@ -1,0 +1,50 @@
+---
+import PostListLayout from "../../../../app/layouts/PostListLayout.astro";
+import { getPosts } from "../../../../shared/data/posts";
+
+const PAGE_SIZE = 3;
+
+export async function getStaticPaths() {
+  const PAGE_SIZE = 3;
+  const posts = await getPosts();
+  const tags = [...new Set(posts.flatMap((p) => p.tags ?? []))];
+  const paths: { params: { tag: string; page: string } }[] = [];
+  for (const tag of tags) {
+    const tagPosts = posts.filter((p) => (p.tags ?? []).includes(tag));
+    const totalPages = Math.max(1, Math.ceil(tagPosts.length / PAGE_SIZE));
+    for (let i = 1; i <= totalPages; i++) {
+      paths.push({ params: { tag, page: String(i) } });
+    }
+  }
+  return paths;
+}
+
+const { tag, page: pageParam } = Astro.params;
+const tagValue = tag as string;
+const page = Number(pageParam) || 1;
+const allPosts = (await getPosts()).filter((p) => (p.tags ?? []).includes(tagValue));
+const totalPages = Math.max(1, Math.ceil(allPosts.length / PAGE_SIZE));
+const start = (page - 1) * PAGE_SIZE;
+const pagePosts = allPosts.slice(start, start + PAGE_SIZE);
+const encodedTag = encodeURIComponent(tagValue);
+---
+<PostListLayout
+  title={`Тег ${tagValue} — страница ${page}`}
+  heading={`Тег: ${tagValue}`}
+  initialPosts={pagePosts}
+  totalPages={totalPages}
+  initialPage={page}
+  apiBase={`/tags/${encodedTag}/page`}
+>
+  <p><a href="/news">← Все новости</a></p>
+  <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+    {page > 1 && <a href={`/tags/${encodedTag}/page/${page - 1}`}>← Назад</a>}
+    {page < totalPages && <a href={`/tags/${encodedTag}/page/${page + 1}`}>Вперёд →</a>}
+    {page === totalPages && <span style="opacity: 0.6;">Вы на последней странице</span>}
+  </nav>
+  <div style="margin-top: 1rem; text-align: center;">
+    {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+      <a href={`/tags/${encodedTag}/page/${n}`} style={`margin: 0 0.5rem; font-weight: ${n === page ? "bold" : "normal"};`}>{n}</a>
+    ))}
+  </div>
+</PostListLayout>

@@ -23,10 +23,12 @@ export default function InfinitePosts({
   initialPosts,
   totalPages,
   initialPage = 1,
+  apiBase = "/news/page",
 }: {
   initialPosts: Post[];
   totalPages: number;
   initialPage?: number;
+  apiBase?: string;
 }) {
   const [pages, setPages] = useState<PageBlock[]>([{ page: initialPage, posts: initialPosts }]);
   const [lastLoadedPage, setLastLoadedPage] = useState(initialPage);
@@ -41,7 +43,7 @@ export default function InfinitePosts({
     setLoading(true);
     const nextPage = lastLoadedPage + 1;
     try {
-      const res = await fetch(`/news/page/${nextPage}.json`);
+      const res = await fetch(`${apiBase}/${nextPage}.json`);
       if (!res.ok) throw new Error("fetch failed");
       const newPosts: Post[] = await res.json();
       setPages((prev) => [...prev, { page: nextPage, posts: newPosts }]);
@@ -51,7 +53,7 @@ export default function InfinitePosts({
     } finally {
       setLoading(false);
     }
-  }, [loading, lastLoadedPage, totalPages]);
+  }, [loading, lastLoadedPage, totalPages, apiBase]);
 
   useEffect(() => {
     loadMoreRef.current = loadMore;

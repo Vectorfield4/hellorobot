@@ -18,7 +18,7 @@ if (!post) throw new Error("Not found");
     {post.tags.length > 0 && (
       <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin:0.5rem 0;">
         {post.tags.map((t) => (
-          <span style="font-size:0.75rem;padding:0.15rem 0.5rem;border-radius:0.5rem;background:#0066cc;color:#fff;">{t}</span>
+          <a href={`/tags/${encodeURIComponent(t)}`} style="font-size:0.75rem;padding:0.15rem 0.5rem;border-radius:0.5rem;background:#0066cc;color:#fff;text-decoration:none;">{t}</a>
         ))}
       </div>
     )}

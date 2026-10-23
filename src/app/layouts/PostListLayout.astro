@@ -1,0 +1,42 @@
+---
+import InfinitePosts from "../../shared/ui/InfinitePosts";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title?: string;
+  heading?: string;
+  initialPosts: {
+    id: string;
+    slug: string;
+    title: string;
+    date: string;
+    excerpt?: string;
+    tags?: string[];
+  }[];
+  totalPages: number;
+  initialPage?: number;
+  apiBase?: string;
+}
+
+const {
+  title = "Новости",
+  heading = "Новости",
+  initialPosts,
+  totalPages,
+  initialPage = 1,
+  apiBase = "/news/page",
+} = Astro.props;
+---
+<BaseLayout title={title}>
+  <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
+    <h1>{heading}</h1>
+    <InfinitePosts
+      client:visible
+      initialPosts={initialPosts}
+      totalPages={totalPages}
+      initialPage={initialPage}
+      apiBase={apiBase}
+    />
+    <slot />
+  </main>
+</BaseLayout>

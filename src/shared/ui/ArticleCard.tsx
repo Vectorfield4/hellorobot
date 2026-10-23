@@ -45,9 +45,14 @@ export default function ArticleCard({ title, date, slug, excerpt, tags = [] }: P
       {tags.length > 0 && (
         <div {...stylex.props(styles.tags)}>
           {tags.map((t) => (
-            <span key={t} {...stylex.props(styles.tag)}>
+            <a
+              key={t}
+              href={`/tags/${encodeURIComponent(t)}`}
+              style={{ textDecoration: "none" }}
+              {...stylex.props(styles.tag)}
+            >
               {t}
-            </span>
+            </a>
           ))}
         </div>
       )}

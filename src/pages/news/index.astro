@@ -1,15 +1,22 @@
 ---
-import BaseLayout from "../../app/layouts/BaseLayout.astro";
+import PostListLayout from "../../app/layouts/PostListLayout.astro";
 import { getPosts } from "../../shared/data/posts";
-import ArticleCard from "../../shared/ui/ArticleCard";
 
+const PAGE_SIZE = 3;
 const posts = await getPosts();
+const totalPages = Math.ceil(posts.length / PAGE_SIZE);
 ---
-<BaseLayout title="Новости">
-  <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
-    <h1>Новости</h1>
-    {posts.map((p) => (
-      <ArticleCard title={p.title} date={p.date} slug={p.slug} excerpt={p.excerpt} tags={p.tags} />
+<PostListLayout
+  title="Новости"
+  heading="Новости"
+  initialPosts={posts.slice(0, PAGE_SIZE)}
+  totalPages={totalPages}
+  initialPage={1}
+  apiBase="/news/page"
+>
+  <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+    {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+      <a href={`/news/page/${n}`}>{n}</a>
     ))}
-  </main>
-</BaseLayout>
+  </nav>
+</PostListLayout>

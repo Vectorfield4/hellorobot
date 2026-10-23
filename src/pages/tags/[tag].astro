@@ -1,0 +1,34 @@
+---
+import PostListLayout from "../../app/layouts/PostListLayout.astro";
+import { getPosts } from "../../shared/data/posts";
+
+const PAGE_SIZE = 3;
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  const tags = [...new Set(posts.flatMap((p) => p.tags ?? []))];
+  return tags.map((tag) => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params;
+const tagValue = tag as string;
+const allPosts = (await getPosts()).filter((p) => (p.tags ?? []).includes(tagValue));
+const totalPages = Math.max(1, Math.ceil(allPosts.length / PAGE_SIZE));
+const pagePosts = allPosts.slice(0, PAGE_SIZE);
+const encodedTag = encodeURIComponent(tagValue);
+---
+<PostListLayout
+  title={`Тег: ${tagValue}`}
+  heading={`Тег: ${tagValue}`}
+  initialPosts={pagePosts}
+  totalPages={totalPages}
+  initialPage={1}
+  apiBase={`/tags/${encodedTag}/page`}
+>
+  <p><a href="/news">← Все новости</a></p>
+  <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+    {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+      <a href={`/tags/${encodedTag}/page/${n}`}>{n}</a>
+    ))}
+  </nav>
+</PostListLayout>
