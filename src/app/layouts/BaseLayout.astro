@@ -31,6 +31,7 @@ const locale = Astro.currentLocale ?? "ru";
     </script>
   </head>
   <body>
+    <div class="scroll-hint" aria-hidden="true"></div>
     <slot />
     <script is:inline>
       (function () {
@@ -49,6 +50,7 @@ const locale = Astro.currentLocale ?? "ru";
         var GESTURE_END = 300;      // мс тишины, после которых жест завершён
         var ATTEMPT_GAP = 1200;     // мс между жестами: больше — сброс счётчика
         var MIN_SWIPE = 100;        // px для тач-свайпа
+        var HINT_CLASS = "scroll-hint-armed";
 
         var count = 0;
         var attemptTimer = null;
@@ -58,6 +60,7 @@ const locale = Astro.currentLocale ?? "ru";
 
         // состояние текущего wheel-жеста
         var gestureActive = false;
+        var gestureStartedAtTop = false;
         var gestureTimer = null;
         var gestureDelta = 0;
         var gestureCounted = false;
@@ -68,15 +71,29 @@ const locale = Astro.currentLocale ?? "ru";
 
         function resetGestureState() {
           gestureActive = false;
+          gestureStartedAtTop = false;
           gestureDelta = 0;
           gestureCounted = false;
           if (gestureTimer) { clearTimeout(gestureTimer); gestureTimer = null; }
         }
 
-        function resetAll() {
+        function armHint() {
+          document.documentElement.classList.add(HINT_CLASS);
+        }
+
+        function disarmHint() {
+          document.documentElement.classList.remove(HINT_CLASS);
+        }
+
+        function resetCount() {
           count = 0;
-          resetGestureState();
+          disarmHint();
           if (attemptTimer) { clearTimeout(attemptTimer); attemptTimer = null; }
+        }
+
+        function resetAll() {
+          resetCount();
+          resetGestureState();
         }
 
         function scheduleGestureEnd() {
@@ -88,35 +105,54 @@ const locale = Astro.currentLocale ?? "ru";
 
         function countGesture() {
           count++;
+          if (count === 1) armHint();
           if (attemptTimer) clearTimeout(attemptTimer);
-          attemptTimer = setTimeout(function () { count = 0; }, ATTEMPT_GAP);
+          attemptTimer = setTimeout(function () {
+            count = 0;
+            disarmHint();
+          }, ATTEMPT_GAP);
           if (count >= THRESHOLD) {
             window.location.href = "/";
           }
         }
 
         window.addEventListener("wheel", function (e) {
-          if (!atTop()) { resetAll(); return; }
-          if (e.deltaY < 0) {
-            var delta = Math.abs(e.deltaY);
-            if (e.deltaMode === 1) delta *= 16;
-            else if (e.deltaMode === 2) delta *= window.innerHeight;
-            if (!gestureActive) {
-              gestureActive = true;
-              gestureDelta = delta;
-              gestureCounted = gestureDelta >= MIN_LONG;
-              if (gestureCounted) countGesture();
-              scheduleGestureEnd();
-            } else {
-              gestureDelta += delta;
-              if (!gestureCounted && gestureDelta >= MIN_LONG) {
-                gestureCounted = true;
-                countGesture();
-              }
-              scheduleGestureEnd();
+          if (e.deltaY > 0) { resetAll(); return; }
+          if (e.deltaY === 0) return;
+
+          var delta = Math.abs(e.deltaY);
+          if (e.deltaMode === 1) delta *= 16;
+          else if (e.deltaMode === 2) delta *= window.innerHeight;
+
+          if (!gestureActive) {
+            gestureActive = true;
+            // Жест, начатый ниже верха, не засчитывается, даже если страница
+            // доедет до верха в процессе этого же движения.
+            gestureStartedAtTop = atTop();
+            gestureDelta = gestureStartedAtTop ? delta : 0;
+            gestureCounted = false;
+            if (gestureStartedAtTop && gestureDelta >= MIN_LONG) {
+              gestureCounted = true;
+              countGesture();
             }
-          } else if (e.deltaY > 0) {
-            resetAll();
+            scheduleGestureEnd();
+            return;
+          }
+
+          // Продлеваем текущий жест, но не начинаем счёт задним числом.
+          scheduleGestureEnd();
+          if (!gestureStartedAtTop) return;
+          if (!atTop()) {
+            gestureStartedAtTop = false;
+            gestureDelta = 0;
+            gestureCounted = false;
+            resetCount();
+            return;
+          }
+          gestureDelta += delta;
+          if (!gestureCounted && gestureDelta >= MIN_LONG) {
+            gestureCounted = true;
+            countGesture();
           }
         }, { passive: true });
 
@@ -142,15 +178,21 @@ const locale = Astro.currentLocale ?? "ru";
         }, { passive: true });
 
         window.addEventListener("scroll", function () {
-          if (!atTop()) resetAll();
+          if (atTop()) return;
+          // Не обрываем текущий жест: иначе скролл, начатый ниже верха,
+          // мог бы «перезапуститься» и засчитаться уже у самой вершины.
+          resetCount();
+          gestureStartedAtTop = false;
+          gestureDelta = 0;
+          gestureCounted = false;
         }, { passive: true });
       })();
     </script>
   </body>
 </html>
 <style is:global>
-  :root { --color-bg: #ffffff; --color-fg: #111111; }
-  [data-theme="dark"] { --color-bg: #111111; --color-fg: #ffffff; }
+  :root { --color-bg: #ffffff; --color-fg: #111111; --color-accent: #0066cc; }
+  [data-theme="dark"] { --color-bg: #111111; --color-fg: #ffffff; --color-accent: #66aaff; }
   html {
     overscroll-behavior-x: none;
     overscroll-behavior-y: none;
@@ -170,6 +212,29 @@ const locale = Astro.currentLocale ?? "ru";
     background: #ffffff;
     color: #111111;
     border-radius: 0.5rem;
+  }
+  /*
+   * Hint for the hidden scroll gesture: a thin accent line at the very top
+   * appears after the first long upward scroll and disappears on reset.
+   */
+  .scroll-hint {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    z-index: 10;
+    width: min(18rem, 60vw);
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -100%) scaleX(0.4);
+    transform-origin: center;
+    transition: opacity 180ms ease, transform 220ms ease;
+  }
+  html.scroll-hint-armed .scroll-hint {
+    opacity: 0.6;
+    transform: translate(-50%, 0) scaleX(1);
   }
   /*
    * Islands are server-rendered, so hold the cards at their reveal start
@@ -197,6 +262,9 @@ const locale = Astro.currentLocale ?? "ru";
     }
   }
   @media (prefers-reduced-motion: reduce) {
+    .scroll-hint {
+      transition: none;
+    }
     html.js [data-logo-reveal-pending] {
       opacity: 1;
       transform: none;
