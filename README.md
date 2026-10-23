@@ -1,7 +1,7 @@
 # hellorobot
 
 Robotics news aggregator (with a minimal robot store on the side). Tagline:
-"Последние новости и разработки в робототехнике — исследования, железо, индустрия".
+"Последние новости робототехники — разработки, исследования, индустрия".
 News are collected from robotics sources (RSS/Atom/HN) without API keys and published as
 articles; the store side is a minimal WooCommerce-backed catalog.
 
