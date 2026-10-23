@@ -148,8 +148,18 @@ Caveats:
 
 ## Deduplication
 
-Candidates are deduplicated by URL (with tracking-param stripping). Already-published
-articles are tracked via the `_source_url` post meta when creating drafts through MCP.
+Candidates are deduplicated by URL (with tracking-param stripping). Coverage
+against what is already on the site is a separate step: the `published-check`
+skill matches a candidate by `source_url`, slug and normalized title against
+`articles/` and, optionally, a WordPress dump, and returns `{ fresh, covered }`.
+
+```bash
+node "$env:USERPROFILE/.config/opencode/skills/data/published-check/scripts/check.mjs" \
+  --file docs/research/candidates-<date>.json --articles articles --wp docs/research/wp-posts.json
+```
+
+Already-published articles are also tracked via the `_source_url` post meta when
+creating drafts through MCP.
 
 ## Universal article extractor
 
