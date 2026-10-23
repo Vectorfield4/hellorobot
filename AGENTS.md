@@ -17,3 +17,6 @@ Astro 7 (SSG) + React 19 + TypeScript 5 strict + Vitest + Biome 2
 
 ## Structure
 FSD + Atomic Design under `src/`.
+
+## Workflow
+- Commit after every change (small, focused commits). Husky bumps the patch version on each commit.
