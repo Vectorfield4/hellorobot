@@ -27,7 +27,7 @@ const pagePosts = posts.slice(start, start + PAGE_SIZE);
   paginated={true}
 >
   <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-    <a href={page > 2 ? `/news/page/${page - 1}` : "/"}>← Назад</a>
+    <a href="/">← Все новости</a>
     {page < totalPages && <a href={`/news/page/${page + 1}`}>Вперёд →</a>}
     {page === totalPages && <span style="opacity: 0.6;">Вы на последней странице</span>}
   </nav>

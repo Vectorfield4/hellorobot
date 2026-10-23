@@ -39,7 +39,7 @@ const encodedTag = encodeURIComponent(tagValue);
   <p><a href="/">← Все новости</a></p>
   {totalPages > 1 && (
     <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-      <a href={page > 2 ? `/tags/${encodedTag}/page/${page - 1}` : `/tags/${encodedTag}`}>← Назад</a>
+      <a href="/">← Все новости</a>
       {page < totalPages && <a href={`/tags/${encodedTag}/page/${page + 1}`}>Вперёд →</a>}
       {page === totalPages && <span style="opacity: 0.6;">Вы на последней странице</span>}
     </nav>
