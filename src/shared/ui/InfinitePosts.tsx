@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { revealCards } from "@/shared/lib/reveal";
 import ArticleCard from "./ArticleCard";
+import ArticleDivider from "./ArticleDivider";
 
 interface Post {
   id: string;
@@ -19,17 +20,70 @@ interface PageBlock {
 // useLayoutEffect warns during SSR, so fall back to useEffect on the server.
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
+function isPaginatedProp(props: {
+  paginated?: boolean;
+  isPaginated?: boolean;
+  showPageEnd?: boolean;
+}) {
+  return Boolean(props.paginated || props.isPaginated || props.showPageEnd);
+}
+
+function computeStats(posts: Post[]) {
+  // Top tag
+  const tagCounts = new Map<string, number>();
+  for (const p of posts)
+    for (const t of p.tags ?? []) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+  let topTag = "—";
+  let topCount = 0;
+  for (const [tag, count] of tagCounts)
+    if (count > topCount) {
+      topTag = tag;
+      topCount = count;
+    }
+
+  // Average reading time (~200 words/min) from title + excerpt
+  const words = posts.reduce(
+    (acc, p) => acc + `${p.title} ${p.excerpt ?? ""}`.split(/\s+/).filter(Boolean).length,
+    0,
+  );
+  const avgMinutes = posts.length ? words / posts.length / 200 : 0;
+  const reading = avgMinutes < 1 ? "<1 мин" : `${avgMinutes.toFixed(1)} мин`;
+
+  // Feed freshness: share of posts no older than 30 days
+  const now = Date.now();
+  const fresh = posts.filter((p) => {
+    const d = Date.parse(p.date);
+    return !Number.isNaN(d) && now - d <= 30 * 24 * 60 * 60 * 1000;
+  }).length;
+  const freshness = posts.length ? `${Math.round((fresh / posts.length) * 100)}%` : "0%";
+
+  return [
+    { label: "топ-тег", value: topTag },
+    { label: "ср. чтение", value: reading },
+    { label: "свежесть 30д", value: freshness },
+  ];
+}
+
 export default function InfinitePosts({
   initialPosts,
   totalPages,
   initialPage = 1,
   apiBase = "/news/page",
+  paginated,
+  isPaginated,
+  showPageEnd,
 }: {
   initialPosts: Post[];
   totalPages: number;
   initialPage?: number;
   apiBase?: string;
+  paginated?: boolean;
+  isPaginated?: boolean;
+  showPageEnd?: boolean;
 }) {
+  const showPageEndMarker =
+    isPaginatedProp({ paginated, isPaginated, showPageEnd }) || initialPage > 1;
+
   const [pages, setPages] = useState<PageBlock[]>([{ page: initialPage, posts: initialPosts }]);
   const [lastLoadedPage, setLastLoadedPage] = useState(initialPage);
   const [loading, setLoading] = useState(false);
@@ -89,30 +143,37 @@ export default function InfinitePosts({
 
   return (
     <div ref={containerRef}>
-      {pages.map(({ page: pageNum, posts: pagePosts }) => (
+      {pages.map(({ page: pageNum, posts: pagePosts }, pi) => (
         <div key={pageNum}>
-          {pagePosts.map((p) => (
-            <div key={p.id} data-id={p.id} data-reveal data-reveal-pending>
-              <ArticleCard
-                title={p.title}
-                date={p.date}
-                slug={p.slug}
-                excerpt={p.excerpt}
-                tags={p.tags}
-              />
-            </div>
-          ))}
-          {pageNum < totalPages && (
-            <div style={{ padding: "1rem", textAlign: "center", opacity: 0.6 }}>
-              конец {pageNum} страницы
-            </div>
+          {pagePosts.map((p, i) => {
+            const isFirstOverall = pi === 0 && i === 0;
+            const isFirstOfLaterPage = i === 0 && pi > 0;
+            const showCardDivider = !isFirstOverall && !(showPageEndMarker && isFirstOfLaterPage);
+            return (
+              <div key={p.id}>
+                {showCardDivider && <ArticleDivider />}
+                <div data-id={p.id} data-reveal data-reveal-pending>
+                  <ArticleCard
+                    title={p.title}
+                    date={p.date}
+                    slug={p.slug}
+                    excerpt={p.excerpt}
+                    tags={p.tags}
+                  />
+                </div>
+              </div>
+            );
+          })}
+          {showPageEndMarker && pageNum < totalPages && (
+            <ArticleDivider label={`конец ${pageNum} страницы`} stats={computeStats(pagePosts)} />
           )}
         </div>
       ))}
-      {lastLoadedPage >= totalPages && (
-        <div style={{ padding: "1rem", textAlign: "center", opacity: 0.6 }}>
-          Вы на последней странице
-        </div>
+      {showPageEndMarker && lastLoadedPage >= totalPages && (
+        <ArticleDivider
+          label="Вы на последней странице"
+          stats={computeStats(pages.flatMap((pg) => pg.posts))}
+        />
       )}
       {lastLoadedPage < totalPages && (
         <div ref={loaderRef} style={{ padding: "1rem", textAlign: "center" }}>

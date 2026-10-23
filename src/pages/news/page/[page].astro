@@ -25,6 +25,7 @@ const pagePosts = posts.slice(start, start + PAGE_SIZE);
   totalPages={totalPages}
   initialPage={page}
   apiBase="/news/page"
+  paginated={true}
 >
   <nav style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
     {page > 1 && <a href={`/news/page/${page - 1}`}>← Назад</a>}

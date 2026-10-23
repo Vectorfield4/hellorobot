@@ -12,7 +12,7 @@ interface Props {
 const styles = stylex.create({
   card: {
     padding: tokens.spaceMd,
-    marginBottom: tokens.spaceMd,
+    marginBottom: 0,
     borderRadius: tokens.radiusMd,
     backgroundColor: tokens.colorBg,
     color: tokens.colorFg,

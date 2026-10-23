@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { wpQuery } from "@/shared/api/graphql";
 import { revealCards } from "@/shared/lib/reveal";
 import ArticleCard from "@/shared/ui/ArticleCard";
+import ArticleDivider from "@/shared/ui/ArticleDivider";
 
 interface Post {
   id: string;
@@ -70,15 +71,18 @@ export default function LatestPosts({
 
   return (
     <div ref={containerRef}>
-      {posts.map((p) => (
-        <div key={p.id} data-reveal data-reveal-pending>
-          <ArticleCard
-            title={p.title}
-            date={p.date}
-            slug={p.slug}
-            excerpt={p.excerpt}
-            tags={p.tags}
-          />
+      {posts.map((p, i) => (
+        <div key={p.id}>
+          {i > 0 && <ArticleDivider />}
+          <div data-reveal data-reveal-pending>
+            <ArticleCard
+              title={p.title}
+              date={p.date}
+              slug={p.slug}
+              excerpt={p.excerpt}
+              tags={p.tags}
+            />
+          </div>
         </div>
       ))}
     </div>

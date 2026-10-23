@@ -32,6 +32,79 @@ const locale = Astro.currentLocale ?? "ru";
   </head>
   <body>
     <slot />
+    <script is:inline>
+      (function () {
+        function isPaginated() {
+          var p = (location.pathname || "").replace(/\/+$/, "");
+          return /\/news\/page\/\d+$/.test(p) || /\/tags\/[^/]+\/page\/\d+$/.test(p);
+        }
+        if (!isPaginated()) return;
+
+        var THRESHOLD = 3;
+        var GAP = 600;
+        var count = 0;
+        var gestureActive = false;
+        var timer = null;
+        var touchStartY = null;
+        var touchCounted = false;
+
+        function atTop() {
+          return (window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0) <= 2;
+        }
+
+        function resetGesture() {
+          gestureActive = false;
+          if (timer) { clearTimeout(timer); timer = null; }
+        }
+
+        function registerAttempt() {
+          count++;
+          if (count >= THRESHOLD) {
+            window.location.href = "/";
+          }
+        }
+
+        function startGesture() {
+          if (gestureActive) return;
+          gestureActive = true;
+          registerAttempt();
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(function () { gestureActive = false; }, GAP);
+        }
+
+        window.addEventListener("wheel", function (e) {
+          if (!atTop()) { resetGesture(); return; }
+          if (e.deltaY < 0) {
+            startGesture();
+          } else {
+            resetGesture();
+          }
+        }, { passive: true });
+
+        window.addEventListener("touchstart", function (e) {
+          if (e.touches && e.touches[0]) touchStartY = e.touches[0].clientY;
+          touchCounted = false;
+        }, { passive: true });
+
+        window.addEventListener("touchmove", function (e) {
+          if (touchStartY === null || !atTop()) return;
+          var y = (e.touches && e.touches[0]) ? e.touches[0].clientY : touchStartY;
+          if (y - touchStartY > 60 && !touchCounted) {
+            touchCounted = true;
+            startGesture();
+          }
+        }, { passive: true });
+
+        window.addEventListener("touchend", function () {
+          touchStartY = null;
+          touchCounted = false;
+        }, { passive: true });
+
+        window.addEventListener("scroll", function () {
+          if (!atTop()) resetGesture();
+        }, { passive: true });
+      })();
+    </script>
   </body>
 </html>
 <style is:global>
@@ -39,6 +112,7 @@ const locale = Astro.currentLocale ?? "ru";
   [data-theme="dark"] { --color-bg: #111111; --color-fg: #ffffff; }
   html {
     overscroll-behavior-x: none;
+    overscroll-behavior-y: none;
     touch-action: pan-y;
   }
   body {
@@ -48,6 +122,7 @@ const locale = Astro.currentLocale ?? "ru";
     padding: 1.5rem 0;
     font-family: system-ui, sans-serif;
     overscroll-behavior-x: none;
+    overscroll-behavior-y: none;
     touch-action: pan-y;
   }
   main {
@@ -70,6 +145,11 @@ const locale = Astro.currentLocale ?? "ru";
     transform: translate3d(4.75rem, 0, 0) scale(0.96);
     will-change: opacity, transform;
   }
+  html.js [data-divider-pending] {
+    opacity: 0;
+    transform: translate3d(4.75rem, 0, 0) scale(0.96);
+    will-change: opacity, transform;
+  }
   @media (max-width: 48rem) {
     html.js [data-logo-reveal-pending] {
       transform: translate3d(2.75rem, 0, 0) scale(0.96);
@@ -77,6 +157,11 @@ const locale = Astro.currentLocale ?? "ru";
   }
   @media (prefers-reduced-motion: reduce) {
     html.js [data-logo-reveal-pending] {
+      opacity: 1;
+      transform: none;
+      will-change: auto;
+    }
+    html.js [data-divider-pending] {
       opacity: 1;
       transform: none;
       will-change: auto;

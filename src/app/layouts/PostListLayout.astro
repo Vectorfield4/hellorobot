@@ -16,6 +16,7 @@ interface Props {
   totalPages: number;
   initialPage?: number;
   apiBase?: string;
+  paginated?: boolean;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   totalPages,
   initialPage = 1,
   apiBase = "/news/page",
+  paginated = false,
 } = Astro.props;
 ---
 <BaseLayout title={title}>
@@ -35,6 +37,7 @@ const {
       totalPages={totalPages}
       initialPage={initialPage}
       apiBase={apiBase}
+      paginated={paginated}
     />
     <slot />
   </main>

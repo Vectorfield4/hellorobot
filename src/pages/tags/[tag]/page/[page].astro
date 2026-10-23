@@ -34,6 +34,7 @@ const encodedTag = encodeURIComponent(tagValue);
   totalPages={totalPages}
   initialPage={page}
   apiBase={`/tags/${encodedTag}/page`}
+  paginated={true}
 >
   <h1 slot="heading">Тег: {tagValue}</h1>
   <p><a href="/news">← Все новости</a></p>
