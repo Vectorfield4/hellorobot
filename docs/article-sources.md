@@ -9,6 +9,8 @@ source list.
 | Engine | `.opencode/skills/data/news-fetcher/scripts/fetch-candidates.mjs` |
 | Sources (this repo) | `scripts/sources.json` |
 | Launcher | `scripts/fetch-candidates.mjs` (`npm run fetch:candidates`) |
+| Company press centers (worldwide) | `docs/sources-robotics-worldwide.md` |
+| Company feeds (when found) | `scripts/sources-companies.json` (empty until feeds exist) |
 
 The launcher adds `--sources scripts/sources.json` when the flag is missing, so the
 command works from any directory.
