@@ -4,9 +4,9 @@ slug: robofake-deepfake-detectors-humanoid-face-robots
 date: 2026-10-19
 tags: ["роботы", "ИИ", "безопасность", "исследования"]
 source_url: https://arxiv.org/abs/2610.14269
-status: draft
+status: published
 wp_id: 50
-wp_url: https://hello-robot.ru/?p=50
+wp_url: https://hello-robot.ru/2026/10/19/robofake-deepfake-detectors-humanoid-face-robots-2/
 ---
 
 Человекоподобные роботы с лицом уже умеют двигать губами в такт речи и показывать мимику. Если такому роботу дать лицо реального человека и управлять им синтезированной речью, получится новый вид атаки предъявления: лицо, которое говорит и реагирует перед камерой, снятое как реальный объект без единого изменённого пикселя. Авторы называют это RoboFake и спрашивают, готовы ли современные защиты.

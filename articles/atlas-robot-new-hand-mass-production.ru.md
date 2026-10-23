@@ -4,9 +4,9 @@ slug: atlas-robot-new-hand-mass-production
 date: 2026-10-01
 tags: ["Boston Dynamics", "Atlas", "манипуляторы", "железо"]
 source_url: https://spectrum.ieee.org/robust-robot-hand
-status: draft
+status: published
 wp_id: 45
-wp_url: https://hello-robot.ru/?p=45
+wp_url: https://hello-robot.ru/2026/10/01/atlas-robot-new-hand-mass-production-2/
 ---
 
 Сегодня Boston Dynamics анонсирует переработанную кисть для робота Atlas. Предыдущее поколение умело делать почти сверхчеловеческие вещи тремя пальцами, но не было рассчитано на массовое производство в десятках или сотнях тысяч экземпляров. Переход от исследовательского железа к масштабируемому продукту делает важными вопросы, которые раньше можно было игнорировать: как сделать кисть, которая делает всё нужное, но при этом прочная, надёжная и дешёвая в производстве?

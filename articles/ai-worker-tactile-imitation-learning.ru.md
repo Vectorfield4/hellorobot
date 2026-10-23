@@ -4,9 +4,9 @@ slug: ai-worker-tactile-imitation-learning
 date: 2026-10-18
 tags: ["ROS 2", "тактильность", "имитационное обучение", "роботы"]
 source_url: https://discourse.openrobotics.org/t/teaching-robots-to-feel-with-ai-worker-tactile-imitation-learning/58932
-status: draft
+status: published
 wp_id: 44
-wp_url: https://hello-robot.ru/?p=44
+wp_url: https://hello-robot.ru/2026/10/18/ai-worker-tactile-imitation-learning-3/
 ---
 
 Все, кто обучал визуальные политики имитационного обучения, знают предел камер: манипуляции, богатые контактом, с деформируемыми объектами.

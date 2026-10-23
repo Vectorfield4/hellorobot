@@ -4,9 +4,9 @@ slug: gm-car-chores-ai
 date: 2026-10-21
 tags: ["автономия", "авто", "ИИ", "роботы"]
 source_url: https://www.wired.com/story/gm-wants-your-car-to-do-your-chores
-status: draft
+status: published
 wp_id: 49
-wp_url: https://hello-robot.ru/?p=49
+wp_url: https://hello-robot.ru/2026/10/21/gm-car-chores-ai-2/
 ---
 
 Американцы провели за рулём около 95 млрд часов в прошлом году, проехав примерно 2,76 трлн миль. На ежегодном мероприятии GM Forward в Нью-Йорке руководители General Motors рассказали о будущем автомобиля: цель не сократить это время, а сделать его полезнее.
