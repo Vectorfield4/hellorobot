@@ -11,7 +11,17 @@
     "formatter": { "quoteStyle": "double", "semicolons": "always" }
   },
   "files": {
-    "includes": ["**", "!dist", "!.astro", "!node_modules", "!coverage", "!.storybook-static"]
+    "includes": [
+      "**",
+      "!dist",
+      "!.astro",
+      "!node_modules",
+      "!coverage",
+      "!.storybook-static",
+      "!docs/research",
+      "!docs/wp-*.json",
+      "!docs/wp-result-*.json"
+    ]
   },
   "overrides": [
     {

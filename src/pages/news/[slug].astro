@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../app/layouts/BaseLayout.astro";
 import { getPostBySlug, getPosts } from "../../shared/data/posts";
+import { formatDate } from "../../shared/lib/formatDate";
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -14,7 +15,7 @@ if (!post) throw new Error("Not found");
 <BaseLayout title={post.title}>
   <main style="padding: 2rem;">
     <h1>{post.title}</h1>
-    <small>{post.date}</small>
+    <small>{formatDate(post.date)}</small>
     {post.tags.length > 0 && (
       <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin:0.5rem 0;">
         {post.tags.map((t) => (

@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { tokens } from "../design/tokens.stylex";
+import { formatDate } from "../lib/formatDate";
 
 interface Props {
   title: string;
@@ -41,7 +42,7 @@ export default function ArticleCard({ title, date, slug, excerpt, tags = [] }: P
       <h2 {...stylex.props(styles.title)}>
         <a href={`/news/${slug}`}>{title}</a>
       </h2>
-      <div {...stylex.props(styles.meta)}>{date}</div>
+      <div {...stylex.props(styles.meta)}>{formatDate(date)}</div>
       {tags.length > 0 && (
         <div {...stylex.props(styles.tags)}>
           {tags.map((t) => (
