@@ -37,12 +37,18 @@ const locale = Astro.currentLocale ?? "ru";
 <style is:global>
   :root { --color-bg: #ffffff; --color-fg: #111111; }
   [data-theme="dark"] { --color-bg: #111111; --color-fg: #ffffff; }
+  html {
+    overscroll-behavior-x: none;
+    touch-action: pan-y;
+  }
   body {
     margin: 0;
     background: #e8eef5;
     color: #111111;
     padding: 1.5rem 0;
     font-family: system-ui, sans-serif;
+    overscroll-behavior-x: none;
+    touch-action: pan-y;
   }
   main {
     background: #ffffff;
