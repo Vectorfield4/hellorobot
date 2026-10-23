@@ -58,12 +58,12 @@ const locale = Astro.currentLocale ?? "ru";
 
         // Пока человек возвращается к жесту, хватка мягчает ступенями:
         // сначала укорачивается нужный путь, и только с третьего уровня —
-        // число жестов. Успешный переход снимает один уровень, длинная
-        // пауза возвращает исходную строгость.
+        // число жестов. Успешный переход снимает один уровень, а тишина
+        // снимает их сама, чтобы агрессия не копилась через дни.
         var MAX_LEVEL = 3;          // потолок «агрессии»
         var LEVEL_STEP = 20;        // px, на которые путь жеста короче за уровень
         var MIN_LONG_FLOOR = 40;    // короче этого жест не считаем
-        var LEVEL_TTL = 600000;     // мс тишины, после которых хватка снова мягкая
+        var LEVEL_DECAY = 120000;   // мс тишины на снятие одного уровня
         var LEVEL_KEY = "scroll-hint-level";
 
         var level;
@@ -96,24 +96,43 @@ const locale = Astro.currentLocale ?? "ru";
 
         // Хватка переживает переходы внутри вкладки: если человек снова и снова
         // пытается уйти с архивной страницы, его не приходится ловить заново.
-        function readLevel() {
+        function readState() {
           try {
             var raw = sessionStorage.getItem(LEVEL_KEY);
-            if (!raw) return 0;
+            if (!raw) return null;
             var saved = JSON.parse(raw);
-            if (!saved || typeof saved.level !== "number") return 0;
-            if (typeof saved.at !== "number" || Date.now() - saved.at > LEVEL_TTL) return 0;
-            return Math.min(MAX_LEVEL, Math.max(0, Math.round(saved.level)));
+            if (!saved || typeof saved.level !== "number" || typeof saved.at !== "number") return null;
+            return saved;
           } catch (e) {
-            return 0;
+            return null;
           }
         }
 
-        function saveLevel(next) {
+        // Уровень с поправкой на прошедшую тишину: каждый LEVEL_DECAY без
+        // попыток снимает один шаг. В хранилище ничего не пишем, поэтому
+        // чтение можно вызывать сколько угодно раз.
+        function decayedLevel() {
+          var saved = readState();
+          if (!saved) return 0;
+          var steps = Math.floor((Date.now() - saved.at) / LEVEL_DECAY);
+          return Math.min(MAX_LEVEL, Math.max(0, Math.round(saved.level) - steps));
+        }
+
+        function persistLevel(next) {
           level = Math.min(MAX_LEVEL, Math.max(0, next));
           try {
             sessionStorage.setItem(LEVEL_KEY, JSON.stringify({ level: level, at: Date.now() }));
           } catch (e) {}
+        }
+
+        // Новая попытка отсчитывает decay от фактического уровня, а не от того,
+        // что лежит в памяти с прошлого жеста.
+        function bumpLevel() {
+          persistLevel(decayedLevel() + 1);
+        }
+
+        function relaxLevel() {
+          persistLevel(decayedLevel() - 1);
         }
 
         function neededGestures() {
@@ -128,7 +147,7 @@ const locale = Astro.currentLocale ?? "ru";
           return Math.max(MIN_LONG_FLOOR, MIN_SWIPE - level * LEVEL_STEP);
         }
 
-        level = readLevel();
+        level = decayedLevel();
 
         // Полоска растёт ступенями: первый жест зажигает её, второй делает
         // заметнее, третий раздувает перед самым переходом на главную.
@@ -141,7 +160,7 @@ const locale = Astro.currentLocale ?? "ru";
 
         function resetCount() {
           // Подход без перехода — повод в следующий раз слушать внимательнее.
-          if (count > 0) saveLevel(level + 1);
+          if (count > 0) bumpLevel();
           count = 0;
           setHintStage(0);
           if (attemptTimer) { clearTimeout(attemptTimer); attemptTimer = null; }
@@ -167,7 +186,7 @@ const locale = Astro.currentLocale ?? "ru";
           if (count >= neededGestures()) {
             // Не уходим сразу: даём полоске дорасти до максимума, чтобы
             // последний жест читался как осознанный переход.
-            saveLevel(level - 1);
+            relaxLevel();
             if (redirectTimer) clearTimeout(redirectTimer);
             redirectTimer = setTimeout(function () {
               window.location.href = "/";
@@ -187,6 +206,8 @@ const locale = Astro.currentLocale ?? "ru";
 
           if (!gestureActive) {
             gestureActive = true;
+            // Тишина между жестами могла снять часть «агрессии».
+            level = decayedLevel();
             // Жест, начатый ниже верха, не засчитывается, даже если страница
             // доедет до верха в процессе этого же движения.
             gestureStartedAtTop = atTop();
@@ -221,6 +242,7 @@ const locale = Astro.currentLocale ?? "ru";
           if (e.touches && e.touches[0]) touchStartY = e.touches[0].clientY;
           touchStartedAtTop = atTop();
           touchCounted = false;
+          level = decayedLevel();
         }, { passive: true });
 
         window.addEventListener("touchmove", function (e) {
