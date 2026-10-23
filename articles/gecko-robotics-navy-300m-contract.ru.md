@@ -6,7 +6,7 @@ tags: ["оборонная робототехника", "инспекция", "�
 source_url: https://www.therobotreport.com/gecko-robotics-earns-300m-contract-with-the-u-s-navy
 status: published
 wp_id: 41
-wp_url: https://hello-robot.ru/?p=41
+wp_url: https://hello-robot.ru/2026/10/23/gecko-robotics-navy-300m-contract/
 ---
 
 Gecko Robotics 20 октября сообщила, что потолок её контракта с ВМС США и Управлением общих служб (GSA) вырос на $300 млн. Сумма в четыре раза больше первоначальной: базовое соглашение IDIQ на $71 млн было заключено всего шесть месяцев назад, весной 2026 года.

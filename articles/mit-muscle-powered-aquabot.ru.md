@@ -6,7 +6,7 @@ tags: ["биогибриды", "мягкая робототехника", "MIT",
 source_url: https://robohub.org/powered-by-muscle-cells-a-paper-thin-robot-swims-through-watery-maze/
 status: published
 wp_id: 40
-wp_url: https://hello-robot.ru/?p=40
+wp_url: https://hello-robot.ru/2026/10/23/mit-muscle-powered-aquabot/
 ---
 
 Лаборатория Ritu Raman в MIT показала плавающего робота, которого двигают не моторы и не пневматика, а слой живых мышечных клеток. Статья вышла в Advanced Functional Materials 19 октября. Автор материала на сайте MIT News Дженнифер Чу описывает конструкцию так: скелет робота это плёнка геля длиной и шириной примерно со жвачку, две её половины работают как плавники.

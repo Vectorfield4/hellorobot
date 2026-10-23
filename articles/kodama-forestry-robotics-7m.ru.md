@@ -6,7 +6,7 @@ tags: ["лесозаготовка", "автономность", "телеупр
 source_url: https://www.therobotreport.com/kodama-raises-7m-bring-robotics-forestry
 status: published
 wp_id: 42
-wp_url: https://hello-robot.ru/?p=42
+wp_url: https://hello-robot.ru/2026/10/23/kodama-forestry-robotics-7m/
 ---
 
 Калифорнийская Kodama Systems 19 октября объявила о раунде на $7 млн. С учётом новых денег компания привлекла $14 млн. Раунд совместно возглавили Konvoy Ventures и Breakwater Ventures, участвовали Blue Forest Asset Management, NYA Ventures, Breakthrough Energy Ventures, Congruent Ventures, Dangerous Ventures и M1C.
