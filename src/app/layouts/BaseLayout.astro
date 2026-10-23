@@ -41,9 +41,8 @@ const locale = Astro.currentLocale ?? "ru";
         if (!isPaginated()) return;
 
         var THRESHOLD = 3;
-        var GAP = 600;
+        var GAP = 800;
         var count = 0;
-        var gestureActive = false;
         var timer = null;
         var touchStartY = null;
         var touchCounted = false;
@@ -53,29 +52,23 @@ const locale = Astro.currentLocale ?? "ru";
         }
 
         function resetGesture() {
-          gestureActive = false;
+          count = 0;
           if (timer) { clearTimeout(timer); timer = null; }
         }
 
         function registerAttempt() {
           count++;
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(function () { count = 0; }, GAP);
           if (count >= THRESHOLD) {
             window.location.href = "/";
           }
         }
 
-        function startGesture() {
-          if (gestureActive) return;
-          gestureActive = true;
-          registerAttempt();
-          if (timer) clearTimeout(timer);
-          timer = setTimeout(function () { gestureActive = false; }, GAP);
-        }
-
         window.addEventListener("wheel", function (e) {
           if (!atTop()) { resetGesture(); return; }
           if (e.deltaY < 0) {
-            startGesture();
+            registerAttempt();
           } else {
             resetGesture();
           }
@@ -91,7 +84,7 @@ const locale = Astro.currentLocale ?? "ru";
           var y = (e.touches && e.touches[0]) ? e.touches[0].clientY : touchStartY;
           if (y - touchStartY > 60 && !touchCounted) {
             touchCounted = true;
-            startGesture();
+            registerAttempt();
           }
         }, { passive: true });
 
