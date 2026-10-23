@@ -24,6 +24,7 @@ command works from any directory.
 | TechCrunch (Robotics) | RSS | https://techcrunch.com/category/robotics/feed/ | ✅ |
 | Wired (all) | RSS | https://www.wired.com/feed/ | ✅ |
 | ROS Discourse | RSS | https://discourse.ros.org/latest.rss | ✅ |
+| Robohub | RSS | https://robohub.org/feed/ | ✅ |
 | Hacker News | JSON (Algolia) | https://hn.algolia.com/api/v1/search?query=robotics | ✅ |
 | Google News (ru) | RSS | https://news.google.com/rss/search?q=робототехника | ❌ (исключён: RU-агрегаторы не нужны) |
 | Robotics 24/7 | HTML | https://www.robotics247.com/ | ❌ (нет RSS) |

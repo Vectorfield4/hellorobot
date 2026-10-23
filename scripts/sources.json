@@ -13,6 +13,7 @@
   },
   { "name": "Wired (all)", "url": "https://www.wired.com/feed/", "type": "rss" },
   { "name": "ROS Discourse", "url": "https://discourse.ros.org/latest.rss", "type": "rss" },
+  { "name": "Robohub", "url": "https://robohub.org/feed/", "type": "rss" },
   {
     "name": "Hacker News",
     "url": "https://hn.algolia.com/api/v1/search?query=robotics&tags=story&hitsPerPage=20",
