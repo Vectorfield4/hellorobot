@@ -1,6 +1,6 @@
 {
   "name": "hellorobot",
-  "version": "1.10.4",
+  "version": "1.10.5",
   "private": true,
   "type": "module",
   "engines": {
@@ -14,8 +14,6 @@
     "test:watch": "vitest",
     "lint": "biome check .",
     "format": "biome format --write .",
-    "fetch:candidates": "node scripts/fetch-candidates.mjs",
-    "extract:article": "node scripts/extract-article.mjs",
     "prepare": "husky"
   },
   "dependencies": {

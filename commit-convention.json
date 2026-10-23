@@ -1,0 +1,11 @@
+{
+  "types": {
+    "content": "content",
+    "article": "content",
+    "news": "content",
+    "ui": "interface",
+    "assets": "interface",
+    "skill": "agent",
+    "agent": "agent"
+  }
+}

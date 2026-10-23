@@ -6,14 +6,14 @@ source list.
 
 | What | Where |
 |---|---|
-| Engine | `.opencode/skills/data/news-fetcher/scripts/fetch-candidates.mjs` |
+| Engine | `~/.config/opencode/skills/data/news-fetcher/scripts/fetch-candidates.mjs` (global skills repo) |
 | Sources (this repo) | `scripts/sources.json` |
-| Launcher | `scripts/fetch-candidates.mjs` (`npm run fetch:candidates`) |
+| Command | `node "$env:USERPROFILE/.config/opencode/skills/data/news-fetcher/scripts/fetch-candidates.mjs" --sources scripts/sources.json` |
 | Company press centers (worldwide) | `docs/sources-robotics-worldwide.md` |
 | Company feeds | Same `scripts/sources.json` — see [Company feeds](#company-feeds). `scripts/sources-companies.json` stays empty (single list, no second file to drift) |
 
-The launcher adds `--sources scripts/sources.json` when the flag is missing, so the
-command works from any directory.
+This repository keeps no launcher: the skill script is called by its path in the
+global mount, and `--sources` always names the file explicitly.
 
 ## Sources
 
@@ -45,8 +45,8 @@ command works from any directory.
 
 Verified 2026-10-23 with the fetcher's own settings (`User-Agent: opencode-skills/1.0`,
 15 s timeout): HTTP 200, XML with `<item>` elements, newest entry ≤ 90 days old.
-All are RSS (`<item>`), so `type` is `rss`. Run
-`npm run fetch:candidates -- --out docs/research/candidates-companies.json` — 25 feeds
+All are RSS (`<item>`), so `type` is `rss`. Run the fetcher with
+`--sources scripts/sources.json --out docs/research/candidates-companies.json`; 25 feeds
 returned 589 candidates on that date.
 
 | Company | Country | URL | Items | Newest |
@@ -118,12 +118,11 @@ For HTML sources without RSS, the `article-extractor` skill pulls the body from 
 article page with Mozilla Readability (no API keys):
 
 ```bash
-npm run extract:article -- https://example.com/article
+node "$env:USERPROFILE/.config/opencode/skills/data/article-extractor/scripts/extract-article.mjs" https://example.com/article
 ```
 
 Output is JSON: `title`, `byline`, `excerpt`, `content`, `textContent`, `siteName`,
-`url`. The launcher in `scripts/extract-article.mjs` points at the skill mounted under
-`.opencode/skills/data/article-extractor`; there is no extraction code in this repository.
+`url`. There is no extraction code and no launcher in this repository.
 
 ## Adding a source
 
