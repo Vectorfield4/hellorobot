@@ -143,13 +143,39 @@ Store API отдаёт его в `attributes`, страница показыва
 
 | Бренд | Моделей | Источник |
 |---|---|---|
-| Unitree | 19 | JSON-LD на `shop.unitree.com` |
+| Unitree | 32 | JSON-LD на `shop.unitree.com` |
+| Devonics | 74 | JSON-LD на Wix-магазине |
+| Autel Robotics | 64 | JSON-LD на `shop.autelrobotics.com`, категория `drone` |
+| Yarbo | 60 | JSON-LD на `www.yarbo.com` |
+| Blue Robotics | 59 | только аксессуары: у самих ROV нет товарной разметки |
+| Elephant Robotics | 27 | JSON-LD на `shop.elephantrobotics.com` |
+| Robotemi | 22 | аксессуары temi; сам робот без цены |
+| Beatbot | 20 | JSON-LD, категория `Robot` |
+| Deep Trekker | 6 | JSON-LD; цены ROV не публикуются |
+| QYSEA | 1 | FIFISH V-EVO, цена только по запросу |
+| KEYi Tech | 2 | Loona Deskmate и Petbot |
+| Mammotion | 2 | только SPINO (робот для бассейна), LUBA в sitemap нет |
 | Pollen Robotics | 2 | JSON-LD/OG |
 | Mobile Industrial Robots, Franka, Boston Dynamics, KUKA, Universal Robots | 0 | маркетинговый сайт без товарной разметки |
+| DJI (`store.dji.com`), Hypershell, DNSYS, RobotShop | 0 | нет JSON-LD / 403 WAF / только Shopify-каталог без sitemap |
 
 Ноль — честный результат: у этих брендов нет машиночитаемых товарных страниц,
 цену и картинку придётся добавить руками. Повторный прогон не ходит в сеть, пока
 индекс моложе `--ttl-days` (7 дней по умолчанию).
+
+### Что дал прогон 25 октября 2026
+
+Добавлены бренды других классов: Autel (дроны), Yarbo (дворовая платформа),
+Beatbot (роботы для бассейна), KEYi (домашний компаньон Loona), Elephant Robotics
+(колёсный гуманоид Mercury, LIMO Cobot, настольный myCobot). Опубликовано 13
+товаров, теги — функциональные (`навигация`, `автономность`, `роботы`,
+`манипуляторы`), поэтому отдельного тега «дроны» пока нет.
+
+Подводные ROV (QYSEA, Deep Trekker) собраны в индексе, но в план не попадают:
+их цена скрыта, а премиальный добор ранжирует по цене. Им нужна статья про
+подводную робототехнику — тег из статьи станет пробелом, и `shop-plan` возьмёт
+ROV как закрытие пробела.
+
 
 ## Прогон 1 → прогон 2
 
