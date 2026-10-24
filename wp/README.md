@@ -62,8 +62,12 @@ Health после установки WooCommerce:
 
 ```bash
 curl -s https://hello-robot.ru/wp-json/hellorobot/v1/health
-# {"ok":true,"woocommerce":"9.4.2","currency":"RUB"}
+# {"ok":true,"plugin":"hellorobot-commerce","version":"1.0.1","woocommerce":"11.2.1","currency":"RUB","stray_class_file":null}
 ```
+
+`stray_class_file` — имя файла, который определил старый класс `HelloRobot_Commerce`.
+Если поле не `null`, на сайте осталась лишняя копия плагина: удалите этот файл,
+иначе копии будут спорить за маршруты.
 
 Тестовый заказ. `product_id` — id реального simple-товара
 (в админке: `Товары → навести на товар`, в URL `post=<id>`):

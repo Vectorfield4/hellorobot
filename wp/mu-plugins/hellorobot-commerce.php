@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Hello Robot Commerce
  * Description: REST-эндпоинты заказа и проверки для статического фронта hellorobot.ru, плюс CORS для WooCommerce Store API.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Requires PHP: 8.2
  * Author: Hello Robot
  * Text Domain: hellorobot-commerce
@@ -10,13 +10,15 @@
 
 defined( 'ABSPATH' ) || exit;
 
-if ( class_exists( 'HelloRobot_Commerce' ) ) {
+if ( class_exists( 'HelloRobot_Commerce_Plugin' ) ) {
 	return;
 }
 
-final class HelloRobot_Commerce {
+final class HelloRobot_Commerce_Plugin {
 
 	private const REST_NAMESPACE = 'hellorobot/v1';
+
+	private const VERSION = '1.0.1';
 
 	private const RATE_KEY_PREFIX = 'hellorobot_order_';
 
@@ -41,8 +43,17 @@ final class HelloRobot_Commerce {
 	public static function init(): void {
 		// origins нужны и нашим маршрутам, и Store API, который фронт дёргает из браузера.
 		add_filter( 'allowed_http_origins', array( __CLASS__, 'filter_allowed_origins' ) );
-		add_action( 'rest_api_init', array( __CLASS__, 'register_routes' ) );
 		add_filter( 'rest_pre_serve_request', array( __CLASS__, 'send_cors_headers' ), 15, 4 );
+
+		// Обычно маршруты ждут rest_api_init. Если кто-то на сайте поднял
+		// rest_get_server() раньше нас (MCP-адаптер, кеш-плагин), хук уже прошёл,
+		// и подписка на него не сработает никогда — тогда регистрируем сразу.
+		if ( did_action( 'rest_api_init' ) ) {
+			self::register_routes();
+			return;
+		}
+
+		add_action( 'rest_api_init', array( __CLASS__, 'register_routes' ) );
 	}
 
 	/**
@@ -150,12 +161,33 @@ final class HelloRobot_Commerce {
 
 		return new WP_REST_Response(
 			array(
-				'ok'          => true,
-				'woocommerce' => $active && defined( 'WC_VERSION' ) ? WC_VERSION : null,
-				'currency'    => $active && function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : null,
+				'ok'               => true,
+				'plugin'           => 'hellorobot-commerce',
+				'version'          => self::VERSION,
+				'woocommerce'      => $active && defined( 'WC_VERSION' ) ? WC_VERSION : null,
+				'currency'         => $active && function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : null,
+				'stray_class_file' => self::stray_class_file(),
 			),
 			200
 		);
+	}
+
+	/**
+	 * Где определён старый класс `HelloRobot_Commerce`, если на сайте осталась
+	 * лишняя копия плагина. Только имя файла: полный путь наружу не нужен.
+	 */
+	private static function stray_class_file(): ?string {
+		if ( ! class_exists( 'HelloRobot_Commerce' ) ) {
+			return null;
+		}
+
+		try {
+			$file = ( new ReflectionClass( 'HelloRobot_Commerce' ) )->getFileName();
+		} catch ( ReflectionException $e ) {
+			return 'unknown';
+		}
+
+		return $file ? basename( $file ) : 'unknown';
 	}
 
 	/**
@@ -507,4 +539,4 @@ final class HelloRobot_Commerce {
 	}
 }
 
-HelloRobot_Commerce::init();
+HelloRobot_Commerce_Plugin::init();
