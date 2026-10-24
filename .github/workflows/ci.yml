@@ -18,4 +18,15 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run test
-      - run: npm run build
+      - name: Build static site (Astro SSG)
+        shell: bash
+        env:
+          WP_GRAPHQL_TIMEOUT_MS: "30000"
+        # WPGraphQL отдаёт через раз: повторяем сборку целиком, не больше двух раз.
+        run: |
+          for attempt in 1 2; do
+            npm run build && exit 0
+            echo "build attempt $attempt failed"
+            sleep 10
+          done
+          exit 1
