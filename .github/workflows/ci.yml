@@ -7,6 +7,8 @@ on:
     branches: [main]
 
 jobs:
+  # Идентификатор джобы не переименован: имя уже могло попасть в required
+  # status checks, а на push в main она теперь гоняет только lint и test.
   build:
     runs-on: ubuntu-latest
     steps:
@@ -18,7 +20,11 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run test
+
+      # Сборка тянет страницы из WPGraphQL и стоит минуты, а на main её делает
+      # ssg.yaml. Здесь она нужна ровно для одного: не смержить битый PR.
       - name: Probe WordPress reachability
+        if: github.event_name == 'pull_request'
         # Диагностика, а не гейт: печатает, где именно рвётся путь до WordPress.
         shell: bash
         run: |
@@ -32,6 +38,7 @@ jobs:
           echo "--- IPv6 route"
           curl -6 -sS -o /dev/null -w 'v6 http=%{http_code}\n' --max-time 10 https://hello-robot.ru/graphql || echo "IPv6 unreachable (expected on GitHub runners)"
       - name: Build static site (Astro SSG)
+        if: github.event_name == 'pull_request'
         shell: bash
         env:
           WP_GRAPHQL_TIMEOUT_MS: "30000"
