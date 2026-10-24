@@ -2,6 +2,28 @@
   "currency": "RUB",
   "products": [
     {
+      "categories": [],
+      "description": "Многоцелевой промышленный дрон для инспекции и мониторинга. Встроенная двухантенная RTK-система держит точность до миллиметра, усовершенствованные алгоритмы обходят препятствия и передают видео, расширенная система питания увеличивает время автономного полёта.",
+      "images": [
+        {
+          "src": "https://shop.autelrobotics.com/cdn/shop/files/8_1201b56c-b27a-4c9b-a907-98b773437329_2000x.jpg?v=1732302205"
+        }
+      ],
+      "name": "Autel Alpha",
+      "review_note": "",
+      "short_description": "Многоцелевой промышленный дрон с RTK-навигацией и автономным полётом.",
+      "sku": "HR-AUTEL-ALPHA",
+      "slug": "autel-alpha",
+      "source_url": "https://shop.autelrobotics.com/products/evo-alpha",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "автономность",
+        "навигация"
+      ],
+      "type": "simple"
+    },
+    {
       "categories": [
         "Мобильные роботы"
       ],
@@ -19,6 +41,50 @@
         "биоинспирированная робототехника",
         "навигация",
         "робототехника"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Чистит поверхность, ватерлинию, дно и стены бассейна, попутно осветляя воду. Навигация из приложения, парковка на поверхности одним нажатием, 22 датчика прокладывают маршрут с полным покрытием. До 11 часов непрерывной работы на поверхности, гарантия три года с полной заменой машины.",
+      "images": [
+        {
+          "src": "https://beatbot.com/cdn/shop/files/2Pro_New.webp?v=1764152352&width=2000"
+        }
+      ],
+      "name": "Beatbot AquaSense 2 Pro",
+      "review_note": "",
+      "short_description": "Робот-чистильщик бассейна: поверхность, ватерлиния, дно и стены.",
+      "sku": "HR-BEATBOT-AQUASENSE-2-PRO-AI-ROBOTIC-POOL-CLEANER",
+      "slug": "beatbot-aquasense-2-pro",
+      "source_url": "https://beatbot.com/products/aquasense-2-pro",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "автономность",
+        "навигация"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Пять функций очистки — осветление воды, поверхность, ватерлиния, дно и стены — на девяти моторах. Четырёхъядерный процессор на 1,8 ГГц строит маршрут, робот сам возвращается на поверхность и паркуется. Насос до 5500 GPH чистит стены.",
+      "images": [
+        {
+          "src": "https://beatbot.com/cdn/shop/files/Beatbot_AquaSense_Pro_Robotic_Pool_Cleaner-6833412_1.png?v=1760500310&width=2000"
+        }
+      ],
+      "name": "Beatbot AquaSense Pro",
+      "review_note": "",
+      "short_description": "Робот-чистильщик бассейна с девятью моторами и насосом 5500 GPH.",
+      "sku": "HR-BEATBOT-AQUASENSE-PRO-ROBOTIC-POOL-CLEANER",
+      "slug": "beatbot-aquasense-pro",
+      "source_url": "https://beatbot.com/products/aquasense-pro",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "автономность",
+        "навигация"
       ],
       "type": "simple"
     },
@@ -204,6 +270,75 @@
     },
     {
       "categories": [],
+      "description": "Настольная мобильная платформа, которую Elephant Robotics сделала вместе с AgileX Robotics. Собирает три функции: движение гусеничной базы LIMO PRO, шестиосевую руку myCobot 280 M5 и захват. Отсюда автономные перевозки и манипуляции в одной системе.",
+      "images": [
+        {
+          "src": "https://shop.elephantrobotics.com/cdn/shop/files/LIMOCOBOT-280M5_8143cc31-fa0d-4bf1-b64d-a4fcf4065eff.png?v=1788246693"
+        }
+      ],
+      "name": "LIMO Cobot",
+      "review_note": "",
+      "short_description": "Мобильный манипулятор: платформа LIMO PRO и рука myCobot 280.",
+      "sku": "HR-ELEPHANT-LIMO-COBOT-AUTONOMOUS-COMPOUND-MOBILE-ROBOT",
+      "slug": "limo-cobot",
+      "source_url": "https://shop.elephantrobotics.com/en-au/products/limo-cobot",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "автономность",
+        "манипуляторы",
+        "навигация"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Серия колёсных гуманоидов с новым гармоническим модулем Power-Spring: тормоза и полая разводка кабеля в стандарте, предельный момент до 20 Н·м. Корпус руки из углеволокна снижает вес при высокой точности и инерции.",
+      "images": [
+        {
+          "src": "https://shop.elephantrobotics.com/cdn/shop/files/3_71d59ce9-a911-412a-a51f-5d985bb066aa.png?v=1788246653"
+        }
+      ],
+      "name": "Elephant Robotics Mercury",
+      "review_note": "",
+      "short_description": "Колёсный гуманоид с гармоническими приводами Power-Spring.",
+      "sku": "HR-ELEPHANT-ROBOTICS-MERCURY-WHEELED-HUMANOID-ROBOT-SERIES",
+      "slug": "elephant-robotics-mercury",
+      "source_url": "https://shop.elephantrobotics.com/en-au/products/mercury-humanoid-robot-series",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "гуманоиды",
+        "роботы"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Шестиосевой настольный кобот на Raspberry Pi с Ubuntu Mate 20.04: монитор, клавиатура и мышь подключаются напрямую, отдельный компьютер не нужен. Комплект all-in-one рассчитан на обучение, исследования и настольные манипуляции.",
+      "images": [
+        {
+          "src": "https://shop.elephantrobotics.com/cdn/shop/files/myCobotPIAll-in-oneSuite_31a218bf-4d8a-4de0-86ff-3b49c9ec8d36.jpg?v=1788249106"
+        }
+      ],
+      "name": "Elephant Robotics myCobot 280",
+      "review_note": "",
+      "short_description": "Настольный кобот на Raspberry Pi, готовый комплект с Ubuntu.",
+      "sku": "HR-ELEPHANT-ROBOTICS-MYCOBOT-280-2023-ALL-IN-ONE-SUITE-6-DOF-COLLAB",
+      "slug": "elephant-robotics-mycobot-280",
+      "source_url": "https://shop.elephantrobotics.com/en-au/products/holiday-mycobot-pi-raspberry-pi-powered-6-dof-collaborative-robot",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "исследования",
+        "коботы",
+        "манипуляторы",
+        "открытое железо"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
       "description": "Компактный SCARA-робот с длиной плеча 175 мм. Короткое жёсткое плечо даёт минимальное время цикла и высокую точность на мелких перемещениях. Есть исполнения для чистых помещений и версии с защитой от статического разряда. Ставится на небольшие рабочие места, где нужна точность, а места под манипулятор мало.",
       "images": [
         {
@@ -238,6 +373,27 @@
       "sku": "HR-EPSON-GX10B-SCARA-ROBOT-650MM",
       "slug": "epson-gx10b-scara-robot-650mm",
       "source_url": "https://www.devonics.com/product-page/epson-gx10b-scara-robot-650mm",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "манипуляторы"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "SCARA-робот с рабочей зоной 350 мм: полезный объём используется целиком, без мёртвой зоны в центре. Скорость цикла выше, чем у линейки предыдущего поколения, есть исполнения для чистых помещений и ESD-зон.",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/098838_af471519edb14db8a55bc6a3a93c5be5~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg"
+        }
+      ],
+      "name": "Epson RS3 — SCARA-робот, 350 мм",
+      "review_note": "",
+      "short_description": "SCARA-робот с нулевой занимаемой площадью.",
+      "sku": "HR-EPSON-RS3-SCARA-ROBOTS-350MM",
+      "slug": "epson-rs3-scara-350mm",
+      "source_url": "https://www.devonics.com/product-page/epson-rs3-scara-robots-350mm",
       "status": "publish",
       "stock_status": "onbackorder",
       "tags": [
@@ -353,6 +509,27 @@
       "type": "simple"
     },
     {
+      "categories": [],
+      "description": "Робот-собака с разговором на GPT, удалённым наблюдением за домом и играми. Характер и привычки меняются от общения, камеры и микрофон работают как удалённый монитор.",
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0750/4170/2077/files/product-petbot_-bundle1-v1.webp?v=1776739076"
+        }
+      ],
+      "name": "Loona Petbot",
+      "review_note": "",
+      "short_description": "Четырёхногий домашний компаньон с разговором на GPT.",
+      "sku": "HR-LOONA-PETBOT-AI-PET-INTERACTIVE-COMPANION",
+      "slug": "loona-petbot",
+      "source_url": "https://keyirobot.com/products/petbot",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "роботы"
+      ],
+      "type": "simple"
+    },
+    {
       "categories": [
         "Мобильные роботы"
       ],
@@ -441,6 +618,27 @@
       "type": "simple"
     },
     {
+      "categories": [],
+      "description": "Кобот несёт 16 кг и достаёт на 900 мм при повторяемости ±0,05 мм. Пятно основания — круг диаметром 196 мм, вес 32 кг, корпус выдерживает IP66 и работу от 0 до 50 °C.",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/d0c036_782729e65ec344c892a9d42a0e6456db~mv2.png/v1/fit/w_500,h_500,q_90/file.png"
+        }
+      ],
+      "name": "Rainbow Robotics RB16-900",
+      "review_note": "",
+      "short_description": "Кобот на 16 кг и 900 мм с повторяемостью ±0,05 мм.",
+      "sku": "HR-RAINBOW-ROBOTICS-RB16-900",
+      "slug": "rainbow-robotics-rb16-900",
+      "source_url": "https://www.devonics.com/product-page/rainbow-robotics-rb16-900",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "манипуляторы"
+      ],
+      "type": "simple"
+    },
+    {
       "categories": [
         "Гуманоиды"
       ],
@@ -464,6 +662,27 @@
         "манипуляторы",
         "манипуляция",
         "открытое железо"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Электрический вакуумный генератор ECBPi собран как комплект «включил и работай». Совместим с платформой MATCH, сменные присоски и захваты меняются под задачу. Быстросменный модуль RMQC заказывается отдельно.",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/5d8a82_bc769d53f95142e5bbecd7853208c35a~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp"
+        }
+      ],
+      "name": "Вакуумный захват Schmalz ECBPi",
+      "review_note": "",
+      "short_description": "Готовый к подключению вакуумный захват для платформы MATCH.",
+      "sku": "HR-SCHMALZ-VACUUM-GRIPPER-ECBPI",
+      "slug": "schmalz-vacuum-gripper-ecbpi",
+      "source_url": "https://www.devonics.com/product-page/schmalz-vacuum-gripper-4",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "манипуляторы"
       ],
       "type": "simple"
     },
@@ -508,6 +727,28 @@
         "манипуляторы",
         "мягкая робототехника",
         "тактильность"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Робот-манипулятор на 850 мм для промышленной автоматизации: повторяет сложные операции с точностью и скоростью, рассчитан на непрерывную работу на линии.",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/d0c036_00795f81baa246aca0003809d328bfaa~mv2.png/v1/fit/w_500,h_500,q_90/file.png"
+        }
+      ],
+      "name": "UFACTORY 850",
+      "review_note": "",
+      "short_description": "Кобот на 850 мм для повторяющихся промышленных задач.",
+      "sku": "HR-UFACTORY-850-ROBOTIC-ARM-COBOT",
+      "slug": "ufactory-850",
+      "source_url": "https://www.devonics.com/product-page/ufactory-850",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "коботы",
+        "манипуляторы"
       ],
       "type": "simple"
     },
@@ -713,6 +954,51 @@
         "манипуляторы",
         "промышленная автоматизация",
         "промышленная робототехника"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Низкопрофильный мобильный робот подъезжает под тележки и стеллажи, поднимает их на 60 мм и перевозит до 600 кг. Навигация — лидарный SLAM.",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/098838_ca7348124ca549bf9b36a4a810b13839~mv2.png/v1/fit/w_500,h_500,q_90/file.png"
+        }
+      ],
+      "name": "FlexCart 600",
+      "review_note": "",
+      "short_description": "Низкопрофильный AMR: подъезжает под тележку и везёт 600 кг.",
+      "sku": "HR-WELLWIT-FLEXCART-600",
+      "slug": "flexcart-600",
+      "source_url": "https://www.devonics.com/product-page/amr-w3-600b",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "автономность",
+        "навигация",
+        "складская логистика"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Модульная дворовая платформа: навесные модули меняются под сезонные задачи, тяга до 227 кг, навигация по GPS и ИИ, управление из приложения iOS и Android. Работает от −25 до +45 °C.",
+      "images": [
+        {
+          "src": "https://www.yarbo.com/cdn/shop/files/Yarbo_Core.jpg?v=1780307377&width=1024"
+        }
+      ],
+      "name": "Yarbo Y40 Core",
+      "review_note": "",
+      "short_description": "Дворовая платформа со сменными модулями и GPS-навигацией.",
+      "sku": "HR-YARBO-Y40-CORE",
+      "slug": "yarbo-y40-core",
+      "source_url": "https://www.yarbo.com/products/yarbo-core",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "автономность",
+        "навигация"
       ],
       "type": "simple"
     },

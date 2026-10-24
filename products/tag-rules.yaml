@@ -246,3 +246,87 @@ rule:
   - kind: model
     match: sv1
     tags: ""
+
+# --- Другие виды робототехники, 2026-10-25: дроны, подводные ROV,
+# дворовые и бытовые роботы, настольные манипуляторы ---
+#
+# У Autel model-правил нет: категория страницы — `drone`, её ловит type drone
+# выше. Бандл «дрон + аксессуары» — не новая модель, поэтому тегов не получает:
+# правило перекрывает type drone и оставляет модель в отчёте как unmapped.
+  - kind: model
+    match: on the go bundle
+    tags: ""
+  # Сумка лежит в категории `drone` и без правила получила бы теги дрона.
+  - kind: model
+    match: shoulder bag
+    tags: ""
+  # FIFISH V-EVO (qysea.com, категория Underwater ROV): «Versatile and smart
+  # dive companion capturing stunning 4K high frame-rate visuals with 360°…».
+  - kind: model
+    match: fifish v evo
+    tags: "навигация, автономность, инспекция"
+  # DTG3 Mini ROV (deeptrekker.com): «quick, reliable underwater inspection ROV».
+  - kind: model
+    match: dtg3 mini rov
+    tags: "навигация, автономность, инспекция"
+  # VAC Tank Cleaning Robot (deeptrekker.com): чистит дно резервуара без
+  # водолазов — работает там, куда человек не заходит.
+  - kind: model
+    match: vac tank cleaning robot
+    tags: "автономность, инспекция"
+  # Yarbo Y40 Core (yarbo.com): модульная дворовая платформа, RTK-навигация.
+  - kind: model
+    match: yarbo y40 core
+    tags: "автономность, навигация"
+  # AquaSense / iSkim Ultra (beatbot.com): робот-чистильщик бассейна,
+  # «Quad-Core 1.8GHz Processor … Intelligent Path Optimization».
+  - kind: model
+    match: aquasense robotic
+    tags: "автономность, навигация"
+  - kind: model
+    match: aquasense 2 robotic
+    tags: "автономность, навигация"
+  - kind: model
+    match: aquasense 2 pro
+    tags: "автономность, навигация"
+  - kind: model
+    match: aquasense pro robotic
+    tags: "автономность, навигация"
+  - kind: model
+    match: iskim ultra robotic
+    tags: "автономность, навигация"
+  # Loona (keyirobot.com): домашний робот-компаньон, две модели.
+  - kind: model
+    match: loona deskmate
+    tags: "роботы"
+  - kind: model
+    match: loona petbot
+    tags: "роботы"
+  # Mercury (elephantrobotics.com): «Wheeled Humanoid Robot Series» — гуманоид
+  # на колёсной базе.
+  - kind: model
+    match: mercury wheeled humanoid
+    tags: "гуманоиды, роботы"
+    robot: humanoid
+  # myCobot 280 All-in-one Suite — настольный кобот с открытым ПО.
+  - kind: model
+    match: mycobot 280 2023
+    tags: "манипуляторы, коботы, открытое железо, исследования"
+    robot: cobot
+  # myPalletizer All-in-one Suite — четырёхосный манипулятор.
+  - kind: model
+    match: mypalletizer all in one
+    tags: "манипуляторы"
+    robot: manipulator
+  # LIMO Cobot — мобильная платформа с манипулятором.
+  - kind: model
+    match: limo cobot
+    tags: "манипуляторы, автономность, навигация"
+    robot: amr
+  # MarsCat / metaCat — бионические роботы-коты.
+  - kind: model
+    match: bionic pet cat
+    tags: "биоинспирированная робототехника, роботы"
+  - kind: model
+    match: companion robotic pet cat
+    tags: "биоинспирированная робототехника, роботы"
