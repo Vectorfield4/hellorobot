@@ -49,6 +49,47 @@ mu-plugin: заголовок у файла есть, активация нуж�
 - Товары «под заказ» (нет в наличии, backorder выключен) заказ не блокируют:
   позиция добавляется, в заметках появляется «Товар под заказ».
 
+## Если плагин не подключается
+
+На этом сайте WordPress числит плагин активным, но не подключает его файл: маршрутов нет,
+заголовков нет, ошибок тоже. При этом файл на диске целый (18849 байт / 564 строки).
+Обход — WPCode-сниппет `HR plugin loader` (PHP, Run Everywhere):
+
+```php
+$hr_file = WP_PLUGIN_DIR . '/hr-commerce/hellorobot-commerce.php';
+
+add_action( 'wp_loaded', function () use ( $hr_file ) {
+	$before = class_exists( 'HelloRobot_Commerce_Plugin' ) ? 'yes' : 'no';
+
+	if ( 'no' === $before && file_exists( $hr_file ) ) {
+		require_once $hr_file;
+	}
+
+	if ( class_exists( 'HelloRobot_Commerce_Plugin' ) && method_exists( 'HelloRobot_Commerce_Plugin', 'init' ) ) {
+		HelloRobot_Commerce_Plugin::init();
+	}
+
+	if ( ! headers_sent() ) {
+		$where = class_exists( 'HelloRobot_Commerce_Plugin' )
+			? ( new ReflectionClass( 'HelloRobot_Commerce_Plugin' ) )->getFileName()
+			: 'none';
+		header( 'X-HR-Diag: before=' . $before . ';file=' . ( $where && 'none' !== $where ? basename( dirname( $where ) ) . '/' . basename( $where ) : 'none' ) );
+	}
+}, 1 );
+```
+
+Сниппет идемпотентен: если WordPress однажды начнёт грузить плагин сам, повторного
+подключения и повторной регистрации маршрутов не будет (проверка класса + флаг в плагине).
+Заголовки `X-HR-Diag` и `X-Hellorobot-Plugin` диагностические, их можно убрать, когда
+причина будет найдена.
+
+Проверка после включения:
+
+```bash
+curl -s https://hello-robot.ru/wp-json/hellorobot/v1/health
+# {"ok":true,"plugin":"hellorobot-commerce","version":"1.0.3","loaded_from":"hr-commerce/hellorobot-commerce.php",...}
+```
+
 ## Проверка
 
 Health, WooCommerce ещё не стоит:
