@@ -1,5 +1,4 @@
 import type { StoreProduct, StoreTerm } from "@/shared/api/store";
-import { productCopyRu } from "@/shared/i18n/ru/products";
 import {
   decodeEntities,
   decodeNumericEntities,
@@ -75,32 +74,15 @@ function mapImage(
   };
 }
 
-function escapeHtml(value: string): string {
-  return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
-
-/** Русский текст из `productCopy.ts` → абзацы для `set:html`. */
-function paragraphsToHtml(text: string): string {
-  return text
-    .split(/\n{2,}/)
-    .map((paragraph) => paragraph.trim())
-    .filter(Boolean)
-    .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
-    .join("");
-}
-
 export function mapStoreProduct(raw: StoreProduct): Product {
   const sku = raw.sku?.trim() ?? "";
-  const copy = productCopyRu[sku] ?? productCopyRu[raw.slug];
   const fallbackName = raw.name?.trim() || raw.slug;
-  const name = copy?.name ?? decodeEntities(fallbackName);
+  const name = decodeEntities(fallbackName);
   const images = (raw.images ?? [])
     .map((image) => mapImage(image, name))
     .filter((image): image is ProductImage => image !== null);
-  const shortDescription = copy?.shortDescription ?? toPlainText(raw.short_description);
-  const description = copy
-    ? paragraphsToHtml(copy.description)
-    : decodeNumericEntities((raw.description ?? "").trim());
+  const shortDescription = toPlainText(raw.short_description);
+  const description = decodeNumericEntities((raw.description ?? "").trim());
   const prices = raw.prices ?? null;
 
   return {
