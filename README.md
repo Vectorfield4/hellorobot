@@ -60,6 +60,23 @@ Without a marker the block is appended after the article body.
 - `PUBLIC_PRODUCTS_FALLBACK=demo` — show demo products when the store is unreachable.
   Dev server always shows them; a production build without this renders an empty catalog.
 
+### Build without WordPress
+
+Раннер GitHub Actions не всегда может открыть соединение до `hello-robot.ru`
+(`UND_ERR_CONNECT_TIMEOUT`), и тогда сборка падала на статьях, а каталог уезжал
+пустым. Поэтому в репозитории лежат снимки последнего известного состояния:
+
+- `src/shared/data/posts.snapshot.json` — статьи из WPGraphQL;
+- `src/shared/data/products.snapshot.json` — товары из Store API.
+
+Живая сеть важнее: пока WordPress отвечает, сборка берёт свежие данные, а
+снимок используется только при обрыве. После публикации статей или товаров
+обновите снимок и закоммитьте:
+
+```bash
+node scripts/content-snapshot.mjs
+```
+
 ### Products into WooCommerce
 
 ```bash

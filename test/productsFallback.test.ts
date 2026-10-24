@@ -1,5 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { getProducts, resetProductsCache } from "../src/shared/data/products";
+import productsSnapshot from "../src/shared/data/products.snapshot.json";
+
+const SNAPSHOT_PRODUCTS = (productsSnapshot as { products: unknown[] }).products.length;
 
 const rawProduct = {
   id: 7,
@@ -73,7 +76,7 @@ describe("getProducts", () => {
     expect(products.every((product) => product.sku.startsWith("DEMO-"))).toBe(true);
   });
 
-  it("в production отдаёт пустой каталог, а не выдуманные цены", async () => {
+  it("в production без сети отдаёт снимок каталога", async () => {
     vi.stubEnv("DEV", false);
     vi.stubEnv("PUBLIC_PRODUCTS_FALLBACK", "off");
     vi.stubGlobal(
@@ -83,10 +86,12 @@ describe("getProducts", () => {
       }),
     );
 
-    await expect(getProducts()).resolves.toEqual([]);
+    const products = await getProducts();
+    expect(products.length).toBe(SNAPSHOT_PRODUCTS);
+    expect(products.every((product) => !product.sku.startsWith("DEMO-"))).toBe(true);
   });
 
-  it("пустой ответ магазина не считается каталогом", async () => {
+  it("пустой ответ магазина не считается каталогом и уходит в снимок", async () => {
     vi.stubEnv("DEV", false);
     vi.stubEnv("PUBLIC_PRODUCTS_FALLBACK", "off");
     vi.stubGlobal(
@@ -94,6 +99,7 @@ describe("getProducts", () => {
       vi.fn(async () => jsonResponse([], { "x-wp-total": "0", "x-wp-totalpages": "1" })),
     );
 
-    await expect(getProducts()).resolves.toEqual([]);
+    const products = await getProducts();
+    expect(products.length).toBe(SNAPSHOT_PRODUCTS);
   });
 });

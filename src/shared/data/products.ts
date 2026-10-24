@@ -1,3 +1,4 @@
+import type { StoreProduct } from "@/shared/api/store";
 import { fetchAllStoreProducts } from "@/shared/api/store";
 import { canonicalTag, normalizeTag } from "@/shared/config/productTags";
 import {
@@ -7,6 +8,7 @@ import {
   type ProductTerm,
 } from "@/shared/data/product";
 import { productFixtures } from "@/shared/mocks/fixtures/products";
+import productsSnapshot from "./products.snapshot.json";
 
 let productsPromise: Promise<Product[]> | null = null;
 
@@ -33,6 +35,15 @@ async function loadProducts(): Promise<Product[]> {
     if (fixturesAllowed()) {
       console.warn(`[store] каталог недоступен, показываю демо-товары: ${message}`);
       return productFixtures;
+    }
+    // Сборка не должна терять витрину, если раннер не достал Store API:
+    // снимок — последний известный каталог (scripts/content-snapshot.mjs).
+    const snapshot = (productsSnapshot as { products?: StoreProduct[] })?.products ?? [];
+    if (snapshot.length > 0) {
+      console.warn(
+        `[store] каталог недоступен, беру снимок: ${snapshot.length} товаров (${message})`,
+      );
+      return snapshot.map(mapStoreProduct);
     }
     console.error(`[store] каталог недоступен, каталог пуст: ${message}`);
     return [];

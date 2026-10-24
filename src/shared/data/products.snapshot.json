@@ -1,0 +1,2788 @@
+{
+  "products": [
+    {
+      "id": 189,
+      "name": "Unitree H2 Plus",
+      "slug": "unitree-h2-plus",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/unitree-h2-plus/",
+      "sku": "HR-UNITREE-H2-PLUS",
+      "short_description": "<p>Гуманоид Unitree H2 Plus.</p>",
+      "description": "<p>Integrated R&amp;D and Manufacturiny, Embarking on Full-Stack Development Built on NVlDlA lsaac GROOT Equipped with a head-mounted stereo camera with wide field of view, wrist cameras and an lMU Rated arm payload of7 kilograms and peak payload of 15 kilograms, enabling high-duty grasping and reaching tasks.</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 188,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/11_800x.png",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/11_800x-450x450.png",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/11_800x.png 800w, https://hello-robot.ru/wp-content/uploads/2026/10/11_800x-300x300.png 300w, https://hello-robot.ru/wp-content/uploads/2026/10/11_800x-150x150.png 150w, https://hello-robot.ru/wp-content/uploads/2026/10/11_800x-768x768.png 768w, https://hello-robot.ru/wp-content/uploads/2026/10/11_800x-450x450.png 450w, https://hello-robot.ru/wp-content/uploads/2026/10/11_800x-600x600.png 600w, https://hello-robot.ru/wp-content/uploads/2026/10/11_800x-100x100.png 100w",
+          "sizes": "(max-width: 800px) 100vw, 800px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/11_800x-450x450.png 450w, https://hello-robot.ru/wp-content/uploads/2026/10/11_800x-300x300.png 300w, https://hello-robot.ru/wp-content/uploads/2026/10/11_800x-150x150.png 150w, https://hello-robot.ru/wp-content/uploads/2026/10/11_800x-768x768.png 768w, https://hello-robot.ru/wp-content/uploads/2026/10/11_800x-600x600.png 600w, https://hello-robot.ru/wp-content/uploads/2026/10/11_800x-100x100.png 100w, https://hello-robot.ru/wp-content/uploads/2026/10/11_800x.png 800w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "11_800x.png",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 101,
+          "name": "гуманоиды",
+          "slug": "%d0%b3%d1%83%d0%bc%d0%b0%d0%bd%d0%be%d0%b8%d0%b4%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%b3%d1%83%d0%bc%d0%b0%d0%bd%d0%be%d0%b8%d0%b4%d1%8b/"
+        },
+        {
+          "id": 102,
+          "name": "роботы",
+          "slug": "%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;Unitree H2 Plus&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=189",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/189",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=189&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 187,
+      "name": "DEVONICS FAIRINO FR30",
+      "slug": "devonics-fairino-fr30",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/devonics-fairino-fr30/",
+      "sku": "HR-FAIRINO-DEVONICS-FAIRINO-FR30",
+      "short_description": "<p>Кобот DEVONICS FAIRINO FR30.</p>",
+      "description": "<p>The FR30 collaborative robot (cobot) is one of the world’s most powerful 6-axis robotic arms, setting new standards in human-robot collaboration. Designed for high-demand applications, the FR30 is perfect for tasks requiring exceptional strength, such as palletizing, material handling, and high-torque operations.</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 186,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/file-5.webp",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/file-5-450x450.webp",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-5.webp 500w, https://hello-robot.ru/wp-content/uploads/2026/10/file-5-300x300.webp 300w, https://hello-robot.ru/wp-content/uploads/2026/10/file-5-150x150.webp 150w, https://hello-robot.ru/wp-content/uploads/2026/10/file-5-450x450.webp 450w, https://hello-robot.ru/wp-content/uploads/2026/10/file-5-100x100.webp 100w",
+          "sizes": "(max-width: 500px) 100vw, 500px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-5-450x450.webp 450w, https://hello-robot.ru/wp-content/uploads/2026/10/file-5-300x300.webp 300w, https://hello-robot.ru/wp-content/uploads/2026/10/file-5-150x150.webp 150w, https://hello-robot.ru/wp-content/uploads/2026/10/file-5-100x100.webp 100w, https://hello-robot.ru/wp-content/uploads/2026/10/file-5.webp 500w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "file-5.webp",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 109,
+          "name": "коботы",
+          "slug": "%d0%ba%d0%be%d0%b1%d0%be%d1%82%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%ba%d0%be%d0%b1%d0%be%d1%82%d1%8b/"
+        },
+        {
+          "id": 110,
+          "name": "манипуляторы",
+          "slug": "%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;DEVONICS FAIRINO FR30&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=187",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/187",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=187&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 185,
+      "name": "Epson GX10B SCARA Robot &#8212; 650mm",
+      "slug": "epson-gx10b-scara-robot-650mm",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/epson-gx10b-scara-robot-650mm/",
+      "sku": "HR-EPSON-GX10B-SCARA-ROBOT-650MM",
+      "short_description": "<p>Манипулятор Epson GX10B SCARA Robot &#8212; 650mm.</p>",
+      "description": "<p>Product Highlights Ultra high performance and flexibility Handles heavy payloads from a small footprint Smooth motion and fast settling times with patented GYROPLUS technology Epson RC+ software helps create powerful automation solutions SafeSense technology can increase productivity and worker safety Also available in 850mm arm length</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 184,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/file-1.jpg",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/file-1-450x333.jpg",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-1.jpg 500w, https://hello-robot.ru/wp-content/uploads/2026/10/file-1-300x200.jpg 300w",
+          "sizes": "(max-width: 500px) 100vw, 500px",
+          "thumbnail_srcset": "",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "file-1.jpg",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 110,
+          "name": "манипуляторы",
+          "slug": "%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;Epson GX10B SCARA Robot &#8212; 650mm&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=185",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/185",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=185&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 183,
+      "name": "OMNI",
+      "slug": "omni",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/omni/",
+      "sku": "HR-DEVONICS-OMNI",
+      "short_description": "<p>Мобильный робот OMNI.</p>",
+      "description": "<p>Omni-directional mobile robot, Omni wheel robot kit, Omni mobile robotSmart manufacturing for medical deviceNavigation Navigation mode &#8212; Laser+Vision+IMUOperation Precision &#8212; ±2mm/±0.2°Operating type &#8212; Chassis + CarrierPayload (kg) &#8212; ≥1000Mode of motion &#8212; 360°omni-directionRun Time (h) &#8212; 8Basic Parameters Dimension Support CustomizationBidirectionalOperating Type Chassis+CarrierPerformancePaylo&#8230;</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 182,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/file-14.png",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/file-14-450x209.png",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-14.png 500w, https://hello-robot.ru/wp-content/uploads/2026/10/file-14-300x125.png 300w",
+          "sizes": "(max-width: 500px) 100vw, 500px",
+          "thumbnail_srcset": "",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "file-14.png",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 107,
+          "name": "автономность",
+          "slug": "%d0%b0%d0%b2%d1%82%d0%be%d0%bd%d0%be%d0%bc%d0%bd%d0%be%d1%81%d1%82%d1%8c",
+          "link": "https://hello-robot.ru/product-tag/%d0%b0%d0%b2%d1%82%d0%be%d0%bd%d0%be%d0%bc%d0%bd%d0%be%d1%81%d1%82%d1%8c/"
+        },
+        {
+          "id": 106,
+          "name": "навигация",
+          "slug": "%d0%bd%d0%b0%d0%b2%d0%b8%d0%b3%d0%b0%d1%86%d0%b8%d1%8f",
+          "link": "https://hello-robot.ru/product-tag/%d0%bd%d0%b0%d0%b2%d0%b8%d0%b3%d0%b0%d1%86%d0%b8%d1%8f/"
+        },
+        {
+          "id": 118,
+          "name": "складская логистика",
+          "slug": "%d1%81%d0%ba%d0%bb%d0%b0%d0%b4%d1%81%d0%ba%d0%b0%d1%8f-%d0%bb%d0%be%d0%b3%d0%b8%d1%81%d1%82%d0%b8%d0%ba%d0%b0",
+          "link": "https://hello-robot.ru/product-tag/%d1%81%d0%ba%d0%bb%d0%b0%d0%b4%d1%81%d0%ba%d0%b0%d1%8f-%d0%bb%d0%be%d0%b3%d0%b8%d1%81%d1%82%d0%b8%d0%ba%d0%b0/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;OMNI&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=183",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/183",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=183&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 181,
+      "name": "DEVONICS FAIRINO FR20",
+      "slug": "devonics-fairino-fr20",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/devonics-fairino-fr20/",
+      "sku": "HR-FAIRINO-DEVONICS-FAIRINO-FR20",
+      "short_description": "<p>Кобот DEVONICS FAIRINO FR20.</p>",
+      "description": "<p>FR20 cobot is a platform product with powerful, scalable and sustainable capabilities, which can empower integrators and end-users, and provide a powerful option for solving the pain points.</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 180,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/file-4.webp",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/file-4-450x450.webp",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-4.webp 500w, https://hello-robot.ru/wp-content/uploads/2026/10/file-4-300x300.webp 300w, https://hello-robot.ru/wp-content/uploads/2026/10/file-4-150x150.webp 150w, https://hello-robot.ru/wp-content/uploads/2026/10/file-4-450x450.webp 450w, https://hello-robot.ru/wp-content/uploads/2026/10/file-4-100x100.webp 100w",
+          "sizes": "(max-width: 500px) 100vw, 500px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-4-450x450.webp 450w, https://hello-robot.ru/wp-content/uploads/2026/10/file-4-300x300.webp 300w, https://hello-robot.ru/wp-content/uploads/2026/10/file-4-150x150.webp 150w, https://hello-robot.ru/wp-content/uploads/2026/10/file-4-100x100.webp 100w, https://hello-robot.ru/wp-content/uploads/2026/10/file-4.webp 500w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "file-4.webp",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 109,
+          "name": "коботы",
+          "slug": "%d0%ba%d0%be%d0%b1%d0%be%d1%82%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%ba%d0%be%d0%b1%d0%be%d1%82%d1%8b/"
+        },
+        {
+          "id": 110,
+          "name": "манипуляторы",
+          "slug": "%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;DEVONICS FAIRINO FR20&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=181",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/181",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=181&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 179,
+      "name": "ADAPTIVE GRIPPER &#8212; TWO FINGERS &#8212; AG -105-145",
+      "slug": "adaptive-gripper-two-fingers-ag-105-145",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/adaptive-gripper-two-fingers-ag-105-145/",
+      "sku": "HR-DH-ADAPTIVE-GRIPPER-TWO-FINGERS-AG-105-145",
+      "short_description": "<p>Манипулятор ADAPTIVE GRIPPER &#8212; TWO FINGERS &#8212; AG -105-145.</p>",
+      "description": "<p>The AG series is a linkage-type adaptive electric gripper which is independently developed by DH-Robotics.</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 178,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/file-3.webp",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/file-3-450x450.webp",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-3.webp 500w, https://hello-robot.ru/wp-content/uploads/2026/10/file-3-300x300.webp 300w, https://hello-robot.ru/wp-content/uploads/2026/10/file-3-150x150.webp 150w, https://hello-robot.ru/wp-content/uploads/2026/10/file-3-450x450.webp 450w, https://hello-robot.ru/wp-content/uploads/2026/10/file-3-100x100.webp 100w",
+          "sizes": "(max-width: 500px) 100vw, 500px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-3-450x450.webp 450w, https://hello-robot.ru/wp-content/uploads/2026/10/file-3-300x300.webp 300w, https://hello-robot.ru/wp-content/uploads/2026/10/file-3-150x150.webp 150w, https://hello-robot.ru/wp-content/uploads/2026/10/file-3-100x100.webp 100w, https://hello-robot.ru/wp-content/uploads/2026/10/file-3.webp 500w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "file-3.webp",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 110,
+          "name": "манипуляторы",
+          "slug": "%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;ADAPTIVE GRIPPER &#8212; TWO FINGERS &#8212; AG -105-145&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=179",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/179",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=179&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 177,
+      "name": "FOLA",
+      "slug": "fola",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/fola/",
+      "sku": "HR-DEVONICS-FOLA",
+      "short_description": "<p>Мобильный робот FOLA.</p>",
+      "description": "<p>Artificial Intelligence in Transportation Industry-Automated Logistics CompanyFOLA DN1416, intelligent forklift, robotic forklift, artificial intelligence in transportation industry, artificial intelligence and transportation, logistic and automation for automated logistics company.</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 176,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/file-13.png",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/file-13-450x209.png",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-13.png 500w, https://hello-robot.ru/wp-content/uploads/2026/10/file-13-300x125.png 300w",
+          "sizes": "(max-width: 500px) 100vw, 500px",
+          "thumbnail_srcset": "",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "file-13.png",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 107,
+          "name": "автономность",
+          "slug": "%d0%b0%d0%b2%d1%82%d0%be%d0%bd%d0%be%d0%bc%d0%bd%d0%be%d1%81%d1%82%d1%8c",
+          "link": "https://hello-robot.ru/product-tag/%d0%b0%d0%b2%d1%82%d0%be%d0%bd%d0%be%d0%bc%d0%bd%d0%be%d1%81%d1%82%d1%8c/"
+        },
+        {
+          "id": 106,
+          "name": "навигация",
+          "slug": "%d0%bd%d0%b0%d0%b2%d0%b8%d0%b3%d0%b0%d1%86%d0%b8%d1%8f",
+          "link": "https://hello-robot.ru/product-tag/%d0%bd%d0%b0%d0%b2%d0%b8%d0%b3%d0%b0%d1%86%d0%b8%d1%8f/"
+        },
+        {
+          "id": 118,
+          "name": "складская логистика",
+          "slug": "%d1%81%d0%ba%d0%bb%d0%b0%d0%b4%d1%81%d0%ba%d0%b0%d1%8f-%d0%bb%d0%be%d0%b3%d0%b8%d1%81%d1%82%d0%b8%d0%ba%d0%b0",
+          "link": "https://hello-robot.ru/product-tag/%d1%81%d0%ba%d0%bb%d0%b0%d0%b4%d1%81%d0%ba%d0%b0%d1%8f-%d0%bb%d0%be%d0%b3%d0%b8%d1%81%d1%82%d0%b8%d0%ba%d0%b0/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;FOLA&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=177",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/177",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=177&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 153,
+      "name": "ADAPTIVE GRIPPER &#8212; THREE FINGERS &#8212; AG3",
+      "slug": "adaptive-gripper-three-fingers-ag3",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/adaptive-gripper-three-fingers-ag3/",
+      "sku": "HR-DH-ADAPTIVE-GRIPPER-THREE-FINGERS-AG3",
+      "short_description": "<p>Манипулятор ADAPTIVE GRIPPER &#8212; THREE FINGERS &#8212; AG3.</p>",
+      "description": "<p>The AG series is a linkage-type adaptive electric gripper which is independently developed by DH-Robotics.</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 165,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/file-10.png",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/file-10-450x450.png",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-10.png 483w, https://hello-robot.ru/wp-content/uploads/2026/10/file-10-290x300.png 290w",
+          "sizes": "(max-width: 483px) 100vw, 483px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-10-450x450.png 450w, https://hello-robot.ru/wp-content/uploads/2026/10/file-10-150x150.png 150w, https://hello-robot.ru/wp-content/uploads/2026/10/file-10-100x100.png 100w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "file-10.png",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 110,
+          "name": "манипуляторы",
+          "slug": "%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;ADAPTIVE GRIPPER &#8212; THREE FINGERS &#8212; AG3&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=153",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/153",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=153&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 151,
+      "name": "EMMA1500L",
+      "slug": "emma1500l",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/emma1500l/",
+      "sku": "HR-DEVONICS-EMMA1500L",
+      "short_description": "<p>Мобильный робот EMMA1500L.</p>",
+      "description": "<p>EMMA1500L: automated mobile robots,amr automated mobile robot,mobile industrial robot Hybrid Navigation &#8212; Laser+Vision+InertiaDocking Accuracy &#8212; ±2mm/±0.2°Aisle Width (mm) &#8212; ≥1000Payload (kg) &#8212; 1000Optional Lift (mm) &#8212; 60Run Time (h) &#8212; 8Basic Parameters Dimension (L*W*H) 983×781×300mmWeight 290kgDifferential Drivee SensorFront Laser (Rear laser optional)Bottom CameraTop CameraBatteryLithium-ion&#8230;</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 164,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/file-9.png",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/file-9-450x209.png",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-9.png 500w, https://hello-robot.ru/wp-content/uploads/2026/10/file-9-300x125.png 300w",
+          "sizes": "(max-width: 500px) 100vw, 500px",
+          "thumbnail_srcset": "",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "file-9.png",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 107,
+          "name": "автономность",
+          "slug": "%d0%b0%d0%b2%d1%82%d0%be%d0%bd%d0%be%d0%bc%d0%bd%d0%be%d1%81%d1%82%d1%8c",
+          "link": "https://hello-robot.ru/product-tag/%d0%b0%d0%b2%d1%82%d0%be%d0%bd%d0%be%d0%bc%d0%bd%d0%be%d1%81%d1%82%d1%8c/"
+        },
+        {
+          "id": 106,
+          "name": "навигация",
+          "slug": "%d0%bd%d0%b0%d0%b2%d0%b8%d0%b3%d0%b0%d1%86%d0%b8%d1%8f",
+          "link": "https://hello-robot.ru/product-tag/%d0%bd%d0%b0%d0%b2%d0%b8%d0%b3%d0%b0%d1%86%d0%b8%d1%8f/"
+        },
+        {
+          "id": 118,
+          "name": "складская логистика",
+          "slug": "%d1%81%d0%ba%d0%bb%d0%b0%d0%b4%d1%81%d0%ba%d0%b0%d1%8f-%d0%bb%d0%be%d0%b3%d0%b8%d1%81%d1%82%d0%b8%d0%ba%d0%b0",
+          "link": "https://hello-robot.ru/product-tag/%d1%81%d0%ba%d0%bb%d0%b0%d0%b4%d1%81%d0%ba%d0%b0%d1%8f-%d0%bb%d0%be%d0%b3%d0%b8%d1%81%d1%82%d0%b8%d0%ba%d0%b0/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;EMMA1500L&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=151",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/151",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=151&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 148,
+      "name": "Aliengo",
+      "slug": "aliengo",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/aliengo/",
+      "sku": "HR-UNITREE-ALIENGO",
+      "short_description": "<p>Четырёхногий робот Aliengo.</p>",
+      "description": "<p>Unitree Aliengo is capable of running at 1.5m/s, It can easily realize special sports forms such as fast running, backward running, left and right side shifting, turning in place, creeping forward, rolling over, jumping, crossing obstacles, avoiding obstacles, going up and down slopes/steps.The main industry landing (all-terrain inspections, such as substation inspections, construction surveyin&#8230;</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 170,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2.jpg",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-450x450.jpg",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2.jpg 1312w, https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-300x300.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-1024x1024.jpg 1024w, https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-768x768.jpg 768w, https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-600x600.jpg 600w, https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-100x100.jpg 100w",
+          "sizes": "(max-width: 1312px) 100vw, 1312px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-300x300.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-1024x1024.jpg 1024w, https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-768x768.jpg 768w, https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-600x600.jpg 600w, https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2-100x100.jpg 100w, https://hello-robot.ru/wp-content/uploads/2026/10/157_1312x-2.jpg 1312w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "157_1312x-2.jpg",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 105,
+          "name": "биоинспирированная робототехника",
+          "slug": "%d0%b1%d0%b8%d0%be%d0%b8%d0%bd%d1%81%d0%bf%d0%b8%d1%80%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%bd%d0%b0%d1%8f-%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%be%d1%82%d0%b5%d1%85%d0%bd%d0%b8%d0%ba%d0%b0",
+          "link": "https://hello-robot.ru/product-tag/%d0%b1%d0%b8%d0%be%d0%b8%d0%bd%d1%81%d0%bf%d0%b8%d1%80%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%bd%d0%b0%d1%8f-%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%be%d1%82%d0%b5%d1%85%d0%bd%d0%b8%d0%ba%d0%b0/"
+        },
+        {
+          "id": 122,
+          "name": "инспекция",
+          "slug": "%d0%b8%d0%bd%d1%81%d0%bf%d0%b5%d0%ba%d1%86%d0%b8%d1%8f",
+          "link": "https://hello-robot.ru/product-tag/%d0%b8%d0%bd%d1%81%d0%bf%d0%b5%d0%ba%d1%86%d0%b8%d1%8f/"
+        },
+        {
+          "id": 106,
+          "name": "навигация",
+          "slug": "%d0%bd%d0%b0%d0%b2%d0%b8%d0%b3%d0%b0%d1%86%d0%b8%d1%8f",
+          "link": "https://hello-robot.ru/product-tag/%d0%bd%d0%b0%d0%b2%d0%b8%d0%b3%d0%b0%d1%86%d0%b8%d1%8f/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;Aliengo&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=148",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/148",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=148&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 146,
+      "name": "Soft 4 Finger Gripper",
+      "slug": "soft-4-finger-gripper",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/soft-4-finger-gripper/",
+      "sku": "HR-UBIROS-SOFT-4-FINGER-GRIPPER",
+      "short_description": "<p>Манипулятор Soft 4 Finger Gripper.</p>",
+      "description": "<p>Gentle Pro Touch – Adaptive 4-Finger Gripper for Complex Product HandlingThe Gentle Pro is a soft robotic end-of-arm tool with four independently adaptive fingers, offering full-surface contact for secure handling of delicate, irregular, or variable-sized items.</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 169,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/file-2.webp",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/file-2-450x450.webp",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-2.webp 500w, https://hello-robot.ru/wp-content/uploads/2026/10/file-2-300x300.webp 300w, https://hello-robot.ru/wp-content/uploads/2026/10/file-2-150x150.webp 150w, https://hello-robot.ru/wp-content/uploads/2026/10/file-2-450x450.webp 450w, https://hello-robot.ru/wp-content/uploads/2026/10/file-2-100x100.webp 100w",
+          "sizes": "(max-width: 500px) 100vw, 500px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-2-450x450.webp 450w, https://hello-robot.ru/wp-content/uploads/2026/10/file-2-300x300.webp 300w, https://hello-robot.ru/wp-content/uploads/2026/10/file-2-150x150.webp 150w, https://hello-robot.ru/wp-content/uploads/2026/10/file-2-100x100.webp 100w, https://hello-robot.ru/wp-content/uploads/2026/10/file-2.webp 500w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "file-2.webp",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 110,
+          "name": "манипуляторы",
+          "slug": "%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b/"
+        },
+        {
+          "id": 117,
+          "name": "мягкая робототехника",
+          "slug": "%d0%bc%d1%8f%d0%b3%d0%ba%d0%b0%d1%8f-%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%be%d1%82%d0%b5%d1%85%d0%bd%d0%b8%d0%ba%d0%b0",
+          "link": "https://hello-robot.ru/product-tag/%d0%bc%d1%8f%d0%b3%d0%ba%d0%b0%d1%8f-%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%be%d1%82%d0%b5%d1%85%d0%bd%d0%b8%d0%ba%d0%b0/"
+        },
+        {
+          "id": 115,
+          "name": "тактильность",
+          "slug": "%d1%82%d0%b0%d0%ba%d1%82%d0%b8%d0%bb%d1%8c%d0%bd%d0%be%d1%81%d1%82%d1%8c",
+          "link": "https://hello-robot.ru/product-tag/%d1%82%d0%b0%d0%ba%d1%82%d0%b8%d0%bb%d1%8c%d0%bd%d0%be%d1%81%d1%82%d1%8c/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;Soft 4 Finger Gripper&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=146",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/146",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=146&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 144,
+      "name": "Epson G1 Mini SCARA Robots &#8212; 175mm",
+      "slug": "epson-g1-mini-scara-robots-175mm",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/epson-g1-mini-scara-robots-175mm/",
+      "sku": "HR-EPSON-G1-MINI-SCARA-ROBOTS-175MM",
+      "short_description": "<p>Гуманоид Epson G1 Mini SCARA Robots &#8212; 175mm.</p>",
+      "description": "<p>Product Highlights Best in Class Cycle Time and Precision High Performance, High Rigidity Arm Design Industry Leading Mini SCARA ISO Clean &amp; ESD Compliant Models</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 143,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/file.jpg",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/file-450x333.jpg",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file.jpg 500w, https://hello-robot.ru/wp-content/uploads/2026/10/file-300x200.jpg 300w",
+          "sizes": "(max-width: 500px) 100vw, 500px",
+          "thumbnail_srcset": "",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "file.jpg",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 111,
+          "name": "промышленная робототехника",
+          "slug": "%d0%bf%d1%80%d0%be%d0%bc%d1%8b%d1%88%d0%bb%d0%b5%d0%bd%d0%bd%d0%b0%d1%8f-%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%be%d1%82%d0%b5%d1%85%d0%bd%d0%b8%d0%ba%d0%b0",
+          "link": "https://hello-robot.ru/product-tag/%d0%bf%d1%80%d0%be%d0%bc%d1%8b%d1%88%d0%bb%d0%b5%d0%bd%d0%bd%d0%b0%d1%8f-%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%be%d1%82%d0%b5%d1%85%d0%bd%d0%b8%d0%ba%d0%b0/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;Epson G1 Mini SCARA Robots &#8212; 175mm&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=144",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/144",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=144&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 142,
+      "name": "DOOSAN H2515",
+      "slug": "doosan-h2515",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/doosan-h2515/",
+      "sku": "HR-DOOSAN-H2515",
+      "short_description": "<p>Кобот DOOSAN H2515.</p>",
+      "description": "<p>The H-Series is the most powerful cobot in the industry. With 6 powerful Force Torque Sensors to ensure a safe working environment.Key Features:∙ High+ Payload &#8212; Features the astonishing payload, capable of easily handling heavy objects of up to 25kg.∙ High+ Safety &#8212; Guarantees superb operator safety, ensured with the industry’s best collision sensitivity based on six torque sensors and a gravi&#8230;</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 167,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/file-12.png",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/file-12-450x369.png",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-12.png 500w, https://hello-robot.ru/wp-content/uploads/2026/10/file-12-300x221.png 300w",
+          "sizes": "(max-width: 500px) 100vw, 500px",
+          "thumbnail_srcset": "",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "file-12.png",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 121,
+          "name": "безопасность",
+          "slug": "%d0%b1%d0%b5%d0%b7%d0%be%d0%bf%d0%b0%d1%81%d0%bd%d0%be%d1%81%d1%82%d1%8c",
+          "link": "https://hello-robot.ru/product-tag/%d0%b1%d0%b5%d0%b7%d0%be%d0%bf%d0%b0%d1%81%d0%bd%d0%be%d1%81%d1%82%d1%8c/"
+        },
+        {
+          "id": 109,
+          "name": "коботы",
+          "slug": "%d0%ba%d0%be%d0%b1%d0%be%d1%82%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%ba%d0%be%d0%b1%d0%be%d1%82%d1%8b/"
+        },
+        {
+          "id": 110,
+          "name": "манипуляторы",
+          "slug": "%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;DOOSAN H2515&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=142",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/142",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=142&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 140,
+      "name": "DOOSAN H2017",
+      "slug": "doosan-h2017",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/doosan-h2017/",
+      "sku": "HR-DOOSAN-H2017",
+      "short_description": "<p>Кобот DOOSAN H2017.</p>",
+      "description": "<p>US BASED COMPANY US BASED Customer Support &amp; Tech Support The H-Series is the most powerful cobot in the industry.</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 166,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/file-11.png",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/file-11-450x369.png",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-11.png 500w, https://hello-robot.ru/wp-content/uploads/2026/10/file-11-300x221.png 300w",
+          "sizes": "(max-width: 500px) 100vw, 500px",
+          "thumbnail_srcset": "",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "file-11.png",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 121,
+          "name": "безопасность",
+          "slug": "%d0%b1%d0%b5%d0%b7%d0%be%d0%bf%d0%b0%d1%81%d0%bd%d0%be%d1%81%d1%82%d1%8c",
+          "link": "https://hello-robot.ru/product-tag/%d0%b1%d0%b5%d0%b7%d0%be%d0%bf%d0%b0%d1%81%d0%bd%d0%be%d1%81%d1%82%d1%8c/"
+        },
+        {
+          "id": 109,
+          "name": "коботы",
+          "slug": "%d0%ba%d0%be%d0%b1%d0%be%d1%82%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%ba%d0%be%d0%b1%d0%be%d1%82%d1%8b/"
+        },
+        {
+          "id": 110,
+          "name": "манипуляторы",
+          "slug": "%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;DOOSAN H2017&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=140",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/140",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=140&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 138,
+      "name": "EMMA1000L",
+      "slug": "emma1000l",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/emma1000l/",
+      "sku": "HR-DEVONICS-EMMA1000L",
+      "short_description": "<p>Мобильный робот EMMA1000L.</p>",
+      "description": "<p>EMMA1000L: automated mobile robots,amr automated mobile robot,mobile industrial Hybrid Navigation &#8212; Laser+Vision+InertiaDocking Accuracy &#8212; ±2mm/±0.2°Aisle Width (mm) &#8212; ≥1000Payload (kg) &#8212; 1000Optional Lift (mm) &#8212; 60Run Time (h) &#8212; 8Basic Parameters Dimension (L*W*H) 983×781×300mmWeight 290kgDifferential Drive SensorFront Laser (Rear laser optional)Bottom CameraTop CameraBatteryLithium-ion 48v 38&#8230;</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 163,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/file-8.png",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/file-8-450x209.png",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/file-8.png 500w, https://hello-robot.ru/wp-content/uploads/2026/10/file-8-300x125.png 300w",
+          "sizes": "(max-width: 500px) 100vw, 500px",
+          "thumbnail_srcset": "",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "file-8.png",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 107,
+          "name": "автономность",
+          "slug": "%d0%b0%d0%b2%d1%82%d0%be%d0%bd%d0%be%d0%bc%d0%bd%d0%be%d1%81%d1%82%d1%8c",
+          "link": "https://hello-robot.ru/product-tag/%d0%b0%d0%b2%d1%82%d0%be%d0%bd%d0%be%d0%bc%d0%bd%d0%be%d1%81%d1%82%d1%8c/"
+        },
+        {
+          "id": 106,
+          "name": "навигация",
+          "slug": "%d0%bd%d0%b0%d0%b2%d0%b8%d0%b3%d0%b0%d1%86%d0%b8%d1%8f",
+          "link": "https://hello-robot.ru/product-tag/%d0%bd%d0%b0%d0%b2%d0%b8%d0%b3%d0%b0%d1%86%d0%b8%d1%8f/"
+        },
+        {
+          "id": 118,
+          "name": "складская логистика",
+          "slug": "%d1%81%d0%ba%d0%bb%d0%b0%d0%b4%d1%81%d0%ba%d0%b0%d1%8f-%d0%bb%d0%be%d0%b3%d0%b8%d1%81%d1%82%d0%b8%d0%ba%d0%b0",
+          "link": "https://hello-robot.ru/product-tag/%d1%81%d0%ba%d0%bb%d0%b0%d0%b4%d1%81%d0%ba%d0%b0%d1%8f-%d0%bb%d0%be%d0%b3%d0%b8%d1%81%d1%82%d0%b8%d0%ba%d0%b0/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;EMMA1000L&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=138",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/138",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=138&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 136,
+      "name": "Unitree B2-W",
+      "slug": "unitree-b2-w",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/unitree-b2-w/",
+      "sku": "HR-UNITREE-B2-W",
+      "short_description": "<p>Четырёхногий робот Unitree B2-W.</p>",
+      "description": "<p>Unitree B2-WGo Further with Higher EfficiencyPioneer Technology Leading the Intelligent Future</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 173,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2.jpg",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2-450x450.jpg",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2.jpg 800w, https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2-300x300.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2-768x768.jpg 768w, https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2-600x600.jpg 600w, https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2-100x100.jpg 100w",
+          "sizes": "(max-width: 800px) 100vw, 800px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2-300x300.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2-768x768.jpg 768w, https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2-600x600.jpg 600w, https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2-100x100.jpg 100w, https://hello-robot.ru/wp-content/uploads/2026/10/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2.jpg 800w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x-2.jpg",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 105,
+          "name": "биоинспирированная робототехника",
+          "slug": "%d0%b1%d0%b8%d0%be%d0%b8%d0%bd%d1%81%d0%bf%d0%b8%d1%80%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%bd%d0%b0%d1%8f-%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%be%d1%82%d0%b5%d1%85%d0%bd%d0%b8%d0%ba%d0%b0",
+          "link": "https://hello-robot.ru/product-tag/%d0%b1%d0%b8%d0%be%d0%b8%d0%bd%d1%81%d0%bf%d0%b8%d1%80%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%bd%d0%b0%d1%8f-%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%be%d1%82%d0%b5%d1%85%d0%bd%d0%b8%d0%ba%d0%b0/"
+        },
+        {
+          "id": 102,
+          "name": "роботы",
+          "slug": "%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;Unitree B2-W&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=136",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/136",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=136&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 134,
+      "name": "Microduck",
+      "slug": "microduck",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/microduck/",
+      "sku": "HR-POLLEN-MICRODUCK",
+      "short_description": "<p>Гуманоид Microduck.</p>",
+      "description": "<p>Microduck is a 25 cm biped robot with 15 motors, a camera, LiDAR and a grasping beak.</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 133,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/og-microduck-squad-v2.jpg",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/og-microduck-squad-v2-450x450.jpg",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/og-microduck-squad-v2.jpg 1200w, https://hello-robot.ru/wp-content/uploads/2026/10/og-microduck-squad-v2-300x158.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/og-microduck-squad-v2-1024x538.jpg 1024w, https://hello-robot.ru/wp-content/uploads/2026/10/og-microduck-squad-v2-768x403.jpg 768w, https://hello-robot.ru/wp-content/uploads/2026/10/og-microduck-squad-v2-600x315.jpg 600w",
+          "sizes": "(max-width: 1200px) 100vw, 1200px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/og-microduck-squad-v2-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/og-microduck-squad-v2-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/og-microduck-squad-v2-100x100.jpg 100w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "og-microduck-squad-v2.jpg",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 101,
+          "name": "гуманоиды",
+          "slug": "%d0%b3%d1%83%d0%bc%d0%b0%d0%bd%d0%be%d0%b8%d0%b4%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%b3%d1%83%d0%bc%d0%b0%d0%bd%d0%be%d0%b8%d0%b4%d1%8b/"
+        },
+        {
+          "id": 102,
+          "name": "роботы",
+          "slug": "%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;Microduck&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=134",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/134",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=134&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 132,
+      "name": "Unitree B2",
+      "slug": "unitree-b2",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/unitree-b2/",
+      "sku": "HR-UNITREE-B2",
+      "short_description": "<p>Четырёхногий робот Unitree B2.</p>",
+      "description": "<p>Go Beyond the Limits, Lead The Industry Application.Fastest running industrial-grade quadruped robot at 6m/sExcellent terrain adaptability to ensure stable travel on slippery or uneven surfaces.Excellent sustained stair climbing, effortlessly tackling steps.170% increase in joint performance with 360 N.m of torqueSuperior obstacle-crossing ability, easy to cross the mess of wood piles, 40cm hig&#8230;</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 172,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/1_e701c6a6-1448-4504-a895-385a64140740_569x-2.jpg",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/1_e701c6a6-1448-4504-a895-385a64140740_569x-2-450x450.jpg",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/1_e701c6a6-1448-4504-a895-385a64140740_569x-2.jpg 569w, https://hello-robot.ru/wp-content/uploads/2026/10/1_e701c6a6-1448-4504-a895-385a64140740_569x-2-300x300.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/1_e701c6a6-1448-4504-a895-385a64140740_569x-2-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/1_e701c6a6-1448-4504-a895-385a64140740_569x-2-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/1_e701c6a6-1448-4504-a895-385a64140740_569x-2-100x100.jpg 100w",
+          "sizes": "(max-width: 569px) 100vw, 569px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/1_e701c6a6-1448-4504-a895-385a64140740_569x-2-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/1_e701c6a6-1448-4504-a895-385a64140740_569x-2-300x300.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/1_e701c6a6-1448-4504-a895-385a64140740_569x-2-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/1_e701c6a6-1448-4504-a895-385a64140740_569x-2-100x100.jpg 100w, https://hello-robot.ru/wp-content/uploads/2026/10/1_e701c6a6-1448-4504-a895-385a64140740_569x-2.jpg 569w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "1_e701c6a6-1448-4504-a895-385a64140740_569x-2.jpg",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 105,
+          "name": "биоинспирированная робототехника",
+          "slug": "%d0%b1%d0%b8%d0%be%d0%b8%d0%bd%d1%81%d0%bf%d0%b8%d1%80%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%bd%d0%b0%d1%8f-%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%be%d1%82%d0%b5%d1%85%d0%bd%d0%b8%d0%ba%d0%b0",
+          "link": "https://hello-robot.ru/product-tag/%d0%b1%d0%b8%d0%be%d0%b8%d0%bd%d1%81%d0%bf%d0%b8%d1%80%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%bd%d0%b0%d1%8f-%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%be%d1%82%d0%b5%d1%85%d0%bd%d0%b8%d0%ba%d0%b0/"
+        },
+        {
+          "id": 102,
+          "name": "роботы",
+          "slug": "%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;Unitree B2&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=132",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/132",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=132&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 128,
+      "name": "Unitree B1",
+      "slug": "unitree-b1",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/unitree-b1/",
+      "sku": "HR-UNITREE-B1",
+      "short_description": "<p>Четырёхногий робот Unitree B1.</p>",
+      "description": "<p>Unitree B1 has the characteristics of all-weather operation, strong load and expansion space, multi-dimensional perception, full scene coverage, strong computing power and accurate insights.</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 171,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2.jpg",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-450x450.jpg",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2.jpg 1312w, https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-300x300.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-1024x1024.jpg 1024w, https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-768x768.jpg 768w, https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-600x600.jpg 600w, https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-100x100.jpg 100w",
+          "sizes": "(max-width: 1312px) 100vw, 1312px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-300x300.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-1024x1024.jpg 1024w, https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-768x768.jpg 768w, https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-600x600.jpg 600w, https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2-100x100.jpg 100w, https://hello-robot.ru/wp-content/uploads/2026/10/153_1312x-2.jpg 1312w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "153_1312x-2.jpg",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 105,
+          "name": "биоинспирированная робототехника",
+          "slug": "%d0%b1%d0%b8%d0%be%d0%b8%d0%bd%d1%81%d0%bf%d0%b8%d1%80%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%bd%d0%b0%d1%8f-%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%be%d1%82%d0%b5%d1%85%d0%bd%d0%b8%d0%ba%d0%b0",
+          "link": "https://hello-robot.ru/product-tag/%d0%b1%d0%b8%d0%be%d0%b8%d0%bd%d1%81%d0%bf%d0%b8%d1%80%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%bd%d0%b0%d1%8f-%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%be%d1%82%d0%b5%d1%85%d0%bd%d0%b8%d0%ba%d0%b0/"
+        },
+        {
+          "id": 102,
+          "name": "роботы",
+          "slug": "%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;Unitree B1&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=128",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/128",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=128&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 126,
+      "name": "Unitree A2",
+      "slug": "unitree-a2",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/unitree-a2/",
+      "sku": "HR-UNITREE-A2",
+      "short_description": "<p>Робот Unitree A2.</p>",
+      "description": "<p>Unloaded can continuously walk 5h/20km. Lighter, Faster, Tougher. Weighs around 42kg, fully loaded can continuously walk 3h /12.5km.Premium mobile hardware platform, open for rapid development.2 industrtal LiDARs(front.&amp; rear), HD camera + front light to detect the environment ahead. Wheel-Leg option available. Unleash greater performance.</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 125,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x.jpg",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x-450x450.jpg",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x.jpg 800w, https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x-300x300.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x-768x768.jpg 768w, https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x-600x600.jpg 600w, https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x-100x100.jpg 100w",
+          "sizes": "(max-width: 800px) 100vw, 800px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x-300x300.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x-768x768.jpg 768w, https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x-600x600.jpg 600w, https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x-100x100.jpg 100w, https://hello-robot.ru/wp-content/uploads/2026/10/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x.jpg 800w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x.jpg",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 102,
+          "name": "роботы",
+          "slug": "%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;Unitree A2&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=126",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/126",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=126&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 124,
+      "name": "Reachy Mini",
+      "slug": "reachy-mini",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/reachy-mini/",
+      "sku": "HR-POLLEN-REACHY-MINI",
+      "short_description": "<p>Гуманоид Reachy Mini.</p>",
+      "description": "<p>Reachy Mini is an expressive, open-source companion robot for human interaction, creative coding, and AI experimentation.</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 168,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-mini-1.jpg",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-mini-1-450x450.jpg",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-mini-1.jpg 1200w, https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-mini-1-300x158.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-mini-1-1024x538.jpg 1024w, https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-mini-1-768x403.jpg 768w, https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-mini-1-600x315.jpg 600w",
+          "sizes": "(max-width: 1200px) 100vw, 1200px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-mini-1-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-mini-1-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-mini-1-100x100.jpg 100w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "og-reachy-mini-1.jpg",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 101,
+          "name": "гуманоиды",
+          "slug": "%d0%b3%d1%83%d0%bc%d0%b0%d0%bd%d0%be%d0%b8%d0%b4%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%b3%d1%83%d0%bc%d0%b0%d0%bd%d0%be%d0%b8%d0%b4%d1%8b/"
+        },
+        {
+          "id": 103,
+          "name": "исследования",
+          "slug": "%d0%b8%d1%81%d1%81%d0%bb%d0%b5%d0%b4%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f",
+          "link": "https://hello-robot.ru/product-tag/%d0%b8%d1%81%d1%81%d0%bb%d0%b5%d0%b4%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f/"
+        },
+        {
+          "id": 110,
+          "name": "манипуляторы",
+          "slug": "%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b/"
+        },
+        {
+          "id": 116,
+          "name": "открытое железо",
+          "slug": "%d0%be%d1%82%d0%ba%d1%80%d1%8b%d1%82%d0%be%d0%b5-%d0%b6%d0%b5%d0%bb%d0%b5%d0%b7%d0%be",
+          "link": "https://hello-robot.ru/product-tag/%d0%be%d1%82%d0%ba%d1%80%d1%8b%d1%82%d0%be%d0%b5-%d0%b6%d0%b5%d0%bb%d0%b5%d0%b7%d0%be/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;Reachy Mini&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=124",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/124",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=124&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 103,
+      "name": "Reachy 2",
+      "slug": "reachy-2",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/reachy-2/",
+      "sku": "HR-REACHY-2",
+      "short_description": "<p>Гуманоид Reachy 2.</p>",
+      "description": "<p>Reachy 2 is the first open-source humanoid robot designed for embodied AI and real-world applications &#8212; the ideal bimanual mobile manipulator for AI &amp; robotics labs.</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 129,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-2.jpg",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-2-450x450.jpg",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-2.jpg 1200w, https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-2-300x158.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-2-1024x538.jpg 1024w, https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-2-768x403.jpg 768w, https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-2-600x315.jpg 600w",
+          "sizes": "(max-width: 1200px) 100vw, 1200px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-2-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-2-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/og-reachy-2-100x100.jpg 100w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "og-reachy-2.jpg",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 101,
+          "name": "гуманоиды",
+          "slug": "%d0%b3%d1%83%d0%bc%d0%b0%d0%bd%d0%be%d0%b8%d0%b4%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%b3%d1%83%d0%bc%d0%b0%d0%bd%d0%be%d0%b8%d0%b4%d1%8b/"
+        },
+        {
+          "id": 103,
+          "name": "исследования",
+          "slug": "%d0%b8%d1%81%d1%81%d0%bb%d0%b5%d0%b4%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f",
+          "link": "https://hello-robot.ru/product-tag/%d0%b8%d1%81%d1%81%d0%bb%d0%b5%d0%b4%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f/"
+        },
+        {
+          "id": 110,
+          "name": "манипуляторы",
+          "slug": "%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%82%d0%be%d1%80%d1%8b/"
+        },
+        {
+          "id": 114,
+          "name": "манипуляция",
+          "slug": "%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%86%d0%b8%d1%8f",
+          "link": "https://hello-robot.ru/product-tag/%d0%bc%d0%b0%d0%bd%d0%b8%d0%bf%d1%83%d0%bb%d1%8f%d1%86%d0%b8%d1%8f/"
+        },
+        {
+          "id": 116,
+          "name": "открытое железо",
+          "slug": "%d0%be%d1%82%d0%ba%d1%80%d1%8b%d1%82%d0%be%d0%b5-%d0%b6%d0%b5%d0%bb%d0%b5%d0%b7%d0%be",
+          "link": "https://hello-robot.ru/product-tag/%d0%be%d1%82%d0%ba%d1%80%d1%8b%d1%82%d0%be%d0%b5-%d0%b6%d0%b5%d0%bb%d0%b5%d0%b7%d0%be/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;Reachy 2&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=103",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/103",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=103&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 98,
+      "name": "Unitree Go2",
+      "slug": "unitree-go2",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/unitree-go2/",
+      "sku": "HR-UNITREE-GO2",
+      "short_description": "<p>Четырёхногий робот Unitree Go2.</p>",
+      "description": "<p>Четырёхногий робот Unitree Go2. Приводы управляются по усилию, лидар стоит в части версий и используется для навигации и построения карты. Робота берут для обследования помещений и как платформу для обучения автономному движению.</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 175,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2.png",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2-450x450.png",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2.png 800w, https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2-300x300.png 300w, https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2-150x150.png 150w, https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2-768x768.png 768w, https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2-450x450.png 450w, https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2-600x600.png 600w, https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2-100x100.png 100w",
+          "sizes": "(max-width: 800px) 100vw, 800px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2-450x450.png 450w, https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2-300x300.png 300w, https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2-150x150.png 150w, https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2-768x768.png 768w, https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2-600x600.png 600w, https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2-100x100.png 100w, https://hello-robot.ru/wp-content/uploads/2026/10/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2.png 800w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x-2.png",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 107,
+          "name": "автономность",
+          "slug": "%d0%b0%d0%b2%d1%82%d0%be%d0%bd%d0%be%d0%bc%d0%bd%d0%be%d1%81%d1%82%d1%8c",
+          "link": "https://hello-robot.ru/product-tag/%d0%b0%d0%b2%d1%82%d0%be%d0%bd%d0%be%d0%bc%d0%bd%d0%be%d1%81%d1%82%d1%8c/"
+        },
+        {
+          "id": 105,
+          "name": "биоинспирированная робототехника",
+          "slug": "%d0%b1%d0%b8%d0%be%d0%b8%d0%bd%d1%81%d0%bf%d0%b8%d1%80%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%bd%d0%b0%d1%8f-%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%be%d1%82%d0%b5%d1%85%d0%bd%d0%b8%d0%ba%d0%b0",
+          "link": "https://hello-robot.ru/product-tag/%d0%b1%d0%b8%d0%be%d0%b8%d0%bd%d1%81%d0%bf%d0%b8%d1%80%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%bd%d0%b0%d1%8f-%d1%80%d0%be%d0%b1%d0%be%d1%82%d0%be%d1%82%d0%b5%d1%85%d0%bd%d0%b8%d0%ba%d0%b0/"
+        },
+        {
+          "id": 106,
+          "name": "навигация",
+          "slug": "%d0%bd%d0%b0%d0%b2%d0%b8%d0%b3%d0%b0%d1%86%d0%b8%d1%8f",
+          "link": "https://hello-robot.ru/product-tag/%d0%bd%d0%b0%d0%b2%d0%b8%d0%b3%d0%b0%d1%86%d0%b8%d1%8f/"
+        },
+        {
+          "id": 102,
+          "name": "роботы",
+          "slug": "%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;Unitree Go2&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=98",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/98",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=98&per_page=10"
+          }
+        ]
+      }
+    },
+    {
+      "id": 97,
+      "name": "Unitree G1",
+      "slug": "unitree-g1",
+      "parent": 0,
+      "type": "simple",
+      "variation": "",
+      "permalink": "https://hello-robot.ru/product/unitree-g1/",
+      "sku": "HR-UNITREE-G1",
+      "short_description": "<p>Гуманоид Unitree G1.</p>",
+      "description": "<p>Unlock unlimited sports potential (Extra large joint movement space angle, 23~43 joints) Force control of dexterous hands, manipulation of all thingsImitation &amp; reinforcement learning driven Robot world model, let’s create it together More introduction: https://www.unitree.com/g1</p>",
+      "on_sale": false,
+      "prices": {
+        "price": "0",
+        "regular_price": "0",
+        "sale_price": "0",
+        "price_range": null,
+        "currency_code": "RUB",
+        "currency_symbol": "₽",
+        "currency_minor_unit": 2,
+        "currency_decimal_separator": ",",
+        "currency_thousand_separator": " ",
+        "currency_prefix": "",
+        "currency_suffix": " ₽"
+      },
+      "price_html": "<span class=\"woocommerce-Price-amount amount\">0,00&nbsp;<span class=\"woocommerce-Price-currencySymbol\" dir=\"auto\">&#8381;</span></span>",
+      "average_rating": "0",
+      "review_count": 0,
+      "images": [
+        {
+          "id": 174,
+          "src": "https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1.jpg",
+          "thumbnail": "https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1-450x450.jpg",
+          "srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1.jpg 800w, https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1-300x300.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1-768x768.jpg 768w, https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1-600x600.jpg 600w, https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1-100x100.jpg 100w",
+          "sizes": "(max-width: 800px) 100vw, 800px",
+          "thumbnail_srcset": "https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1-450x450.jpg 450w, https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1-300x300.jpg 300w, https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1-150x150.jpg 150w, https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1-768x768.jpg 768w, https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1-600x600.jpg 600w, https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1-100x100.jpg 100w, https://hello-robot.ru/wp-content/uploads/2026/10/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1.jpg 800w",
+          "thumbnail_sizes": "(max-width: 450px) 100vw, 450px",
+          "name": "2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x-1.jpg",
+          "alt": ""
+        }
+      ],
+      "categories": [],
+      "tags": [
+        {
+          "id": 101,
+          "name": "гуманоиды",
+          "slug": "%d0%b3%d1%83%d0%bc%d0%b0%d0%bd%d0%be%d0%b8%d0%b4%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d0%b3%d1%83%d0%bc%d0%b0%d0%bd%d0%be%d0%b8%d0%b4%d1%8b/"
+        },
+        {
+          "id": 103,
+          "name": "исследования",
+          "slug": "%d0%b8%d1%81%d1%81%d0%bb%d0%b5%d0%b4%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f",
+          "link": "https://hello-robot.ru/product-tag/%d0%b8%d1%81%d1%81%d0%bb%d0%b5%d0%b4%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f/"
+        },
+        {
+          "id": 102,
+          "name": "роботы",
+          "slug": "%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d1%80%d0%be%d0%b1%d0%be%d1%82%d1%8b/"
+        },
+        {
+          "id": 104,
+          "name": "стартапы",
+          "slug": "%d1%81%d1%82%d0%b0%d1%80%d1%82%d0%b0%d0%bf%d1%8b",
+          "link": "https://hello-robot.ru/product-tag/%d1%81%d1%82%d0%b0%d1%80%d1%82%d0%b0%d0%bf%d1%8b/"
+        }
+      ],
+      "brands": [],
+      "attributes": [],
+      "variations": [],
+      "grouped_products": [],
+      "has_options": false,
+      "is_purchasable": true,
+      "is_in_stock": true,
+      "is_on_backorder": true,
+      "low_stock_remaining": null,
+      "stock_availability": {
+        "text": "Доступно для предзаказа",
+        "class": "available-on-backorder"
+      },
+      "sold_individually": false,
+      "weight": "",
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+      },
+      "formatted_weight": "Н/Д",
+      "formatted_dimensions": "Н/Д",
+      "add_to_cart": {
+        "text": "В корзину",
+        "description": "Добавить в корзину &laquo;Unitree G1&raquo;",
+        "url": "/wp-json/wc/store/v1/products?per_page=100&#038;add-to-cart=97",
+        "single_text": "В корзину",
+        "minimum": 1,
+        "maximum": 9999,
+        "multiple_of": 1
+      },
+      "is_password_protected": false,
+      "extensions": {},
+      "_links": {
+        "self": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products/97",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products"
+          }
+        ],
+        "related": [
+          {
+            "embeddable": true,
+            "href": "https://hello-robot.ru/wp-json/wc/store/v1/products?related=97&per_page=10"
+          }
+        ]
+      }
+    }
+  ]
+}

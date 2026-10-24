@@ -1,6 +1,7 @@
 import { wpQuery } from "@/shared/api/graphql";
 import { WP_GRAPHQL_URL } from "@/shared/config/constants";
 import { describeError } from "@/shared/lib/describeError";
+import snapshot from "./posts.snapshot.json";
 
 export interface Post {
   id: string;
@@ -85,6 +86,16 @@ export async function getPosts(): Promise<Post[]> {
       wpAvailable = false;
       const err = error instanceof Error ? error : new Error(String(error));
       const detail = describeError(err);
+      // Сборка не должна зависеть от того, пускает ли раннер до WordPress:
+      // снимок — последнее известное состояние статей (см. scripts/content-snapshot.mjs).
+      const snapshotNodes = (snapshot as { posts?: { nodes?: WpPostNode[] } })?.posts?.nodes ?? [];
+      if (snapshotNodes.length > 0) {
+        console.warn(
+          `[WPGraphQL] AllPosts недоступен, беру снимок: ${snapshotNodes.length} статей (${detail})`,
+        );
+        return snapshotNodes.map(mapPost);
+      }
+
       console.error("WPGraphQL AllPosts failed:", {
         endpoint: WP_GRAPHQL_URL,
         error: detail,
