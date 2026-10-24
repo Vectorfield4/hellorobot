@@ -54,15 +54,15 @@ jobs:
           NODE_OPTIONS: "--dns-result-order=ipv4first"
         run: |
           # WPGraphQL отдаёт через раз: сборка делает десятки запросов, и один
-          # таймаут ронял весь деплой. Повторяем сборку целиком, не больше двух раз.
-          for ($attempt = 1; $attempt -le 2; $attempt++) {
-            npm run build 2>&1 | Tee-Object -FilePath build.log
+          # таймаут ронял весь деплой. Повторяем сборку целиком, не больше трёх раз.
+          # `*>` пишет все потоки в файл: по нему отчёт о падении читается через API.
+          for ($attempt = 1; $attempt -le 3; $attempt++) {
+            npm run build *> build.log
             if ($LASTEXITCODE -eq 0) { exit 0 }
-            Write-Host "build attempt $attempt failed, retrying"
-            Start-Sleep -Seconds 10
+            Write-Host "build attempt $attempt failed"
+            Start-Sleep -Seconds 15
           }
-          # Логи деплоя не читаются без прав: последние строки уходят в аннотацию.
-          foreach ($line in (Get-Content build.log -Tail 15)) { Write-Host "::error::$line" }
+          Get-Content build.log -Tail 20
           exit 1
 
       - name: Report build failure
