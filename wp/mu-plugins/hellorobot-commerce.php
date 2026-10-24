@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Hello Robot Commerce
  * Description: REST-эндпоинты заказа и проверки для статического фронта hellorobot.ru, плюс CORS для WooCommerce Store API.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Requires PHP: 8.2
  * Author: Hello Robot
  * Text Domain: hellorobot-commerce
@@ -18,7 +18,7 @@ final class HelloRobot_Commerce_Plugin {
 
 	private const REST_NAMESPACE = 'hellorobot/v1';
 
-	private const VERSION = '1.0.1';
+	private const VERSION = '1.0.2';
 
 	private const RATE_KEY_PREFIX = 'hellorobot_order_';
 
@@ -44,6 +44,7 @@ final class HelloRobot_Commerce_Plugin {
 		// origins нужны и нашим маршрутам, и Store API, который фронт дёргает из браузера.
 		add_filter( 'allowed_http_origins', array( __CLASS__, 'filter_allowed_origins' ) );
 		add_filter( 'rest_pre_serve_request', array( __CLASS__, 'send_cors_headers' ), 15, 4 );
+		add_action( 'send_headers', array( __CLASS__, 'send_version_header' ) );
 
 		// Обычно маршруты ждут rest_api_init. Если кто-то на сайте поднял
 		// rest_get_server() раньше нас (MCP-адаптер, кеш-плагин), хук уже прошёл,
@@ -118,6 +119,18 @@ final class HelloRobot_Commerce_Plugin {
 		return $served;
 	}
 
+	/**
+	 * Маркер «код плагина реально выполняется»: виден в заголовках любого ответа.
+	 * Нужен, чтобы отличать «файл лежит на диске» от «файл загружен и работает».
+	 */
+	public static function send_version_header(): void {
+		if ( headers_sent() ) {
+			return;
+		}
+
+		header( 'X-Hellorobot-Plugin: ' . self::VERSION );
+	}
+
 	public static function register_routes(): void {
 		register_rest_route(
 			self::REST_NAMESPACE,
@@ -164,6 +177,8 @@ final class HelloRobot_Commerce_Plugin {
 				'ok'               => true,
 				'plugin'           => 'hellorobot-commerce',
 				'version'          => self::VERSION,
+				'loaded_from'      => basename( __DIR__ ) . '/' . basename( __FILE__ ),
+				'source_lines'     => count( file( __FILE__ ) ),
 				'woocommerce'      => $active && defined( 'WC_VERSION' ) ? WC_VERSION : null,
 				'currency'         => $active && function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : null,
 				'stray_class_file' => self::stray_class_file(),
