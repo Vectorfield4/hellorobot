@@ -45,9 +45,19 @@ jobs:
         run: npm run test
 
       - name: Build static site (Astro SSG)
+        shell: pwsh
         env:
           WP_GRAPHQL_TIMEOUT_MS: "30000"
-        run: npm run build
+        run: |
+          # WPGraphQL отдаёт через раз: сборка делает десятки запросов, и один
+          # таймаут ронял весь деплой. Повторяем сборку целиком, не больше двух раз.
+          for ($attempt = 1; $attempt -le 2; $attempt++) {
+            npm run build
+            if ($LASTEXITCODE -eq 0) { exit 0 }
+            Write-Host "build attempt $attempt failed, retrying"
+            Start-Sleep -Seconds 10
+          }
+          exit 1
 
       - name: Create ZIP archive
         working-directory: dist

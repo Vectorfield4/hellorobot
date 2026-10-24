@@ -16,19 +16,21 @@ function operationNameFromQuery(query: string): string {
   return match?.[1] ?? "anonymous";
 }
 
-export async function wpQuery<T>(
+/**
+ * Один запрос без повторов. Повторы живут в `wpQuery`: сборка делает десятки
+ * запросов подряд, и один случайный таймаут не должен ронять весь сайт.
+ */
+async function wpQueryOnce<T>(
   query: string,
-  variables?: Record<string, unknown>,
-  timeoutMs?: number,
-  operationName?: string,
+  variables: Record<string, unknown> | undefined,
+  op: string,
+  timeoutMs: number,
 ): Promise<T> {
-  const op = operationName ?? operationNameFromQuery(query);
-  const resolvedTimeout = resolveTimeout(timeoutMs);
   const startedAt = Date.now();
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), resolvedTimeout);
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
 
-  console.info(`[WPGraphQL] ${op}: POST ${WP_GRAPHQL_URL} (timeout ${resolvedTimeout}ms)`);
+  console.info(`[WPGraphQL] ${op}: POST ${WP_GRAPHQL_URL} (timeout ${timeoutMs}ms)`);
 
   try {
     const res = await fetch(WP_GRAPHQL_URL, {
@@ -45,9 +47,11 @@ export async function wpQuery<T>(
       } catch {
         body = "";
       }
-      throw new Error(
+      const error = new Error(
         `WPGraphQL request failed for ${op} at ${WP_GRAPHQL_URL}: HTTP ${res.status} ${res.statusText}${body ? ` - ${body}` : ""}`,
       );
+      (error as Error & { status?: number }).status = res.status;
+      throw error;
     }
 
     const json = (await res.json()) as { data?: T; errors?: unknown };
@@ -60,24 +64,64 @@ export async function wpQuery<T>(
     const duration = Date.now() - startedAt;
     console.info(`[WPGraphQL] ${op}: ok in ${duration}ms`);
     return json.data as T;
-  } catch (error) {
-    const duration = Date.now() - startedAt;
-    const err = error instanceof Error ? error : new Error(String(error));
-    const aborted = err.name === "AbortError" || /aborted/i.test(err.message);
-    const suffix = aborted ? ` (aborted after ${duration}ms; timeout ${resolvedTimeout}ms)` : "";
-    const detail = `${err.name}: ${err.message}${suffix}`;
-
-    console.error(`[WPGraphQL] ${op} failed after ${duration}ms: ${detail}`, {
-      endpoint: WP_GRAPHQL_URL,
-      timeoutMs: resolvedTimeout,
-      variables,
-      stack: err.stack,
-    });
-
-    throw new Error(
-      `WPGraphQL request failed for ${op} at ${WP_GRAPHQL_URL} after ${duration}ms: ${detail}`,
-    );
   } finally {
     clearTimeout(timer);
   }
+}
+
+const RETRY_ATTEMPTS = 3;
+const RETRY_BASE_MS = 400;
+
+/** Таймаут, обрыв и 5xx — повод повторить; ошибки GraphQL и 4xx — нет. */
+function isRetryable(error: unknown): boolean {
+  const err = error as (Error & { status?: number }) | undefined;
+  if (!err) return false;
+  if (typeof err.status === "number") return err.status >= 500 || err.status === 429;
+  if (err.name === "AbortError" || /aborted|timeout/i.test(err.message)) return true;
+  return /fetch failed|ECONNRESET|ETIMEDOUT|socket hang up/i.test(err.message);
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export async function wpQuery<T>(
+  query: string,
+  variables?: Record<string, unknown>,
+  timeoutMs?: number,
+  operationName?: string,
+): Promise<T> {
+  const op = operationName ?? operationNameFromQuery(query);
+  const resolvedTimeout = resolveTimeout(timeoutMs);
+  let lastError: unknown = null;
+
+  for (let attempt = 1; attempt <= RETRY_ATTEMPTS; attempt += 1) {
+    try {
+      return await wpQueryOnce<T>(query, variables, op, resolvedTimeout);
+    } catch (error) {
+      lastError = error;
+      const err = error instanceof Error ? error : new Error(String(error));
+      if (attempt === RETRY_ATTEMPTS || !isRetryable(error)) {
+        const aborted = err.name === "AbortError" || /aborted/i.test(err.message);
+        console.error(`[WPGraphQL] ${op} failed on attempt ${attempt}: ${err.message}`, {
+          endpoint: WP_GRAPHQL_URL,
+          timeoutMs: resolvedTimeout,
+          aborted,
+          variables,
+          stack: err.stack,
+        });
+        break;
+      }
+      const wait = RETRY_BASE_MS * attempt;
+      console.warn(
+        `[WPGraphQL] ${op}: попытка ${attempt} не удалась (${err.message}), повтор через ${wait}ms`,
+      );
+      await sleep(wait);
+    }
+  }
+
+  const err = lastError instanceof Error ? lastError : new Error(String(lastError));
+  throw new Error(
+    `WPGraphQL request failed for ${op} at ${WP_GRAPHQL_URL} after ${RETRY_ATTEMPTS} attempts: ${err.name}: ${err.message}`,
+  );
 }
