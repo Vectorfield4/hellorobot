@@ -88,9 +88,12 @@ describe("mapStoreProduct", () => {
 });
 
 describe("русский текст каталога", () => {
-  it("описание каждого опубликованного товара без HTML-сущностей", () => {
+  it("описания опубликованных товаров без HTML-сущностей и на русском", () => {
     for (const product of catalog.products.filter((entry) => entry.status === "publish")) {
-      expect(product.description, product.sku).not.toMatch(/&#\d+;|&[a-z]+;|[<>]/i);
+      for (const field of ["name", "short_description", "description"] as const) {
+        expect(product[field], `${product.sku} ${field}`).not.toMatch(/&#\d+;|&[a-z]+;|[<>]/i);
+      }
+      expect(product.short_description, product.sku).toMatch(/[а-яА-Я]/);
       expect(product.description, product.sku).toMatch(/[а-яА-Я]/);
     }
   });
