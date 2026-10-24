@@ -20,7 +20,8 @@
       "!.storybook-static",
       "!docs/research",
       "!docs/wp-*.json",
-      "!docs/wp-result-*.json"
+      "!docs/wp-result-*.json",
+      "!data"
     ]
   },
   "overrides": [

@@ -3,7 +3,6 @@ import {
   formatMinorUnits,
   formatRegularPrice,
   formatStorePrice,
-  PRICE_ON_REQUEST,
   type StorePrices,
 } from "../src/shared/lib/price";
 
@@ -48,10 +47,10 @@ describe("formatStorePrice", () => {
     expect(formatStorePrice(rub)).toBe("1 890 000,00 ₽");
   });
 
-  it("нулевую цену показывает как запрос цены", () => {
-    expect(formatStorePrice({ ...rub, price: "0", regular_price: "0" })).toBe(PRICE_ON_REQUEST);
-    expect(formatStorePrice({ ...rub, price: "" })).toBe(PRICE_ON_REQUEST);
-    expect(formatStorePrice(null)).toBe(PRICE_ON_REQUEST);
+  it("молчит про цену, если её нет: на странице показываем робота", () => {
+    expect(formatStorePrice({ ...rub, price: "0", regular_price: "0" })).toBe("");
+    expect(formatStorePrice({ ...rub, price: "" })).toBe("");
+    expect(formatStorePrice(null)).toBe("");
   });
 });
 

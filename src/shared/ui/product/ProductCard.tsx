@@ -1,5 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
-import { type Product, productPath, productPriceLabel } from "@/shared/data/product";
+import { type Product, productPath } from "@/shared/data/product";
 import { tokens } from "@/shared/design/tokens.stylex";
 
 interface Props {
@@ -34,13 +34,6 @@ const styles = stylex.create({
     backgroundColor: "#f2f5f8",
   },
   title: { margin: 0, fontSize: "1.1rem", lineHeight: 1.25 },
-  price: { fontWeight: 700, fontSize: "1.15rem" },
-  oldPrice: {
-    fontSize: "0.85rem",
-    textDecoration: "line-through",
-    opacity: 0.6,
-    marginLeft: "0.4rem",
-  },
   excerpt: { margin: 0, fontSize: "0.9rem", opacity: 0.8 },
   footer: { marginTop: "auto", display: "flex", alignItems: "baseline", gap: tokens.spaceSm },
   stock: { fontSize: "0.8rem", opacity: 0.7 },
@@ -79,13 +72,9 @@ export default function ProductCard({ product, compact = false }: Props) {
       </h3>
       {!compact && product.excerpt && <p {...stylex.props(styles.excerpt)}>{product.excerpt}</p>}
       <div {...stylex.props(styles.footer)}>
-        <span {...stylex.props(styles.price)}>{productPriceLabel(product)}</span>
-        {product.regularPriceLabel && (
-          <s {...stylex.props(styles.oldPrice)}>{product.regularPriceLabel}</s>
-        )}
         <span {...stylex.props(styles.stock)}>{product.inStock ? "В наличии" : "Под заказ"}</span>
         <a {...stylex.props(styles.buy)} href={`${href}#order`}>
-          Купить
+          Заказать
         </a>
       </div>
     </article>

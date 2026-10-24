@@ -83,15 +83,18 @@ contract from `articles/README.md`: `title`, `slug`, `date`, `tags`, `source_url
 ### 6. Make sure the story has something to sell
 
 Every article ends with the «Купить робота» block, and the block renders only when at least
-one post tag has a product. Check the coverage before publishing:
+one post tag has a published product. A gap is closed by running the shop tree — it finds a
+robot with that tag, gates it and publishes it:
 
-```bash
-node scripts/products.mjs ensure --slug <slug>
+```
+/add-products тег: <tag>        # or just: добавь товары
 ```
 
-Exit `0` means at least one tag is covered, `1` means none is, `2` means the WC REST keys are
-missing. A gap is closed by adding the product to `products/catalog.json` and importing it
-(`docs/products.md`). Matching is canonical (`src/shared/config/productTags.ts`): `humanoid`
+The nodes live in the skills repo (`~/.config/opencode/skills/content/shop-*`); the project
+keeps no shop script. Costs and policy are in [docs/products.md](docs/products.md): tags are
+functional, brands are an internal allowlist in `data/<host>/sellers.yaml`, and prices stay
+in `data/<host>/prices.yaml` — WooCommerce gets `regular_price: "0"` and the page shows the
+robot, not a number. Matching is canonical (`src/shared/config/productTags.ts`): `humanoid`
 and `гуманоиды` are the same tag.
 
 ### 7. Publish

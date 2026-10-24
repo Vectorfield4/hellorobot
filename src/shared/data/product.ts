@@ -1,11 +1,6 @@
 import type { StoreProduct, StoreTerm } from "@/shared/api/store";
 import { toPlainText, truncate } from "@/shared/lib/plainText";
-import {
-  formatRegularPrice,
-  formatStorePrice,
-  PRICE_ON_REQUEST,
-  type StorePrices,
-} from "@/shared/lib/price";
+import type { StorePrices } from "@/shared/lib/price";
 
 export interface ProductTerm {
   id: number;
@@ -28,9 +23,6 @@ export interface Product {
   type: string;
   permalink: string;
   prices: StorePrices | null;
-  priceLabel: string;
-  regularPriceLabel: string;
-  onSale: boolean;
   inStock: boolean;
   onBackorder: boolean;
   purchasable: boolean;
@@ -84,7 +76,6 @@ export function mapStoreProduct(raw: StoreProduct): Product {
   const shortDescription = toPlainText(raw.short_description);
   const description = (raw.description ?? "").trim();
   const prices = raw.prices ?? null;
-  const priceLabel = formatStorePrice(prices);
 
   return {
     id: raw.id,
@@ -94,9 +85,6 @@ export function mapStoreProduct(raw: StoreProduct): Product {
     type: raw.type ?? "simple",
     permalink: raw.permalink ?? productPath(raw.slug),
     prices,
-    priceLabel,
-    regularPriceLabel: formatRegularPrice(prices),
-    onSale: Boolean(raw.on_sale),
     inStock: raw.is_in_stock !== false,
     onBackorder: Boolean(raw.is_on_backorder),
     purchasable: raw.is_purchasable !== false,
@@ -122,10 +110,6 @@ export function productTagPath(name: string): string {
 
 export function productCategoryPath(name: string): string {
   return `/products/category/${encodeURIComponent(name)}`;
-}
-
-export function productPriceLabel(product: Product): string {
-  return product.priceLabel || PRICE_ON_REQUEST;
 }
 
 export function normalizeSearchText(value: string): string {

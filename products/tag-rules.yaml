@@ -1,0 +1,125 @@
+# Правила тегования товаров: как модель превращается в тег статьи.
+#
+# Тег — причина, по которой товар вообще есть в каталоге: читатель открыл статью
+# про гуманоидов и должен увидеть гуманоида. Поэтому теги назначает не человек
+# на глаз, а `shop-tagmap` по этим правилам.
+#
+# kind: model — правило для конкретной модели, побеждает остальные;
+# kind: brand — теги бренда; kind: type — теги типа робота
+# (humanoid, quadruped, cobot, manipulator, amr, exoskeleton, drone, soft).
+#
+# match сравнивается с нормализованным именем и sku (lowercase, ё→е, без пунктуации).
+# tags — теги блога через запятую. Тег, которого нет в статьях, отбрасывается.
+version: 1
+rule:
+  - kind: model
+    match: unitree g1
+    tags: "гуманоиды, роботы, исследования"
+  - kind: model
+    match: unitree go2
+    tags: "навигация, автономность, роботы"
+  - kind: model
+    match: unitree h1
+    tags: "гуманоиды, роботы"
+  - kind: model
+    match: boston dynamics spot
+    tags: "навигация, автономность, биоинспирированная робототехника"
+  - kind: model
+    match: boston dynamics atlas
+    tags: "гуманоиды, роботы"
+  - kind: model
+    match: reachy
+    tags: "гуманоиды, манипуляция, открытое железо, исследования"
+  - kind: model
+    match: openmanipulator
+    tags: "манипуляторы, манипуляция, открытое железо"
+  - kind: model
+    match: mgrip
+    tags: "мягкая робототехника, тактильность, манипуляция"
+  - kind: model
+    match: mir
+    tags: "складская логистика, навигация, автономность"
+  - kind: model
+    match: vision 60
+    tags: "оборонная робототехника, автономность, навигация"
+  - kind: model
+    match: ziggy
+    tags: "электромобили, автономность, навигация"
+  - kind: model
+    match: ur5
+    tags: "коботы, манипуляторы, промышленная автоматизация"
+  - kind: model
+    match: ur30
+    tags: "коботы, манипуляторы, промышленная автоматизация"
+  - kind: model
+    match: kr 6
+    tags: "промышленная робототехника, манипуляторы, промышленная автоматизация"
+  - kind: model
+    match: franka
+    tags: "манипуляторы, манипуляция, исследования, тактильность"
+  - kind: brand
+    match: Unitree
+    tags: "роботы"
+  - kind: brand
+    match: Boston Dynamics
+    tags: "роботы"
+  - kind: brand
+    match: Universal Robots
+    tags: "коботы, манипуляторы"
+  - kind: brand
+    match: KUKA
+    tags: "промышленная робототехника, манипуляторы"
+  - kind: brand
+    match: Franka Emika
+    tags: "манипуляторы, манипуляция"
+  - kind: brand
+    match: Pollen Robotics
+    tags: "гуманоиды, открытое железо"
+  - kind: brand
+    match: Soft Robotics
+    tags: "мягкая робототехника, тактильность"
+  - kind: brand
+    match: Mobile Industrial Robots
+    tags: "складская логистика, навигация"
+  - kind: brand
+    match: Ghost Robotics
+    tags: "оборонная робототехника, биоинспирированная робототехника"
+  - kind: brand
+    match: Agility Robotics
+    tags: "гуманоиды, складская логистика"
+  - kind: brand
+    match: Figure
+    tags: "гуманоиды, VLA"
+  - kind: brand
+    match: Tesla
+    tags: "гуманоиды, индустрия"
+  - kind: brand
+    match: Apptronik
+    tags: "гуманоиды, промышленная автоматизация"
+  - kind: brand
+    match: ANYbotics
+    tags: "биоинспирированная робототехника, навигация"
+  - kind: type
+    match: humanoid
+    tags: "гуманоиды, роботы"
+  - kind: type
+    match: quadruped
+    tags: "биоинспирированная робототехника, роботы"
+  - kind: type
+    match: cobot
+    tags: "коботы, манипуляторы"
+  - kind: type
+    match: manipulator
+    tags: "манипуляторы, манипуляция"
+  - kind: type
+    match: amr
+    tags: "навигация, автономность, складская логистика"
+  - kind: type
+    match: exoskeleton
+    tags: "экзоскелеты"
+  - kind: type
+    match: drone
+    tags: "навигация, автономность"
+  - kind: type
+    match: soft
+    tags: "мягкая робототехника, тактильность"

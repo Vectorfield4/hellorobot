@@ -45,11 +45,10 @@ const raw: StoreProduct = {
 };
 
 describe("mapStoreProduct", () => {
-  it("переносит цену, наличие и картинки", () => {
+  it("переносит наличие и картинки, цену не форматирует", () => {
     const product = mapStoreProduct(raw);
     expect(product.id).toBe(42);
-    expect(product.priceLabel).toBe("1 890 000,00 ₽");
-    expect(product.regularPriceLabel).toBe("");
+    expect(product).not.toHaveProperty("priceLabel");
     expect(product.inStock).toBe(false);
     expect(product.onBackorder).toBe(true);
     expect(product.cover?.thumbnail).toBe("https://example.com/g1-thumb.jpg");
@@ -67,7 +66,6 @@ describe("mapStoreProduct", () => {
 
   it("выживает без цен, картинок и тегов", () => {
     const bare = mapStoreProduct({ id: 1, name: "Без цены", slug: "bez-ceny" });
-    expect(bare.priceLabel).toBe("Цена по запросу");
     expect(bare.cover).toBeNull();
     expect(bare.tags).toEqual([]);
     expect(bare.inStock).toBe(true);

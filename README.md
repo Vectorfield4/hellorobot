@@ -63,13 +63,14 @@ Without a marker the block is appended after the article body.
 ### Products into WooCommerce
 
 ```bash
-node scripts/products.mjs ensure --slug <article-slug>      # is the article's tag covered?
-node scripts/products.mjs import --file products/catalog.json --dry-run
-node scripts/products.mjs import --file products/catalog.json
+# the shop tree lives in the global skills repo, not in this project
+/add-products                    # or: node "$env:USERPROFILE/.config/opencode/skills/content/shop-audit/scripts/audit.mjs"
 ```
 
-`ensure` exits `0` when at least one article tag has a product, `1` when it does not, `2`
-when WC REST keys are missing. See [docs/products.md](docs/products.md).
+The tree audits article tags, harvests brand catalogues, maps models to blog tags, gates on
+trusted brand + uniqueness + spec, merges `products/catalog.json` and writes to WooCommerce.
+Prices never reach WordPress: they stay in `data/<host>/prices.yaml` and are given on the
+phone. See [docs/products.md](docs/products.md).
 
 ## WordPress side
 

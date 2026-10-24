@@ -2,235 +2,311 @@
   "currency": "RUB",
   "products": [
     {
-      "sku": "HR-UNITREE-G1",
-      "name": "Unitree G1",
-      "slug": "unitree-g1",
-      "type": "simple",
-      "status": "draft",
-      "price": "0",
-      "regular_price": "0",
-      "sale_price": "",
-      "stock_status": "onbackorder",
-      "manage_stock": false,
-      "short_description": "Человекоподобный робот Unitree G1 для лабораторий и демонстраций.",
-      "description": "Человекоподобный робот Unitree G1. Производитель выпускает несколько конфигураций, которые отличаются числом степеней свободы и кистями. Для лабораторий это платформа, на которой проверяют алгоритмы ходьбы и захвата, а не готовый бытовой помощник.",
-      "categories": ["Гуманоиды"],
-      "tags": ["гуманоиды", "роботы", "исследования", "стартапы"],
-      "images": [],
-      "review_note": "уточнить цену, версию (число степеней свободы), наличие и фото"
-    },
-    {
-      "sku": "HR-UNITREE-GO2",
-      "name": "Unitree Go2",
-      "slug": "unitree-go2",
-      "type": "simple",
-      "status": "draft",
-      "price": "0",
-      "regular_price": "0",
-      "sale_price": "",
-      "stock_status": "onbackorder",
-      "manage_stock": false,
-      "short_description": "Четырёхногий робот Unitree Go2: навигация по лидару, обучение автономному движению.",
-      "description": "Четырёхногий робот Unitree Go2. Приводы управляются по усилию, лидар стоит в части версий и используется для навигации и построения карты. Робота берут для обследования помещений и как платформу для обучения автономному движению.",
       "categories": ["Мобильные роботы"],
-      "tags": ["биоинспирированная робототехника", "навигация", "автономность", "роботы"],
-      "images": [],
-      "review_note": "уточнить цену, версию (Pro/Edu) и есть ли лидар в комплектации"
-    },
-    {
-      "sku": "HR-BD-SPOT",
-      "name": "Boston Dynamics Spot",
-      "slug": "boston-dynamics-spot",
-      "type": "simple",
-      "status": "draft",
-      "price": "0",
-      "regular_price": "0",
-      "sale_price": "",
-      "stock_status": "onbackorder",
-      "manage_stock": false,
-      "short_description": "Четвероногий робот Boston Dynamics Spot для обходов и инспекций.",
       "description": "Четвероногий робот Boston Dynamics Spot. Основная работа — обходы и инспекции промышленных объектов: камеры, тепловизоры и газоанализаторы ставятся на штатную спинку. Продаётся через дистрибьюторов, доступ к SDK и автономным миссиям оформляется отдельно.",
-      "categories": ["Мобильные роботы"],
-      "tags": ["биоинспирированная робототехника", "навигация", "автономность", "робототехника"],
       "images": [],
-      "review_note": "уточнить цену, комплектацию и наличие у дистрибьютора"
+      "name": "Boston Dynamics Spot",
+      "review_note": "",
+      "short_description": "Четвероногий робот Boston Dynamics Spot для обходов и инспекций.",
+      "sku": "HR-BD-SPOT",
+      "slug": "boston-dynamics-spot",
+      "status": "draft",
+      "stock_status": "onbackorder",
+      "tags": ["автономность", "биоинспирированная робототехника", "навигация", "робототехника"],
+      "type": "simple"
     },
     {
-      "sku": "HR-UR5E",
-      "name": "Universal Robots UR5e",
-      "slug": "universal-robots-ur5e",
-      "type": "simple",
-      "status": "draft",
-      "price": "0",
-      "regular_price": "0",
-      "sale_price": "",
-      "stock_status": "onbackorder",
-      "manage_stock": false,
-      "short_description": "Коллаборативный манипулятор UR5e: 5 кг нагрузки, вылет 850 мм.",
-      "description": "Коллаборативный манипулятор Universal Robots UR5e: полезная нагрузка 5 кг, вылет 850 мм — данные производителя. Программируется с пульта PolyScope, ставится на стол или на мобильную платформу. Типовые задачи — обслуживание станков, подача заготовок, паллетирование мелких деталей.",
       "categories": ["Манипуляторы"],
+      "description": "Исследовательский манипулятор Franka Emika Panda с датчиками момента в каждом сочленении. Управляется через ROS и franka_ros, поэтому часто появляется в статьях по обучению с подкреплением и захвату. Датчики дают роботу чувство контакта, которого нет у обычных промышленных манипуляторов.",
+      "images": [],
+      "name": "Franka Emika Panda",
+      "review_note": "",
+      "short_description": "Исследовательский манипулятор с датчиками момента в каждом сочленении.",
+      "sku": "HR-FRANKA-PANDA",
+      "slug": "franka-emika-panda",
+      "status": "draft",
+      "stock_status": "onbackorder",
+      "tags": ["исследования", "манипуляторы", "манипуляция", "тактильность"],
+      "type": "simple"
+    },
+    {
+      "categories": ["Мобильные роботы"],
+      "description": "Четвероногий робот Ghost Robotics Vision 60. Производитель позиционирует его для оборонных и охранных задач: патрулирование периметра, разведка, работа на пересечённой местности. Есть SDK для собственных приводов, поэтому робота используют и как исследовательскую платформу.",
+      "images": [],
+      "name": "Ghost Robotics Vision 60",
+      "review_note": "",
+      "short_description": "Четвёртое поколение четвероногого робота для патрулирования и разведки.",
+      "sku": "HR-GHOST-V60",
+      "slug": "ghost-robotics-vision-60",
+      "status": "draft",
+      "stock_status": "onbackorder",
+      "tags": [
+        "автономность",
+        "биоинспирированная робототехника",
+        "навигация",
+        "оборонная робототехника"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": ["Промышленная робототехника"],
+      "description": "Промышленный шестиосевой робот KUKA KR 6 R900 sixx: полезная нагрузка 6 кг, радиус действия 900 мм. Работает с контроллером KR C4, ставится на пол или на станину. Типичные задачи — сварка, сборка, укладка на поддон.",
+      "images": [],
+      "name": "KUKA KR 6 R900 sixx",
+      "review_note": "",
+      "short_description": "Промышленный шестиосевой робот KUKA: 6 кг нагрузки, радиус 900 мм.",
+      "sku": "HR-KUKA-KR6R900",
+      "slug": "kuka-kr-6-r900-sixx",
+      "status": "draft",
+      "stock_status": "onbackorder",
+      "tags": [
+        "индустрия",
+        "манипуляторы",
+        "промышленная автоматизация",
+        "промышленная робототехника"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": ["Мобильные роботы"],
+      "description": "Мобильная платформа MiR250 от Mobile Industrial Robots перевозит грузы внутри цеха и склада. Грузоподъёмность 250 кг, скорость до 2 м/с — данные производителя. Навигация идёт по лидару и маркерам, маршруты задаются в веб-интерфейсе без программирования.",
+      "images": [],
+      "name": "MiR250",
+      "review_note": "",
+      "short_description": "Мобильная платформа для перевозки грузов внутри цеха и склада.",
+      "sku": "HR-MIR250",
+      "slug": "mir250",
+      "status": "draft",
+      "stock_status": "onbackorder",
+      "tags": ["автономность", "навигация", "промышленная автоматизация", "складская логистика"],
+      "type": "simple"
+    },
+    {
+      "categories": ["Манипуляторы"],
+      "description": "Открытый манипулятор Robotis OpenManipulator-X собран на приводах DYNAMIXEL XM430. Модели, прошивки и пакеты для ROS 2 открыты, робот продаётся набором для сборки. Работает вместе с TurtleBot3, поэтому его часто берут для учебных задач по манипуляции.",
+      "images": [],
+      "name": "Robotis OpenManipulator-X",
+      "review_note": "",
+      "short_description": "Открытый манипулятор на DYNAMIXEL для обучения и ROS 2.",
+      "sku": "HR-OPENMANIP-X",
+      "slug": "robotis-openmanipulator-x",
+      "status": "draft",
+      "stock_status": "onbackorder",
+      "tags": ["исследования", "манипуляторы", "манипуляция", "открытое железо"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Microduck is a 25 cm biped robot with 15 motors, a camera, LiDAR and a grasping beak.",
+      "images": [
+        {
+          "src": "https://pollen-robotics.com/assets/og/og-microduck-squad-v2.jpg"
+        }
+      ],
+      "name": "Microduck",
+      "review_note": "",
+      "short_description": "Гуманоид Microduck.",
+      "sku": "HR-POLLEN-MICRODUCK",
+      "slug": "microduck",
+      "source_url": "https://pollen-robotics.com/microduck/",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["гуманоиды", "роботы"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Reachy Mini is an expressive, open-source companion robot for human interaction, creative coding, and AI experimentation.",
+      "images": [
+        {
+          "src": "https://pollen-robotics.com/assets/og/og-reachy-mini.jpg"
+        }
+      ],
+      "name": "Reachy Mini",
+      "review_note": "",
+      "short_description": "Робот Reachy Mini.",
+      "sku": "HR-POLLEN-REACHY-MINI",
+      "slug": "reachy-mini",
+      "source_url": "https://pollen-robotics.com/reachy-mini/",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["гуманоиды", "исследования", "манипуляторы", "открытое железо"],
+      "type": "simple"
+    },
+    {
+      "categories": ["Гуманоиды"],
+      "description": "Reachy 2 is the first open-source humanoid robot designed for embodied AI and real-world applications - the ideal bimanual mobile manipulator for AI & robotics labs.",
+      "images": [
+        {
+          "src": "https://pollen-robotics.com/assets/og/og-reachy-2.jpg"
+        }
+      ],
+      "name": "Reachy 2",
+      "review_note": "",
+      "short_description": "Гуманоид Reachy 2.",
+      "sku": "HR-REACHY-2",
+      "slug": "reachy-2",
+      "source_url": "https://pollen-robotics.com/reachy-2/",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["гуманоиды", "исследования", "манипуляторы", "манипуляция", "открытое железо"],
+      "type": "simple"
+    },
+    {
+      "categories": ["Захваты"],
+      "description": "Мягкий захват Soft Robotics mGrip: силиконовые пальцы с пневматическим приводом подстраиваются под форму продукта. Применяется на пищевых и упаковочных линиях, где жёсткий захват повреждает продукт. Нужна пневмолиния и контроллер давления, поэтому захват ставят не на любой манипулятор.",
+      "images": [],
+      "name": "Soft Robotics mGrip",
+      "review_note": "",
+      "short_description": "Мягкий пневматический захват для пищевых и упаковочных линий.",
+      "sku": "HR-SOFT-MGRIP",
+      "slug": "soft-robotics-mgrip",
+      "status": "draft",
+      "stock_status": "onbackorder",
+      "tags": ["манипуляция", "мягкая робототехника", "промышленная автоматизация", "тактильность"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Unloaded can continuously walk 5h/20km. Lighter, Faster, Tougher. Weighs around 42kg, fully loaded can continuously walk 3h /12.5km.Premium mobile hardware platform, open for rapid development.2 industrtal LiDARs(front.& rear), HD camera + front light to detect the environment ahead. Wheel-Leg option available. Unleash greater performance.",
+      "images": [
+        {
+          "src": "https://shop.unitree.com/cdn/shop/files/304a80c2dd46b6ca7151240db18bcc75_7b114335-176d-4abd-80b1-ffce2614cbd0_800x.jpg?v=1769774094"
+        }
+      ],
+      "name": "Unitree A2",
+      "review_note": "",
+      "short_description": "Робот Unitree A2.",
+      "sku": "HR-UNITREE-A2",
+      "slug": "unitree-a2",
+      "source_url": "https://shop.unitree.com/products/unitree-a2",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["роботы"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Unitree B1 has the characteristics of all-weather operation, strong load and expansion space, multi-dimensional perception, full scene coverage, strong computing power and accurate insights.",
+      "images": [
+        {
+          "src": "https://shop.unitree.com/cdn/shop/products/153_1312x.jpg?v=1668073744"
+        }
+      ],
+      "name": "Unitree B1",
+      "review_note": "",
+      "short_description": "Четырёхногий робот Unitree B1.",
+      "sku": "HR-UNITREE-B1",
+      "slug": "unitree-b1",
+      "source_url": "https://shop.unitree.com/products/unitree-b1",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["биоинспирированная робототехника"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Go Beyond the Limits, Lead The Industry Application.Fastest running industrial-grade quadruped robot at 6m/sExcellent terrain adaptability to ensure stable travel on slippery or uneven surfaces.Excellent sustained stair climbing, effortlessly tackling steps.170% increase in joint performance with 360 N.m of torqueSuperior obstacle-crossing ability, easy to cross the mess of wood piles, 40cm hig...",
+      "images": [
+        {
+          "src": "https://shop.unitree.com/cdn/shop/files/1_e701c6a6-1448-4504-a895-385a64140740_569x.jpg?v=1718359410"
+        }
+      ],
+      "name": "Unitree B2",
+      "review_note": "",
+      "short_description": "Четырёхногий робот Unitree B2.",
+      "sku": "HR-UNITREE-B2",
+      "slug": "unitree-b2",
+      "source_url": "https://shop.unitree.com/products/unitree-b2",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["биоинспирированная робототехника", "роботы"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Unitree B2-WGo Further with Higher EfficiencyPioneer Technology Leading the Intelligent Future",
+      "images": [
+        {
+          "src": "https://shop.unitree.com/cdn/shop/files/1_8046f099-5c7f-48b9-bf2a-a9738b5e7adf_800x.jpg?v=1718273940"
+        }
+      ],
+      "name": "Unitree B2-W",
+      "review_note": "model tokens \"unitree b2\" already exist on the site",
+      "short_description": "Четырёхногий робот Unitree B2-W.",
+      "sku": "HR-UNITREE-B2-W",
+      "slug": "unitree-b2-w",
+      "source_url": "https://shop.unitree.com/products/unitree-b2-w",
+      "status": "draft",
+      "stock_status": "onbackorder",
+      "tags": ["биоинспирированная робототехника"],
+      "type": "simple"
+    },
+    {
+      "categories": ["Гуманоиды"],
+      "description": "Unlock unlimited sports potential (Extra large joint movement space angle, 23~43 joints) Force control of dexterous hands, manipulation of all thingsImitation & reinforcement learning driven Robot world model, let’s create it together More introduction: https://www.unitree.com/g1",
+      "images": [
+        {
+          "src": "https://shop.unitree.com/cdn/shop/files/2_3769ceea-b323-4ebc-a1f4-e27a9624706b_800x.jpg?v=1717575246"
+        }
+      ],
+      "name": "Unitree G1",
+      "review_note": "",
+      "short_description": "Гуманоид Unitree G1.",
+      "sku": "HR-UNITREE-G1",
+      "slug": "unitree-g1",
+      "source_url": "https://shop.unitree.com/products/unitree-g1",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["гуманоиды", "исследования", "роботы", "стартапы"],
+      "type": "simple"
+    },
+    {
+      "categories": ["Мобильные роботы"],
+      "description": "Четырёхногий робот Unitree Go2. Приводы управляются по усилию, лидар стоит в части версий и используется для навигации и построения карты. Робота берут для обследования помещений и как платформу для обучения автономному движению.",
+      "images": [],
+      "name": "Unitree Go2",
+      "review_note": "???????? ?????? (Pro/Edu) ? ??????? ?????? ? ????????????",
+      "short_description": "Четырёхногий робот Unitree Go2: навигация по лидару, обучение автономному движению.",
+      "sku": "HR-UNITREE-GO2",
+      "slug": "unitree-go2",
+      "status": "draft",
+      "stock_status": "onbackorder",
+      "tags": ["автономность", "биоинспирированная робототехника", "навигация", "роботы"],
+      "type": "simple"
+    },
+    {
+      "categories": ["Манипуляторы"],
+      "description": "Коллаборативный манипулятор Universal Robots UR5e: полезная нагрузка 5 кг, вылет 850 мм — данные производителя. Программируется с пульта PolyScope, ставится на стол или на мобильную платформу. Типовые задачи — обслуживание станков, подача заготовок, паллетирование мелких деталей.",
+      "images": [],
+      "name": "Universal Robots UR5e",
+      "review_note": "",
+      "short_description": "Коллаборативный манипулятор UR5e: 5 кг нагрузки, вылет 850 мм.",
+      "sku": "HR-UR5E",
+      "slug": "universal-robots-ur5e",
+      "status": "draft",
+      "stock_status": "onbackorder",
       "tags": [
         "коботы",
         "манипуляторы",
-        "промышленная робототехника",
-        "промышленная автоматизация"
-      ],
-      "images": [],
-      "review_note": "уточнить цену, наличие и фото; проверить, какая версия ПО идёт в поставке"
-    },
-    {
-      "sku": "HR-KUKA-KR6R900",
-      "name": "KUKA KR 6 R900 sixx",
-      "slug": "kuka-kr-6-r900-sixx",
-      "type": "simple",
-      "status": "draft",
-      "price": "0",
-      "regular_price": "0",
-      "sale_price": "",
-      "stock_status": "onbackorder",
-      "manage_stock": false,
-      "short_description": "Промышленный шестиосевой робот KUKA: 6 кг нагрузки, радиус 900 мм.",
-      "description": "Промышленный шестиосевой робот KUKA KR 6 R900 sixx: полезная нагрузка 6 кг, радиус действия 900 мм. Работает с контроллером KR C4, ставится на пол или на станину. Типичные задачи — сварка, сборка, укладка на поддон.",
-      "categories": ["Промышленная робототехника"],
-      "tags": [
-        "промышленная робототехника",
-        "манипуляторы",
         "промышленная автоматизация",
-        "индустрия"
+        "промышленная робототехника"
       ],
-      "images": [],
-      "review_note": "уточнить цену, версию контроллера и наличие"
+      "type": "simple"
     },
     {
-      "sku": "HR-FRANKA-PANDA",
-      "name": "Franka Emika Panda",
-      "slug": "franka-emika-panda",
-      "type": "simple",
-      "status": "draft",
-      "price": "0",
-      "regular_price": "0",
-      "sale_price": "",
-      "stock_status": "onbackorder",
-      "manage_stock": false,
-      "short_description": "Исследовательский манипулятор с датчиками момента в каждом сочленении.",
-      "description": "Исследовательский манипулятор Franka Emika Panda с датчиками момента в каждом сочленении. Управляется через ROS и franka_ros, поэтому часто появляется в статьях по обучению с подкреплением и захвату. Датчики дают роботу чувство контакта, которого нет у обычных промышленных манипуляторов.",
-      "categories": ["Манипуляторы"],
-      "tags": ["манипуляторы", "манипуляция", "исследования", "тактильность"],
-      "images": [],
-      "review_note": "уточнить цену и сроки поставки; проверить, продаётся ли Franka Research 3 вместо Panda"
-    },
-    {
-      "sku": "HR-REACHY-2",
-      "name": "Reachy 2",
-      "slug": "reachy-2",
-      "type": "simple",
-      "status": "draft",
-      "price": "0",
-      "regular_price": "0",
-      "sale_price": "",
-      "stock_status": "onbackorder",
-      "manage_stock": false,
-      "short_description": "Человекоподобный торс с двумя руками и подвижной головой, открытый SDK.",
-      "description": "Reachy 2 от Pollen Robotics (проект перешёл под Hugging Face) — человекоподобный торс с двумя руками и подвижной головой. SDK открыт, поэтому робота берут в исследования человеко-роботного взаимодействия. Ног у Reachy нет: это настольная платформа, а не полноразмерный гуманоид.",
-      "categories": ["Гуманоиды"],
-      "tags": ["гуманоиды", "манипуляция", "исследования", "открытое железо"],
-      "images": [],
-      "review_note": "уточнить цену и сроки поставки; проверить условия для вузов"
-    },
-    {
-      "sku": "HR-OPENMANIP-X",
-      "name": "Robotis OpenManipulator-X",
-      "slug": "robotis-openmanipulator-x",
-      "type": "simple",
-      "status": "draft",
-      "price": "0",
-      "regular_price": "0",
-      "sale_price": "",
-      "stock_status": "onbackorder",
-      "manage_stock": false,
-      "short_description": "Открытый манипулятор на DYNAMIXEL для обучения и ROS 2.",
-      "description": "Открытый манипулятор Robotis OpenManipulator-X собран на приводах DYNAMIXEL XM430. Модели, прошивки и пакеты для ROS 2 открыты, робот продаётся набором для сборки. Работает вместе с TurtleBot3, поэтому его часто берут для учебных задач по манипуляции.",
-      "categories": ["Манипуляторы"],
-      "tags": ["манипуляторы", "манипуляция", "открытое железо", "исследования"],
-      "images": [],
-      "review_note": "уточнить цену набора, наличие и состав комплектации"
-    },
-    {
-      "sku": "HR-SOFT-MGRIP",
-      "name": "Soft Robotics mGrip",
-      "slug": "soft-robotics-mgrip",
-      "type": "simple",
-      "status": "draft",
-      "price": "0",
-      "regular_price": "0",
-      "sale_price": "",
-      "stock_status": "onbackorder",
-      "manage_stock": false,
-      "short_description": "Мягкий пневматический захват для пищевых и упаковочных линий.",
-      "description": "Мягкий захват Soft Robotics mGrip: силиконовые пальцы с пневматическим приводом подстраиваются под форму продукта. Применяется на пищевых и упаковочных линиях, где жёсткий захват повреждает продукт. Нужна пневмолиния и контроллер давления, поэтому захват ставят не на любой манипулятор.",
-      "categories": ["Захваты"],
-      "tags": ["мягкая робототехника", "тактильность", "манипуляция", "промышленная автоматизация"],
-      "images": [],
-      "review_note": "уточнить цену, тип пальцев и наличие; проверить требования к пневмолинии"
-    },
-    {
-      "sku": "HR-MIR250",
-      "name": "MiR250",
-      "slug": "mir250",
-      "type": "simple",
-      "status": "draft",
-      "price": "0",
-      "regular_price": "0",
-      "sale_price": "",
-      "stock_status": "onbackorder",
-      "manage_stock": false,
-      "short_description": "Мобильная платформа для перевозки грузов внутри цеха и склада.",
-      "description": "Мобильная платформа MiR250 от Mobile Industrial Robots перевозит грузы внутри цеха и склада. Грузоподъёмность 250 кг, скорость до 2 м/с — данные производителя. Навигация идёт по лидару и маркерам, маршруты задаются в веб-интерфейсе без программирования.",
-      "categories": ["Мобильные роботы"],
-      "tags": ["складская логистика", "навигация", "автономность", "промышленная автоматизация"],
-      "images": [],
-      "review_note": "уточнить цену, наличие и комплектацию верхнего модуля"
-    },
-    {
-      "sku": "HR-GHOST-V60",
-      "name": "Ghost Robotics Vision 60",
-      "slug": "ghost-robotics-vision-60",
-      "type": "simple",
-      "status": "draft",
-      "price": "0",
-      "regular_price": "0",
-      "sale_price": "",
-      "stock_status": "onbackorder",
-      "manage_stock": false,
-      "short_description": "Четвёртое поколение четвероногого робота для патрулирования и разведки.",
-      "description": "Четвероногий робот Ghost Robotics Vision 60. Производитель позиционирует его для оборонных и охранных задач: патрулирование периметра, разведка, работа на пересечённой местности. Есть SDK для собственных приводов, поэтому робота используют и как исследовательскую платформу.",
-      "categories": ["Мобильные роботы"],
-      "tags": [
-        "оборонная робототехника",
-        "биоинспирированная робототехника",
-        "автономность",
-        "навигация"
-      ],
-      "images": [],
-      "review_note": "уточнить цену и условия поставки: оборонный сегмент, продажа только через партнёров"
-    },
-    {
-      "sku": "HR-ZIGGY",
-      "name": "EV Safe Charge ZiGGY",
-      "slug": "ev-safe-charge-ziggy",
-      "type": "simple",
-      "status": "draft",
-      "price": "0",
-      "regular_price": "0",
-      "sale_price": "",
-      "stock_status": "onbackorder",
-      "manage_stock": false,
-      "short_description": "Мобильный зарядный робот: возит батарею к электромобилю на парковке.",
-      "description": "Мобильный зарядный робот EV Safe Charge ZiGGY подъезжает к электромобилю на парковке и работает вместо стационарной зарядной станции. Идея в том, чтобы не тянуть кабель к каждому месту и не занимать его зарядкой после окончания сессии. Серийный статус продукта стоит уточнить у производителя перед публикацией.",
       "categories": ["Сервисные роботы"],
-      "tags": ["электромобили", "автономность", "навигация", "стартапы"],
+      "description": "Мобильный зарядный робот EV Safe Charge ZiGGY подъезжает к электромобилю на парковке и работает вместо стационарной зарядной станции. Идея в том, чтобы не тянуть кабель к каждому месту и не занимать его зарядкой после окончания сессии. Серийный статус продукта стоит уточнить у производителя перед публикацией.",
       "images": [],
-      "review_note": "уточнить серийный статус и цену; возможно, товар недоступен для продажи"
+      "name": "EV Safe Charge ZiGGY",
+      "review_note": "",
+      "short_description": "Мобильный зарядный робот: возит батарею к электромобилю на парковке.",
+      "sku": "HR-ZIGGY",
+      "slug": "ev-safe-charge-ziggy",
+      "status": "draft",
+      "stock_status": "onbackorder",
+      "tags": ["автономность", "навигация", "стартапы", "электромобили"],
+      "type": "simple"
     }
   ]
 }

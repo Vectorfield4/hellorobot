@@ -2,18 +2,11 @@
 import BaseLayout from "@/app/layouts/BaseLayout.astro";
 import { canonicalTag } from "@/shared/config/productTags";
 import { getPosts, type Post } from "@/shared/data/posts";
-import {
-  type Product,
-  productCategoryPath,
-  productPriceLabel,
-  productTagPath,
-} from "@/shared/data/product";
+import { type Product, productCategoryPath, productTagPath } from "@/shared/data/product";
 import { getProducts, getRelatedProducts } from "@/shared/data/products";
-import type { StorePrices } from "@/shared/lib/price";
 import OrderForm from "@/shared/ui/order/OrderForm";
 import ProductGallery from "@/shared/ui/product/ProductGallery";
 import ProductGrid from "@/shared/ui/product/ProductGrid";
-import ProductPrice from "@/shared/ui/product/ProductPrice";
 import StockBadge from "@/shared/ui/product/StockBadge";
 
 export async function getStaticPaths() {
@@ -52,21 +45,9 @@ const relatedPosts = productTagCanon.size
       .slice(0, 5)
   : [];
 
-/** Минорные единицы Store API → десятичная строка для JSON-LD. */
-function offerPrice(prices: StorePrices | null): string {
-  if (!prices) return "";
-  const digits = prices.price.replace(/[^\d]/g, "");
-  if (!digits) return "";
-  const minorUnit = Number.isFinite(prices.currency_minor_unit)
-    ? Math.max(0, Math.floor(prices.currency_minor_unit))
-    : 0;
-  const padded = digits.padStart(minorUnit + 1, "0");
-  const whole = padded.slice(0, padded.length - minorUnit) || "0";
-  const fraction = minorUnit > 0 ? padded.slice(padded.length - minorUnit) : "";
-  return fraction ? `${whole}.${fraction}` : whole;
-}
-
-const price = offerPrice(product.prices);
+// Цены на странице нет: сайт показывает робота, стоимость называем по телефону.
+// Поэтому и в JSON-LD нет `offers` — иначе поисковик получил бы цену, которой
+// в оферте нет.
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Product",
@@ -74,22 +55,7 @@ const jsonLd = {
   ...(product.excerpt ? { description: product.excerpt } : {}),
   ...(product.sku ? { sku: product.sku } : {}),
   ...(product.images.length ? { image: product.images.map((image) => image.src) } : {}),
-  ...(price
-    ? {
-        offers: {
-          "@type": "Offer",
-          price,
-          priceCurrency: product.prices?.currency_code,
-          availability: product.inStock
-            ? "https://schema.org/InStock"
-            : product.onBackorder
-              ? "https://schema.org/BackOrder"
-              : "https://schema.org/OutOfStock",
-        },
-      }
-    : {}),
 };
-
 const chipStyle =
   "font-size:0.8rem;padding:0.2rem 0.5rem;border-radius:0.5rem;background:#0066cc;color:#fff;text-decoration:none;";
 
@@ -112,11 +78,6 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
     <h1 style="margin: 1.5rem 0 0.75rem;">{product.name}</h1>
 
     <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-      <ProductPrice
-        priceLabel={productPriceLabel(product)}
-        regularPriceLabel={product.regularPriceLabel}
-        onSale={product.onSale}
-      />
       <StockBadge inStock={product.inStock} onBackorder={product.onBackorder} />
     </div>
 
@@ -149,22 +110,7 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
     )}
 
     <div style="margin-top: 2rem; padding: 1.25rem; border: 1px solid #ddd; border-radius: 0.5rem;">
-      {product.purchasable ? (
-        <OrderForm
-          client:load
-          productId={product.id}
-          productName={product.name}
-          priceLabel={product.priceLabel}
-        />
-      ) : (
-        <>
-          <h2 style="font-size: 1.2rem; margin-top: 0;">Оформить заказ</h2>
-          <p style="margin-bottom: 0;">
-            Заказ по запросу: условия поставки этой модели согласуются отдельно.{" "}
-            <a href="/products">Вернуться в каталог</a>
-          </p>
-        </>
-      )}
+      <OrderForm client:load productId={product.id} productName={product.name} />
     </div>
 
     {related.length > 0 && (

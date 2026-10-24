@@ -1,0 +1,97 @@
+# Стартовый allowlist брендов для магазина.
+#
+# `shop-vendors init` копирует этот файл в `data/<host>/sellers.yaml` при первом
+# прогоне. Настоящий список живёт в `data/` и в git не попадает: это внутренний
+# сигнал доверия, а не публичная страница.
+#
+# kind: brand — производитель, seller — продавец/дистрибьютор.
+# flagship — премиальные модели бренда, comma-список. Нужны, когда на сайте
+# бренда нет публичной цены: премиальность решается по этому полю, а не по цене.
+host: hello-robot.ru
+updated_at: "2026-10-24T00:00:00Z"
+items:
+  - name: 1X
+    domain: 1x.tech
+    kind: brand
+    flagship: "NEO"
+    note: ""
+  - name: Agility Robotics
+    domain: agilityrobotics.com
+    kind: brand
+    flagship: "Digit"
+    note: ""
+  - name: ANYbotics
+    domain: anybotics.com
+    kind: brand
+    flagship: "ANYmal X"
+    note: ""
+  - name: Apptronik
+    domain: apptronik.com
+    kind: brand
+    flagship: "Apollo"
+    note: ""
+  - name: Boston Dynamics
+    domain: bostondynamics.com
+    kind: brand
+    flagship: "Atlas, Spot"
+    note: ""
+  - name: EV Safe Charge
+    domain: evsafecharge.com
+    kind: brand
+    flagship: "ZiGGY"
+    note: ""
+  - name: Figure
+    domain: figure.ai
+    kind: brand
+    flagship: "Figure 03"
+    note: ""
+  - name: Franka Emika
+    domain: franka.de
+    kind: brand
+    flagship: "Franka Research 3"
+    note: ""
+  - name: Ghost Robotics
+    domain: ghostrobotics.com
+    kind: brand
+    flagship: "Vision 60"
+    note: ""
+  - name: KUKA
+    domain: kuka.com
+    kind: brand
+    flagship: "KR 1000 titan, KR 70 R2100"
+    note: ""
+  - name: Mobile Industrial Robots
+    domain: mobile-industrial-robots.com
+    kind: brand
+    flagship: "MiR1200 Pallet Jack, MiR600"
+    note: ""
+  - name: Pollen Robotics
+    domain: pollen-robotics.com
+    kind: brand
+    flagship: "Reachy 2"
+    note: ""
+  - name: Robotis
+    domain: robotis.com
+    kind: brand
+    flagship: "OpenManipulator-X"
+    note: ""
+  - name: Soft Robotics
+    domain: softroboticsinc.com
+    kind: brand
+    flagship: "mGrip"
+    note: ""
+  - name: Tesla
+    domain: tesla.com
+    kind: brand
+    flagship: "Optimus"
+    note: ""
+  - name: Unitree
+    domain: unitree.com
+    kind: brand
+    flagship: "H1, G1"
+    note: ""
+  - name: Universal Robots
+    domain: universal-robots.com
+    kind: brand
+    flagship: "UR30, UR20"
+    note: ""

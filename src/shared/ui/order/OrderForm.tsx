@@ -15,7 +15,6 @@ import {
 interface Props {
   productId: number;
   productName: string;
-  priceLabel?: string;
 }
 
 type FormStatus =
@@ -147,7 +146,7 @@ function errorToStatus(error: unknown): FormStatus {
   };
 }
 
-export default function OrderForm({ productId, productName, priceLabel }: Props) {
+export default function OrderForm({ productId, productName }: Props) {
   const uid = useId().replace(/[^a-zA-Z0-9_-]/g, "");
   const inputId = (field: string) => `${uid}-${field}`;
   const errorId = (field: string) => `${uid}-${field}-error`;
@@ -236,10 +235,9 @@ export default function OrderForm({ productId, productName, priceLabel }: Props)
 
       <div {...stylex.props(styles.summary)}>
         <span {...stylex.props(styles.productName)}>{productName}</span>
-        {priceLabel && <span {...stylex.props(styles.price)}>{priceLabel}</span>}
         <span {...stylex.props(styles.quantity)}>1 шт.</span>
         <p {...stylex.props(styles.note)}>
-          Оплата не на сайте: менеджер подтвердит наличие и способ получения.
+          Оплата не на сайте: менеджер подтвердит наличие, стоимость и способ получения.
         </p>
       </div>
 

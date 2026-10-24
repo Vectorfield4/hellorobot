@@ -18,8 +18,6 @@ export interface StorePrices {
   currency_suffix: string;
 }
 
-export const PRICE_ON_REQUEST = "Цена по запросу";
-
 export interface FormatPriceOptions {
   decimalSeparator?: string;
   thousandSeparator?: string;
@@ -59,10 +57,15 @@ export function formatMinorUnits(
   return `${negative ? "-" : ""}${options.prefix ?? ""}${number}${options.suffix ?? ""}`;
 }
 
+/**
+ * Форматирует цену магазина. Нулевая или пустая цена — пустая строка:
+ * страница показывает робота, цену называем по телефону, поэтому «цена по
+ * запросу» на витрине не появляется вовсе.
+ */
 export function formatStorePrice(prices: StorePrices | undefined | null): string {
-  if (!prices) return PRICE_ON_REQUEST;
+  if (!prices) return "";
   const significant = onlyDigits(prices.price).replace(/^0+/, "");
-  if (!significant) return PRICE_ON_REQUEST;
+  if (!significant) return "";
   return formatMinorUnits(prices.price, prices.currency_minor_unit, {
     decimalSeparator: prices.currency_decimal_separator,
     thousandSeparator: prices.currency_thousand_separator,

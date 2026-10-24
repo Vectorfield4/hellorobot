@@ -55,7 +55,7 @@ describe("getProducts", () => {
 
     const products = await getProducts();
     expect(products).toHaveLength(1);
-    expect(products[0]?.priceLabel).toBe("1 890 000,00 ₽");
+    expect(products[0]?.prices?.price).toBe("189000000");
     expect(products[0]?.tags[0]?.name).toBe("гуманоиды");
   });
 
