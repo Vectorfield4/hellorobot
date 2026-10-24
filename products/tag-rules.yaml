@@ -21,10 +21,6 @@ rule:
     tags: "навигация, автономность, роботы"
     robot: quadruped
   - kind: model
-    match: unitree h1
-    tags: "гуманоиды, роботы"
-    robot: humanoid
-  - kind: model
     match: boston dynamics spot
     tags: "навигация, автономность, биоинспирированная робототехника"
   - kind: model
@@ -148,10 +144,11 @@ rule:
     tags: "биоинспирированная робототехника, навигация, инспекция"
     robot: quadruped
   # Unitree Z1 (JSON-LD): «super-lightweight robotic arm, designed for Unitree
-  # robot dogs» — это манипулятор, а не биоинспирированный робот.
+  # robot dogs» — это манипулятор, а не биоинспирированный робот. Лежит в
+  # коллекции education-industry, не в humanoid-robot.
   - kind: model
     match: unitree z1
-    tags: "манипуляторы, роботы"
+    tags: "манипуляторы, манипуляция"
     robot: manipulator
   # Epson G1 Mini (JSON-LD): «SCARA Robots - 175mm» — манипулятор, не гуманоид
   # (слово «g1» в имени ложно срабатывало на тип humanoid).
@@ -159,12 +156,17 @@ rule:
     match: epson g1 mini
     tags: "манипуляторы, промышленная робототехника"
     robot: manipulator
-  # Unitree H1: название страницы «Unitree H1（Contact us for the real price）»,
-  # а в описании стоит цена («Price below $90k») — такая карточка нарушает
-  # правило «цена не покидает data/<host>/prices.yaml».
+  # Unitree H1: бренд держит H1 в коллекции `collections/humanoid-robot`
+  # (вместе с G1, H2, H2 Plus, R1, R1-D), но единственная снятая страница —
+  # заглушка «Unitree H1（Contact us for the real price）», и в её описании
+  # стоит цена: «Embodied AI, Price below $90k». Публиковать такую карточку
+  # значит вынести цену на витрину, поэтому тегов нет: модель остаётся
+  # распознанной (robot: humanoid) и попадает в отчёт как unmapped, пока у H1
+  # не появится страница без цены.
   - kind: model
-    match: unitree h1 contact
+    match: unitree h1
     tags: ""
+    robot: humanoid
   # Не роботы: стойки, рельсы, пульты, захваты и вспомогательная оснастка.
   - kind: model
     match: swivellink
@@ -186,4 +188,61 @@ rule:
     tags: ""
   - kind: model
     match: smart tool
+    tags: ""
+
+# --- Unitree: коллекция humanoid-robot и body_html со shop.unitree.com ---
+#
+# Бренд сам делит товары по коллекциям, и это факт со страницы, а не догадка:
+# `/collections/humanoid-robot/products.json` отдаёт R1, G1, Dex5-S, H2 Plus,
+# R1-D, H2, H1. Всё, что лежит в этой коллекции и продаётся как робот, получает
+# «гуманоиды, роботы» и `robot: humanoid`; аксессуары из неё (кисть Dex5-S)
+# отсекает tagmap как запчасть.
+  # H2 (body_html): «The 180 cm humanoid design…», «31 degrees of freedom,
+  # 360N.m joint torque» — человекоподобный корпус, продаётся отдельной моделью.
+  - kind: model
+    match: unitree h2
+    tags: "гуманоиды, роботы"
+    robot: humanoid
+  # H2 Plus (body_html): «Built on NVIDIA Isaac GROOT», «22 active DOF in the
+  # hands and 75 total body-and-hand DOF» — та же гуманоидная платформа.
+  - kind: model
+    match: unitree h2 plus
+    tags: "гуманоиды, роботы"
+    robot: humanoid
+  # R1-D (body_html): «High-performance computing module… the end can be
+  # quickly equipped with different actuators» — страница описывает модуль
+  # R1, но бренд держит R1-D в коллекции humanoid-robot, поэтому тип берём
+  # оттуда, а не из маркетинговой строки.
+  - kind: model
+    match: unitree r1-d
+    tags: "гуманоиды, роботы"
+    robot: humanoid
+  # Unitree R1 — гуманоид из той же коллекции, но правило не добавлено:
+  # tagmap сравнивает `match` как подстроку, и «unitree r1» захватил бы
+  # «Unitree R1-7a Bionic 7 Axis Dexterous Robotic Arm» — манипулятор из
+  # коллекции education-industry. Нужен точный матч в shop-tagmap.
+  # Go1 (slug страницы «…go1-quadruped-robot-dog», body_html: «capable of
+  # running at 4.7m/s … Intelligent Side-Follow System») — четвероногий.
+  - kind: model
+    match: unitree go1
+    tags: "биоинспирированная робототехника, навигация, роботы"
+    robot: quadruped
+  # As2 (body_html): «running, climbing, jumping… climb 50cm vertical platforms
+  # and 40° slopes», «self-weight: 18 kg», «Maximum joint torque: Approx. 90 N·m»,
+  # «Agile Bionic». Коллекция education-industry, не humanoid. Число ног
+  # страница не называет, поэтому `robot:` не ставим: тип остаётся за спекой,
+  # а теги — за фактами о бионической локомоции.
+  - kind: model
+    match: unitree as2
+    tags: "биоинспирированная робототехника, навигация, роботы"
+  # Dex5-S (body_html): «22 DoF per hand… Coming closer than ever to true human
+  # hand size» — кисть для G1, а не отдельный робот. Её и так отсекает
+  # tagmap по слову «hand», правило фиксирует решение явно.
+  - kind: model
+    match: dex5
+    tags: ""
+  # SV1-25 (body_html): «Embodied Stereo Binocular Camera… 220° Extra Large
+  # View», коллекция accessories — стереокамера, а не робот.
+  - kind: model
+    match: sv1
     tags: ""

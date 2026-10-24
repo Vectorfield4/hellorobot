@@ -2,7 +2,9 @@
   "currency": "RUB",
   "products": [
     {
-      "categories": ["Мобильные роботы"],
+      "categories": [
+        "Мобильные роботы"
+      ],
       "description": "Четвероногий робот Boston Dynamics Spot. Основная работа — обходы и инспекции промышленных объектов: камеры, тепловизоры и газоанализаторы ставятся на штатную спинку. Продаётся через дистрибьюторов, доступ к SDK и автономным миссиям оформляется отдельно.",
       "images": [],
       "name": "Boston Dynamics Spot",
@@ -12,7 +14,12 @@
       "slug": "boston-dynamics-spot",
       "status": "draft",
       "stock_status": "onbackorder",
-      "tags": ["автономность", "биоинспирированная робототехника", "навигация", "робототехника"],
+      "tags": [
+        "автономность",
+        "биоинспирированная робототехника",
+        "навигация",
+        "робототехника"
+      ],
       "type": "simple"
     },
     {
@@ -31,7 +38,11 @@
       "source_url": "https://www.devonics.com/product-page/emma1000l",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["автономность", "навигация", "складская логистика"],
+      "tags": [
+        "автономность",
+        "навигация",
+        "складская логистика"
+      ],
       "type": "simple"
     },
     {
@@ -50,7 +61,11 @@
       "source_url": "https://www.devonics.com/product-page/emma1500l",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["автономность", "навигация", "складская логистика"],
+      "tags": [
+        "автономность",
+        "навигация",
+        "складская логистика"
+      ],
       "type": "simple"
     },
     {
@@ -69,7 +84,34 @@
       "source_url": "https://www.devonics.com/product-page/fola",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["автономность", "навигация", "складская логистика"],
+      "tags": [
+        "автономность",
+        "навигация",
+        "складская логистика"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Omni-directional mobile robot, Omni wheel robot kit, Omni mobile robotSmart manufacturing for medical deviceNavigation Navigation mode - Laser+Vision+IMUOperation Precision - ±2mm/±0.2°Operating type - Chassis + CarrierPayload (kg) - ≥1000Mode of motion - 360°omni-directionRun Time (h) - 8Basic Parameters Dimension Support CustomizationBidirectionalOperating Type Chassis+CarrierPerformancePaylo...",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/098838_9ab98eb726274297aa95e643d448d0a1~mv2.png/v1/fit/w_500,h_500,q_90/file.png"
+        }
+      ],
+      "name": "OMNI",
+      "review_note": "",
+      "short_description": "Мобильный робот OMNI.",
+      "sku": "HR-DEVONICS-OMNI",
+      "slug": "omni",
+      "source_url": "https://www.devonics.com/product-page/omni",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "автономность",
+        "навигация",
+        "складская логистика"
+      ],
       "type": "simple"
     },
     {
@@ -88,7 +130,9 @@
       "source_url": "https://www.devonics.com/product-page/dh-3-three-finger-gripper",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["манипуляторы"],
+      "tags": [
+        "манипуляторы"
+      ],
       "type": "simple"
     },
     {
@@ -107,7 +151,9 @@
       "source_url": "https://www.devonics.com/product-page/adaptive-gripper-two-fingers-ag-105-45",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["манипуляторы"],
+      "tags": [
+        "манипуляторы"
+      ],
       "type": "simple"
     },
     {
@@ -126,7 +172,11 @@
       "source_url": "https://www.devonics.com/product-page/doosan-h2017",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["безопасность", "коботы", "манипуляторы"],
+      "tags": [
+        "безопасность",
+        "коботы",
+        "манипуляторы"
+      ],
       "type": "simple"
     },
     {
@@ -145,7 +195,11 @@
       "source_url": "https://www.devonics.com/product-page/doosan-h2515",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["безопасность", "коботы", "манипуляторы"],
+      "tags": [
+        "безопасность",
+        "коботы",
+        "манипуляторы"
+      ],
       "type": "simple"
     },
     {
@@ -164,7 +218,31 @@
       "source_url": "https://www.devonics.com/product-page/epson-g1-mini-scara-robots-175mm",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["манипуляторы", "промышленная робототехника"],
+      "tags": [
+        "манипуляторы",
+        "промышленная робототехника"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Product Highlights Ultra high performance and flexibility Handles heavy payloads from a small footprint Smooth motion and fast settling times with patented GYROPLUS technology Epson RC+ software helps create powerful automation solutions SafeSense technology can increase productivity and worker safety Also available in 850mm arm length",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/098838_0051850d3bda4ec5a4bbd99a19bc4169~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg"
+        }
+      ],
+      "name": "Epson GX10B SCARA Robot - 650mm",
+      "review_note": "",
+      "short_description": "Манипулятор Epson GX10B SCARA Robot - 650mm.",
+      "sku": "HR-EPSON-GX10B-SCARA-ROBOT-650MM",
+      "slug": "epson-gx10b-scara-robot-650mm",
+      "source_url": "https://www.devonics.com/product-page/epson-gx10b-scara-robot-650mm",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "манипуляторы"
+      ],
       "type": "simple"
     },
     {
@@ -183,11 +261,38 @@
       "source_url": "https://www.devonics.com/product-page/fairino-fr20",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["коботы", "манипуляторы"],
+      "tags": [
+        "коботы",
+        "манипуляторы"
+      ],
       "type": "simple"
     },
     {
-      "categories": ["Манипуляторы"],
+      "categories": [],
+      "description": "The FR30 collaborative robot (cobot) is one of the world’s most powerful 6-axis robotic arms, setting new standards in human-robot collaboration. Designed for high-demand applications, the FR30 is perfect for tasks requiring exceptional strength, such as palletizing, material handling, and high-torque operations.",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/5d8a82_b61f4108e7b94272a38c424839ebe3f5~mv2.avif/v1/fit/w_500,h_500,q_90/file.webp"
+        }
+      ],
+      "name": "DEVONICS FAIRINO FR30",
+      "review_note": "",
+      "short_description": "Кобот DEVONICS FAIRINO FR30.",
+      "sku": "HR-FAIRINO-DEVONICS-FAIRINO-FR30",
+      "slug": "devonics-fairino-fr30",
+      "source_url": "https://www.devonics.com/product-page/devonics-fairino-fr30",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "коботы",
+        "манипуляторы"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [
+        "Манипуляторы"
+      ],
       "description": "Исследовательский манипулятор Franka Emika Panda с датчиками момента в каждом сочленении. Управляется через ROS и franka_ros, поэтому часто появляется в статьях по обучению с подкреплением и захвату. Датчики дают роботу чувство контакта, которого нет у обычных промышленных манипуляторов.",
       "images": [],
       "name": "Franka Emika Panda",
@@ -197,11 +302,18 @@
       "slug": "franka-emika-panda",
       "status": "draft",
       "stock_status": "onbackorder",
-      "tags": ["исследования", "манипуляторы", "манипуляция", "тактильность"],
+      "tags": [
+        "исследования",
+        "манипуляторы",
+        "манипуляция",
+        "тактильность"
+      ],
       "type": "simple"
     },
     {
-      "categories": ["Мобильные роботы"],
+      "categories": [
+        "Мобильные роботы"
+      ],
       "description": "Четвероногий робот Ghost Robotics Vision 60. Производитель позиционирует его для оборонных и охранных задач: патрулирование периметра, разведка, работа на пересечённой местности. Есть SDK для собственных приводов, поэтому робота используют и как исследовательскую платформу.",
       "images": [],
       "name": "Ghost Robotics Vision 60",
@@ -220,7 +332,9 @@
       "type": "simple"
     },
     {
-      "categories": ["Промышленная робототехника"],
+      "categories": [
+        "Промышленная робототехника"
+      ],
       "description": "Промышленный шестиосевой робот KUKA KR 6 R900 sixx: полезная нагрузка 6 кг, радиус действия 900 мм. Работает с контроллером KR C4, ставится на пол или на станину. Типичные задачи — сварка, сборка, укладка на поддон.",
       "images": [],
       "name": "KUKA KR 6 R900 sixx",
@@ -239,7 +353,9 @@
       "type": "simple"
     },
     {
-      "categories": ["Мобильные роботы"],
+      "categories": [
+        "Мобильные роботы"
+      ],
       "description": "Мобильная платформа MiR250 от Mobile Industrial Robots перевозит грузы внутри цеха и склада. Грузоподъёмность 250 кг, скорость до 2 м/с — данные производителя. Навигация идёт по лидару и маркерам, маршруты задаются в веб-интерфейсе без программирования.",
       "images": [],
       "name": "MiR250",
@@ -249,11 +365,18 @@
       "slug": "mir250",
       "status": "draft",
       "stock_status": "onbackorder",
-      "tags": ["автономность", "навигация", "промышленная автоматизация", "складская логистика"],
+      "tags": [
+        "автономность",
+        "навигация",
+        "промышленная автоматизация",
+        "складская логистика"
+      ],
       "type": "simple"
     },
     {
-      "categories": ["Манипуляторы"],
+      "categories": [
+        "Манипуляторы"
+      ],
       "description": "Открытый манипулятор Robotis OpenManipulator-X собран на приводах DYNAMIXEL XM430. Модели, прошивки и пакеты для ROS 2 открыты, робот продаётся набором для сборки. Работает вместе с TurtleBot3, поэтому его часто берут для учебных задач по манипуляции.",
       "images": [],
       "name": "Robotis OpenManipulator-X",
@@ -263,7 +386,12 @@
       "slug": "robotis-openmanipulator-x",
       "status": "draft",
       "stock_status": "onbackorder",
-      "tags": ["исследования", "манипуляторы", "манипуляция", "открытое железо"],
+      "tags": [
+        "исследования",
+        "манипуляторы",
+        "манипуляция",
+        "открытое железо"
+      ],
       "type": "simple"
     },
     {
@@ -282,7 +410,10 @@
       "source_url": "https://pollen-robotics.com/microduck/",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["гуманоиды", "роботы"],
+      "tags": [
+        "гуманоиды",
+        "роботы"
+      ],
       "type": "simple"
     },
     {
@@ -301,11 +432,18 @@
       "source_url": "https://pollen-robotics.com/reachy-mini/",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["гуманоиды", "исследования", "манипуляторы", "открытое железо"],
+      "tags": [
+        "гуманоиды",
+        "исследования",
+        "манипуляторы",
+        "открытое железо"
+      ],
       "type": "simple"
     },
     {
-      "categories": ["Гуманоиды"],
+      "categories": [
+        "Гуманоиды"
+      ],
       "description": "Reachy 2 is the first open-source humanoid robot designed for embodied AI and real-world applications - the ideal bimanual mobile manipulator for AI & robotics labs.",
       "images": [
         {
@@ -320,11 +458,19 @@
       "source_url": "https://pollen-robotics.com/reachy-2/",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["гуманоиды", "исследования", "манипуляторы", "манипуляция", "открытое железо"],
+      "tags": [
+        "гуманоиды",
+        "исследования",
+        "манипуляторы",
+        "манипуляция",
+        "открытое железо"
+      ],
       "type": "simple"
     },
     {
-      "categories": ["Захваты"],
+      "categories": [
+        "Захваты"
+      ],
       "description": "Мягкий захват Soft Robotics mGrip: силиконовые пальцы с пневматическим приводом подстраиваются под форму продукта. Применяется на пищевых и упаковочных линиях, где жёсткий захват повреждает продукт. Нужна пневмолиния и контроллер давления, поэтому захват ставят не на любой манипулятор.",
       "images": [],
       "name": "Soft Robotics mGrip",
@@ -334,7 +480,12 @@
       "slug": "soft-robotics-mgrip",
       "status": "draft",
       "stock_status": "onbackorder",
-      "tags": ["манипуляция", "мягкая робототехника", "промышленная автоматизация", "тактильность"],
+      "tags": [
+        "манипуляция",
+        "мягкая робототехника",
+        "промышленная автоматизация",
+        "тактильность"
+      ],
       "type": "simple"
     },
     {
@@ -353,7 +504,11 @@
       "source_url": "https://www.devonics.com/product-page/soft-4-finger-gripper",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["манипуляторы", "мягкая робототехника", "тактильность"],
+      "tags": [
+        "манипуляторы",
+        "мягкая робототехника",
+        "тактильность"
+      ],
       "type": "simple"
     },
     {
@@ -372,7 +527,9 @@
       "source_url": "https://shop.unitree.com/products/unitree-a2",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["роботы"],
+      "tags": [
+        "роботы"
+      ],
       "type": "simple"
     },
     {
@@ -391,7 +548,11 @@
       "source_url": "https://shop.unitree.com/products/aliengo",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["биоинспирированная робототехника", "инспекция", "навигация"],
+      "tags": [
+        "биоинспирированная робототехника",
+        "инспекция",
+        "навигация"
+      ],
       "type": "simple"
     },
     {
@@ -410,7 +571,10 @@
       "source_url": "https://shop.unitree.com/products/unitree-b1",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["биоинспирированная робототехника", "роботы"],
+      "tags": [
+        "биоинспирированная робототехника",
+        "роботы"
+      ],
       "type": "simple"
     },
     {
@@ -429,7 +593,10 @@
       "source_url": "https://shop.unitree.com/products/unitree-b2",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["биоинспирированная робототехника", "роботы"],
+      "tags": [
+        "биоинспирированная робототехника",
+        "роботы"
+      ],
       "type": "simple"
     },
     {
@@ -448,11 +615,16 @@
       "source_url": "https://shop.unitree.com/products/unitree-b2-w",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["биоинспирированная робототехника", "роботы"],
+      "tags": [
+        "биоинспирированная робототехника",
+        "роботы"
+      ],
       "type": "simple"
     },
     {
-      "categories": ["Гуманоиды"],
+      "categories": [
+        "Гуманоиды"
+      ],
       "description": "Unlock unlimited sports potential (Extra large joint movement space angle, 23~43 joints) Force control of dexterous hands, manipulation of all thingsImitation & reinforcement learning driven Robot world model, let’s create it together More introduction: https://www.unitree.com/g1",
       "images": [
         {
@@ -467,11 +639,18 @@
       "source_url": "https://shop.unitree.com/products/unitree-g1",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["гуманоиды", "исследования", "роботы", "стартапы"],
+      "tags": [
+        "гуманоиды",
+        "исследования",
+        "роботы",
+        "стартапы"
+      ],
       "type": "simple"
     },
     {
-      "categories": ["Мобильные роботы"],
+      "categories": [
+        "Мобильные роботы"
+      ],
       "description": "Четырёхногий робот Unitree Go2. Приводы управляются по усилию, лидар стоит в части версий и используется для навигации и построения карты. Робота берут для обследования помещений и как платформу для обучения автономному движению.",
       "images": [
         {
@@ -486,11 +665,40 @@
       "source_url": "https://shop.unitree.com/products/unitree-go2",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["автономность", "биоинспирированная робототехника", "навигация", "роботы"],
+      "tags": [
+        "автономность",
+        "биоинспирированная робототехника",
+        "навигация",
+        "роботы"
+      ],
       "type": "simple"
     },
     {
-      "categories": ["Манипуляторы"],
+      "categories": [],
+      "description": "Integrated R&D and Manufacturiny, Embarking on Full-Stack Development Built on NVlDlA lsaac GROOT Equipped with a head-mounted stereo camera with wide field of view, wrist cameras and an lMU Rated arm payload of7 kilograms and peak payload of 15 kilograms, enabling high-duty grasping and reaching tasks.",
+      "images": [
+        {
+          "src": "https://shop.unitree.com/cdn/shop/files/11_800x.png?v=1780893658"
+        }
+      ],
+      "name": "Unitree H2 Plus",
+      "review_note": "",
+      "short_description": "Гуманоид Unitree H2 Plus.",
+      "sku": "HR-UNITREE-H2-PLUS",
+      "slug": "unitree-h2-plus",
+      "source_url": "https://shop.unitree.com/products/unitree-h2-plus",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "гуманоиды",
+        "роботы"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [
+        "Манипуляторы"
+      ],
       "description": "Коллаборативный манипулятор Universal Robots UR5e: полезная нагрузка 5 кг, вылет 850 мм — данные производителя. Программируется с пульта PolyScope, ставится на стол или на мобильную платформу. Типовые задачи — обслуживание станков, подача заготовок, паллетирование мелких деталей.",
       "images": [],
       "name": "Universal Robots UR5e",
@@ -509,7 +717,9 @@
       "type": "simple"
     },
     {
-      "categories": ["Сервисные роботы"],
+      "categories": [
+        "Сервисные роботы"
+      ],
       "description": "Мобильный зарядный робот EV Safe Charge ZiGGY подъезжает к электромобилю на парковке и работает вместо стационарной зарядной станции. Идея в том, чтобы не тянуть кабель к каждому месту и не занимать его зарядкой после окончания сессии. Серийный статус продукта стоит уточнить у производителя перед публикацией.",
       "images": [],
       "name": "EV Safe Charge ZiGGY",
@@ -519,7 +729,12 @@
       "slug": "ev-safe-charge-ziggy",
       "status": "draft",
       "stock_status": "onbackorder",
-      "tags": ["автономность", "навигация", "стартапы", "электромобили"],
+      "tags": [
+        "автономность",
+        "навигация",
+        "стартапы",
+        "электромобили"
+      ],
       "type": "simple"
     }
   ]
