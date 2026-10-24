@@ -115,7 +115,8 @@ export async function getPostBySlug(slug: string): Promise<Post | undefined> {
   if (cached) return cached;
 
   const promise = (async () => {
-    if (!wpAvailable) throw new Error("WPGraphQL unavailable");
+    // Список уже получен (из сети или из снимка); отдельный запрос не нужен,
+    // и `wpAvailable` здесь не гейт: страница статьи должна собраться и офлайн.
     const posts = await getPosts();
     return posts.find((p) => p.slug === slug);
   })();
