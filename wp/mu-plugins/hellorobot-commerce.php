@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Hello Robot Commerce
  * Description: REST-эндпоинты заказа и проверки для статического фронта hellorobot.ru, плюс CORS для WooCommerce Store API.
- * Version: 1.0.2
+ * Version: 1.0.3
  * Requires PHP: 8.2
  * Author: Hello Robot
  * Text Domain: hellorobot-commerce
@@ -18,7 +18,7 @@ final class HelloRobot_Commerce_Plugin {
 
 	private const REST_NAMESPACE = 'hellorobot/v1';
 
-	private const VERSION = '1.0.2';
+	private const VERSION = '1.0.3';
 
 	private const RATE_KEY_PREFIX = 'hellorobot_order_';
 
@@ -40,21 +40,23 @@ final class HelloRobot_Commerce_Plugin {
 	private const QTY_MIN = 1;
 	private const QTY_MAX = 99;
 
+	/** Маршруты регистрируются один раз, чем бы ни был вызван метод. */
+	private static bool $routes_registered = false;
+
 	public static function init(): void {
+		// Маркер выполнения: заголовок виден на любом ответе, включая REST.
+		add_action( 'init', array( __CLASS__, 'send_version_header' ), 1 );
+
 		// origins нужны и нашим маршрутам, и Store API, который фронт дёргает из браузера.
 		add_filter( 'allowed_http_origins', array( __CLASS__, 'filter_allowed_origins' ) );
 		add_filter( 'rest_pre_serve_request', array( __CLASS__, 'send_cors_headers' ), 15, 4 );
-		add_action( 'send_headers', array( __CLASS__, 'send_version_header' ) );
 
-		// Обычно маршруты ждут rest_api_init. Если кто-то на сайте поднял
-		// rest_get_server() раньше нас (MCP-адаптер, кеш-плагин), хук уже прошёл,
-		// и подписка на него не сработает никогда — тогда регистрируем сразу.
-		if ( did_action( 'rest_api_init' ) ) {
-			self::register_routes();
-			return;
-		}
-
+		// Обычный путь — к моменту rest_api_init.
 		add_action( 'rest_api_init', array( __CLASS__, 'register_routes' ) );
+
+		// Страховка: если REST-сервер подняли раньше нас (MCP-адаптер, кеш-плагин),
+		// хук rest_api_init уже прошёл. К init маршруты всё равно будут на месте.
+		add_action( 'init', array( __CLASS__, 'register_routes' ), 999 );
 	}
 
 	/**
@@ -132,6 +134,11 @@ final class HelloRobot_Commerce_Plugin {
 	}
 
 	public static function register_routes(): void {
+		if ( self::$routes_registered ) {
+			return;
+		}
+		self::$routes_registered = true;
+
 		register_rest_route(
 			self::REST_NAMESPACE,
 			'/order',
