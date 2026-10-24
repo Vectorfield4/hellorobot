@@ -7,7 +7,6 @@ import { getProducts, getRelatedProducts } from "@/shared/data/products";
 import OrderPanel from "@/shared/ui/order/OrderPanel";
 import ProductGallery from "@/shared/ui/product/ProductGallery";
 import ProductGrid from "@/shared/ui/product/ProductGrid";
-import StockBadge from "@/shared/ui/product/StockBadge";
 
 export async function getStaticPaths() {
   const products = await getProducts();
@@ -56,16 +55,14 @@ const jsonLd = {
   ...(product.sku ? { sku: product.sku } : {}),
   ...(product.images.length ? { image: product.images.map((image) => image.src) } : {}),
 };
-const chipStyle =
-  "font-size:0.8rem;padding:0.2rem 0.5rem;border-radius:0.5rem;background:#0066cc;color:#fff;text-decoration:none;";
 
 // `</script>` внутри описания не должен закрыть тег раньше времени.
 const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
 ---
 
 <BaseLayout title={`${product.name} — каталог роботов`} description={product.excerpt}>
-  <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
-    <nav aria-label="Хлебные крошки" style="font-size: 0.85rem; margin-bottom: 1rem;">
+  <main class="product-page">
+    <nav aria-label="Хлебные крошки" class="product-breadcrumbs">
       <a href="/">Главная</a>
       {" / "}
       <a href="/products">Каталог</a>
@@ -73,32 +70,38 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
       <span>{product.name}</span>
     </nav>
 
-    <ProductGallery images={product.images} fallbackAlt={product.name} />
+    <div class="product-hero">
+      <div class="product-hero__media">
+        <ProductGallery images={product.images} fallbackAlt={product.name} />
+      </div>
 
-    <h1 style="margin: 1.5rem 0 0.75rem;">{product.name}</h1>
+      <div class="product-hero__info">
+        <h1 class="product-title">{product.name}</h1>
 
-    <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-      <StockBadge inStock={product.inStock} onBackorder={product.onBackorder} />
+        {product.sku && <p class="product-sku">Артикул: {product.sku}</p>}
+
+        {product.shortDescription && <p class="product-lead">{product.shortDescription}</p>}
+
+        {product.description && (
+          <div class="product-description" set:html={product.description} />
+        )}
+
+        <div id="order" class="product-order">
+          <OrderPanel client:load productId={product.id} productName={product.name} />
+        </div>
+      </div>
     </div>
 
-    {product.sku && <p style="font-size: 0.85rem; opacity: 0.7;">Артикул: {product.sku}</p>}
-
-    {product.shortDescription && <p>{product.shortDescription}</p>}
-
-    {product.description && <div set:html={product.description} />}
-
     {product.tags.length > 0 && (
-      <nav aria-label="Теги товара" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0;">
+      <nav aria-label="Теги товара" class="product-tags">
         {product.tags.map((tag) => (
-          <a href={productTagPath(tag.name)} style={chipStyle}>
-            {tag.name}
-          </a>
+          <a href={productTagPath(tag.name)}>{tag.name}</a>
         ))}
       </nav>
     )}
 
     {product.categories.length > 0 && (
-      <p style="font-size: 0.9rem;">
+      <p class="product-categories">
         Категории:{" "}
         {product.categories.map((category, index) => (
           <>
@@ -109,26 +112,19 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
       </p>
     )}
 
-    <div
-      id="order"
-      style="margin-top: 2rem; padding: 1.25rem; border: 1px solid #ddd; border-radius: 0.5rem;"
-    >
-      <OrderPanel client:load productId={product.id} productName={product.name} />
-    </div>
-
     {related.length > 0 && (
-      <section style="margin-top: 2rem;">
-        <h2 style="font-size: 1.2rem;">Похожие товары</h2>
+      <section class="product-related">
+        <h2>Похожие роботы</h2>
         <ProductGrid products={related} />
       </section>
     )}
 
     {relatedPosts.length > 0 && (
-      <section style="margin-top: 2rem;">
-        <h2 style="font-size: 1.2rem;">Статьи по теме</h2>
-        <ul style="padding-left: 1.25rem;">
+      <section class="product-related">
+        <h2>Статьи по теме</h2>
+        <ul class="product-articles">
           {relatedPosts.map((post) => (
-            <li style="margin-bottom: 0.4rem;">
+            <li>
               <a href={`/news/${post.slug}`}>{post.title}</a>
             </li>
           ))}
@@ -136,8 +132,124 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
       </section>
     )}
 
-    <p style="margin-top: 2rem;"><a href="/products">← Каталог роботов</a></p>
+    <p class="product-back"><a href="/products">← Каталог роботов</a></p>
   </main>
 
   <script type="application/ld+json" set:html={jsonLdText} />
 </BaseLayout>
+
+<style>
+  .product-page {
+    padding: 2rem;
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+
+  .product-breadcrumbs {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .product-title {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    line-height: 1.15;
+  }
+
+  .product-sku {
+    margin: 0 0 1rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  .product-lead {
+    margin: 0 0 1rem;
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+
+  .product-order {
+    margin-top: 1.75rem;
+  }
+
+  .product-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 2rem 0 0;
+  }
+
+  .product-tags a {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem;
+    background: #0066cc;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .product-categories {
+    margin: 1rem 0 0;
+    font-size: 0.9rem;
+  }
+
+  .product-related {
+    margin-top: 2.5rem;
+  }
+
+  .product-related h2 {
+    font-size: 1.2rem;
+  }
+
+  .product-articles {
+    padding-left: 1.25rem;
+  }
+
+  .product-articles li {
+    margin-bottom: 0.4rem;
+  }
+
+  .product-back {
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 56rem) {
+    .product-page {
+      padding: 1.25rem;
+    }
+
+    .product-hero {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+  }
+</style>
+
+<style is:global>
+  /* Описание приходит из WooCommerce готовым HTML, поэтому стили абзацев
+     задаются глобально внутри страницы товара. */
+  .product-description {
+    line-height: 1.6;
+  }
+
+  .product-description p {
+    margin: 0 0 0.75rem;
+  }
+
+  .product-description p:last-child {
+    margin-bottom: 0;
+  }
+
+  .product-description ul,
+  .product-description ol {
+    margin: 0 0 0.75rem;
+    padding-left: 1.25rem;
+  }
+</style>

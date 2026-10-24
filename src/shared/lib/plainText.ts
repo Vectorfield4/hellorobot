@@ -27,6 +27,22 @@ export function decodeEntities(value: string): string {
     .replace(/&([a-z]+);/gi, (match, name: string) => NAMED_ENTITIES[name.toLowerCase()] ?? match);
 }
 
+/**
+ * Числовые сущности внутри HTML описания: `&#8212;` — это типографский знак,
+ * а не разметка. Угловые скобки и амперсанд оставляем закодированными, чтобы
+ * декодирование не создало тег.
+ */
+export function decodeNumericEntities(html: string): string {
+  const safe = (code: number, original: string) => {
+    if (!Number.isFinite(code) || code < 0 || code > 0x10ffff) return original;
+    const char = String.fromCodePoint(code);
+    return /[<>&]/.test(char) ? original : char;
+  };
+  return html
+    .replace(/&#x([0-9a-f]+);/gi, (match, hex: string) => safe(Number.parseInt(hex, 16), match))
+    .replace(/&#(\d+);/g, (match, code: string) => safe(Number(code), match));
+}
+
 /** HTML из WordPress → чистый текст для анонсов, meta и поиска. */
 export function toPlainText(html: string | undefined | null): string {
   if (!html) return "";

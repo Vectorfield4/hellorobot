@@ -15,7 +15,6 @@ const styles = stylex.create({
     overflowX: "auto",
     scrollSnapType: "x mandatory",
     borderRadius: tokens.radiusMd,
-    backgroundColor: "#f2f5f8",
   },
   slide: {
     flexShrink: 0,
@@ -26,7 +25,7 @@ const styles = stylex.create({
   main: {
     display: "block",
     width: "100%",
-    aspectRatio: "4 / 3",
+    height: "auto",
     objectFit: "contain",
   },
   thumbs: {

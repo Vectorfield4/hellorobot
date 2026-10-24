@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import catalog from "../products/catalog.json";
 import type { StoreProduct } from "../src/shared/api/store";
 import {
   filterProducts,
@@ -8,6 +9,7 @@ import {
   productTagPath,
 } from "../src/shared/data/product";
 import { getRelatedProducts } from "../src/shared/data/products";
+import { productCopyRu } from "../src/shared/i18n/ru/products";
 import { productFixtures } from "../src/shared/mocks/fixtures/products";
 
 const raw: StoreProduct = {
@@ -70,6 +72,55 @@ describe("mapStoreProduct", () => {
     expect(bare.tags).toEqual([]);
     expect(bare.inStock).toBe(true);
     expect(bare.purchasable).toBe(true);
+  });
+
+  it("декодирует HTML-сущности в имени, тегах и описании", () => {
+    const product = mapStoreProduct({
+      ...raw,
+      name: "ADAPTIVE GRIPPER &#8212; TWO FINGERS",
+      sku: "HR-SOME-UNKNOWN-SKU",
+      tags: [{ id: 5, name: "манипуляторы &#8212; адаптивные", slug: "manipulyatory" }],
+      description: "<p>Текст &#8212; ещё текст &#8230;</p>",
+    });
+    expect(product.name).toBe("ADAPTIVE GRIPPER — TWO FINGERS");
+    expect(product.tags[0]?.name).toBe("манипуляторы — адаптивные");
+    expect(product.description).toBe("<p>Текст — ещё текст …</p>");
+  });
+
+  it("подставляет русский текст из productCopy вместо английского", () => {
+    const product = mapStoreProduct({
+      ...raw,
+      sku: "HR-POLLEN-REACHY-MINI",
+      name: "Reachy Mini",
+      short_description: "<p>Гуманоид Reachy Mini.</p>",
+      description:
+        "<p>Reachy Mini is an expressive, open-source companion robot for human interaction.</p>",
+    });
+    const copy = productCopyRu["HR-POLLEN-REACHY-MINI"];
+    expect(copy).toBeDefined();
+    expect(product.name).toBe(copy?.name);
+    expect(product.shortDescription).toBe(copy?.shortDescription);
+    expect(product.description).toContain("<p>");
+    expect(product.description).not.toContain("open-source companion robot");
+    expect(product.excerpt).not.toContain("&#");
+  });
+});
+
+describe("русский текст каталога", () => {
+  it("есть у каждого опубликованного товара", () => {
+    const missing = catalog.products
+      .filter((product) => product.status === "publish")
+      .map((product) => product.sku)
+      .filter((sku) => !productCopyRu[sku]);
+    expect(missing).toEqual([]);
+  });
+
+  it("не содержит HTML-сущностей и угловых скобок", () => {
+    for (const [sku, copy] of Object.entries(productCopyRu)) {
+      for (const value of [copy.name, copy.shortDescription, copy.description]) {
+        expect(value, sku).not.toMatch(/&#|&[a-z]+;|[<>]/i);
+      }
+    }
   });
 });
 

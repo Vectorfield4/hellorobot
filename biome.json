@@ -21,7 +21,8 @@
       "!docs/research",
       "!docs/wp-*.json",
       "!docs/wp-result-*.json",
-      "!data"
+      "!data",
+      "!products/catalog.json"
     ]
   },
   "overrides": [

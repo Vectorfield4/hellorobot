@@ -1,5 +1,11 @@
 import type { StoreProduct, StoreTerm } from "@/shared/api/store";
-import { toPlainText, truncate } from "@/shared/lib/plainText";
+import { productCopyRu } from "@/shared/i18n/ru/products";
+import {
+  decodeEntities,
+  decodeNumericEntities,
+  toPlainText,
+  truncate,
+} from "@/shared/lib/plainText";
 import type { StorePrices } from "@/shared/lib/price";
 
 export interface ProductTerm {
@@ -46,9 +52,9 @@ const EXCERPT_LENGTH = 180;
 
 function mapTerm(term: StoreTerm | undefined | null): ProductTerm | null {
   if (!term) return null;
-  const name = term.name?.trim();
-  if (!name) return null;
-  return { id: term.id, name, slug: term.slug ?? name };
+  const rawName = term.name?.trim();
+  if (!rawName) return null;
+  return { id: term.id, name: decodeEntities(rawName), slug: term.slug ?? rawName };
 }
 
 function mapTerms(terms: StoreTerm[] | undefined | null): ProductTerm[] {
@@ -61,27 +67,47 @@ function mapImage(
 ): ProductImage | null {
   const src = image?.src?.trim();
   if (!src) return null;
+  const alt = image.alt?.trim();
   return {
     src,
-    alt: image.alt?.trim() || fallbackAlt,
+    alt: alt ? decodeEntities(alt) : fallbackAlt,
     thumbnail: image.thumbnail?.trim() || src,
   };
 }
 
+function escapeHtml(value: string): string {
+  return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/** Русский текст из `productCopy.ts` → абзацы для `set:html`. */
+function paragraphsToHtml(text: string): string {
+  return text
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
+    .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+    .join("");
+}
+
 export function mapStoreProduct(raw: StoreProduct): Product {
-  const name = raw.name?.trim() || raw.slug;
+  const sku = raw.sku?.trim() ?? "";
+  const copy = productCopyRu[sku] ?? productCopyRu[raw.slug];
+  const fallbackName = raw.name?.trim() || raw.slug;
+  const name = copy?.name ?? decodeEntities(fallbackName);
   const images = (raw.images ?? [])
     .map((image) => mapImage(image, name))
     .filter((image): image is ProductImage => image !== null);
-  const shortDescription = toPlainText(raw.short_description);
-  const description = (raw.description ?? "").trim();
+  const shortDescription = copy?.shortDescription ?? toPlainText(raw.short_description);
+  const description = copy
+    ? paragraphsToHtml(copy.description)
+    : decodeNumericEntities((raw.description ?? "").trim());
   const prices = raw.prices ?? null;
 
   return {
     id: raw.id,
     slug: raw.slug,
     name,
-    sku: raw.sku?.trim() ?? "",
+    sku,
     type: raw.type ?? "simple",
     permalink: raw.permalink ?? productPath(raw.slug),
     prices,
