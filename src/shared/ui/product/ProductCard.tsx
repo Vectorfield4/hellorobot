@@ -21,14 +21,14 @@ const styles = stylex.create({
   },
   cover: {
     width: "100%",
-    aspectRatio: "16 / 9",
+    aspectRatio: "3 / 4",
     objectFit: "cover",
     borderRadius: tokens.radiusMd,
     backgroundColor: "#f2f5f8",
   },
   coverPlaceholder: {
     width: "100%",
-    aspectRatio: "16 / 9",
+    aspectRatio: "3 / 4",
     borderRadius: tokens.radiusMd,
     backgroundColor: "#f2f5f8",
   },
