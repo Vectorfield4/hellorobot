@@ -1,4 +1,4 @@
-import type { StoreProduct, StoreTerm } from "@/shared/api/store";
+import type { StoreAttribute, StoreProduct, StoreTerm } from "@/shared/api/store";
 import {
   decodeEntities,
   decodeNumericEntities,
@@ -34,6 +34,8 @@ export interface Product {
   shortDescription: string;
   description: string;
   excerpt: string;
+  /** Год выпуска модели из атрибута WooCommerce; `null`, если его нет. */
+  year: number | null;
   tags: ProductTerm[];
   categories: ProductTerm[];
   images: ProductImage[];
@@ -58,6 +60,22 @@ function mapTerm(term: StoreTerm | undefined | null): ProductTerm | null {
 
 function mapTerms(terms: StoreTerm[] | undefined | null): ProductTerm[] {
   return (terms ?? []).map(mapTerm).filter((term): term is ProductTerm => term !== null);
+}
+
+/**
+ * Год выпуска модели. В WooCommerce это локальный атрибут «Год выпуска»,
+ * Store API отдаёт его как `attributes[].terms[]`. Нет атрибута — нет строки
+ * на карточке: выдумывать год нельзя.
+ */
+function readYear(attributes: StoreAttribute[] | undefined | null): number | null {
+  for (const attribute of attributes ?? []) {
+    if (!/год/i.test(attribute.name ?? "")) continue;
+    for (const term of attribute.terms ?? []) {
+      const match = String(term.name ?? "").match(/\b(19|20)\d{2}\b/);
+      if (match) return Number(match[0]);
+    }
+  }
+  return null;
 }
 
 function mapImage(
@@ -99,6 +117,7 @@ export function mapStoreProduct(raw: StoreProduct): Product {
     shortDescription,
     description,
     excerpt: shortDescription || truncate(toPlainText(description), EXCERPT_LENGTH),
+    year: readYear(raw.attributes),
     tags: mapTerms(raw.tags),
     categories: mapTerms(raw.categories),
     images,

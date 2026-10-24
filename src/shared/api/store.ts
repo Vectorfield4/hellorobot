@@ -9,6 +9,20 @@ export interface StoreTerm {
   slug: string;
 }
 
+export interface StoreAttributeTerm {
+  id?: number;
+  name: string;
+  slug?: string;
+}
+
+/** Атрибут товара из Store API: например, «Год выпуска» → 2024. */
+export interface StoreAttribute {
+  id?: number;
+  name?: string;
+  taxonomy?: string | null;
+  terms?: StoreAttributeTerm[];
+}
+
 export interface StoreImage {
   id?: number;
   src: string;
@@ -30,6 +44,7 @@ export interface StoreProduct {
   description?: string;
   tags?: StoreTerm[];
   categories?: StoreTerm[];
+  attributes?: StoreAttribute[];
   images?: StoreImage[];
   is_in_stock?: boolean;
   is_purchasable?: boolean;

@@ -85,6 +85,15 @@ describe("mapStoreProduct", () => {
     expect(product.tags[0]?.name).toBe("манипуляторы — адаптивные");
     expect(product.description).toBe("<p>Текст — ещё текст …</p>");
   });
+
+  it("читает год выпуска из атрибута WooCommerce и молчит без него", () => {
+    const withYear = mapStoreProduct({
+      ...raw,
+      attributes: [{ name: "Год выпуска", terms: [{ name: "2024" }] }],
+    });
+    expect(withYear.year).toBe(2024);
+    expect(mapStoreProduct(raw).year).toBeNull();
+  });
 });
 
 describe("русский текст каталога", () => {

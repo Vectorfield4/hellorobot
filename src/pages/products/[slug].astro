@@ -53,6 +53,13 @@ const jsonLd = {
   name: product.name,
   ...(product.excerpt ? { description: product.excerpt } : {}),
   ...(product.sku ? { sku: product.sku } : {}),
+  ...(product.year
+    ? {
+        additionalProperty: [
+          { "@type": "PropertyValue", name: "Год выпуска", value: String(product.year) },
+        ],
+      }
+    : {}),
   ...(product.images.length ? { image: product.images.map((image) => image.src) } : {}),
 };
 
@@ -78,13 +85,17 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
       <div class="product-hero__info">
         <h1 class="product-title">{product.name}</h1>
 
-        {product.sku && <p class="product-sku">Артикул: {product.sku}</p>}
+        {product.tags.length > 0 && (
+          <nav aria-label="Теги товара" class="product-tags">
+            {product.tags.map((tag) => (
+              <a href={productTagPath(tag.name)}>{tag.name}</a>
+            ))}
+          </nav>
+        )}
+
+        {product.year && <p class="product-year">Год выпуска: {product.year}</p>}
 
         {product.shortDescription && <p class="product-lead">{product.shortDescription}</p>}
-
-        {product.description && (
-          <div class="product-description" set:html={product.description} />
-        )}
 
         <div id="order" class="product-order">
           <OrderPanel client:load productId={product.id} productName={product.name} />
@@ -92,13 +103,7 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
       </div>
     </div>
 
-    {product.tags.length > 0 && (
-      <nav aria-label="Теги товара" class="product-tags">
-        {product.tags.map((tag) => (
-          <a href={productTagPath(tag.name)}>{tag.name}</a>
-        ))}
-      </nav>
-    )}
+    {product.description && <div class="product-description" set:html={product.description} />}
 
     {product.categories.length > 0 && (
       <p class="product-categories">
@@ -163,10 +168,10 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
     line-height: 1.15;
   }
 
-  .product-sku {
+  .product-year {
     margin: 0 0 1rem;
-    font-size: 0.85rem;
-    opacity: 0.7;
+    font-size: 0.9rem;
+    opacity: 0.75;
   }
 
   .product-lead {
@@ -183,7 +188,7 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin: 2rem 0 0;
+    margin: 0 0 0.75rem;
   }
 
   .product-tags a {
@@ -236,6 +241,8 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
   /* Описание приходит из WooCommerce готовым HTML, поэтому стили абзацев
      задаются глобально внутри страницы товара. */
   .product-description {
+    margin-top: 2rem;
+    max-width: 52rem;
     line-height: 1.6;
   }
 
