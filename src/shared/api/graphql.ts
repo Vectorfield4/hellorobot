@@ -1,4 +1,5 @@
 import { WP_GRAPHQL_URL } from "@/shared/config/constants";
+import { describeError } from "@/shared/lib/describeError";
 
 function resolveTimeout(timeoutMs?: number): number {
   if (typeof timeoutMs === "number" && Number.isFinite(timeoutMs) && timeoutMs > 0) {
@@ -70,7 +71,11 @@ async function wpQueryOnce<T>(
 }
 
 const RETRY_ATTEMPTS = 3;
-const RETRY_BASE_MS = 400;
+const RETRY_BASE_MS = 500;
+
+/** Коды транспорта, которые проходят сами: DNS, обрыв, таймаут, 5xx. */
+const RETRYABLE_CODES =
+  /ENOTFOUND|EAI_AGAIN|ETIMEDOUT|ECONNRESET|ECONNREFUSED|EPIPE|ENETUNREACH|EHOSTUNREACH|UND_ERR_|socket hang up|fetch failed/i;
 
 /** Таймаут, обрыв и 5xx — повод повторить; ошибки GraphQL и 4xx — нет. */
 function isRetryable(error: unknown): boolean {
@@ -78,7 +83,7 @@ function isRetryable(error: unknown): boolean {
   if (!err) return false;
   if (typeof err.status === "number") return err.status >= 500 || err.status === 429;
   if (err.name === "AbortError" || /aborted|timeout/i.test(err.message)) return true;
-  return /fetch failed|ECONNRESET|ETIMEDOUT|socket hang up/i.test(err.message);
+  return RETRYABLE_CODES.test(describeError(err));
 }
 
 function sleep(ms: number): Promise<void> {
@@ -103,7 +108,7 @@ export async function wpQuery<T>(
       const err = error instanceof Error ? error : new Error(String(error));
       if (attempt === RETRY_ATTEMPTS || !isRetryable(error)) {
         const aborted = err.name === "AbortError" || /aborted/i.test(err.message);
-        console.error(`[WPGraphQL] ${op} failed on attempt ${attempt}: ${err.message}`, {
+        console.error(`[WPGraphQL] ${op} failed on attempt ${attempt}: ${describeError(err)}`, {
           endpoint: WP_GRAPHQL_URL,
           timeoutMs: resolvedTimeout,
           aborted,
@@ -114,7 +119,7 @@ export async function wpQuery<T>(
       }
       const wait = RETRY_BASE_MS * attempt;
       console.warn(
-        `[WPGraphQL] ${op}: попытка ${attempt} не удалась (${err.message}), повтор через ${wait}ms`,
+        `[WPGraphQL] ${op}: попытка ${attempt} не удалась (${describeError(err)}), повтор через ${wait}ms`,
       );
       await sleep(wait);
     }
@@ -122,6 +127,6 @@ export async function wpQuery<T>(
 
   const err = lastError instanceof Error ? lastError : new Error(String(lastError));
   throw new Error(
-    `WPGraphQL request failed for ${op} at ${WP_GRAPHQL_URL} after ${RETRY_ATTEMPTS} attempts: ${err.name}: ${err.message}`,
+    `WPGraphQL request failed for ${op} at ${WP_GRAPHQL_URL} after ${RETRY_ATTEMPTS} attempts: ${err.name}: ${describeError(err)}`,
   );
 }

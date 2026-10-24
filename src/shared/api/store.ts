@@ -1,4 +1,5 @@
 import { STORE_API_URL } from "@/shared/config/constants";
+import { describeError } from "@/shared/lib/describeError";
 import type { StorePrices } from "@/shared/lib/price";
 
 /** Сырой ответ WooCommerce Store API (`wc/store/v1/products`). */
@@ -113,8 +114,9 @@ async function storeGetOnce<T>(
     };
   } catch (error) {
     if (error instanceof StoreApiError) throw error;
-    const err = error instanceof Error ? error : new Error(String(error));
-    throw new StoreApiError(`Store API request failed (${operation}) at ${url}: ${err.message}`);
+    throw new StoreApiError(
+      `Store API request failed (${operation}) at ${url}: ${describeError(error)}`,
+    );
   } finally {
     clearTimeout(timer);
   }

@@ -56,4 +56,20 @@ describe("wpQuery", () => {
     );
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
+
+  it("показывает причину сетевого сбоя из error.cause, а не «fetch failed»", async () => {
+    const networkError = new TypeError("fetch failed", {
+      cause: Object.assign(new Error("getaddrinfo ENOTFOUND hello-robot.ru"), {
+        code: "ENOTFOUND",
+      }),
+    });
+    const fetchMock = vi.fn(async () => {
+      throw networkError;
+    });
+
+    vi.stubGlobal("fetch", fetchMock);
+
+    await expect(wpQuery("query Posts { posts { nodes { slug } } }")).rejects.toThrow(/ENOTFOUND/);
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+  });
 });

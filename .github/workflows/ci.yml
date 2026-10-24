@@ -18,10 +18,26 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run test
+      - name: Probe WordPress reachability
+        # Диагностика, а не гейт: печатает, где именно рвётся путь до WordPress.
+        shell: bash
+        run: |
+          echo "--- DNS"
+          getent hosts hello-robot.ru || echo "getent hosts failed"
+          getent ahostsv4 hello-robot.ru | head -3 || echo "v4 lookup failed"
+          getent ahostsv6 hello-robot.ru | head -3 || true
+          echo "--- TLS + HTTP"
+          curl -sS -o /dev/null -w 'ip=%{remote_ip} http=%{http_code} connect=%{time_connect}s tls=%{time_appconnect}s total=%{time_total}s\n' \
+            --max-time 20 https://hello-robot.ru/graphql || true
+          echo "--- IPv6 route"
+          curl -6 -sS -o /dev/null -w 'v6 http=%{http_code}\n' --max-time 10 https://hello-robot.ru/graphql || echo "IPv6 unreachable (expected on GitHub runners)"
       - name: Build static site (Astro SSG)
         shell: bash
         env:
           WP_GRAPHQL_TIMEOUT_MS: "30000"
+          # У домена есть AAAA, а у раннеров GitHub штатного IPv6 нет: если Node
+          # выберет IPv6 первым, connect упадёт с «fetch failed». Просим IPv4.
+          NODE_OPTIONS: "--dns-result-order=ipv4first"
         # WPGraphQL отдаёт через раз: повторяем сборку целиком, не больше двух раз.
         run: |
           for attempt in 1 2; do

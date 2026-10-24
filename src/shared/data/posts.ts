@@ -1,5 +1,6 @@
 import { wpQuery } from "@/shared/api/graphql";
 import { WP_GRAPHQL_URL } from "@/shared/config/constants";
+import { describeError } from "@/shared/lib/describeError";
 
 export interface Post {
   id: string;
@@ -83,12 +84,13 @@ export async function getPosts(): Promise<Post[]> {
     } catch (error) {
       wpAvailable = false;
       const err = error instanceof Error ? error : new Error(String(error));
+      const detail = describeError(err);
       console.error("WPGraphQL AllPosts failed:", {
         endpoint: WP_GRAPHQL_URL,
-        error: err.message,
+        error: detail,
         stack: err.stack,
       });
-      throw new Error(`WPGraphQL request failed (AllPosts): ${err.message}`);
+      throw new Error(`WPGraphQL request failed (AllPosts): ${detail}`);
     }
   })();
 
