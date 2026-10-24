@@ -16,6 +16,177 @@
       "type": "simple"
     },
     {
+      "categories": [],
+      "description": "EMMA1000L: automated mobile robots,amr automated mobile robot,mobile industrial Hybrid Navigation - Laser+Vision+InertiaDocking Accuracy - ±2mm/±0.2°Aisle Width (mm) - ≥1000Payload (kg) - 1000Optional Lift (mm) - 60Run Time (h) - 8Basic Parameters Dimension (L*W*H) 983×781×300mmWeight 290kgDifferential Drive SensorFront Laser (Rear laser optional)Bottom CameraTop CameraBatteryLithium-ion 48v 38...",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/098838_721222aff91e4cbc87c7e3781c5fa0da~mv2.png/v1/fit/w_500,h_500,q_90/file.png"
+        }
+      ],
+      "name": "EMMA1000L",
+      "review_note": "",
+      "short_description": "Мобильный робот EMMA1000L.",
+      "sku": "HR-DEVONICS-EMMA1000L",
+      "slug": "emma1000l",
+      "source_url": "https://www.devonics.com/product-page/emma1000l",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["автономность", "навигация", "складская логистика"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "EMMA1500L: automated mobile robots,amr automated mobile robot,mobile industrial robot Hybrid Navigation - Laser+Vision+InertiaDocking Accuracy - ±2mm/±0.2°Aisle Width (mm) - ≥1000Payload (kg) - 1000Optional Lift (mm) - 60Run Time (h) - 8Basic Parameters Dimension (L*W*H) 983×781×300mmWeight 290kgDifferential Drivee SensorFront Laser (Rear laser optional)Bottom CameraTop CameraBatteryLithium-ion...",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/098838_64aa063004cb483d938bd46bd0892f52~mv2.png/v1/fit/w_500,h_500,q_90/file.png"
+        }
+      ],
+      "name": "EMMA1500L",
+      "review_note": "",
+      "short_description": "Мобильный робот EMMA1500L.",
+      "sku": "HR-DEVONICS-EMMA1500L",
+      "slug": "emma1500l",
+      "source_url": "https://www.devonics.com/product-page/emma1500l",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["автономность", "навигация", "складская логистика"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Artificial Intelligence in Transportation Industry-Automated Logistics CompanyFOLA DN1416, intelligent forklift, robotic forklift, artificial intelligence in transportation industry, artificial intelligence and transportation, logistic and automation for automated logistics company.",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/098838_5ed6c9f283734d28903e0708e47aecbb~mv2.png/v1/fit/w_500,h_500,q_90/file.png"
+        }
+      ],
+      "name": "FOLA",
+      "review_note": "",
+      "short_description": "Мобильный робот FOLA.",
+      "sku": "HR-DEVONICS-FOLA",
+      "slug": "fola",
+      "source_url": "https://www.devonics.com/product-page/fola",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["автономность", "навигация", "складская логистика"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "The AG series is a linkage-type adaptive electric gripper which is independently developed by DH-Robotics.",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/d0c036_d56f5789bc7f48679b423ca19dec03b4~mv2.png/v1/fit/w_500,h_500,q_90/file.png"
+        }
+      ],
+      "name": "ADAPTIVE GRIPPER - THREE FINGERS - AG3",
+      "review_note": "",
+      "short_description": "Манипулятор ADAPTIVE GRIPPER - THREE FINGERS - AG3.",
+      "sku": "HR-DH-ADAPTIVE-GRIPPER-THREE-FINGERS-AG3",
+      "slug": "adaptive-gripper-three-fingers-ag3",
+      "source_url": "https://www.devonics.com/product-page/dh-3-three-finger-gripper",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["манипуляторы"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "The AG series is a linkage-type adaptive electric gripper which is independently developed by DH-Robotics.",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/d0c036_ced567011f364623b4ef38636e8aa7e0~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp"
+        }
+      ],
+      "name": "ADAPTIVE GRIPPER - TWO FINGERS - AG -105-145",
+      "review_note": "",
+      "short_description": "Манипулятор ADAPTIVE GRIPPER - TWO FINGERS - AG -105-145.",
+      "sku": "HR-DH-ADAPTIVE-GRIPPER-TWO-FINGERS-AG-105-145",
+      "slug": "adaptive-gripper-two-fingers-ag-105-145",
+      "source_url": "https://www.devonics.com/product-page/adaptive-gripper-two-fingers-ag-105-45",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["манипуляторы"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "US BASED COMPANY US BASED Customer Support & Tech Support The H-Series is the most powerful cobot in the industry.",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/098838_d0aa65d00c14440bb7d4c9c612bfff10~mv2.png/v1/fit/w_500,h_500,q_90/file.png"
+        }
+      ],
+      "name": "DOOSAN H2017",
+      "review_note": "",
+      "short_description": "Кобот DOOSAN H2017.",
+      "sku": "HR-DOOSAN-H2017",
+      "slug": "doosan-h2017",
+      "source_url": "https://www.devonics.com/product-page/doosan-h2017",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["безопасность", "коботы", "манипуляторы"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "The H-Series is the most powerful cobot in the industry. With 6 powerful Force Torque Sensors to ensure a safe working environment.Key Features:∙ High+ Payload - Features the astonishing payload, capable of easily handling heavy objects of up to 25kg.∙ High+ Safety - Guarantees superb operator safety, ensured with the industry’s best collision sensitivity based on six torque sensors and a gravi...",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/098838_0f916e729bda40139e657a3902791bc9~mv2.png/v1/fit/w_500,h_500,q_90/file.png"
+        }
+      ],
+      "name": "DOOSAN H2515",
+      "review_note": "",
+      "short_description": "Кобот DOOSAN H2515.",
+      "sku": "HR-DOOSAN-H2515",
+      "slug": "doosan-h2515",
+      "source_url": "https://www.devonics.com/product-page/doosan-h2515",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["безопасность", "коботы", "манипуляторы"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Product Highlights Best in Class Cycle Time and Precision High Performance, High Rigidity Arm Design Industry Leading Mini SCARA ISO Clean & ESD Compliant Models",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/098838_2cfd17783f09412087efe7c3f25fb2c6~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg"
+        }
+      ],
+      "name": "Epson G1 Mini SCARA Robots - 175mm",
+      "review_note": "",
+      "short_description": "Манипулятор Epson G1 Mini SCARA Robots - 175mm.",
+      "sku": "HR-EPSON-G1-MINI-SCARA-ROBOTS-175MM",
+      "slug": "epson-g1-mini-scara-robots-175mm",
+      "source_url": "https://www.devonics.com/product-page/epson-g1-mini-scara-robots-175mm",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["манипуляторы", "промышленная робототехника"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "FR20 cobot is a platform product with powerful, scalable and sustainable capabilities, which can empower integrators and end-users, and provide a powerful option for solving the pain points.",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/5d8a82_a0a5124600a047ad86d930398f9f8be5~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp"
+        }
+      ],
+      "name": "DEVONICS FAIRINO FR20",
+      "review_note": "",
+      "short_description": "Кобот DEVONICS FAIRINO FR20.",
+      "sku": "HR-FAIRINO-DEVONICS-FAIRINO-FR20",
+      "slug": "devonics-fairino-fr20",
+      "source_url": "https://www.devonics.com/product-page/fairino-fr20",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["коботы", "манипуляторы"],
+      "type": "simple"
+    },
+    {
       "categories": ["Манипуляторы"],
       "description": "Исследовательский манипулятор Franka Emika Panda с датчиками момента в каждом сочленении. Управляется через ROS и franka_ros, поэтому часто появляется в статьях по обучению с подкреплением и захвату. Датчики дают роботу чувство контакта, которого нет у обычных промышленных манипуляторов.",
       "images": [],
@@ -124,7 +295,7 @@
       ],
       "name": "Reachy Mini",
       "review_note": "",
-      "short_description": "Робот Reachy Mini.",
+      "short_description": "Гуманоид Reachy Mini.",
       "sku": "HR-POLLEN-REACHY-MINI",
       "slug": "reachy-mini",
       "source_url": "https://pollen-robotics.com/reachy-mini/",
@@ -168,6 +339,25 @@
     },
     {
       "categories": [],
+      "description": "Gentle Pro Touch – Adaptive 4-Finger Gripper for Complex Product HandlingThe Gentle Pro is a soft robotic end-of-arm tool with four independently adaptive fingers, offering full-surface contact for secure handling of delicate, irregular, or variable-sized items.",
+      "images": [
+        {
+          "src": "https://static.wixstatic.com/media/098838_0ffdf8ac7bc44c6f9cd330a74977270a~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp"
+        }
+      ],
+      "name": "Soft 4 Finger Gripper",
+      "review_note": "",
+      "short_description": "Манипулятор Soft 4 Finger Gripper.",
+      "sku": "HR-UBIROS-SOFT-4-FINGER-GRIPPER",
+      "slug": "soft-4-finger-gripper",
+      "source_url": "https://www.devonics.com/product-page/soft-4-finger-gripper",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["манипуляторы", "мягкая робототехника", "тактильность"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
       "description": "Unloaded can continuously walk 5h/20km. Lighter, Faster, Tougher. Weighs around 42kg, fully loaded can continuously walk 3h /12.5km.Premium mobile hardware platform, open for rapid development.2 industrtal LiDARs(front.& rear), HD camera + front light to detect the environment ahead. Wheel-Leg option available. Unleash greater performance.",
       "images": [
         {
@@ -187,6 +377,25 @@
     },
     {
       "categories": [],
+      "description": "Unitree Aliengo is capable of running at 1.5m/s, It can easily realize special sports forms such as fast running, backward running, left and right side shifting, turning in place, creeping forward, rolling over, jumping, crossing obstacles, avoiding obstacles, going up and down slopes/steps.The main industry landing (all-terrain inspections, such as substation inspections, construction surveyin...",
+      "images": [
+        {
+          "src": "https://shop.unitree.com/cdn/shop/products/157_1312x.jpg?v=1668073700"
+        }
+      ],
+      "name": "Aliengo",
+      "review_note": "",
+      "short_description": "Четырёхногий робот Aliengo.",
+      "sku": "HR-UNITREE-ALIENGO",
+      "slug": "aliengo",
+      "source_url": "https://shop.unitree.com/products/aliengo",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": ["биоинспирированная робототехника", "инспекция", "навигация"],
+      "type": "simple"
+    },
+    {
+      "categories": [],
       "description": "Unitree B1 has the characteristics of all-weather operation, strong load and expansion space, multi-dimensional perception, full scene coverage, strong computing power and accurate insights.",
       "images": [
         {
@@ -201,7 +410,7 @@
       "source_url": "https://shop.unitree.com/products/unitree-b1",
       "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["биоинспирированная робототехника"],
+      "tags": ["биоинспирированная робототехника", "роботы"],
       "type": "simple"
     },
     {
@@ -232,14 +441,14 @@
         }
       ],
       "name": "Unitree B2-W",
-      "review_note": "model tokens \"unitree b2\" already exist on the site",
+      "review_note": "",
       "short_description": "Четырёхногий робот Unitree B2-W.",
       "sku": "HR-UNITREE-B2-W",
       "slug": "unitree-b2-w",
       "source_url": "https://shop.unitree.com/products/unitree-b2-w",
-      "status": "draft",
+      "status": "publish",
       "stock_status": "onbackorder",
-      "tags": ["биоинспирированная робототехника"],
+      "tags": ["биоинспирированная робототехника", "роботы"],
       "type": "simple"
     },
     {
@@ -264,13 +473,18 @@
     {
       "categories": ["Мобильные роботы"],
       "description": "Четырёхногий робот Unitree Go2. Приводы управляются по усилию, лидар стоит в части версий и используется для навигации и построения карты. Робота берут для обследования помещений и как платформу для обучения автономному движению.",
-      "images": [],
+      "images": [
+        {
+          "src": "https://shop.unitree.com/cdn/shop/files/df9f333424ff6cc6164ce421b019fb94_a6f832b0-479e-4294-ac75-6516208b91f4_800x.png?v=1718274082"
+        }
+      ],
       "name": "Unitree Go2",
-      "review_note": "???????? ?????? (Pro/Edu) ? ??????? ?????? ? ????????????",
-      "short_description": "Четырёхногий робот Unitree Go2: навигация по лидару, обучение автономному движению.",
+      "review_note": "",
+      "short_description": "Четырёхногий робот Unitree Go2.",
       "sku": "HR-UNITREE-GO2",
       "slug": "unitree-go2",
-      "status": "draft",
+      "source_url": "https://shop.unitree.com/products/unitree-go2",
+      "status": "publish",
       "stock_status": "onbackorder",
       "tags": ["автономность", "биоинспирированная робототехника", "навигация", "роботы"],
       "type": "simple"

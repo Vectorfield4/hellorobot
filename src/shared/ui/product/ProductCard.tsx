@@ -18,33 +18,37 @@ const styles = stylex.create({
     border: "1px solid #ddd",
     backgroundColor: tokens.colorBg,
     color: tokens.colorFg,
-    height: "100%",
   },
   cover: {
     width: "100%",
-    aspectRatio: "4 / 3",
+    aspectRatio: "16 / 9",
     objectFit: "cover",
     borderRadius: tokens.radiusMd,
     backgroundColor: "#f2f5f8",
   },
   coverPlaceholder: {
     width: "100%",
-    aspectRatio: "4 / 3",
+    aspectRatio: "16 / 9",
     borderRadius: tokens.radiusMd,
     backgroundColor: "#f2f5f8",
   },
-  title: { margin: 0, fontSize: "1.1rem", lineHeight: 1.25 },
-  excerpt: { margin: 0, fontSize: "0.9rem", opacity: 0.8 },
-  footer: { marginTop: "auto", display: "flex", alignItems: "baseline", gap: tokens.spaceSm },
-  stock: { fontSize: "0.8rem", opacity: 0.7 },
-  buy: {
-    marginLeft: "auto",
-    fontSize: "0.85rem",
-    padding: "0.35rem 0.75rem",
-    borderRadius: tokens.radiusMd,
-    backgroundColor: tokens.colorAccent,
-    color: "#fff",
-    textDecoration: "none",
+  title: {
+    margin: 0,
+    fontSize: "1.1rem",
+    lineHeight: 1.25,
+    display: "-webkit-box",
+    WebkitBoxOrient: "vertical",
+    WebkitLineClamp: 2,
+    overflow: "hidden",
+  },
+  excerpt: {
+    margin: 0,
+    fontSize: "0.9rem",
+    opacity: 0.8,
+    display: "-webkit-box",
+    WebkitBoxOrient: "vertical",
+    WebkitLineClamp: 2,
+    overflow: "hidden",
   },
 });
 
@@ -71,12 +75,6 @@ export default function ProductCard({ product, compact = false }: Props) {
         </a>
       </h3>
       {!compact && product.excerpt && <p {...stylex.props(styles.excerpt)}>{product.excerpt}</p>}
-      <div {...stylex.props(styles.footer)}>
-        <span {...stylex.props(styles.stock)}>{product.inStock ? "В наличии" : "Под заказ"}</span>
-        <a {...stylex.props(styles.buy)} href={`${href}#order`}>
-          Заказать
-        </a>
-      </div>
     </article>
   );
 }

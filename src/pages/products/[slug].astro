@@ -4,7 +4,7 @@ import { canonicalTag } from "@/shared/config/productTags";
 import { getPosts, type Post } from "@/shared/data/posts";
 import { type Product, productCategoryPath, productTagPath } from "@/shared/data/product";
 import { getProducts, getRelatedProducts } from "@/shared/data/products";
-import OrderForm from "@/shared/ui/order/OrderForm";
+import OrderPanel from "@/shared/ui/order/OrderPanel";
 import ProductGallery from "@/shared/ui/product/ProductGallery";
 import ProductGrid from "@/shared/ui/product/ProductGrid";
 import StockBadge from "@/shared/ui/product/StockBadge";
@@ -109,8 +109,11 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
       </p>
     )}
 
-    <div style="margin-top: 2rem; padding: 1.25rem; border: 1px solid #ddd; border-radius: 0.5rem;">
-      <OrderForm client:load productId={product.id} productName={product.name} />
+    <div
+      id="order"
+      style="margin-top: 2rem; padding: 1.25rem; border: 1px solid #ddd; border-radius: 0.5rem;"
+    >
+      <OrderPanel client:load productId={product.id} productName={product.name} />
     </div>
 
     {related.length > 0 && (

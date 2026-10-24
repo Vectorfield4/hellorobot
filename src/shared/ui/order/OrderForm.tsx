@@ -228,7 +228,7 @@ export default function OrderForm({ productId, productName }: Props) {
   const checkout = storeCheckoutUrl(productId);
 
   return (
-    <section {...stylex.props(styles.root)} id="order" aria-labelledby={inputId("title")}>
+    <section {...stylex.props(styles.root)} aria-labelledby={inputId("title")}>
       <h2 id={inputId("title")} {...stylex.props(styles.title)}>
         Оформить заказ
       </h2>

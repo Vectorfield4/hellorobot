@@ -15,12 +15,15 @@ rule:
   - kind: model
     match: unitree g1
     tags: "гуманоиды, роботы, исследования"
+    robot: humanoid
   - kind: model
     match: unitree go2
     tags: "навигация, автономность, роботы"
+    robot: quadruped
   - kind: model
     match: unitree h1
     tags: "гуманоиды, роботы"
+    robot: humanoid
   - kind: model
     match: boston dynamics spot
     tags: "навигация, автономность, биоинспирированная робототехника"
@@ -30,6 +33,7 @@ rule:
   - kind: model
     match: reachy
     tags: "гуманоиды, манипуляция, открытое железо, исследования"
+    robot: humanoid
   - kind: model
     match: openmanipulator
     tags: "манипуляторы, манипуляция, открытое железо"
@@ -39,6 +43,7 @@ rule:
   - kind: model
     match: mir
     tags: "складская логистика, навигация, автономность"
+    robot: amr
   - kind: model
     match: vision 60
     tags: "оборонная робототехника, автономность, навигация"
@@ -123,3 +128,62 @@ rule:
   - kind: type
     match: soft
     tags: "мягкая робототехника, тактильность"
+
+# --- Правила по фактам из индексов devonics.com и unitree.com ---
+#
+# Пустой `tags` — это решение «не робот для витрины»: стойка, рельс, пульт,
+# захват или страница, где название модели заменено рекламной припиской.
+# Такая модель не получает тегов, попадает в отчёт как unmapped и не
+# становится кандидатом на публикацию.
+  # DOOSAN H2017 / H2515 (JSON-LD): «6 powerful Force Torque Sensors to ensure
+  # a safe working environment», «High+ Safety — guarantees superb operator safety».
+  - kind: model
+    match: doosan h
+    tags: "коботы, манипуляторы, безопасность"
+    robot: cobot
+  # Unitree Aliengo (JSON-LD): «The main industry landing (all-terrain
+  # inspections, such as substation inspections, construction surveying…)».
+  - kind: model
+    match: unitree aliengo
+    tags: "биоинспирированная робототехника, навигация, инспекция"
+    robot: quadruped
+  # Unitree Z1 (JSON-LD): «super-lightweight robotic arm, designed for Unitree
+  # robot dogs» — это манипулятор, а не биоинспирированный робот.
+  - kind: model
+    match: unitree z1
+    tags: "манипуляторы, роботы"
+    robot: manipulator
+  # Epson G1 Mini (JSON-LD): «SCARA Robots - 175mm» — манипулятор, не гуманоид
+  # (слово «g1» в имени ложно срабатывало на тип humanoid).
+  - kind: model
+    match: epson g1 mini
+    tags: "манипуляторы, промышленная робототехника"
+    robot: manipulator
+  # Unitree H1: название страницы «Unitree H1（Contact us for the real price）»,
+  # а в описании стоит цена («Price below $90k») — такая карточка нарушает
+  # правило «цена не покидает data/<host>/prices.yaml».
+  - kind: model
+    match: unitree h1 contact
+    tags: ""
+  # Не роботы: стойки, рельсы, пульты, захваты и вспомогательная оснастка.
+  - kind: model
+    match: swivellink
+    tags: ""
+  - kind: model
+    match: cobot pedestal
+    tags: ""
+  - kind: model
+    match: linear tracks
+    tags: ""
+  - kind: model
+    match: teach pendant
+    tags: ""
+  - kind: model
+    match: parallel gripper
+    tags: ""
+  - kind: model
+    match: dh5
+    tags: ""
+  - kind: model
+    match: smart tool
+    tags: ""
