@@ -21,7 +21,10 @@ FSD + Atomic Design under `src/`.
 
 ## Content pipeline
 
-Articles are plain markdown pairs: `articles/<slug>.ru.md` + `articles/<slug>.en.md`.
+Articles are a single markdown file each: `articles/<slug>.ru.md`. The site serves
+one locale (`astro.config.ts`, `i18n.locales: ["ru"]`), so there is no EN mirror:
+an `.en.md` file gets no route, no reader and no build consumer, and only doubles
+the tokens of every later read of the story. Do not write one.
 There is no `content/plan/`, no generation queue, no cover gate and no related entities,
 so `write-article` does not apply here.
 
@@ -64,8 +67,8 @@ cases, but the log catches posts published before the frontmatter was updated.
 
 Read `covered` before touching the story:
 
-- `matched.status: published` — pair and translation exist, skip.
-- `matched.status: draft` — pair started but not live, finish it, do not fetch again.
+- `matched.status: published` — the article is live, skip.
+- `matched.status: draft` — the article was started but is not live, finish it, do not fetch again.
 - `matched.kind: wp_slug` / `wp_url` — post is live in WordPress, the archive is behind: backfill, do not republish.
 
 ### 4. Read the body
@@ -75,10 +78,11 @@ Read the full text before writing.
 
 ### 5. Translate
 
-`translate-article` produces the RU article and the EN mirror. Both keep the frontmatter
-contract from `articles/README.md`: `title`, `slug`, `date`, `tags`, `source_url`,
-`status` (`draft` | `published`), and `wp_id` / `wp_url` after publication. EN is at least
-90% of RU — no stub.
+`translate-article` produces one file, `articles/<slug>.ru.md`, in the site language.
+It keeps the frontmatter contract from `articles/README.md`: `title`, `slug`, `date`,
+`tags`, `source_url`, `status` (`draft` | `published`), and `wp_id` / `wp_url` after
+publication. No `.en.md`: the site has a single locale, so a second file would only
+duplicate the text.
 
 ### 6. Make sure the story has something to sell
 
@@ -101,7 +105,7 @@ and `гуманоиды` are the same tag.
 
 WordPress MCP (`ewpa/create-post` with `status`) when the session has it, otherwise
 `wp-publish --config <site>.json --file docs/wp-<slug>.json` after a `--dry-run`.
-Then `wp-record` writes `wp_id` / `wp_url` / `status` back into both language files, and
+Then `wp-record` writes `wp_id` / `wp_url` / `status` back into the article file, and
 `wp-sync-tags` assigns the frontmatter tags.
 
 Finally record the source in the daily log — this is what survives a forgotten
@@ -119,8 +123,8 @@ permanent record is still the article frontmatter.
 ### 8. Verify
 
 `npm run lint`, `npm run test`, `npm run build`. The build reads posts through WPGraphQL and
-products through the Store API, not markdown: a new pair adds no page until the post is
-published, and the page count grows only after step 7. Commit the article pair and
+products through the Store API, not markdown: a new article file adds no page until the post is
+published, and the page count grows only after step 7. Commit the article file and
 `docs/collected/<date>.yaml` together, with `content:` or `news:`.
 
 ## Workflow
