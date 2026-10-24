@@ -408,6 +408,10 @@ final class HelloRobot_Commerce {
 	/**
 	 * Письма шлём вручную: заказ создаётся сразу в on-hold, переходов статуса нет,
 	 * поэтому штатные хуки WooCommerce новых писем не дают.
+	 *
+	 * Клиенту по умолчанию не пишем: на сайте нет оплаты, подтверждение — звонок
+	 * менеджера, а текст письма «ожидает оплаты» вводил бы в заблуждение.
+	 * Включить можно фильтром `hellorobot_send_customer_email`.
 	 */
 	private static function send_order_emails( WC_Order $order ): void {
 		if ( ! function_exists( 'WC' ) || ! WC() ) {
@@ -429,6 +433,11 @@ final class HelloRobot_Commerce {
 		$admin_mail = isset( $emails['WC_Email_New_Order'] ) ? $emails['WC_Email_New_Order'] : null;
 		if ( $admin_mail instanceof WC_Email && method_exists( $admin_mail, 'trigger' ) ) {
 			$admin_mail->trigger( $order_id, $order );
+		}
+
+		$send_customer = (bool) apply_filters( 'hellorobot_send_customer_email', false, $order );
+		if ( ! $send_customer ) {
+			return;
 		}
 
 		$customer_mail = isset( $emails['WC_Email_Customer_On_Hold_Order'] ) ? $emails['WC_Email_Customer_On_Hold_Order'] : null;
