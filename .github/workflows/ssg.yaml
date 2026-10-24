@@ -48,6 +48,9 @@ jobs:
         shell: pwsh
         env:
           WP_GRAPHQL_TIMEOUT_MS: "30000"
+          # У домена есть AAAA, а у раннеров GitHub нет IPv6: Node выбирает
+          # IPv6 первым и получает «fetch failed». Просим IPv4.
+          NODE_OPTIONS: "--dns-result-order=ipv4first"
         run: |
           # WPGraphQL отдаёт через раз: сборка делает десятки запросов, и один
           # таймаут ронял весь деплой. Повторяем сборку целиком, не больше двух раз.
