@@ -64,6 +64,23 @@ jobs:
           foreach ($line in (Get-Content build.log -Tail 15)) { Write-Host "::error::$line" }
           exit 1
 
+      - name: Report build failure
+        if: failure()
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Логи деплоя не читаются без прав: на падении открываем issue с хвостом лога.
+        run: |
+          $body = if (Test-Path build.log) { Get-Content build.log -Tail 60 | Out-String } else { "build.log not created" }
+          if ($body.Length -gt 60000) { $body = $body.Substring($body.Length - 60000) }
+          $payload = @{
+            title = "CI build error $env:GITHUB_RUN_ID"
+            body  = "Run: $env:GITHUB_SERVER_URL/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID`n`n``````n$body`n``````"
+          } | ConvertTo-Json
+          Invoke-RestMethod -Method Post -Uri "$env:GITHUB_API_URL/repos/$env:GITHUB_REPOSITORY/issues" `
+            -Headers @{ Authorization = "Bearer $env:GH_TOKEN"; Accept = "application/vnd.github+json" } `
+            -Body $payload -ContentType "application/json"
+
       - name: Create ZIP archive
         working-directory: dist
         run: Compress-Archive -Path * -DestinationPath ..\ssg-site.zip
