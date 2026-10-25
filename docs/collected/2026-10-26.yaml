@@ -1,0 +1,32 @@
+date: 2026-10-26
+ttl_days: 7
+expires: 2026-11-02
+items:
+  - slug: maven-robotics-100m-mobile-manipulators
+    source_url: https://www.irobotnews.com/news/articleView.html?idxno=49199
+    wp_id: 231
+    collected_at: 2026-10-25T21:42:25.559Z
+  - slug: schaeffler-taicang-humanoid-factory
+    source_url: https://www.infranken.de/lk/erlangenhoechstadt/schaeffler-eroeffnet-hightech-werk-in-china-roboter-bauen-roboter-art-6404897
+    wp_id: 232
+    collected_at: 2026-10-25T21:42:25.737Z
+  - slug: promise-robotics-dr-horton-housing
+    source_url: https://www.irobotnews.com/news/articleView.html?idxno=49204
+    wp_id: 233
+    collected_at: 2026-10-25T21:42:25.930Z
+  - slug: yaskawa-humanoid-robot-2027
+    source_url: https://www.irobotnews.com/news/articleView.html?idxno=49187
+    wp_id: 234
+    collected_at: 2026-10-25T21:42:26.114Z
+  - slug: nvidia-flora-robot-video-annotation
+    source_url: https://www.briefia.fr/blog/nvidia-flora-annotation-video
+    wp_id: 235
+    collected_at: 2026-10-25T21:42:26.342Z
+  - slug: agibot-110-humanoid-record
+    source_url: https://www.globaltimes.cn/page/202610/1372888.shtml
+    wp_id: 236
+    collected_at: 2026-10-25T21:42:26.569Z
+  - slug: anthropic-robots-wage-economics-study
+    source_url: https://www.01net.com/actualites/les-robots-se-heurtent-a-la-realite-trop-chers-pour-remplacer-lhumain.html
+    wp_id: 244
+    collected_at: 2026-10-25T21:46:31.387Z
