@@ -34,6 +34,38 @@ Call the `content-translate-related-articles` agent and name what you want:
 
 It runs the chain below in order and stops at the first gate that says "already done".
 
+### 0. Volume per run
+
+One run is a batch, not a story. Target **12–15 articles on a weekday, 7–9 at the
+weekend**. The weekend figure is lower because supply is lower, not because the filter
+is looser: arXiv carries `skipDays: Saturday, Sunday` and ships an empty channel, and
+most press centres hold releases until Monday. A run on a Saturday night sees roughly
+the same candidate count as a weekday but half of it already stale.
+
+The number is a target, never a quota. If fewer stories clear the gates, publish fewer
+and report the shortfall — never fill a batch by lowering the bar.
+
+Keep the mix inside the batch, no more than two stories of one kind:
+
+| Kind | Per batch |
+| --- | --- |
+| Funding and rounds | 3–4 |
+| Manufacturing and factories | 2–3 |
+| Deployments and case studies | 2–3 |
+| Research and hardware | 2–3 |
+| Market and economics | 1–2 |
+
+Quality floor, the rules that stay no matter the target:
+
+- Dedupe by **story**, not by URL. A retelling of a published story in another language
+  is a duplicate; `published-check` does not catch it, so read the post list too.
+- A platform may return within days when the **fact** is new (Nickel: a new battery for
+  Digit, not a third "Digit walks" piece). Refuse repetition of the fact, not the robot.
+- Unparseable once means one fallback attempt (publisher URL, then archive.org), then
+  drop the candidate and log the reason. Do not spend a story on a paywalled stub.
+- No story from a video, a LinkedIn post or an opinion column without a verifiable fact
+  in it.
+
 ### 1. Sources
 
 - `docs/sources-robotics-worldwide.md` — company press centres and feeds by country.
