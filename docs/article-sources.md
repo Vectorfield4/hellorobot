@@ -29,6 +29,14 @@ global mount, and `--sources` always names the file explicitly.
 | Robohub | RSS | https://robohub.org/feed/ | ✅ |
 | Hacker News | JSON (Algolia) | https://hn.algolia.com/api/v1/search?query=robotics | ✅ |
 | Google News (ru) | RSS | https://news.google.com/rss/search?q=робототехника | ❌ (исключён: RU-агрегаторы не нужны) |
+| MONOist ロボット (ja) | RSS | https://rss.itmedia.co.jp/rss/2.0/mn_robot.xml | ✅ |
+| ロボスタ (ja) | RSS (RDF) | https://robotstart.info/rss20/index.rdf | ✅ (часть ленты — プレミアム会員限定) |
+| デンソーウェーブ (ja) | HTML | https://www.denso-wave.com/ja/robot/info/ | ✅ (без дат) |
+| 中国机器人网 (zh) | HTML | https://www.robot-china.com/news/ | ✅ (без дат) |
+| 智东西 Zhidx (zh) | HTML | https://zhidx.com/p/category/人工智能 | ✅ (без дат, только браузерный UA) |
+| 雷锋网 Leiphone (zh) | RSS | https://www.leiphone.com/feed | ✅ |
+| 量子位 Qbitai (zh) | RSS | https://www.qbitai.com/feed | ✅ |
+| 中国AGV网 (zh) | HTML | https://www.chinaagv.com/ | ✅ (без дат) |
 | Robotics 24/7 | HTML | https://www.robotics247.com/ | ❌ (нет RSS) |
 | KUKA | JSON API (`json-list`) | https://www.kuka.com/en-us/api/news/GetPublications | ✅ |
 | ABB (press releases) | JSON API (`json-list`) | https://www.abb.com/conf/abbcommon/services/newsbank.json | ✅ |
@@ -111,6 +119,78 @@ way in, not RSS.
 
 ABB and KUKA have no feed, but both render their newsroom from a JSON API, so they
 are in `scripts/sources.json` as `json-list` (below).
+
+## Japanese and Chinese publishers
+
+Until 2026-10-26 Asia reached this repo only through the Google News aggregator
+(`ja`, `zh`, `ko`): a retelling with the original publisher hidden behind a redirect.
+The native feeds below were verified on that date by running the fetcher itself against
+all twelve probed sources — 559 candidates, every title valid UTF-8, no mojibake.
+
+What the probe changed versus the proposal: three broad feeds were dropped for noise
+(`日経クロステック` — 100 items/day of general tech for ~1 robot, and partly paywalled;
+`Response.jp` — 2 robots per 50 automotive items; `ITmedia AI+` — 15 % robots, mostly
+Claude/Gemini coverage), and `ニュースイッチ` was dropped because its listing anchors carry
+a `NEW` badge as the link text: 34 items came back all titled `NEW`.
+
+| Source | Type | Items | Newest | Robots/day |
+|---|---|---|---|---|
+| MONOist ロボット | RSS | 30 | 2026-10-22 | ~0.5 (профильный) |
+| ロボスタ | RSS (RDF) | 50 | 2026-10-23 | ~4 |
+| デンソーウェーブ | HTML | 21 | без дат | ~0.2 |
+| 中国机器人网 | HTML | 135 | без дат | ~4 (пик 18 в день выставки) |
+| 智东西 Zhidx | HTML | 15 | без дат | ~1.5 |
+| 雷锋网 Leiphone | RSS | 20 | 2026-10-24 | ~6 |
+| 量子位 Qbitai | RSS | 10 | 2026-10-23 | ~1 |
+| 中国AGV网 | HTML | 75 | без дат | ~10 (AGV и склад) |
+
+### Undated HTML listings
+
+`parseHtmlList` reads a date only from the text around the anchor itself
+(`extractAnchorDate`). Five of these listings print the date in a sibling element, so
+every item comes back with `date: null` — 中国机器人网 hands over 135 undated candidates.
+That is the parser's shape, not a broken feed, and it is not worth editing the shared
+`lib/article-search.mjs` for.
+
+The policy for an undated item: take it **positionally** (listing order is newest first),
+cap it at the top 20 per source, and confirm the real date from the article page before
+writing anything. An undated candidate past the cap is not carried over to the next run —
+the next fetch will surface it again if it is still near the top.
+
+Two translation notes. A Japanese or Chinese story costs roughly twice the tokens of an
+English one, because the whole text has to be translated rather than adapted, so the
+`weight` values keep the profile publishers ahead of the general tech feeds. And
+中国机器人网 and 中国AGV网 are 60–70 % vendor press releases and expo invitations
+(«приглашаем на CeMAT Asia»): those are dropped at triage, not parsed.
+
+### Checked, no usable source
+
+Verified on 2026-10-26 with `opencode-skills/1.0` and a browser UA.
+
+| Publisher | Why not |
+|---|---|
+| Robot Watch (`robot.watch.impress.co.jp`) | издание закрыто в 2009, сайт — заглушка, `/rss/index.rdf` 404 |
+| 日本ロボット工業会 JARA | HTTP 503, «メンテナンス中» на трёх попытках |
+| 高工机器人 GG-robot | истёк TLS-сертификат; по http — `socket closed` |
+| 36Kr | клиентский рендер: ноль ссылок на статьи, `__NEXT_DATA__` отсутствует, `/feed` — HTML-шелл |
+| 亿欧 iyiou | HTTP 202 + JS-челлендж, контента нет |
+| OFweek 机器人 | `charset=gb1323` (опечатка в кодировке) — 147 заголовков нечитаемы |
+| 机器之心 | `/rss` отдаёт пустое тело, `/rss/articles` 404 |
+| 界面新闻 | `/rss/`, `/rss/tech.xml` 404 |
+| 澎湃新闻, 新华社科技, C114 | нет RSS-точки; C114 вдобавок GB2312 и не робототехника |
+| UBTECH, AgiBot, Fourier, Astribot | 200, но ленты новостей в HTML нет (JS-рендер или только лендинг) |
+| 新松 SIASUN, 埃斯顿 Estun | таймаут соединения |
+| 达闼 CloudMinds, 中国工控网 | ошибка проверки TLS-сертификата |
+| FANUC Japan | `/ja/news/`, `/ja/newsroom/` 404; `/ja/profile/news/` — три карточки продуктов |
+| Yaskawa Japan | одна ссылка на security alert, ленты нет |
+| Mitsubishi Electric, Omron, Denso, THK | 403 для обоих UA; лента без href; 404 |
+| 川崎重工 | 3888 ссылок без робораздела (суда, мотоциклы, авиация), селектор не сузить |
+| Harmonic Drive | ноль ссылок на статьи в HTML |
+| 大阪大学, 産総研, 東大 JSK, RRI | 404 на страницах новостей; JSK заморожен на 2015 |
+| RIKEN | листинг рабочий, но life science: «ロボット» встречается один раз на всю ленту |
+| 新浪科技 RSS | фид мёртв с 2018-09-23 |
+| cnBeta | 150 записей, роботов 2 % |
+| 电子发烧友 elecfans | 403 |
 
 ## Client-rendered newsrooms (`json-list`)
 

@@ -424,5 +424,77 @@
     "lang": "en",
     "country": "CH",
     "weight": 1.1
+  },
+  {
+    "name": "MONOist ロボット",
+    "url": "https://rss.itmedia.co.jp/rss/2.0/mn_robot.xml",
+    "type": "rss",
+    "lang": "ja",
+    "country": "JP",
+    "weight": 1.2
+  },
+  {
+    "name": "ロボスタ",
+    "url": "https://robotstart.info/rss20/index.rdf",
+    "type": "rss",
+    "lang": "ja",
+    "country": "JP",
+    "weight": 1.2
+  },
+  {
+    "name": "デンソーウェーブ 産業用ロボット",
+    "url": "https://www.denso-wave.com/ja/robot/info/",
+    "type": "html-list",
+    "selector": "a[href*=\"/robot/info/detail_\"]",
+    "baseUrl": "https://www.denso-wave.com/ja/robot/info",
+    "lang": "ja",
+    "country": "JP",
+    "weight": 1.0
+  },
+  {
+    "name": "中国机器人网",
+    "url": "https://www.robot-china.com/news/",
+    "type": "html-list",
+    "selector": "a[href$=\".html\"]",
+    "baseUrl": "https://www.robot-china.com/news",
+    "lang": "zh",
+    "country": "CN",
+    "weight": 1.2
+  },
+  {
+    "name": "智东西 Zhidx",
+    "url": "https://zhidx.com/p/category/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD",
+    "type": "html-list",
+    "selector": "a[href$=\".html\"]",
+    "baseUrl": "https://zhidx.com/p",
+    "lang": "zh",
+    "country": "CN",
+    "weight": 1.2
+  },
+  {
+    "name": "雷锋网 Leiphone",
+    "url": "https://www.leiphone.com/feed",
+    "type": "rss",
+    "lang": "zh",
+    "country": "CN",
+    "weight": 1.0
+  },
+  {
+    "name": "量子位 Qbitai",
+    "url": "https://www.qbitai.com/feed",
+    "type": "rss",
+    "lang": "zh",
+    "country": "CN",
+    "weight": 1.1
+  },
+  {
+    "name": "中国AGV网",
+    "url": "https://www.chinaagv.com/",
+    "type": "html-list",
+    "selector": "a[href*=\"/news/detail/\"]",
+    "baseUrl": "https://www.chinaagv.com/news",
+    "lang": "zh",
+    "country": "CN",
+    "weight": 1.0
   }
 ]

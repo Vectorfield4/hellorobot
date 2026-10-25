@@ -71,6 +71,10 @@ Quality floor, the rules that stay no matter the target:
 - `docs/sources-robotics-worldwide.md` — company press centres and feeds by country.
 - `docs/article-sources.md` — which feeds are wired, which are HTML-only, which are client-rendered.
 - `scripts/sources.json` — what the fetcher actually reads. Add a source here, update the table.
+- Asia runs on native publishers, not only the Google News aggregator: `MONOist ロボット`,
+  `ロボスタ`, `デンソーウェーブ` (ja) and `中国机器人网`, `雷锋网`, `量子位`, `智东西`,
+  `中国AGV网` (zh). Five of them are HTML listings whose items arrive without a date —
+  take them positionally, top 20, and confirm the date on the article page.
 
 ### 2. Find articles
 

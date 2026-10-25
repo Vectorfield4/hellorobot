@@ -1,6 +1,6 @@
 {
   "name": "hellorobot",
-  "version": "1.11.40",
+  "version": "1.11.41",
   "private": true,
   "type": "module",
   "engines": {
