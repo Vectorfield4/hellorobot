@@ -13,7 +13,7 @@ interface Props {
   seed?: string;
 }
 
-const { tags, limit = 5, heading = "Роботы", variant = "article", seed } = Astro.props;
+const { tags, limit = 3, heading = "Роботы", variant = "article", seed } = Astro.props;
 
 const products = await getProductsForTags(tags, limit, seed);
 const tagLink = variant === "article" && tags.length === 1 ? tags[0] : null;
@@ -65,7 +65,7 @@ const tagLink = variant === "article" && tags.length === 1 ? tags[0] : null;
 
   @media (min-width: 64rem) {
     .buy-robot__grid {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     }
   }
 
