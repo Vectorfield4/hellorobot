@@ -118,9 +118,33 @@ export async function getAllProductCategories(): Promise<ProductTag[]> {
 export interface RelatedProductsOptions {
   limit?: number;
   excludeId?: number;
+  /**
+   * Стабильное зерно подборки: слаг статьи, тега или товара. Одинаковое зерно
+   * даёт одинаковый порядок (SSG обязан быть детерминированным), разное зерно
+   * разводит срез, чтобы у двух материалов с похожими тегами не было одного и
+   * того же списка роботов.
+   */
+  seed?: string;
 }
 
-/** Товары по общим тегам: больше совпадений — выше в списке. */
+/** FNV-1a: дешёвый детерминированный хеш, без Math.random и без времени. */
+function stableHash(value: string): number {
+  let hash = 0x811c9dc5;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return hash >>> 0;
+}
+
+/**
+ * Товары по общим тегам.
+ *
+ * Вес тега обратен его распространённости: «инспекция» или «складская
+ * логистика» различают товар, а «манипуляторы» стоят почти на всём каталоге и
+ * сами по себе ничего не говорят. Поэтому редкий общий тег весит больше
+ * частого, и материал про склад получает AMR, а не первый по алфавиту кобот.
+ */
 export function getRelatedProducts(
   products: Product[],
   tags: string[],
@@ -130,20 +154,52 @@ export function getRelatedProducts(
   const wanted = new Set(tags.map(canonicalTag).filter(Boolean));
   if (!wanted.size) return [];
 
+  const canons = new Map<number, Set<string>>();
+  const documentFrequency = new Map<string, number>();
+  for (const product of products) {
+    const productCanons = new Set(
+      product.tags.map((tag) => canonicalTag(tag.name)).filter(Boolean),
+    );
+    canons.set(product.id, productCanons);
+    for (const canon of productCanons) {
+      documentFrequency.set(canon, (documentFrequency.get(canon) ?? 0) + 1);
+    }
+  }
+
+  const total = products.length;
+  const weightOf = (canon: string) =>
+    Math.log(1 + total / Math.max(1, documentFrequency.get(canon) ?? 1));
+
+  const seed = options.seed ?? "";
+  const rankOf = (product: Product) =>
+    stableHash(`${seed}|${product.sku || product.slug || product.id}`);
+
   return products
     .filter((product) => product.id !== options.excludeId)
-    .map((product) => ({
-      product,
-      score: product.tags.filter((tag) => wanted.has(canonicalTag(tag.name))).length,
-    }))
+    .map((product) => {
+      let score = 0;
+      for (const canon of canons.get(product.id) ?? []) {
+        if (wanted.has(canon)) score += weightOf(canon);
+      }
+      return { product, score, rank: rankOf(product) };
+    })
     .filter((entry) => entry.score > 0)
-    .sort((a, b) => b.score - a.score || a.product.name.localeCompare(b.product.name, "ru"))
+    .sort(
+      (left, right) =>
+        right.score - left.score ||
+        left.rank - right.rank ||
+        left.product.name.localeCompare(right.product.name, "ru"),
+    )
     .slice(0, limit)
     .map((entry) => entry.product);
 }
 
 /** Блок «Купить робота»: минимум один товар для статьи. */
-export async function getProductsForTags(tags: string[], limit = 3): Promise<Product[]> {
+export async function getProductsForTags(
+  tags: string[],
+  limit = 3,
+  seed?: string,
+): Promise<Product[]> {
   const products = await getProducts();
-  return getRelatedProducts(products, tags, { limit });
+  return getRelatedProducts(products, tags, { limit, seed });
 }

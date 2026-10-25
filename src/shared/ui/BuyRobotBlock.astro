@@ -9,11 +9,13 @@ interface Props {
   limit?: number;
   heading?: string;
   variant?: "article" | "tag";
+  /** Зерно подборки (слаг статьи или тега): разные материалы получают разные товары. */
+  seed?: string;
 }
 
-const { tags, limit = 5, heading = "Роботы", variant = "article" } = Astro.props;
+const { tags, limit = 5, heading = "Роботы", variant = "article", seed } = Astro.props;
 
-const products = await getProductsForTags(tags, limit);
+const products = await getProductsForTags(tags, limit, seed);
 const tagLink = variant === "article" && tags.length === 1 ? tags[0] : null;
 ---
 

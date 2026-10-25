@@ -23,7 +23,7 @@ const products = await getProducts();
 const related = getRelatedProducts(
   products,
   product.tags.map((tag) => tag.name),
-  { excludeId: product.id, limit: 4 },
+  { excludeId: product.id, limit: 4, seed: product.slug },
 );
 
 // Статьи живут в WPGraphQL и могут быть недоступны: карточка товара от этого

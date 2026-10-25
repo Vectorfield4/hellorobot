@@ -34,11 +34,11 @@ const hasMarkers = segments.some((segment) => segment.type === "products");
         segment.type === "html" ? (
           <Fragment set:html={segment.value} />
         ) : (
-          <BuyRobotBlock tags={segment.tags ?? post.tags} />
+          <BuyRobotBlock tags={segment.tags ?? post.tags} seed={post.slug} />
         ),
       )}
     </article>
-    {!hasMarkers && <BuyRobotBlock tags={post.tags} />}
+    {!hasMarkers && <BuyRobotBlock tags={post.tags} seed={post.slug} />}
     <p><a href="/">← Back</a></p>
   </main>
 </BaseLayout>
