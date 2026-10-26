@@ -110,7 +110,7 @@ describe("русский текст каталога", () => {
 
 describe("пути каталога", () => {
   it("строит адреса товара, тега и категории", () => {
-    expect(productPath("unitree-g1")).toBe("/products/unitree-g1");
+    expect(productPath("unitree-g1")).toBe("/robots/unitree-g1");
     expect(productTagPath("гуманоиды")).toBe(
       "/products/tag/%D0%B3%D1%83%D0%BC%D0%B0%D0%BD%D0%BE%D0%B8%D0%B4%D1%8B",
     );

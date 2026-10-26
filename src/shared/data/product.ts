@@ -128,7 +128,7 @@ export function mapStoreProduct(raw: StoreProduct): Product {
 }
 
 export function productPath(slug: string): string {
-  return `/products/${slug}`;
+  return `/robots/${slug}`;
 }
 
 export function productTagPath(name: string): string {

@@ -16,8 +16,16 @@ const totalPages = Math.ceil(posts.length / PAGE_SIZE);
 ---
 <BaseLayout title={t("home.title")}>
   <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
-    <Logo alt={t("home.title")} />
-    <p>{t("home.lead")}</p>
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+      <Logo alt={t("home.title")} />
+      <nav aria-label="Хлебные крошки" style="font-size: 0.85rem; color: #666;">
+        <span style="color: #666;">Новости</span>
+        {" / "}
+        <a href="/products" style="color: var(--color-accent); text-decoration: none;">Робототехника</a>
+        {" / "}
+        <span style="color: #666;">Разработки, исследования, индустрия</span>
+      </nav>
+    </div>
 
     <NewsTitle as="h2" />
     <LatestPosts client:load first={5} knownSlugs={posts.map((p) => p.slug)} />
