@@ -163,6 +163,12 @@ English one, because the whole text has to be translated rather than adapted, so
 中国机器人网 and 中国AGV网 are 60–70 % vendor press releases and expo invitations
 («приглашаем на CeMAT Asia»): those are dropped at triage, not parsed.
 
+These feeds run through `scripts/asia-lane.mjs` as a separate capped pool (see
+[AGENTS.md](../AGENTS.md) §2): the lane filters `scripts/sources.json` to `lang: ja|zh`,
+writes `docs/research/sources-asia.json`, calls the fetcher and keeps ~60 candidates
+round-robin across publishers, so no single 100-item Google News feed fills the pool.
+Translation terms are in [glossary-ja-zh.md](glossary-ja-zh.md).
+
 ### Checked, no usable source
 
 Verified on 2026-10-26 with `opencode-skills/1.0` and a browser UA.
@@ -262,7 +268,49 @@ node "$env:USERPROFILE/.config/opencode/skills/data/article-extractor/scripts/ex
 ```
 
 Output is JSON: `title`, `byline`, `excerpt`, `content`, `textContent`, `siteName`,
-`url`. There is no extraction code and no launcher in this repository.
+`url`.
+
+### Publisher ladder (`scripts/extract-article.mjs`)
+
+Readability is one generic pass, so a lazy-loaded body or a shift_jis newsroom costs a
+story. The project keeps a three-rung ladder of its own for the publishers that actually
+failed: JSON-LD `articleBody` → a verified per-publisher selector → a generic
+densest-paragraph heuristic. `ok` is `checkBody` from `scripts/triage-candidates.mjs`
+(300 words, mojibake), so a truncated body cannot pass as a short story.
+
+```bash
+node scripts/extract-article.mjs --url <url> [--out body.json]
+```
+
+Charsets are decoded from the header, then from a meta tag in the first 4 KB (MONOist
+serves shift_jis and declares it only there), and `gb1323` — the OFweek typo — is read as
+`gb18030` instead of throwing. A 403/404 gets exactly one retry, then an honest
+`{ ok: false, reason: "http 403" }` and exit code 1.
+
+Selectors below were verified on 2026-10-27 against live articles; each had to yield
+≥300 words on three different articles, and the ones that failed went back to the generic
+rung.
+
+| Host | Selector | Result |
+|---|---|---|
+| irobotnews.com | `#article-view-content-div` | works (1265–1529 w) |
+| therobotreport.com | `.entry-content` | works (619–899 w) |
+| globaltimes.cn | `.article_content` | works (393–794 w) |
+| infranken.de | `.text_teaser` | JSON-LD wins first (458–712 w); selector as fallback |
+| briefia.fr | `main .prose` | works (403–741 w) |
+| 01net.com | `.entry-content` | works (396–566 w) |
+| itmedia.co.jp (MONOist, RSS at rss.itmedia.co.jp) | `#cmsBody .subscription` | works (656–836 w), shift_jis; `#cmsBody` alone adds the related list |
+| robotstart.info | `article.arti-body` | works (950–2024 w) |
+| robot-china.com | `#content` | works (462–631 w) |
+| leiphone.com | `.lphArticle-detail` | works (476–1031 w) |
+| qbitai.com | `div.article` | works (1436–3248 w) |
+| zhidx.com | `div.post-content` | works (1641–2538 w) |
+| chinaagv.com | `#viewcontentbox` | works (627–895 w) |
+| prtimes.jp | `#press-release-body` | works (1077–3842 w) |
+
+Two honest failures, both real: a Global Times photo report of 172 words and a zhidx
+video post with no `<p>` at all. A publisher with no entry, or one who redesigns, falls
+through to the generic rung by design.
 
 ## Adding a source
 
@@ -275,3 +323,24 @@ Append an entry to `scripts/sources.json`:
 `type` is `rss`, `atom`, `hn`, `html-list` or `json-list`. No code change is needed.
 Update this table's "Parsing set up" column accordingly. A `json-list` source also
 needs its endpoint shape in [Client-rendered newsrooms](#client-rendered-newsrooms-json-list).
+
+### Source weight from measurement
+
+`weight` is not a promise, it is a number a run can supply. After a batch:
+
+```bash
+node scripts/source-yield.mjs --candidates docs/research/candidates-<date>.json \
+  --shortlist docs/research/shortlist-<date>.json --collected docs/collected \
+  --articles articles --out docs/research/source-yield.json
+node scripts/source-yield.mjs apply --yield docs/research/source-yield.json --dry-run
+```
+
+Per source it counts `items`, `fresh`, `stories`, `published` and proposes
+`weight = clamp(0.6, 1.2, 0.6 + 2.0 × publishedRate)`; a source with zero fresh items is
+unmeasured and keeps its weight. `apply` rewrites only the number after `"weight":`, is
+idempotent, and prints the before → after table; drop `--dry-run` to write.
+
+`published` is matched by host between the source's candidate URLs and the archive's
+`source_url` / the daily log. That is why a Google News feed always reports 0 — its
+candidates point at `news.google.com` while the archive stores the publisher's URL — and
+why a vendor's own release, retold by trade press, is credited to the trade host.

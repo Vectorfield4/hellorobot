@@ -75,6 +75,15 @@ Quality floor, the rules that stay no matter the target:
   `ロボスタ`, `デンソーウェーブ` (ja) and `中国机器人网`, `雷锋网`, `量子位`, `智东西`,
   `中国AGV网` (zh). Five of them are HTML listings whose items arrive without a date —
   take them positionally, top 20, and confirm the date on the article page.
+- Those ja/zh feeds translate at roughly twice the tokens of an English one, so they get
+  their own capped pool instead of competing inside the 2 000-item dump:
+  `scripts/asia-lane.mjs` (section 2). Translation terms live in
+  [docs/glossary-ja-zh.md](docs/glossary-ja-zh.md) — 具身智能 and 出货量 are the two the
+  dictionary gets wrong.
+- `scripts/source-yield.mjs` turns a finished run into measured numbers per source
+  (`items`, `fresh`, `stories`, `published`, `publishedRate`) and can write the weight
+  back: `weight = clamp(0.6, 1.2, 0.6 + 2.0 × publishedRate)`. A source with zero fresh
+  items is left alone, not zeroed.
 
 ### 2. Find articles
 
@@ -82,6 +91,20 @@ Quality floor, the rules that stay no matter the target:
 node "$env:USERPROFILE/.config/opencode/skills/data/news-fetcher/scripts/fetch-candidates.mjs" \
   --sources scripts/sources.json --out docs/research/candidates-<date>.json
 ```
+
+The Japanese/Chinese lane runs separately, so those candidates are chosen on purpose
+rather than out of a 1 800-item dump:
+
+```bash
+node scripts/asia-lane.mjs [--date <date>] [--cap 60]
+```
+
+It filters `scripts/sources.json` to `lang: ja|zh`, writes the filtered list to
+`docs/research/sources-asia.json` (the project list is not edited), calls the same
+fetcher and caps the pool round-robin across publishers — undated listing items up to
+top 20 per source, then a shared cap, freshest first inside each source. Result:
+`docs/research/candidates-asia-<date>.json`. Run the general dump and the lane side by
+side; triage them together or one after the other, the story dedupe works across both.
 
 Topic-scoped runs: `thematic-article-search --topic <topic> --sources scripts/sources.json`.
 
@@ -129,6 +152,19 @@ Read `covered` before touching the story:
 
 `article-extractor` per fresh URL; `try-parse-url` only on an error or a truncated body.
 Read the full text before writing.
+
+The project also carries its own ladder for the publishers that the generic Readability
+pass loses (`scripts/extract-article.mjs`): JSON-LD `articleBody` first, then a verified
+per-publisher selector (`PUBLISHERS` in the file), then a generic densest-paragraph
+heuristic. It decodes shift_jis/gbk pages, whose charset is often declared only in a meta
+tag, and reports `ok` through the same `checkBody` gate as triage:
+
+```bash
+node scripts/extract-article.mjs --url <url> [--out docs/research/bodies/<slug>.json]
+```
+
+Use it when the shared extractor answers with an error, a `mojibake` body or fewer than
+300 words; `extractor` in the JSON says which rung produced the text.
 
 The parser lies quietly: a paywall or a JS shell yields 88 words and looks like a short
 story. Gate every body before translating it:
