@@ -3,6 +3,7 @@ import BaseLayout from "@/app/layouts/BaseLayout.astro";
 import { PRODUCT_PAGE_SIZE } from "@/shared/config/pagination";
 import { getAllProductCategories, getProductsByCategory } from "@/shared/data/products";
 import ProductListing from "@/shared/ui/product/ProductListing.astro";
+import SiteNav from "@/shared/ui/SiteNav.astro";
 
 export async function getStaticPaths() {
   const categories = await getAllProductCategories();
@@ -34,8 +35,8 @@ const basePath = `/products/category/${encodeURIComponent(category)}`;
   description={`Страница ${page} категории «${category}»: цены и наличие товаров.`}
 >
   <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
+    <SiteNav current="catalog" />
     <h1 style="margin-top: 0;">Товары в категории: {category}</h1>
-    <p><a href="/products">← Каталог роботов</a></p>
     <p style="opacity: 0.75;">Найдено товаров: {products.length}</p>
     <ProductListing
       products={pageProducts}

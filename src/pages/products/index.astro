@@ -6,6 +6,7 @@ import { type Product, productCategoryPath, productTagPath } from "@/shared/data
 import { getAllProductCategories, getAllProductTags, getProducts } from "@/shared/data/products";
 import ProductListing from "@/shared/ui/product/ProductListing.astro";
 import ProductSearch from "@/shared/ui/product/ProductSearch";
+import SiteNav from "@/shared/ui/SiteNav.astro";
 
 const products = await getProducts();
 const tags = await getAllProductTags();
@@ -25,18 +26,72 @@ const searchIndex: Product[] = products.map((product) => ({
 
 const chipStyle =
   "font-size:0.8rem;padding:0.2rem 0.6rem;border-radius:0.5rem;background:#0066cc;color:#fff;text-decoration:none;";
+
+const searchToggleStyle =
+  "display:inline-flex;align-items:center;gap:0.4rem;margin-left:auto;padding:0.35rem 0.7rem;font:inherit;font-size:0.9rem;color:#0066cc;background:transparent;border:1px solid currentColor;border-radius:0.5rem;cursor:pointer;";
 ---
 
 <BaseLayout
   title="Каталог роботов — hellorobot"
-  description="Роботы, манипуляторы и коботы, доступные к заказу: цены, наличие и характеристики. Заказ оформляется заявкой на сайте."
+  description="Гуманоиды, коботы, манипуляторы и четвероногие платформы: характеристики и наличие. Заказ — заявкой на сайте, стоимость и сроки поставки уточняет менеджер."
 >
   <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
-    <h1 style="margin-top: 0;">Каталог роботов</h1>
+    <SiteNav current="catalog" />
+
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+      <h1 style="margin:0;">Каталог роботов</h1>
+      {products.length > 0 && (
+        <button
+          id="catalog-search-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="catalog-search"
+          style={searchToggleStyle}
+        >
+          <svg
+            aria-hidden="true"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m16.5 16.5 4 4"></path>
+          </svg>
+          <span data-search-toggle-label>Поиск</span>
+        </button>
+      )}
+    </div>
+
     <p>
-      Гуманоиды, коботы, манипуляторы и четвероногие платформы с ценами и наличием из
-      магазина. Заказ оформляется заявкой на сайте: оплата не проводится, менеджер уточняет
-      сроки поставки и условия.
+      Мы собираем этот каталог по одному роботу и до сих пор удивляемся, сколько всего уже можно
+      заказать: гуманоиды Unitree G1 и Reachy 2, четвероногие Unitree Go2 и B2, коботы Doosan и
+      Fairino, манипуляторы и мягкие захваты для хрупких вещей. Часть машин работает в цеху, часть
+      стоит на столе в лаборатории, а Microduck берут просто для того, чтобы посмотреть, как утка
+      ходит.
+    </p>
+
+    <p>
+      Детям обычно показывают именно её: Microduck ростом 25 сантиметров ходит на двух ногах, видит
+      камерой и лидаром и берёт предметы клювом. Её можно программировать, поэтому на ней хорошо
+      объяснять, что робот — не картинка из новостей, а железо, которое падает и учится заново.
+    </p>
+
+    <p>
+      У пожилых задача другая и менее заметная. Мобильные платформы вроде EMMA1000L и OMNI развозят
+      грузы по складам и больницам, а в пансионатах то же самое делают роботы-доставщики: подвезти
+      лекарства, воду, чистое бельё, чтобы человек не таскал тяжести по коридорам. Есть и работа
+      потише — разговор. Reachy Mini поворачивается к собеседнику и поддерживает беседу; такие
+      настольные компаньоны берут в лаборатории, где изучают, как робот и человек понимают друг
+      друга.
+    </p>
+
+    <p>
+      Стоимость и наличие подтверждает менеджер: оплата на сайте не проводится. Оставляете заявку в
+      карточке робота — вам перезванивают, называют сроки поставки и условия.
     </p>
 
     {products.length === 0 ? (
@@ -49,9 +104,22 @@ const chipStyle =
       </section>
     ) : (
       <>
-        <section style="margin-top: 2rem;">
+        <div id="catalog-search" hidden style="margin-top: 1.5rem;">
           <ProductSearch client:load products={searchIndex} storeUrl={STORE_API_URL} />
-        </section>
+        </div>
+
+        <noscript>
+          <!-- Без скрипта кнопка бесполезна: показываем поиск сразу. -->
+          <style is:inline>
+            #catalog-search-toggle {
+              display: none !important;
+            }
+            #catalog-search {
+              display: block !important;
+              margin-top: 1.5rem;
+            }
+          </style>
+        </noscript>
 
         {tags.length > 0 && (
           <nav aria-label="Теги каталога" style="margin-top: 2rem;">
@@ -93,7 +161,37 @@ const chipStyle =
             basePath="/products"
           />
         </section>
+
+        <p style="margin-top: 2rem;">
+          Если хочется не только посмотреть, но и понять, откуда всё это взялось, —
+          <a href="/">новости робототехники</a> обновляются каждый день.
+        </p>
       </>
     )}
   </main>
 </BaseLayout>
+
+<script>
+  // Панель поиска лежит в разметке свёрнутой: раскрываем её по кнопке справа
+  // от заголовка и уводим фокус в поле, чтобы можно было сразу печатать.
+  const toggle = document.getElementById("catalog-search-toggle");
+  const panel = document.getElementById("catalog-search");
+  const label = toggle?.querySelector("[data-search-toggle-label]");
+
+  if (toggle && panel && label) {
+    const setOpen = (open: boolean) => {
+      panel.hidden = !open;
+      toggle.setAttribute("aria-expanded", String(open));
+      label.textContent = open ? "Свернуть" : "Поиск";
+      if (!open) return;
+      panel.querySelector<HTMLInputElement>("input[type='search']")?.focus();
+    };
+
+    toggle.addEventListener("click", () => setOpen(panel.hidden));
+    panel.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      setOpen(false);
+      toggle.focus();
+    });
+  }
+</script>

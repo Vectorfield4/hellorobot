@@ -1,0 +1,33 @@
+---
+interface Props {
+  /** Раздел, на котором стоит человек: он остаётся ссылкой, но без подчёркивания. */
+  current: "news" | "catalog";
+}
+
+const { current } = Astro.props;
+---
+
+<nav aria-label="Разделы сайта" class="site-nav">
+  <a href="/" aria-current={current === "news" ? "page" : undefined}>Новости робототехники</a>
+  <a href="/products" aria-current={current === "catalog" ? "page" : undefined}>Каталог роботов</a>
+</nav>
+
+<style>
+  .site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.85rem;
+  }
+
+  .site-nav a {
+    color: var(--color-accent);
+  }
+
+  .site-nav a[aria-current="page"] {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+  }
+</style>

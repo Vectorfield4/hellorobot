@@ -3,6 +3,7 @@ import BaseLayout from "@/app/layouts/BaseLayout.astro";
 import { PRODUCT_PAGE_SIZE } from "@/shared/config/pagination";
 import { getProducts } from "@/shared/data/products";
 import ProductListing from "@/shared/ui/product/ProductListing.astro";
+import SiteNav from "@/shared/ui/SiteNav.astro";
 
 export async function getStaticPaths() {
   const products = await getProducts();
@@ -25,8 +26,8 @@ const pageProducts = products.slice(start, start + PRODUCT_PAGE_SIZE);
   description={`Страница ${page} каталога роботов: цены и наличие товаров магазина.`}
 >
   <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
+    <SiteNav current="catalog" />
     <h1 style="margin-top: 0;">Каталог роботов</h1>
-    <p><a href="/products">← В начало каталога</a></p>
     <p>
       Страница {page} из {totalPages}.
     </p>
