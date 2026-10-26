@@ -1,0 +1,60 @@
+date: 2026-10-27
+ttl_days: 7
+expires: 2026-11-03
+items:
+  - slug: bedrock-robotics-600m-series-c
+    source_url: https://thenextweb.com/news/bedrock-robotics-600m-series-c-4-1bn-valuation
+    wp_id: 246
+    collected_at: 2026-10-26T23:33:02.201Z
+  - slug: qualcomm-acquires-picknik
+    source_url: https://roboticsandautomationnews.com/2026/10/26/qualcomm-to-acquire-picknik-to-expand-open-source-robotics-and-physical-ai-capabilities/106361/
+    wp_id: 247
+    collected_at: 2026-10-26T23:33:02.361Z
+  - slug: omron-acquires-onlogic
+    source_url: https://www.therobotreport.com/omron-acquires-onlogic-address-edge-ai-applications/
+    wp_id: 248
+    collected_at: 2026-10-26T23:33:02.519Z
+  - slug: ff-eai-robotics-nasdaq
+    source_url: https://www.unite.ai/ff-eai-robotics-closes-purchase-of-faraday-futures-robotics-unit/
+    wp_id: 249
+    collected_at: 2026-10-26T23:33:02.686Z
+  - slug: toyota-400k-robots-investment
+    source_url: https://www.infoobs.com/article/20261026/72042.html
+    wp_id: 250
+    collected_at: 2026-10-26T23:33:02.855Z
+  - slug: schaeffler-humanoid-order-intake
+    source_url: https://www.ad-hoc-news.de/wissenschaft/humanoide-robotik-schaefflers-auftragseingang-steigt-auf-400-millionen-euro/70415905
+    wp_id: 251
+    collected_at: 2026-10-26T23:33:03.024Z
+  - slug: gxo-agility-digit-expansion
+    source_url: https://www.agilityrobotics.com/content/gxo-and-agility-robotics-expand-partnership-to-accelerate-deployment-of-humanoids-in-u-s-operations
+    wp_id: 252
+    collected_at: 2026-10-26T23:33:03.192Z
+  - slug: remote-robotic-surgery-35-miles
+    source_url: https://abcnews.com/GMA/Wellness/doctor-performs-surgery-patient-hospital-35-miles-robotics/story?id=137576330
+    wp_id: 253
+    collected_at: 2026-10-26T23:33:03.354Z
+  - slug: unitree-h2-x-security-rescue
+    source_url: https://36kr.jp/503723/
+    wp_id: 254
+    collected_at: 2026-10-26T23:33:03.517Z
+  - slug: robot-swarm-sound-localization
+    source_url: https://m.sohu.com/a/1092846364_489960
+    wp_id: 255
+    collected_at: 2026-10-26T23:33:03.682Z
+  - slug: samsung-eps4p-imperfect-data
+    source_url: https://m.sohu.com/a/1092791722_129720
+    wp_id: 256
+    collected_at: 2026-10-26T23:33:03.839Z
+  - slug: ai-robotic-lab-heat-resistant-coatings
+    source_url: https://phys.org/news/2026-10-ai-powered-robotic-laboratory-paves.html
+    wp_id: 257
+    collected_at: 2026-10-26T23:33:04.014Z
+  - slug: morgan-stanley-humanoid-price-survey
+    source_url: https://finance.biggo.jp/news/470d81fd-7ca6-480f-9480-f0180c5983fa
+    wp_id: 258
+    collected_at: 2026-10-26T23:33:04.181Z
+  - slug: unitree-shares-jpmorgan-upgrade
+    source_url: https://finance.biggo.jp/news/2d806c94-ca38-46a1-b135-a29f4727478e
+    wp_id: 259
+    collected_at: 2026-10-26T23:33:04.343Z
