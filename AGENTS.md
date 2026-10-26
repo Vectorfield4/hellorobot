@@ -87,8 +87,27 @@ Topic-scoped runs: `thematic-article-search --topic <topic> --sources scripts/so
 
 ### 3. Skip what is already published
 
-Two passes: `candidates-triage` (dedupe the dump by canonical URL, filter, cap), then
-`published-check` against this repo's archive and, when available, a WordPress dump:
+Story-level triage first, then `published-check` for the cases triage cannot see:
+
+```bash
+node scripts/triage-candidates.mjs \
+  --file docs/research/candidates-<date>.json \
+  --from <date> --to <date> --known-articles articles \
+  --top 40 --out docs/research/shortlist-<date>.json
+```
+
+It collapses one event into one story — a vendor release, a trade-press write-up, a
+Google News rerun and two translated retellings become a single cluster whose `retold`
+list keeps every URL — and it ranks the survivor: the actor of the story beats trade
+press, which beats an aggregator. Drop rules ride along, each with a reason in
+`dropped`: expo invitations, webinars, award lists, concept renders, stale dates,
+undated listings past the positional cap of 20.
+
+`stats.covered` is the archive check: a cluster whose story is already published is
+excluded from the shortlist and named in `covered` with the article slug. Read it
+before parsing anything.
+
+Then the second pass, for what is live in WordPress but not yet in the archive:
 
 ```bash
 node "$env:USERPROFILE/.config/opencode/skills/data/published-check/scripts/check.mjs" \
@@ -98,8 +117,7 @@ node "$env:USERPROFILE/.config/opencode/skills/data/published-check/scripts/chec
 
 `--wp` takes any post-shaped dump: the exported daily log
 (`node scripts/collected.mjs export --out docs/research/collected.json`) or a
-`ewpa/get-posts` dump. `--wp` is optional; the archive alone already covers most
-cases, but the log catches posts published before the frontmatter was updated.
+`ewpa/get-posts` dump.
 
 Read `covered` before touching the story:
 
@@ -112,6 +130,16 @@ Read `covered` before touching the story:
 `article-extractor` per fresh URL; `try-parse-url` only on an error or a truncated body.
 Read the full text before writing.
 
+The parser lies quietly: a paywall or a JS shell yields 88 words and looks like a short
+story. Gate every body before translating it:
+
+```bash
+node scripts/triage-candidates.mjs body --file <extracted-body.txt>
+```
+
+`fail: too-short` or `fail: mojibake` means extract again or drop the candidate — never
+write an article from that body. 300 words is the floor for a news item.
+
 ### 5. Translate
 
 `translate-article` produces one file, `articles/<slug>.ru.md`, in the site language.
@@ -119,6 +147,17 @@ It keeps the frontmatter contract from `articles/README.md`: `title`, `slug`, `d
 `tags`, `source_url`, `status` (`draft` | `published`), and `wp_id` / `wp_url` after
 publication. No `.en.md`: the site has a single locale, so a second file would only
 duplicate the text.
+
+Then the last duplicate gate, now that the text is in Russian and comparable to what is
+already published:
+
+```bash
+node scripts/triage-candidates.mjs draft --file articles/<slug>.ru.md --known-articles articles
+```
+
+`duplicate` means a published article already tells this story: stop, or make the piece
+about the new fact. This is the gate that catches a story translated twice from two
+retellings in two languages — the candidate titles never matched, the Russian ones do.
 
 ### 6. Make sure the story has something to sell
 
