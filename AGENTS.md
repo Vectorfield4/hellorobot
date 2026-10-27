@@ -139,6 +139,27 @@ undated listings past the positional cap of 20.
 excluded from the shortlist and named in `covered` with the article slug. Read it
 before parsing anything.
 
+Then, before spending a parse on anything, ask which of these stories is worth a
+reader's time:
+
+```bash
+node scripts/interest-score.mjs --file docs/research/shortlist-<date>.json \
+  --limit 30 --out docs/research/interest-<date>.json
+```
+
+It ranks the shortlist and never deletes from it. Two layers: deterministic flags
+down-weight a headline that moves money, appoints a person, repeats an analyst note or
+lists awards while saying nothing about what a robot does; then five Jev `score`s
+(`robot`, `change`, `evidence`, `reader`, `hype`) are composited with weights and the
+composite is multiplied by the flag factor. Without `RUNWARE_API_KEY` only the
+deterministic layer runs and `composite` stays `null` — it never invents a number.
+
+What it is for: a real story about a funding round is still a funding round, and a batch
+of four of them reads as a business wire. Pick the top by score first; keep at most two
+stories of one kind per batch (section 0). A story flagged `money-only` can still be
+published when it is genuinely about the robot — the flag lowers the rank, it does not
+forbid.
+
 Then the second pass, for what is live in WordPress but not yet in the archive:
 
 ```bash
