@@ -81,9 +81,10 @@ Quality floor, the rules that stay no matter the target:
   [docs/glossary-ja-zh.md](docs/glossary-ja-zh.md) — 具身智能 and 出货量 are the two the
   dictionary gets wrong.
 - `scripts/source-yield.mjs` turns a finished run into measured numbers per source
-  (`items`, `fresh`, `stories`, `published`, `publishedRate`) and can write the weight
-  back: `weight = clamp(0.6, 1.2, 0.6 + 2.0 × publishedRate)`. A source with zero fresh
-  items is left alone, not zeroed.
+  (`items`, `fresh`, `stories`, `surfaced`, `cited`, `published`, `publishedRate`) and
+  can write the weight back: `weight = clamp(0.6, 1.2, 0.6 + 2.0 × publishedRate)`, where
+  the rate is `surfaced / stories` — the feed that *found* the story, not the site we
+  quoted. A source with zero fresh items is left alone, not zeroed.
 
 ### 2. Find articles
 
@@ -105,6 +106,14 @@ fetcher and caps the pool round-robin across publishers — undated listing item
 top 20 per source, then a shared cap, freshest first inside each source. Result:
 `docs/research/candidates-asia-<date>.json`. Run the general dump and the lane side by
 side; triage them together or one after the other, the story dedupe works across both.
+
+A publisher that returns nothing gets exactly one more attempt: the lane retries the
+silent publishers alone, merges the two passes, dedupes by canonical URL and caps the
+union again. A slow origin under load (`leiphone` answers in ~11 s against a 15 s client
+timeout) is indistinguishable from a blocked one until you ask twice, and a second empty
+answer is an answer. `docs/research/candidates-asia-<date>.meta.json` records `retried`,
+`recovered` and `stillEmpty` by name; the pool file stays a bare array because triage,
+published-check and source-yield read it as one.
 
 Topic-scoped runs: `thematic-article-search --topic <topic> --sources scripts/sources.json`.
 

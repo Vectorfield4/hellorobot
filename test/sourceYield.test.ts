@@ -130,6 +130,201 @@ describe("source yield", () => {
   });
 });
 
+describe("attribution", () => {
+  /** A run where the feed that found the story is not the site the article quotes. */
+  const bedrock = {
+    candidates: [
+      {
+        source: "Google News (en)",
+        title: "Bedrock Robotics raises $600M at $4.1B valuation",
+        url: "https://news.google.com/rss/articles/bedrock",
+        date: "2026-10-26",
+      },
+      {
+        source: "Agility Robotics",
+        title: "GXO and Agility Robotics expand partnership",
+        url: "https://www.agilityrobotics.com/press/gxo-expansion",
+        date: "2026-10-26",
+      },
+    ],
+    shortlist: {
+      window: { from: "2026-10-26", to: "2026-10-27" },
+      shortlist: [
+        {
+          title: "Bedrock Robotics raises $600M at $4.1B valuation",
+          url: "https://techcrunch.com/2026/10/26/bedrock-robotics/",
+          source: "Google News (en)",
+          retold: [
+            {
+              source: "Google News (zh)",
+              url: "https://news.google.com/rss/articles/bedrock-zh",
+              title: "Bedrock Robotics 获得6亿美元融资",
+            },
+          ],
+        },
+      ],
+    },
+  };
+
+  it("credits the feed that surfaced the story, not the host the article quotes", () => {
+    const report = measureYield({
+      ...bedrock,
+      articles: [
+        {
+          title: "Bedrock Robotics закрыла $600 млн при оценке $4,1 млрд",
+          url: "https://thenextweb.com/news/bedrock-robotics-600m-series-c",
+        },
+      ],
+    });
+
+    const google = report.sources.find((row) => row.source === "Google News (en)");
+    expect(google?.stories).toBe(1);
+    expect(google?.surfaced).toBe(1);
+    // The aggregator's own host is never what we quote: cited stays zero.
+    expect(google?.cited).toBe(0);
+    expect(google?.publishedRate).toBe(1);
+    expect(google?.weight).toBe(1.2);
+    expect(report.totals.via.story).toBe(1);
+    expect(report.totals.unattributed).toBe(0);
+  });
+
+  it("credits the retold feed whose URL the article quotes", () => {
+    const report = measureYield({
+      candidates: [
+        bedrock.candidates[0],
+        {
+          source: "The Robot Report",
+          title: "A welding cell buyer's guide",
+          url: "https://www.therobotreport.com/welding-guide",
+          date: "2026-10-26",
+        },
+      ],
+      shortlist: {
+        window: { from: "2026-10-26", to: "2026-10-27" },
+        shortlist: [
+          {
+            title: "Bedrock Robotics raises $600M at $4.1B valuation",
+            url: "https://techcrunch.com/2026/10/26/bedrock-robotics/",
+            source: "Google News (en)",
+            retold: [
+              {
+                source: "The Robot Report",
+                url: "https://www.therobotreport.com/bedrock-robotics-600m/",
+                title: "Bedrock Robotics raises a $600M Series C",
+              },
+            ],
+          },
+        ],
+      },
+      articles: [
+        {
+          title: "Нечто, чего кластер по заголовку не знает",
+          url: "https://www.therobotreport.com/bedrock-robotics-600m/",
+        },
+      ],
+    });
+
+    const google = report.sources.find((row) => row.source === "Google News (en)");
+    const trade = report.sources.find((row) => row.source === "The Robot Report");
+
+    expect(report.totals.via.story).toBe(1);
+    // Credit goes to the item that matched: the retold entry carried this URL,
+    // the cluster's keeper did not, so only the retold feed is credited.
+    expect(trade?.surfaced).toBe(1);
+    expect(trade?.cited).toBe(1);
+    expect(google?.surfaced).toBe(0);
+    expect(google?.cited).toBe(0);
+  });
+
+  it("counts a host-only match, says so, and keeps it out of the rate", () => {
+    const report = measureYield({
+      candidates: [candidate("The Robot Report", "https://www.therobotreport.com/a")],
+      shortlist: {
+        window: { from: "2026-10-26", to: "2026-10-27" },
+        shortlist: [
+          {
+            title: "Eka raises $150M",
+            url: "https://www.therobotreport.com/a",
+            source: "The Robot Report",
+            retold: [],
+          },
+        ],
+      },
+      publishedUrls: ["https://www.therobotreport.com/omron-acquires-onlogic"],
+    });
+
+    const row = report.sources[0];
+    expect(row.surfaced).toBe(0);
+    expect(row.published).toBe(1);
+    expect(row.hostAttributed).toBe(1);
+    expect(row.cited).toBe(1);
+    expect(row.publishedRate).toBe(0);
+    expect(row.reason).toContain("by host only");
+    // The arbitration is in the report, not only in the totals.
+    expect(report.attributions).toEqual([
+      {
+        url: "https://www.therobotreport.com/omron-acquires-onlogic",
+        title: null,
+        via: "host",
+        sources: ["The Robot Report"],
+      },
+    ]);
+  });
+
+  it("stops the five-publications-for-one-story artefact", () => {
+    const report = measureYield({
+      candidates: [
+        candidate("The Robot Report", "https://www.therobotreport.com/a"),
+        candidate("The Robot Report", "https://www.therobotreport.com/b"),
+        candidate("The Robot Report", "https://www.therobotreport.com/c"),
+      ],
+      shortlist: {
+        window: { from: "2026-10-26", to: "2026-10-27" },
+        shortlist: [
+          {
+            title: "Eka raises $150M",
+            url: "https://www.therobotreport.com/a",
+            source: "The Robot Report",
+            retold: [],
+          },
+        ],
+      },
+      articles: [
+        { title: "Eka raises $150M", url: "https://www.therobotreport.com/a" },
+        {
+          title: "A welding cell buyer's guide",
+          url: "https://www.therobotreport.com/welding-guide",
+        },
+        {
+          title: "OMRON to acquire OnLogic",
+          url: "https://www.therobotreport.com/omron-acquires-onlogic",
+        },
+      ],
+    });
+
+    const row = report.sources[0];
+    expect(row.stories).toBe(1);
+    expect(row.surfaced).toBe(1);
+    expect(row.cited).toBe(3);
+    expect(row.published).toBe(3);
+    expect(row.hostAttributed).toBe(2);
+    // The old rule gave 3 published / 1 story = 3.00 here.
+    expect(row.publishedRate).toBe(1);
+  });
+
+  it("leaves an article quoted from a host outside the lane unattributed", () => {
+    const report = measureYield({
+      candidates: [candidate("The Robot Report", "https://www.therobotreport.com/a")],
+      shortlist: { window: { from: "2026-10-26", to: "2026-10-27" }, shortlist: [] },
+      articles: [{ title: "Anthropic counted the robots", url: "https://www.01net.com/x" }],
+    });
+
+    expect(report.totals.unattributed).toBe(1);
+    expect(report.totals.via.none).toBe(1);
+    expect(report.sources[0].published).toBe(0);
+  });
+});
+
 describe("apply", () => {
   const report = {
     inputs: { candidates: "c.json", shortlist: "s.json", articles: null, collected: null },

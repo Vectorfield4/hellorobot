@@ -8,11 +8,22 @@
 // and keeps the freshest items per publisher, round-robin, so every publisher in
 // the lane is represented instead of one 100-item Google News feed filling it.
 //
+// Two passes, never three. The first pass is the lane list. If some publishers came
+// back with nothing, the second pass asks the fetcher for those publishers only:
+// a slow origin under load (leiphone answers in ~11 s against a 15 s client
+// timeout) and a blocked one look identical from here, and one retry is what
+// separates them. A second empty answer is an answer, and it stays in the
+// metadata as `stillEmpty` rather than disappearing.
+//
 //   node scripts/asia-lane.mjs [--date 2026-10-27] [--cap 60]
 //
-// Output: docs/research/candidates-asia-<date>.json (the capped pool) and
-// docs/research/candidates-asia-<date>.raw.json (the uncapped fetch).
-// sources.json is not touched: the filtered list goes to
+// Output: docs/research/candidates-asia-<date>.json (the capped pool),
+// docs/research/candidates-asia-<date>.raw.json (the first, uncapped fetch),
+// docs/research/candidates-asia-<date>.retry.raw.json (the retry, when one ran)
+// and docs/research/candidates-asia-<date>.meta.json (what was retried, what came
+// back, what stayed empty). The pool itself stays a bare array — triage,
+// published-check and source-yield all read it as one — so the retry record goes
+// to the sibling file. sources.json is not touched: the filtered list goes to
 // docs/research/sources-asia.json.
 
 import { execFileSync } from "node:child_process";
@@ -20,7 +31,7 @@ import { mkdirSync, readFileSync, realpathSync, unlinkSync, writeFileSync } from
 import { homedir } from "node:os";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { DEFAULT_UNDATED_CAP } from "./triage-candidates.mjs";
+import { canonicalUrl, DEFAULT_UNDATED_CAP } from "./triage-candidates.mjs";
 
 /** The lane exists for these two languages; add a code here and nowhere else. */
 export const ASIA_LANGS = new Set(["ja", "zh"]);
@@ -125,6 +136,79 @@ export function capCandidates(items, { cap = DEFAULT_CAP, undatedCap = DEFAULT_U
   };
 }
 
+/**
+ * The publishers that answered with nothing. Matched by name, which is what the
+ * fetcher copies into `item.source`, so a renamed source would look empty and be
+ * retried once — cheap, and visible in the metadata.
+ */
+export function emptySources(sources, items) {
+  const answered = new Set(items.map((item) => String(item.source ?? "").trim()));
+  return sources.filter((source) => !answered.has(String(source.name ?? "").trim()));
+}
+
+/**
+ * The union of two passes, first occurrence wins. The retry re-fetches only the
+ * empty publishers, but a listing can shift between passes and hand back a URL
+ * the first pass already had; one story is one candidate.
+ */
+export function dedupeByUrl(items) {
+  const seen = new Set();
+  const kept = [];
+  for (const item of items) {
+    const key = canonicalUrl(item.url) || `${item.source ?? ""}\u0000${item.title ?? ""}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    kept.push(item);
+  }
+  return kept;
+}
+
+/**
+ * The lane's two passes. Everything but the injected `runner` is pure, so a test
+ * can hand in a runner that returns nothing for one publisher on the first pass
+ * and data on the second, and read the metadata without touching the network.
+ */
+export function fetchLane(sources, runner) {
+  const first = runner({ sources, pass: 1 }) ?? [];
+  const missing = emptySources(sources, first);
+  if (missing.length === 0) {
+    return { items: dedupeByUrl(first), retried: [], recovered: [], stillEmpty: [] };
+  }
+
+  const second = runner({ sources: missing, pass: 2 }) ?? [];
+  const answered = new Set(second.map((item) => String(item.source ?? "").trim()));
+  const names = missing.map((source) => source.name);
+  return {
+    items: dedupeByUrl([...first, ...second]),
+    retried: names,
+    recovered: names.filter((name) => answered.has(name)),
+    stillEmpty: names.filter((name) => !answered.has(name)),
+  };
+}
+
+/**
+ * The real pass runner: write the source list, shell out to the shared fetcher,
+ * read what it wrote. `pass` names the files, so the retry never overwrites the
+ * first fetch and both stay inspectable afterwards.
+ */
+export function defaultRunner({ researchDir, date }) {
+  return ({ sources, pass }) => {
+    const tag = pass === 1 ? "" : "-retry";
+    const listPath = join(researchDir, `sources-asia${tag}.json`);
+    const outPath = join(researchDir, `candidates-asia-${date}${tag}.raw.json`);
+    writeFileSync(listPath, `${JSON.stringify(sources, null, 2)}\n`, "utf8");
+    try {
+      unlinkSync(outPath);
+    } catch {
+      // first run, or nothing stale to remove
+    }
+    execFileSync(process.execPath, [FETCHER, "--sources", listPath, "--out", outPath], {
+      stdio: ["ignore", "inherit", "inherit"],
+    });
+    return JSON.parse(readFileSync(outPath, "utf8"));
+  };
+}
+
 function parseArgs(argv) {
   const flags = {};
   for (let i = 0; i < argv.length; i += 1) {
@@ -135,7 +219,7 @@ function parseArgs(argv) {
   return flags;
 }
 
-export function run(argv = process.argv.slice(2)) {
+export function run(argv = process.argv.slice(2), { runner = null } = {}) {
   const flags = parseArgs(argv);
   const date = flags.date ?? today();
   const cap = flags.cap ? Number(flags.cap) : DEFAULT_CAP;
@@ -147,37 +231,65 @@ export function run(argv = process.argv.slice(2)) {
   const asia = asiaSources(sources);
   if (asia.length === 0) {
     console.log("no ja/zh sources in the list");
-    return { date, items: [], dropped: 0, perSource: [] };
+    return {
+      date,
+      items: [],
+      dropped: 0,
+      perSource: [],
+      retried: [],
+      recovered: [],
+      stillEmpty: [],
+    };
   }
 
-  const laneSources = join(researchDir, "sources-asia.json");
-  writeFileSync(laneSources, `${JSON.stringify(asia, null, 2)}\n`, "utf8");
+  console.log(`${asia.length} ja/zh sources in the lane`);
+  const lane = fetchLane(asia, runner ?? defaultRunner({ researchDir, date }));
+  const capped = capCandidates(lane.items, { cap });
 
-  const rawOut = join(researchDir, `candidates-asia-${date}.raw.json`);
   const out = join(researchDir, `candidates-asia-${date}.json`);
-  try {
-    unlinkSync(rawOut);
-  } catch {
-    // first run
-  }
-
-  console.log(`${asia.length} ja/zh sources -> ${laneSources}`);
-  execFileSync(process.execPath, [FETCHER, "--sources", laneSources, "--out", rawOut], {
-    stdio: ["ignore", "inherit", "inherit"],
-  });
-
-  const fetched = JSON.parse(readFileSync(rawOut, "utf8"));
-  const capped = capCandidates(fetched, { cap });
+  const metaOut = join(researchDir, `candidates-asia-${date}.meta.json`);
   writeFileSync(out, `${JSON.stringify(capped.items, null, 2)}\n`, "utf8");
+  writeFileSync(
+    metaOut,
+    `${JSON.stringify(
+      {
+        date,
+        cap,
+        lane: asia.map((source) => source.name),
+        fetched: lane.items.length,
+        kept: capped.items.length,
+        dropped: capped.dropped,
+        retried: lane.retried,
+        recovered: lane.recovered,
+        stillEmpty: lane.stillEmpty,
+      },
+      null,
+      2,
+    )}\n`,
+    "utf8",
+  );
 
   console.log(
-    `${fetched.length} fetched -> ${capped.items.length} kept (cap ${cap}, ${capped.dropped} dropped)`,
+    `${lane.items.length} fetched -> ${capped.items.length} kept (cap ${cap}, ${capped.dropped} dropped)`,
   );
+  if (lane.retried.length > 0) {
+    console.log(`retried ${lane.retried.length}: ${lane.retried.join(", ")}`);
+    console.log(`  recovered ${lane.recovered.length}: ${lane.recovered.join(", ") || "none"}`);
+    if (lane.stillEmpty.length > 0) {
+      console.log(`  still empty after retry: ${lane.stillEmpty.join(", ")}`);
+    }
+  }
   for (const row of capped.perSource) {
     console.log(`  ${row.source.padEnd(20).slice(0, 20)} ${row.kept}/${row.available}`);
   }
   console.log(`Wrote ${out}`);
-  return { date, ...capped };
+  return {
+    date,
+    ...capped,
+    retried: lane.retried,
+    recovered: lane.recovered,
+    stillEmpty: lane.stillEmpty,
+  };
 }
 
 if (isEntryPoint()) {

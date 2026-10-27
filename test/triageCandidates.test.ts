@@ -6,9 +6,12 @@ import {
   checkBody,
   checkDraft,
   countWords,
+  fingerprint,
   looksMojibake,
   MIN_NEWS_WORDS,
   numberSignature,
+  sameStory,
+  sameStoryTranslated,
   sourceTier,
   titleEntities,
   titleTokens,
@@ -246,6 +249,36 @@ describe("title signatures", () => {
 
   it("splits Japanese titles into bigrams", () => {
     expect(titleTokens("ヒューマノイドロボット発表")).toContain("ロボ");
+  });
+});
+
+describe("translated story matching", () => {
+  const fp = (title: string) => fingerprint({ title, date: null });
+
+  it("matches a Russian headline to the source-language story by name and amount", () => {
+    const article = fp("Toyota разворачивает 400 тысяч роботов: $6,4 млрд в год на автоматизацию");
+    const original = fp(
+      "Toyota will mit 400.000 Robotern und Milliarden-Investment zum Robotik-Riesen werden",
+    );
+
+    expect(sameStory(article, original)).toBe(false);
+    expect(sameStoryTranslated(article, original)).toBe(true);
+  });
+
+  it("refuses a shared number with no shared name", () => {
+    const article = fp("72% китайских заказчиков хотят гуманоида дешевле 100 тысяч юаней");
+    const original = fp(
+      "72% of Chinese buyers want a humanoid under ¥100k — Morgan Stanley survey",
+    );
+
+    expect(sameStoryTranslated(article, original)).toBe(false);
+  });
+
+  it("refuses a shared name with no shared number", () => {
+    const article = fp("Samsung нашла, как учить робота точной сборке");
+    const original = fp("Samsung trains a robot to assemble chips");
+
+    expect(sameStoryTranslated(article, original)).toBe(false);
   });
 });
 

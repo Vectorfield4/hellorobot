@@ -335,12 +335,26 @@ node scripts/source-yield.mjs --candidates docs/research/candidates-<date>.json 
 node scripts/source-yield.mjs apply --yield docs/research/source-yield.json --dry-run
 ```
 
-Per source it counts `items`, `fresh`, `stories`, `published` and proposes
-`weight = clamp(0.6, 1.2, 0.6 + 2.0 × publishedRate)`; a source with zero fresh items is
-unmeasured and keeps its weight. `apply` rewrites only the number after `"weight":`, is
-idempotent, and prints the before → after table; drop `--dry-run` to write.
+Per source it counts `items`, `fresh`, `stories`, `surfaced`, `cited`, `published` and
+`hostAttributed`, and proposes
+`weight = clamp(0.6, 1.2, 0.6 + 2.0 × publishedRate)` with
+`publishedRate = surfaced / stories`; a source with zero fresh items is unmeasured and
+keeps its weight. `apply` rewrites only the number after `"weight":`, is idempotent, and
+prints the before → after table; drop `--dry-run` to write.
 
-`published` is matched by host between the source's candidate URLs and the archive's
-`source_url` / the daily log. That is why a Google News feed always reports 0 — its
-candidates point at `news.google.com` while the archive stores the publisher's URL — and
-why a vendor's own release, retold by trade press, is credited to the trade host.
+Attribution is per published article, strongest evidence first:
+
+| rule | evidence | how it is counted |
+| --- | --- | --- |
+| `url` | the article's `source_url` is one of this run's candidates | `surfaced` for the feed that carried that URL |
+| `story` | the article matches a shortlisted cluster by a `retold` URL or by title | `surfaced` for the feed whose item matched |
+| `host` | the article's host is one of the feed's candidate hosts | `hostAttributed`, printed, not evidence |
+
+`surfaced` and `cited` are deliberately separate. `cited` is what we quoted — the
+article's `source_url` sits on that feed's host. `surfaced` is what the feed is for: it
+brought the story, even when the article quotes somebody else's URL. An aggregator's
+candidates always point at `news.google.com`, so its `cited` is zero by construction
+while its `surfaced` is the honest number; the weight is fed by `surfaced` for that
+reason. The report ends with the articles no story could claim, each marked `[host]`
+(only the host rule explains it) or `[none]` (nothing does), so a bad credit is visible
+rather than averaged away.

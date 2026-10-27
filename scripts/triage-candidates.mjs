@@ -300,7 +300,12 @@ function sharesLargeAmount(left, right) {
   return false;
 }
 
-function fingerprint(item) {
+/**
+ * The story fingerprint of a title: words, proper nouns, amounts, the day and the
+ * script. Exported because it is the unit of "same story" — anything that has to
+ * compare a published title with a candidate must build it the same way.
+ */
+export function fingerprint(item) {
   const title = String(item.title ?? "");
   return {
     tokens: titleTokens(title),
@@ -337,6 +342,24 @@ export function sameStory(left, right, windowDays = STORY_WINDOW_DAYS) {
     (entity) => entity.length >= 2 && !WEAK_ENTITIES.has(entity) && right.entities.has(entity),
   );
   return distinctive && left.script !== right.script;
+}
+
+/**
+ * Same story, translated. A published headline in Russian keeps the company name
+ * and the amounts, not the words — and because it is written in Latin letters,
+ * `sameStory`'s cross-script branch never fires for it. One distinctive name plus
+ * one shared number is what survives that translation: "Toyota разворачивает
+ * 400 тысяч роботов" against "Toyota will mit 400.000 Robotern …" is one story.
+ *
+ * Used for matching a published article to a cluster, not for clustering: the
+ * candidate pool there is a handful of headlines per article, so a looser rule
+ * does not merge two facts about one company, it only risks a visible miscredit.
+ */
+export function sameStoryTranslated(left, right) {
+  if (!intersects(left.numbers, right.numbers)) return false;
+  return [...left.entities].some(
+    (entity) => entity.length >= 2 && !WEAK_ENTITIES.has(entity) && right.entities.has(entity),
+  );
 }
 
 /** 0 = the actor of the story, 1 = trade press, 2 = aggregator or reprint. */
@@ -407,7 +430,8 @@ function knownFingerprint(entry) {
   };
 }
 
-function canonicalUrl(url) {
+/** Host and path, no scheme, no `www.`, no query, no trailing slash: the identity of a URL. */
+export function canonicalUrl(url) {
   try {
     const parsed = new URL(url);
     parsed.hash = "";

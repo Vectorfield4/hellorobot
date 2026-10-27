@@ -67,18 +67,31 @@ export const STORY_WINDOW_DAYS: number;
 export const MIN_NEWS_WORDS: number;
 export const DEFAULT_UNDATED_CAP: number;
 
+export function canonicalUrl(url: string): string;
 export function titleTokens(title: string): Set<string>;
 export function titleEntities(title: string): Set<string>;
 export function numberSignature(title: string): Set<string>;
+export interface StoryFingerprint {
+  tokens: Set<string>;
+  entities: Set<string>;
+  numbers: Set<string>;
+  day: number | null;
+  script: "cjk" | "latin";
+}
+export function fingerprint(item: {
+  title?: string | null;
+  date?: string | null;
+}): StoryFingerprint;
 export function sourceTier(item: Candidate): number;
 export function countWords(text: string): number;
 export function looksMojibake(text: string): boolean;
 export function checkBody(text: string): BodyCheck;
 export function sameStory(
-  left: { tokens: Set<string>; entities: Set<string>; numbers: Set<string>; day: number | null },
-  right: { tokens: Set<string>; entities: Set<string>; numbers: Set<string>; day: number | null },
+  left: StoryFingerprint,
+  right: StoryFingerprint,
   windowDays?: number,
 ): boolean;
+export function sameStoryTranslated(left: StoryFingerprint, right: StoryFingerprint): boolean;
 export function triage(
   items: Candidate[],
   options?: {
