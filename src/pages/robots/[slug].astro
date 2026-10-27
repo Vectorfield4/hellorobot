@@ -72,7 +72,7 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
     <nav aria-label="Хлебные крошки" class="product-breadcrumbs">
       <a href="/">Главная</a>
       {" / "}
-      <a href="/products">Каталог</a>
+      <a href="/robots">Каталог</a>
       {" / "}
       <span>{product.name}</span>
     </nav>
@@ -96,6 +96,11 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
         {product.year && <p class="product-year">Год выпуска: {product.year}</p>}
 
         {product.shortDescription && <p class="product-lead">{product.shortDescription}</p>}
+
+        <p class="product-order-note">
+          Стоимость и наличие подтверждает менеджер: оплата на сайте не проводится. Оставляете
+          заявку в карточке робота — вам перезванивают, называют сроки поставки и условия.
+        </p>
 
         <div id="order" class="product-order">
           <OrderPanel client:load productId={product.id} productName={product.name} />
@@ -137,7 +142,7 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
       </section>
     )}
 
-    <p class="product-back"><a href="/products">← Каталог роботов</a></p>
+    <p class="product-back"><a href="/robots">← Каталог роботов</a></p>
   </main>
 
   <script type="application/ld+json" set:html={jsonLdText} />

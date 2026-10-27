@@ -8,7 +8,7 @@ import SiteNav from "@/shared/ui/SiteNav.astro";
 export async function getStaticPaths() {
   const products = await getProducts();
   const totalPages = Math.ceil(products.length / PRODUCT_PAGE_SIZE);
-  // Первая страница живёт на /products, поэтому нумерованные начинаются с 2.
+  // Первая страница живёт на /robots, поэтому нумерованные начинаются с 2.
   return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => ({
     params: { page: String(i + 2) },
   }));
@@ -35,7 +35,7 @@ const pageProducts = products.slice(start, start + PRODUCT_PAGE_SIZE);
       products={pageProducts}
       totalPages={totalPages}
       currentPage={page}
-      basePath="/products"
+      basePath="/robots"
     />
   </main>
 </BaseLayout>

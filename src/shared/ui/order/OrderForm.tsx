@@ -252,7 +252,7 @@ export default function OrderForm({ productId, productName }: Props) {
           <div {...stylex.props(styles.success)}>
             <p {...stylex.props(styles.successTitle)}>Заказ №{status.orderNumber} принят</p>
             <p {...stylex.props(styles.note)}>Менеджер свяжется по телефону.</p>
-            <a {...stylex.props(styles.link)} href="/products">
+            <a {...stylex.props(styles.link)} href="/robots">
               Вернуться в каталог
             </a>
           </div>

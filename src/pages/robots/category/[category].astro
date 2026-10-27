@@ -7,32 +7,19 @@ import SiteNav from "@/shared/ui/SiteNav.astro";
 
 export async function getStaticPaths() {
   const categories = await getAllProductCategories();
-  const paths: { params: { category: string; page: string } }[] = [];
-
-  for (const category of categories) {
-    const products = await getProductsByCategory(category.name);
-    const totalPages = Math.ceil(products.length / PRODUCT_PAGE_SIZE);
-    // Первая страница живёт на /products/category/<категория>.
-    for (let page = 2; page <= totalPages; page++) {
-      paths.push({ params: { category: category.name, page: String(page) } });
-    }
-  }
-
-  return paths;
+  return categories.map((category) => ({ params: { category: category.name } }));
 }
 
 const category = Astro.params.category as string;
-const page = Number(Astro.params.page) || 1;
 const products = await getProductsByCategory(category);
 const totalPages = Math.max(1, Math.ceil(products.length / PRODUCT_PAGE_SIZE));
-const start = (page - 1) * PRODUCT_PAGE_SIZE;
-const pageProducts = products.slice(start, start + PRODUCT_PAGE_SIZE);
-const basePath = `/products/category/${encodeURIComponent(category)}`;
+const pageProducts = products.slice(0, PRODUCT_PAGE_SIZE);
+const basePath = `/robots/category/${encodeURIComponent(category)}`;
 ---
 
 <BaseLayout
-  title={`Товары в категории: ${category} — страница ${page}`}
-  description={`Страница ${page} категории «${category}»: цены и наличие товаров.`}
+  title={`Товары в категории: ${category} — hellorobot`}
+  description={`Категория «${category}»: роботы и оборудование с ценами и наличием, заказ на сайте.`}
 >
   <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
     <SiteNav current="catalog" />
@@ -41,7 +28,7 @@ const basePath = `/products/category/${encodeURIComponent(category)}`;
     <ProductListing
       products={pageProducts}
       totalPages={totalPages}
-      currentPage={page}
+      currentPage={1}
       basePath={basePath}
     />
   </main>

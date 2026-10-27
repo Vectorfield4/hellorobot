@@ -132,11 +132,11 @@ export function productPath(slug: string): string {
 }
 
 export function productTagPath(name: string): string {
-  return `/products/tag/${encodeURIComponent(name)}`;
+  return `/robots/tag/${encodeURIComponent(name)}`;
 }
 
 export function productCategoryPath(name: string): string {
-  return `/products/category/${encodeURIComponent(name)}`;
+  return `/robots/category/${encodeURIComponent(name)}`;
 }
 
 export function normalizeSearchText(value: string): string {

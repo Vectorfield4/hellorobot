@@ -112,10 +112,10 @@ describe("пути каталога", () => {
   it("строит адреса товара, тега и категории", () => {
     expect(productPath("unitree-g1")).toBe("/robots/unitree-g1");
     expect(productTagPath("гуманоиды")).toBe(
-      "/products/tag/%D0%B3%D1%83%D0%BC%D0%B0%D0%BD%D0%BE%D0%B8%D0%B4%D1%8B",
+      "/robots/tag/%D0%B3%D1%83%D0%BC%D0%B0%D0%BD%D0%BE%D0%B8%D0%B4%D1%8B",
     );
     expect(productCategoryPath("Коботы")).toBe(
-      "/products/category/%D0%9A%D0%BE%D0%B1%D0%BE%D1%82%D1%8B",
+      "/robots/category/%D0%9A%D0%BE%D0%B1%D0%BE%D1%82%D1%8B",
     );
   });
 });

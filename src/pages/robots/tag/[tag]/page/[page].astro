@@ -7,19 +7,32 @@ import SiteNav from "@/shared/ui/SiteNav.astro";
 
 export async function getStaticPaths() {
   const tags = await getAllProductTags();
-  return tags.map((tag) => ({ params: { tag: tag.name } }));
+  const paths: { params: { tag: string; page: string } }[] = [];
+
+  for (const tag of tags) {
+    const products = await getProductsByTag(tag.name);
+    const totalPages = Math.ceil(products.length / PRODUCT_PAGE_SIZE);
+    // Первая страница живёт на /robots/tag/<тег>, нумерация начинается со 2.
+    for (let page = 2; page <= totalPages; page++) {
+      paths.push({ params: { tag: tag.name, page: String(page) } });
+    }
+  }
+
+  return paths;
 }
 
 const tag = Astro.params.tag as string;
+const page = Number(Astro.params.page) || 1;
 const products = await getProductsByTag(tag);
 const totalPages = Math.max(1, Math.ceil(products.length / PRODUCT_PAGE_SIZE));
-const pageProducts = products.slice(0, PRODUCT_PAGE_SIZE);
-const basePath = `/products/tag/${encodeURIComponent(tag)}`;
+const start = (page - 1) * PRODUCT_PAGE_SIZE;
+const pageProducts = products.slice(start, start + PRODUCT_PAGE_SIZE);
+const basePath = `/robots/tag/${encodeURIComponent(tag)}`;
 ---
 
 <BaseLayout
-  title={`Товары по тегу: ${tag} — hellorobot`}
-  description={`Роботы и оборудование с тегом «${tag}»: цены, наличие и заказ на сайте.`}
+  title={`Товары по тегу: ${tag} — страница ${page}`}
+  description={`Страница ${page} списка товаров с тегом «${tag}»: цены и наличие.`}
 >
   <main style="padding: 2rem; max-width: 48rem; margin: 0 auto;">
     <SiteNav current="catalog" />
@@ -28,7 +41,7 @@ const basePath = `/products/tag/${encodeURIComponent(tag)}`;
     <ProductListing
       products={pageProducts}
       totalPages={totalPages}
-      currentPage={1}
+      currentPage={page}
       basePath={basePath}
     />
   </main>

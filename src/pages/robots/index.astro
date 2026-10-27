@@ -89,11 +89,6 @@ const searchToggleStyle =
       изучают, как робот и человек понимают друг друга.
     </p>
 
-    <p>
-      Стоимость и наличие подтверждает менеджер: оплата на сайте не проводится. Оставляете заявку в
-      карточке робота — вам перезванивают, называют сроки поставки и условия.
-    </p>
-
     {products.length === 0 ? (
       <section style="margin-top: 2rem;">
         <h2 style="font-size: 1.1rem;">Каталог наполняется</h2>
@@ -158,7 +153,7 @@ const searchToggleStyle =
             products={pageProducts}
             totalPages={totalPages}
             currentPage={1}
-            basePath="/products"
+            basePath="/robots"
           />
         </section>
 
