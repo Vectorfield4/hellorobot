@@ -20,9 +20,9 @@
 //   node scripts/interest-score.mjs --file docs/research/shortlist-<date>.json \
 //     [--limit 30] [--no-jev] [--json] [--out docs/research/interest-<date>.json]
 
-import { readFileSync, realpathSync, writeFileSync } from "node:fs";
+import { readdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 /** Composite weights; the one place to tune the ranking. */
@@ -108,6 +108,40 @@ const AWARD = /(award|наград|лауреат|преми|受賞|获奖|ranki
 const ROBOT =
   /(робот|robot|ロボット|机器人|人形|humanoid|ヒューマノイド|гуманоид|манипулятор|кобот|agv|amr|дрон|drone|экзоскелет|exoskeleton|具身|机械臂|灵巧手)/i;
 
+/** A story older than this many days is not news any more, whatever its title says. */
+export const FRESH_DAYS = 2;
+
+const DAY_MS = 86_400_000;
+
+/**
+ * The freshest date available for a story: the article page first, because an
+ * undated HTML listing hides its real date, then the feed. `null` means nobody
+ * knows, which is a different problem from "old".
+ */
+export function storyDate(story, bodies = null, now = Date.now()) {
+  const page = bodies?.get(canonicalUrl(story?.url ?? ""));
+  for (const [date, source] of [
+    [page?.date, "page"],
+    [story?.date, "feed"],
+  ]) {
+    const ms = Date.parse(date);
+    if (!Number.isNaN(ms)) return { ms, source, ageDays: Math.floor((now - ms) / DAY_MS) };
+  }
+  return { ms: null, source: null, ageDays: null };
+}
+
+/** Host and path only: listing URLs differ by query string and trailing slash. */
+export function canonicalUrl(url) {
+  try {
+    const parsed = new URL(url);
+    parsed.hash = "";
+    parsed.search = "";
+    return `${parsed.hostname.toLowerCase().replace(/^www\./, "")}${parsed.pathname.replace(/\/+$/, "")}`;
+  } catch {
+    return "";
+  }
+}
+
 /** Deterministic flags for one story. A flag lowers the composite, never hides it. */
 export function flagsOf(story) {
   const title = String(story?.title ?? "");
@@ -142,6 +176,20 @@ export function flagsOf(story) {
 }
 
 /**
+ * Age flags, kept apart from the headline flags because they answer a different
+ * question: a 2023 press page reads like fresh news until you look at the date,
+ * and nine such pages took the top of the last shortlist.
+ */
+export function ageFlags(dates, freshDays = FRESH_DAYS) {
+  if (dates.ms === null) return { flags: ["undated"], factor: 0.75, date: null, dateSource: null };
+  const iso = new Date(dates.ms).toISOString().slice(0, 10);
+  if (dates.ageDays > freshDays) {
+    return { flags: ["stale"], factor: 0.4, date: iso, dateSource: dates.source };
+  }
+  return { flags: [], factor: 1, date: iso, dateSource: dates.source };
+}
+
+/**
  * Composite from Jev answers. Each score is divided by its top level, so the
  * result is 0..1 whatever the number of levels; a missing answer counts as zero
  * and drags confidence down instead of being silently ignored.
@@ -166,36 +214,42 @@ export function compositeOf(answers) {
  * (and without a key) only the deterministic layer runs and composite stays null.
  */
 export async function scoreStories(stories, options = {}) {
-  const { ask = null, limit = 0 } = options;
+  const {
+    ask = null,
+    limit = 0,
+    bodies = null,
+    now = Date.now(),
+    freshDays = FRESH_DAYS,
+  } = options;
   const picked = limit > 0 ? stories.slice(0, limit) : stories;
   const rows = [];
 
   for (const story of picked) {
-    const { flags, factor } = flagsOf(story);
-    if (!ask) {
-      rows.push({
-        title: story.title,
-        url: story.url,
-        source: story.source,
-        flags,
-        factor,
-        composite: null,
-        confidence: null,
-        route: "deterministic",
-      });
-      continue;
-    }
-    const { answers } = await ask({
-      state: { document: documentOf(story) },
-      questions: questionsFor(),
-    });
-    const { composite, confidence } = compositeOf(answers);
-    rows.push({
+    const headline = flagsOf(story);
+    const age = ageFlags(storyDate(story, bodies, now), freshDays);
+    const flags = [...headline.flags, ...age.flags];
+    const factor = Math.round(headline.factor * age.factor * 100) / 100;
+    const base = {
       title: story.title,
       url: story.url,
       source: story.source,
       flags,
       factor,
+      date: age.date,
+      dateSource: age.dateSource,
+    };
+    if (!ask) {
+      rows.push({ ...base, composite: null, confidence: null, route: "deterministic" });
+      continue;
+    }
+    const lead = leadOf(story, bodies);
+    const { answers } = await ask({
+      state: { document: documentOf(story, lead) },
+      questions: questionsFor(),
+    });
+    const { composite, confidence } = compositeOf(answers);
+    rows.push({
+      ...base,
       composite: Math.round(composite * factor * 1000) / 1000,
       confidence,
       route: confidence < REVIEW_CONFIDENCE ? "review" : "ok",
@@ -213,10 +267,53 @@ export async function scoreStories(stories, options = {}) {
   return rows;
 }
 
-/** What the model sees: title, plus every retelling's title for context. */
-export function documentOf(story) {
+/**
+ * What the model sees: the title, every retelling's title as context, and the
+ * first paragraph of the article when the text has already been extracted. A
+ * headline alone is what let nine 2023 press pages score as fresh news.
+ */
+export function documentOf(story, lead = "") {
   const retold = (story.retold ?? []).map((entry) => `- ${entry.title}`).join("\n");
-  return retold ? `${story.title}\n\n${retold}` : String(story.title ?? "");
+  const parts = [String(story.title ?? "")];
+  if (retold) parts.push(retold);
+  if (lead) parts.push(lead);
+  return parts.join("\n\n");
+}
+
+/** The lead paragraph for a story, from an extracted body or from the story itself. */
+export function leadOf(story, bodies = null, limit = 600) {
+  const body = bodies?.get(canonicalUrl(story?.url ?? ""));
+  const text = String(body?.text ?? story?.lead ?? "")
+    .replace(/^---\r?\n[\s\S]*?\r?\n---/, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!text) return "";
+  const firstParagraph = text
+    .split(/(?<=[.!?])\s/)
+    .slice(0, 4)
+    .join(" ");
+  return firstParagraph.slice(0, limit);
+}
+
+/** Reads `extract-article.mjs` output files into a map keyed by canonical URL. */
+export function loadBodies(dir) {
+  const bodies = new Map();
+  let names = [];
+  try {
+    names = readdirSync(dir);
+  } catch {
+    return bodies;
+  }
+  for (const name of names) {
+    if (!name.endsWith(".json")) continue;
+    try {
+      const body = JSON.parse(readFileSync(join(dir, name), "utf8"));
+      if (body?.url) bodies.set(canonicalUrl(body.url), body);
+    } catch {
+      // A half-written body is not worth failing the whole ranking over.
+    }
+  }
+  return bodies;
 }
 
 export function questionsFor() {
@@ -282,8 +379,11 @@ export async function run(argv = process.argv.slice(2)) {
       );
   }
 
+  const bodies = flags.bodies ? loadBodies(resolve(flags.bodies)) : null;
   const rows = await scoreStories(stories, {
     ask,
+    bodies,
+    freshDays: flags["fresh-days"] ? Number(flags["fresh-days"]) : FRESH_DAYS,
     limit: flags.limit ? Number(flags.limit) : 30,
   });
 
@@ -297,9 +397,13 @@ export async function run(argv = process.argv.slice(2)) {
   for (const row of rows) {
     const score = row.composite === null ? "  n/a" : row.composite.toFixed(2);
     const flags = row.flags.length > 0 ? `  [${row.flags.join(", ")}]` : "";
+    const date = row.date ? `${row.date}${row.dateSource === "page" ? "*" : ""}` : "без даты";
     console.log(
-      `  ${score}  x${row.factor}  ${row.route.padEnd(13)} ${row.title.slice(0, 90)}${flags}`,
+      `  ${score}  x${row.factor}  ${date.padEnd(11)} ${row.route.padEnd(13)} ${row.title.slice(0, 84)}${flags}`,
     );
+  }
+  if (rows.some((row) => row.dateSource === "page")) {
+    console.log("дата со звёздочкой — со страницы статьи, а не из фида");
   }
   if (flags.out) console.log(`Wrote ${flags.out}`);
   return rows;
