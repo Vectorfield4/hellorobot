@@ -33,37 +33,37 @@
 
 `data/` целиком в `.gitignore`: там локальные данные и артефакты прогонов.
 Скриптов в проекте нет — они живут в скилах
-(`~/.config/opencode/skills/content/shop-*/scripts/`).
+(`~/.config/opencode/skills/sales/sales-*/scripts/`).
 
 ## Как это запускается
 
-Команда `добавь товары` (`/add-products`) поднимает `content-shop-filler`, тот
+Команда `добавь товары` (`/add-products`) поднимает `sales-filler`, тот
 идёт по дереву узлов. Каждый узел — отдельный скил с одной работой:
 
 | # | Скил | Работа |
 |---|---|---|
-| 1 | `shop-write` capabilities | чем писать: WC REST (batch) или WordPress MCP (5 вызовов) |
-| 2 | `shop-vendors` | allowlist брендов |
+| 1 | `sales-write` capabilities | чем писать: WC REST (batch) или WordPress MCP (5 вызовов) |
+| 2 | `sales-vendors` | allowlist брендов |
 | 3 | `product-match` aliases | `productTags.ts` → `data/<host>/tag-aliases.json` |
-| 4 | `shop-audit` | теги статей, товары включая draft, список пробелов |
-| 5 | `shop-harvest` | sitemap + schema.org Product с сайтов брендов |
-| 6 | `shop-price-ledger` | цены → `prices.yaml`, только локально |
-| 7 | `shop-tagmap` | модель → канонические теги блога |
-| 8 | `shop-plan` | пробелы × модели → очередь (gap, потом premium) |
-| 9 | `shop-gate` | trust + unique + spec → publish или draft |
-| 10 | `shop-catalog` | вердикты → `products/catalog.json`, идемпотентно |
-| 11 | `shop-write` | отправка в WooCommerce выбранным транспортом |
-| 12 | `shop-verify` | виден ли товар в Store API, легли ли теги |
-| 13 | `shop-report` | манифест, метрики, сравнение с прошлым прогоном |
+| 4 | `sales-audit` | теги статей, товары включая draft, список пробелов |
+| 5 | `sales-harvest` | sitemap + schema.org Product с сайтов брендов |
+| 6 | `sales-price-ledger` | цены → `prices.yaml`, только локально |
+| 7 | `sales-tagmap` | модель → канонические теги блога |
+| 8 | `sales-plan` | пробелы × модели → очередь (gap, потом premium) |
+| 9 | `sales-gate` | trust + unique + spec → publish или draft |
+| 10 | `sales-catalog` | вердикты → `products/catalog.json`, идемпотентно |
+| 11 | `sales-write` | отправка в WooCommerce выбранным транспортом |
+| 12 | `sales-verify` | виден ли товар в Store API, легли ли теги |
+| 13 | `sales-report` | манифест, метрики, сравнение с прошлым прогоном |
 
 Вручную те же узлы запускаются по одному:
 
 ```bash
-S="$env:USERPROFILE/.config/opencode/skills/content"
-node "$S/shop-audit/scripts/audit.mjs"
-node "$S/shop-harvest/scripts/harvest.mjs" --sellers data/hello-robot.ru/sellers.yaml
-node "$S/shop-tagmap/scripts/tagmap.mjs" --rules products/tag-rules.yaml
-node "$S/shop-plan/scripts/plan.mjs" --sellers data/hello-robot.ru/sellers.yaml
+S="$env:USERPROFILE/.config/opencode/skills/sales"
+node "$S/sales-audit/scripts/audit.mjs"
+node "$S/sales-harvest/scripts/harvest.mjs" --sellers data/hello-robot.ru/sellers.yaml
+node "$S/sales-tagmap/scripts/tagmap.mjs" --rules products/tag-rules.yaml
+node "$S/sales-plan/scripts/plan.mjs" --sellers data/hello-robot.ru/sellers.yaml
 ```
 
 Коды выхода одинаковые у всех узлов: `0` — сделано, `1` — результат
@@ -87,7 +87,7 @@ node "$S/shop-plan/scripts/plan.mjs" --sellers data/hello-robot.ru/sellers.yaml
 Названия, короткие и полные описания живут в WooCommerce и в
 `products/catalog.json` по-русски: общие слова переведены, бренд и модель
 остаются латиницей. Выгрузка поставщика (`automated mobile robots,amr...`,
-HTML-сущности вида `&#8212;`) в магазин не попадает. `shop-write` отправляет в
+HTML-сущности вида `&#8212;`) в магазин не попадает. `sales-write` отправляет в
 WooCommerce ровно то, что лежит в каталоге, поэтому каталог — единственное
 место, где правится русский текст товара.
 
@@ -141,7 +141,7 @@ Store API отдаёт его в `attributes`, страница показыва
 ## Что не попадает в каталог
 
 Индекс бренда — это всё, что нашлось на его сайте, включая аксессуары и
-маркетинговые страницы. Магазину они не нужны, поэтому `shop-tagmap` отбрасывает
+маркетинговые страницы. Магазину они не нужны, поэтому `sales-tagmap` отбрасывает
 их до планирования:
 
 - **аксессуар** — батарея, мотор, лидар, контроллер, кабель, модуль, док, кейс,
@@ -194,14 +194,14 @@ Beatbot (роботы для бассейна), KEYi (домашний комп�
 
 Подводные ROV (QYSEA, Deep Trekker) собраны в индексе, но в план не попадают:
 их цена скрыта, а премиальный добор ранжирует по цене. Им нужна статья про
-подводную робототехнику — тег из статьи станет пробелом, и `shop-plan` возьмёт
+подводную робототехнику — тег из статьи станет пробелом, и `sales-plan` возьмёт
 ROV как закрытие пробела.
 
 
 ## Прогон 1 → прогон 2
 
-`content-shop-filler` пишет манифест каждого узла через
-`shop-report/scripts/manifest.mjs` и `measure.mjs` (время и число HTTP-запросов
+`sales-filler` пишет манифест каждого узла через
+`sales-report/scripts/manifest.mjs` и `measure.mjs` (время и число HTTP-запросов
 считает обёртка, а не сам узел). Замер на этом проекте:
 
 | | прогон 1 (холодный индекс) | прогон 2 (тёплый) |
@@ -216,8 +216,8 @@ ROV как закрытие пробела.
 
 ## Как завести новый бренд
 
-1. `node "$S/shop-vendors/scripts/vendors.mjs" add --name "Unitree" --domain unitree.com --flagship "H1, G1"`
-2. Если у бренда нет правила тегования, `shop-tagmap` покажет модель в
+1. `node "$S/sales-vendors/scripts/vendors.mjs" add --name "Unitree" --domain unitree.com --flagship "H1, G1"`
+2. Если у бренда нет правила тегования, `sales-tagmap` покажет модель в
    `unmapped`. Добавьте строку в `products/tag-rules.yaml`:
 
 ```yaml
@@ -251,9 +251,9 @@ WC REST со `status=any` именно поэтому.
 ## Проверка
 
 ```bash
-node "$S/shop-verify/scripts/verify.mjs" store    --gated data/hello-robot.ru/gated.json
-node "$S/shop-verify/scripts/verify.mjs" coverage --audit data/hello-robot.ru/audit.json
-node "$S/shop-report/scripts/report.mjs" --run data/hello-robot.ru/runs/<stamp> --catalog products/catalog.json
+node "$S/sales-verify/scripts/verify.mjs" store    --gated data/hello-robot.ru/gated.json
+node "$S/sales-verify/scripts/verify.mjs" coverage --audit data/hello-robot.ru/audit.json
+node "$S/sales-report/scripts/report.mjs" --run data/hello-robot.ru/runs/<stamp> --catalog products/catalog.json
 ```
 
 `merge.mjs --check` на неизменных входах обязан выходить с кодом `0`: повторный

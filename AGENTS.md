@@ -235,7 +235,7 @@ robot with that tag, gates it and publishes it:
 /add-products тег: <tag>        # or just: добавь товары
 ```
 
-The nodes live in the skills repo (`~/.config/opencode/skills/content/shop-*`); the project
+The nodes live in the skills repo (`~/.config/opencode/skills/sales/sales-*`); the project
 keeps no shop script. Costs and policy are in [docs/products.md](docs/products.md): tags are
 functional, brands are an internal allowlist in `data/<host>/sellers.yaml`, and prices stay
 in `data/<host>/prices.yaml` — WooCommerce gets `regular_price: "0"` and the page shows the
