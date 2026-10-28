@@ -330,3 +330,85 @@ rule:
   - kind: model
     match: companion robotic pet cat
     tags: "биоинспирированная робототехника, роботы"
+
+# --- Hiwonder (hiwonder.com), 2026-10-28: образовательные роботы ---
+#
+# Shopify-фид отдаёт 85 товаров, но большинство — сервоприводы, модули и
+# крепёж; их отсекает ACCESSORY_KEYWORDS. Ниже модели, которые являются
+# роботами. Явное model-правило важнее эвристики «kit»: AiArm и xArm UNO
+# называются kit, но это манипуляторы, а не запчасти.
+  - kind: brand
+    match: Hiwonder
+    tags: "роботы, открытое железо"
+  # Манипуляторы с открытым ПО (Scratch/Python/Arduino/ROS 2).
+  - kind: model
+    match: aiarm
+    tags: "манипуляторы, манипуляция, открытое железо"
+    robot: manipulator
+  - kind: model
+    match: jetmax
+    tags: "манипуляторы, манипуляция, ros 2, открытое железо"
+    robot: manipulator
+  - kind: model
+    match: learm
+    tags: "манипуляторы, манипуляция, открытое железо"
+    robot: manipulator
+  - kind: model
+    match: miniarm
+    tags: "манипуляторы, манипуляция, открытое железо"
+    robot: manipulator
+  - kind: model
+    match: armpi
+    tags: "манипуляторы, манипуляция, ros 2, открытое железо"
+    robot: manipulator
+  - kind: model
+    match: xarm 1s
+    tags: "манипуляторы, манипуляция, открытое железо"
+    robot: manipulator
+  - kind: model
+    match: xarm uno
+    tags: "манипуляторы, манипуляция, открытое железо"
+    robot: manipulator
+  # uHand — бионическая кисть, отдельная модель.
+  - kind: model
+    match: uhand
+    tags: "манипуляторы, манипуляция, открытое железо"
+    robot: manipulator
+  # Гексаподы: шесть ног, поэтому не quadruped.
+  - kind: model
+    match: spiderbot
+    tags: "биоинспирированная робототехника, роботы, открытое железо"
+    robot: legged
+  - kind: model
+    match: jethexa
+    tags: "биоинспирированная робототехника, навигация, автономность, ros 2"
+    robot: legged
+  - kind: model
+    match: spiderpi
+    tags: "биоинспирированная робототехника, навигация, автономность"
+    robot: legged
+  # Колёсные образовательные платформы.
+  - kind: model
+    match: aimecha
+    tags: "роботы, открытое железо, ии"
+    robot: amr
+  - kind: model
+    match: qtruck
+    tags: "роботы, открытое железо"
+  - kind: model
+    match: gogopi
+    tags: "роботы, открытое железо"
+  - kind: model
+    match: ainova
+    tags: "роботы, открытое железо"
+  # DH-Robotics CGI / CGC / PGHL — электрические захваты, а не роботы: в
+  # названии нет слова «gripper», поэтому эвристика аксессуаров их не ловит.
+  - kind: model
+    match: cgi
+    tags: ""
+  - kind: model
+    match: cgc
+    tags: ""
+  - kind: model
+    match: pghl
+    tags: ""

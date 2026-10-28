@@ -488,6 +488,122 @@
       "type": "simple"
     },
     {
+      "categories": [],
+      "description": "Колёсная платформа на шасси с меканум-колёсами, трёхосевым манипулятором и связкой контроллеров ESP32 и MM32. Камера и AI-модуль распознают объекты, робот собирает и переставляет их. Программируется в Scratch и MicroPython, поддерживает большую языковую модель.",
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0084/2799/5187/files/1_33fbeee1-8f50-4130-bc8b-1b45822d2989.jpg?v=1790752696"
+        }
+      ],
+      "name": "Hiwonder AiMecha M1 — робот-машинка с манипулятором",
+      "review_note": "",
+      "short_description": "Образовательный робот-машинка с 3-осевым манипулятором и AI-зрением.",
+      "sku": "HR-HIWONDER-AIMECHA-M1-AI-ROBOT-CAR-AI-VISION-ROBOTIC-ARM-AI-LARGE-",
+      "slug": "hiwonder-aimecha-m1",
+      "source_url": "https://hiwonder.com/products/aimecha-m1",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "ии",
+        "открытое железо",
+        "роботы"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Открытый манипулятор на Raspberry Pi 5 под ROS. Камера FPV и AI-зрение распознают объекты, сервы с обратной связью отрабатывают захват. Программируется на Python, уроки и исходники открыты.",
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0084/2799/5187/files/c645dcb484ade591b87c265f355e76e9.png?v=1782203765"
+        }
+      ],
+      "name": "Hiwonder ArmPi FPV — манипулятор с AI-зрением",
+      "review_note": "",
+      "short_description": "Манипулятор на Raspberry Pi 5 с FPV-камерой и AI-зрением, программируется на Python.",
+      "sku": "HR-HIWONDER-ARMPI-FPV-AI-VISION-RASPBERRY-PI-5-ROS-ROBOTIC-ARM-WITH",
+      "slug": "hiwonder-armpi-fpv",
+      "source_url": "https://hiwonder.com/products/armpi-fpv",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "манипуляторы",
+        "открытое железо",
+        "ros 2"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Шестиногий робот с 18 степенями свободы и обратной кинематикой. Несёт лидар и стереокамеру, строит карту и объезжает препятствия под ROS 2. Поддерживает языковые модели и голосовое управление, рассчитан на обучение автономной навигации.",
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0084/2799/5187/files/1_2f4071e4-ebeb-4dc5-a066-75e0ce75a0f2.jpg?v=1789435504"
+        }
+      ],
+      "name": "Hiwonder JetHexa — гексапод на ROS 2",
+      "review_note": "",
+      "short_description": "Гексапод на ROS 2 с лидаром и 3D-зрением для SLAM и автономной навигации.",
+      "sku": "HR-HIWONDER-JETHEXA-ROS-2-AI-HEXAPOD-ROBOT-LLM-OPENCLAW-LIDAR-SLAM-",
+      "slug": "hiwonder-jethexa",
+      "source_url": "https://hiwonder.com/products/jethexa-2027",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "автономность",
+        "биоинспирированная робототехника",
+        "навигация",
+        "ros 2"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Настольный робот-манипулятор на контроллере Jetson или Raspberry Pi 5. Сервы с магнитными энкодерами, 3D-камера и голосовое управление, работа под ROS 2. Поддерживает языковые модели и открытый код для учебных проектов.",
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0084/2799/5187/files/3034a1133efe01daba919094b70c6310_26e3bdf2-9876-481a-b571-918c7fa0ff22.jpg?v=1791371273"
+        }
+      ],
+      "name": "Hiwonder JetMax — манипулятор на ROS 2",
+      "review_note": "",
+      "short_description": "Настольный манипулятор на ROS 2 с 3D-камерой и голосовым управлением.",
+      "sku": "HR-HIWONDER-JETMAX-ROS-2-AI-ROBOTIC-ARM-LLM-OPENCLAW-AI-AGENT-3D-VI",
+      "slug": "hiwonder-jetmax",
+      "source_url": "https://hiwonder.com/products/jetmax2027",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "манипуляторы",
+        "открытое железо",
+        "ros 2"
+      ],
+      "type": "simple"
+    },
+    {
+      "categories": [],
+      "description": "Шестиногий робот с 18 степенями свободы на контроллере Arduino. Ходит, поднимается и танцует по команде с приложения для Android и iOS, поддерживает голосовое управление. Через набор расширения подключаются дополнительные датчики, а исходники и уроки открыты для самостоятельной разработки.",
+      "images": [
+        {
+          "src": "https://cdn.shopify.com/s/files/1/0084/2799/5187/files/SpiderPi_9aaf3991-cae4-4517-ac63-8d5d7d31cb6e.png?v=1782203211"
+        }
+      ],
+      "name": "Hiwonder Spiderbot — программируемый гексапод",
+      "review_note": "",
+      "short_description": "Гексапод на Arduino для обучения программированию, с голосовым управлением.",
+      "sku": "HR-HIWONDER-SPIDERBOT-ARDUINO-CODING-ROBOT-WITH-AI-VOICE-CONTROL-AN",
+      "slug": "hiwonder-spiderbot",
+      "source_url": "https://hiwonder.com/products/spiderbot",
+      "status": "publish",
+      "stock_status": "onbackorder",
+      "tags": [
+        "биоинспирированная робототехника",
+        "открытое железо",
+        "роботы"
+      ],
+      "type": "simple"
+    },
+    {
       "categories": [
         "Промышленная робототехника"
       ],
