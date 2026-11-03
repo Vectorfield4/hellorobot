@@ -1,0 +1,64 @@
+date: 2026-11-03
+ttl_days: 7
+expires: 2026-11-10
+items:
+  - slug: evs-pipe-flange-welding
+    source_url: https://www.evsint.com/robotic-pipe-flange-welding-manual-task-allocation
+    wp_id: 357
+    collected_at: 2026-11-03T12:23:32.751Z
+  - slug: evs-screwdriving-faults
+    source_url: https://www.evsint.com/robot-screwdriving-pickup-entry-seating-faults
+    wp_id: 358
+    collected_at: 2026-11-03T12:23:32.909Z
+  - slug: 3m-interconnect-challenge-robotics
+    source_url: https://www.therobotreport.com/solving-the-interconnect-challenge-in-modern-robotics-how-3m-is-engineering-for-motion-density-and-uptime
+    wp_id: 359
+    collected_at: 2026-11-03T12:23:33.061Z
+  - slug: robotnik-retail-mobile-robots
+    source_url: https://robotnik.eu/mobile-robots-retail
+    wp_id: 360
+    collected_at: 2026-11-03T12:23:33.207Z
+  - slug: xiaomi-robotics-1-apartment-trial
+    source_url: https://news.mydrivers.com/1/1162/1162802.htm
+    wp_id: 361
+    collected_at: 2026-11-03T12:23:33.355Z
+  - slug: hd-hyundai-robotics-ai-programming
+    source_url: https://www.zaikei.co.jp/article/20261103/875960.html
+    wp_id: 362
+    collected_at: 2026-11-03T12:23:33.509Z
+  - slug: pointpilot-manipulation-point-flow
+    source_url: https://arxiv.org/abs/2611.02930
+    wp_id: 363
+    collected_at: 2026-11-03T12:23:33.661Z
+  - slug: open-data-120-humanoid-robots
+    source_url: https://discourse.openrobotics.org/t/open-data-120-humanoid-robots-with-prices-and-specs-and-what-public-labs-actually-paid-for-them/59427
+    wp_id: 364
+    collected_at: 2026-11-03T12:23:33.841Z
+  - slug: zero-day-findings-robotics-security
+    source_url: https://www.therobotreport.com/28-zero-day-findings-in-less-than-two-days-what-ai-speed-discovery-means-for-robotics
+    wp_id: 365
+    collected_at: 2026-11-03T12:23:33.998Z
+  - slug: quasi-amr-cart-cost
+    source_url: https://www.quasi.ai/autonomous-mobile-robot-cart-cost
+    wp_id: 366
+    collected_at: 2026-11-03T12:23:34.191Z
+  - slug: mirabit-agile-robots-franka-distribution
+    source_url: https://robotstart.info/article/2026/11/02/382589.html
+    wp_id: 367
+    collected_at: 2026-11-03T12:23:34.343Z
+  - slug: rlwrl-d-5finger-packing-kddi
+    source_url: https://robotstart.info/article/2026/10/30/382586.html
+    wp_id: 368
+    collected_at: 2026-11-03T12:23:34.506Z
+  - slug: agibot-worken-metric
+    source_url: https://robotstart.info/article/2026/10/30/382585.html
+    wp_id: 369
+    collected_at: 2026-11-03T12:23:34.666Z
+  - slug: pudu-tomo-s-mower
+    source_url: https://www.unite.ai/ja/pudu-robotics-unveils-tomo-s-mowers-with-self-sharpening-blades/
+    wp_id: 370
+    collected_at: 2026-11-03T12:23:34.836Z
+  - slug: agile-one-sn-humanoid-agile-robots
+    source_url: https://tech.ifeng.com/c/8xkc1cozW3X
+    wp_id: 371
+    collected_at: 2026-11-03T12:23:34.991Z
